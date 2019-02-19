@@ -1,0 +1,46 @@
+@import "./colors.css";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800);
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--black-400);
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  line-height: 1;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+::-webkit-input-placeholder {
+  color: var(--gray-400);
+}
+
+:any-link {
+  color: var(--blue-400);
+  transition: all .3s ease;
+}
+
+::placeholder {
+  color: var(--gray-400);
+}
+
+svg {
+  width: 100%;
+}
+
+label {
+  color: var(--black-400);
+  padding: .6rem .3rem;
+}
+
+button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+}
