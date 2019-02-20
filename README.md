@@ -1,4 +1,5 @@
-# dwbh
+# dwbh 
+[![Build Status](https://travis-ci.com/dont-worry-be-happy/dwbh-front.svg?branch=master)](https://travis-ci.com/dont-worry-be-happy/dwbh-front)
 
 ## Project setup
 ```
