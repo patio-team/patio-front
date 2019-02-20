@@ -1,15 +1,22 @@
 @import "./colors.css";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300,800);
 
+/* Fonts
+   ========================================================================== */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900);
+
+/* Common
+   ========================================================================== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Body
+   ========================================================================== */
 body {
   color: var(--black-400);
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 100%;
   line-height: 1;
 
@@ -18,21 +25,25 @@ body {
   }
 }
 
-::-webkit-input-placeholder {
-  color: var(--gray-400);
+/* Titles
+   ========================================================================== */
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: normal;
 }
 
-:any-link {
-  color: var(--blue-400);
-  transition: all .3s ease;
-}
-
-::placeholder {
-  color: var(--gray-400);
-}
-
+/* SVGs & images
+   ========================================================================== */
 svg {
   width: 100%;
+}
+
+/* Forms
+   ========================================================================== */
+
+fieldset {
+  border: none;
 }
 
 label {
@@ -40,7 +51,27 @@ label {
   padding: .6rem .3rem;
 }
 
+::-webkit-input-placeholder,
+::placeholder {
+  color: var(--gray-300);
+}
+
 button {
-  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
+}
+
+/* Links
+   ========================================================================== */
+a,
+area,
+link {
+  color: var(--orange-400);
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

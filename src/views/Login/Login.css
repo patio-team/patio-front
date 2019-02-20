@@ -1,0 +1,73 @@
+.login {
+  align-items: flex-start;
+  background-color: var(--white-400-40);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 600px;
+}
+
+.title {
+  padding-bottom: 1em;
+}
+
+form {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  font-size: 1rem;
+  margin: 0;
+
+  & fieldset {
+    align-items: flex-start;
+    all: initial;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: .5rem;
+
+    & label {
+      font-size: 1rem;
+    }
+
+    & input {
+      border: 1px solid var(--gray-300);
+      border-radius: 3px;
+      display: flex;
+      font-size: 1rem;
+      line-height: 2rem;
+      padding: .2rem .5rem;
+      width: 21rem;
+    }
+  }
+
+  & .username {
+    order: 1;
+  }
+
+  & .password {
+    order: 2;
+  }
+
+  & .submit {
+    background-color: var(--orange-400);
+    border: 1px solid var(--black-400);
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px 0 var(--black-400-40);
+    color: var(--white-400);
+    font-weight: bolder;
+    height: 2.5rem;
+    margin: 1.5rem 0;
+    order: 3;
+    text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  & .forgot-password {
+    align-self: flex-end;
+    font-size: .75rem;
+    line-height: 1rem;
+    order: 2;
+  }
+}

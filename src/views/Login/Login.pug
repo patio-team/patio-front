@@ -1,2 +1,17 @@
-div.login
-  h1 Login page
+.login
+  h2.title Sign in
+
+  form.form
+    fieldset.username
+      label email or username
+      input(type="text" placeholder="type tour username or password")
+
+    fieldset.password
+      label password
+      input(type="password" placeholder="type your username or password")
+
+    button.submit Sign in
+
+    a.forgot-password(tabindex="0") Forgot password?
+
+  p Don't have an account #[a.sign-up(tabindex="0") Sign up]

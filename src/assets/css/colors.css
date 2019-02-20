@@ -1,6 +1,9 @@
 :root {
   --black-400: #000;
-  --blue-400: #2c65e1;
-  --gray-400: #afbccf;
+  --black-400-40: rgb(0, 0, 0, .4);
+  --gray-300: #d1d1d1;
+  --orange-400: #ffb138;
   --white-400: #fff;
+  --white-400-40: rgba(255, 255, 255, .4);
+  --white-500: #fcfdff;
 }
