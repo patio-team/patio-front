@@ -1,7 +1,8 @@
 <template src="./Login.pug" lang="pug"></template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
+@Component
 export default class Login extends Vue {}
 </script>

@@ -9,6 +9,5 @@ import HelloWorld from "@/components/HelloWorld/HelloWorld.vue";
     HelloWorld,
   },
 })
-
 export default class Home extends Vue {}
 </script>
