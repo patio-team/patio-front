@@ -25,7 +25,12 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*.ts",
