@@ -1,4 +1,4 @@
-# dwbh 
+# dwbh
 [![Build Status](https://travis-ci.com/dont-worry-be-happy/dwbh-front.svg?branch=master)](https://travis-ci.com/dont-worry-be-happy/dwbh-front)
 
 ## Project setup
@@ -38,3 +38,16 @@ yarn run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## Quick setup (with docker)
+
+### Build docker image
+```
+docker build -t dwbh/front .
+```
+
+### Run docker image
+```
+docker run -it -p 9000:80 --rm --name dwbh-front dwbh/front
+```
