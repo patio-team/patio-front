@@ -1,0 +1,50 @@
+/* Generic container for a view
+   =============================== */
+.view {
+  align-items: flex-start;
+  background-color: var(--white-400-40);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 1200px;
+  padding: 1rem 2rem;
+}
+
+/* Generic button
+   =============================== */
+.btn {
+  background-color: var(--orange-400);
+  border: 1px solid var(--black-400);
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px 0 var(--black-400-40);
+  color: var(--white-400);
+  font-weight: bolder;
+  height: 2.5rem;
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+  text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
+  text-transform: uppercase;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: var(--green-400);
+  }
+}
+
+/* Generic button as links
+   =============================== */
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--orange-400);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  transition: all .3s ease;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}

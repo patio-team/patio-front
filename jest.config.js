@@ -1,14 +1,16 @@
 module.exports = {
   moduleFileExtensions: [
+    'vue',
+    'ts',
+    'tsx',
+    'pug',
     'js',
     'jsx',
     'json',
-    'vue',
-    'ts',
-    'tsx'
   ],
   transform: {
     '^.+\\.vue$': 'vue-jest',
+    '^.+\\.pug$': 'vue-jest',
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
     '^.+\\.tsx?$': 'ts-jest'
   },
@@ -26,5 +28,11 @@ module.exports = {
     'ts-jest': {
       babelConfig: true
     }
-  }
+  },
+  collectCoverageFrom: [
+    'src/**/*.{ts,vue}',
+    '!**/node_modules/**',
+    '!src/registerServiceWorker.ts'
+  ],
+  modulePathIgnorePatterns: ['<rootDir>/coverage/'],
 }

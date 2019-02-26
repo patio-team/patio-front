@@ -1,5 +1,6 @@
 @import "./assets/css/normalize.css";
 @import "./assets/css/global.css";
+@import "./assets/css/common.css";
 
 .app {
   align-items: center;

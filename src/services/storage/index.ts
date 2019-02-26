@@ -6,7 +6,11 @@ abstract class AbstractStorageManager {
   }
 
   public get(key: string) {
-    return JSON.parse(this.storage.getItem(key) || "");
+    try {
+      return JSON.parse(this.storage.getItem(key) || "");
+    } catch (error) {
+      return undefined;
+    }
   }
 
   public set(key: string, newValue?: {}) {

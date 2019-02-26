@@ -48,7 +48,12 @@ fieldset {
 
 label {
   color: var(--black-400);
+  font-family: "Roboto", sans-serif;
   padding: .6rem .3rem;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
 }
 
 ::-webkit-input-placeholder,
@@ -71,7 +76,8 @@ link {
   cursor: pointer;
   transition: all .3s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 }

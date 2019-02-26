@@ -1,0 +1,16 @@
+.group-list {
+  max-width: 800px;
+}
+
+.head {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  width: 100%;
+
+  & .actions {
+    padding-left: 2rem;
+  }
+}
