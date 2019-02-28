@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { localStorage } from "@/services/storage";
 
 import Auth from "./auth";
 
-const client = axios.create({
-  baseURL: process.env.API_SERVER_URL,
+const client: AxiosInstance = axios.create({
+  baseURL: process.env.API_URL,
 });
 
 client.defaults.headers.common["Content-Type"] = "application/json";
