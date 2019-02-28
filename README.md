@@ -44,10 +44,23 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Build docker image
 ```
-docker build -t dwbh/front .
+cd docker
+
+./docker-build.sh $BACK_END_HTTP [$VERSION]
 ```
+
+If you don't set any version `latest` will be used.
 
 ### Run docker image
 ```
-docker run -it -p 9000:80 --rm --name dwbh-front dwbh/front
+docker run -it -p 9000:80 --rm --name dwbh-front kaleidos-docker-registry.bintray.io/dwbh/dwbh-front:latest
 ```
+
+### Push docker image to Kaleidos Bintray
+```
+cd docker
+
+./docker-push.sh $USERNAME $PASSWORD [$VERSION]
+```
+
+If you don't set any version `latest` will be used.
