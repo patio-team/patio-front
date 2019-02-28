@@ -51,6 +51,10 @@ function build {
     echo "$LOG_HEADER setting working dir"
     cd $TMP_DIR
 
+    # change .env api url
+    echo "$LOG_HEADER changing .env api url to $API_URL"
+    sed -i "s,\$DWBH_API_URL,$API_URL,g" .env
+
     # and build the image
     echo "$LOG_HEADER executing docker build"
     docker build -t $DOCKER_IMAGE_NAME .
