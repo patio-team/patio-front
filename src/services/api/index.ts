@@ -1,14 +1,19 @@
 import axios, { AxiosInstance } from "axios";
 import { localStorage } from "@/services/storage";
 
-import Auth from "./auth";
+import { responseInterceptor, responseErrorInterceptor } from "./interceptors";
 
-const client: AxiosInstance = axios.create({
-  baseURL: process.env.API_URL,
+import Auth from "./auth";
+import Groups from "./groups";
+
+export { ApiError } from "./interceptors";
+
+export const client: AxiosInstance = axios.create({
+  baseURL: process.env.VUE_APP_API_URL,
 });
 
-client.defaults.headers.common["Content-Type"] = "application/json";
-client.defaults.headers.common.Accept = "application/json";
+client.defaults.headers["Content-Type"] = "application/json";
+client.defaults.headers.Accept = "application/json";
 
 const setAuthorization = (jwtToken: string) => {
   if (jwtToken) {
@@ -18,12 +23,16 @@ const setAuthorization = (jwtToken: string) => {
   }
 };
 
-const token = localStorage.get("authToken");
+const token: string = localStorage.get("authToken");
 if (token) {
   setAuthorization(token);
 }
 
+client.interceptors.response.use(responseInterceptor, responseErrorInterceptor);
+
+
 export default {
   setAuthorization,
   auth: Auth(client),
+  groups: Groups(client),
 };

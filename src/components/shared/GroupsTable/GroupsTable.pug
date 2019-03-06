@@ -1,0 +1,11 @@
+.groups-table
+  .loading(v-if="isLoading", data-testid="loading")
+    | LOADING...
+  .table(v-else)
+    .row(tabindex="0", v-for="group in groupList", data-testid="row")
+      .name(data-testid="name") {{ group.name }}
+      .actions
+        button.btn-link(type="button", data-testid="action-edit") Edit
+        button.btn-link(type="button", data-testid="action-delete") Delete
+    .row.empty(v-if="groupList.length === 0", data-testid="row-empty")
+      | No groups yet

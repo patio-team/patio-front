@@ -1,0 +1,45 @@
+.groups-table {
+  border-bottom: 3px solid var(--orange-400);
+  border-top: 3px solid var(--orange-400);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & .loading {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  & .row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    &:hover:not(.empty),
+    &:focus:not(.empty) {
+      border: 1px solid var(--gray-300);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  }
+
+  & .name {
+    font-size: 1.5rem;
+    min-width: 400px;
+  }
+
+  & .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > :not(:first-child) {
+      display: block;
+      margin-left: .5rem;
+    }
+  }
+}

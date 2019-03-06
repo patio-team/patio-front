@@ -1,10 +1,16 @@
-export default (client: {}) => ({
-//   login (username: string, password: string) {
+import { AxiosInstance } from "axios";
+
+export default (client: AxiosInstance) => ({
+//   login(username: string, password: string) {
 //     return client
-//       .post('login/', {
-//         username: username,
-//         password: password
+//       .post("", {
+//         query: "todo", variables: {
+//           username,
+//           password,
+//         },
 //       })
-//       .then((response: any) => response.data.token);
-//   }
+//      .then((data: any): str => {
+//        return data.long.token;
+//      });
+//   },
 });

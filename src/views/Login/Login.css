@@ -1,9 +1,4 @@
 .login {
-  align-items: flex-start;
-  background-color: var(--white-400-40);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   max-width: 600px;
 }
 
@@ -50,18 +45,7 @@ form {
   }
 
   & .submit {
-    background-color: var(--orange-400);
-    border: 1px solid var(--black-400);
-    border-radius: 6px;
-    box-shadow: 3px 3px 3px 0 var(--black-400-40);
-    color: var(--white-400);
-    font-weight: bolder;
-    height: 2.5rem;
-    margin: 1.5rem 0;
     order: 3;
-    text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
-    text-transform: uppercase;
-    width: 100%;
   }
 
   & .forgot-password {

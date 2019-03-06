@@ -1,6 +1,7 @@
 # dwbh
 [![Build Status](https://travis-ci.com/dont-worry-be-happy/dwbh-front.svg?branch=master)](https://travis-ci.com/dont-worry-be-happy/dwbh-front)
 
+
 ## Project setup
 ```
 yarn install
@@ -16,24 +17,32 @@ yarn run serve
 yarn run build
 ```
 
-### Run your tests
-```
-yarn run test
-```
-
 ### Lints and fixes files
+For typescript:
+
 ```
 yarn run lint
 ```
 
-### Run your end-to-end tests
+For style:
+
 ```
-yarn run test:e2e
+yarn run lint:style
 ```
 
 ### Run your unit tests
 ```
 yarn run test:unit
+```
+
+Some useful options:
+
+- `--watch` to run in dev mode (watch files for changes and rerun tests related to changed files).
+- `--coverage` to get coverage info.
+
+### Run your end-to-end tests
+```
+yarn run test:e2e
 ```
 
 ### Customize configuration
