@@ -11,6 +11,21 @@
   "rules": {
     "quotemark": [true, "double"],
     "indent": [true, "spaces", 2],
+    "no-irregular-whitespace": true,
+    "no-trailing-whitespace": true,
+    "whitespace": [
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock",
+      "check-postbrace"
+    ],
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
