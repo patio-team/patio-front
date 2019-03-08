@@ -25,9 +25,11 @@ const getWrapper = (...params: any) => {
 };
 
 describe("View: Login", () => {
-  it("show the logo", () => {
+  it("shows the login form", () => {
     const wrapper = getWrapper();
 
-    expect(wrapper.contains("[data-testid='form']")).toBe(true);
+    expect(wrapper.contains("[data-testid='title']")).toBe(true);
+    expect(wrapper.contains("[data-testid='login-form']")).toBe(true);
+    expect(wrapper.contains("[data-testid='sign-up']")).toBe(true);
   });
 });

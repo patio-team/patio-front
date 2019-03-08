@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,10 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.login {
-  max-width: 600px;
-}
-
-.title {
-  padding-bottom: 1em;
+export interface AuthState {
+  loading: boolean;
+  error: boolean | string;
 }

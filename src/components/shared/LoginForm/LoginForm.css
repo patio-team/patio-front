@@ -1,0 +1,77 @@
+/*
+ * Copyright (C) 2019 Kaleidos Open Source SL
+ *
+ * This file is part of Dont Worry Be Happy (DWBH).
+ * DWBH is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DWBH is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+form {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-size: 1rem;
+  margin: 0;
+
+  & fieldset {
+    align-items: flex-start;
+    all: initial;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: .5rem;
+
+    & label {
+      font-size: 1rem;
+    }
+
+    & input {
+      border: 1px solid var(--gray-300);
+      border-radius: 3px;
+      display: flex;
+      font-size: 1rem;
+      line-height: 2rem;
+      padding: .2rem .5rem;
+      width: 21rem;
+    }
+  }
+
+  & .username {
+    order: 1;
+  }
+
+  & .password {
+    order: 2;
+  }
+
+  & .submit {
+    order: 3;
+
+    &:disabled {
+      background-color: var(--gray-300);
+    }
+  }
+
+  & .error {
+    color: var(--red-400);
+    order: 4;
+    text-align: center;
+  }
+
+  & .forgot-password {
+    align-self: flex-end;
+    font-size: .75rem;
+    line-height: 1rem;
+    order: 2;
+  }
+}

@@ -16,17 +16,31 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./Login.pug" lang="pug"></template>
-<style src="./Login.css" scoped></style>
+<template src="./LoginForm.pug" lang="pug"></template>
+<style src="./LoginForm.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import LoginForm from "@/components/shared/LoginForm/LoginForm.vue";
+import { Action, Getter, namespace } from "vuex-class";
+import { LoginInput } from "./LoginFormTypes";
 
-@Component({
-  components: {
-    "dw-login-form": LoginForm,
-  },
-})
-export default class Login extends Vue {}
+const Auth = namespace("auth");
+
+@Component
+export default class LoginForm extends Vue {
+  private input = { email: "", password: "" };
+
+  @Auth.Getter("loginIsLoading")
+  private isLoading!: boolean;
+
+  @Auth.Getter("loginError")
+  private getLoginError!: boolean | string;
+
+  @Auth.Action("login")
+  private login: any;
+
+  private handleSubmit(): void {
+    this.login(this.input);
+  }
+}
 </script>

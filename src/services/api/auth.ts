@@ -17,18 +17,19 @@
  */
 
 import { AxiosInstance } from "axios";
+import { LoginQuery } from "./queries/auth";
 
 export default (client: AxiosInstance) => ({
-//   login(username: string, password: string) {
-//     return client
-//       .post("", {
-//         query: "todo", variables: {
-//           username,
-//           password,
-//         },
-//       })
-//      .then((data: any): str => {
-//        return data.long.token;
-//      });
-//   },
+  login(email: string, password: string) {
+    return client
+      .post("", {
+        query: LoginQuery, variables: {
+          email,
+          password,
+        },
+      })
+      .then((data: any): string => {
+        return data.login.token;
+      });
+  },
 });
