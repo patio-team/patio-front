@@ -19,12 +19,12 @@
 export const ListGroupsQuery: string = `
 query{
   listGroups{
-    uuid
+    id
     visibleMemberList
     anonymousVote
     name
     members {
-      uuid
+      id
       name
     }
   }

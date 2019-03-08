@@ -36,8 +36,10 @@ client.defaults.headers.Accept = "application/json";
 const setAuthorization = (jwtToken: string) => {
   if (jwtToken) {
     client.defaults.headers.common.Authorization = `JWT ${jwtToken}`;
+    localStorage.set("authToken", jwtToken);
   } else {
     delete client.defaults.headers.common.Authorization;
+    localStorage.remove("authToken");
   }
 };
 
