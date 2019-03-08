@@ -20,6 +20,7 @@ import { createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import cloneDeep from "lodash.clonedeep";
 import api, { ApiError } from "@/services/api";
+import router from "@/router";
 import authModule from "@/store/modules/auth";
 
 const getStore = () => {
@@ -48,6 +49,7 @@ describe("Auth Store Module", () => {
 
     describe("Mutation: loginSuccess", () => {
       it("stores token and redirects when login succeeded", () => {
+        router.push = jest.fn();
         const store = getStore();
         const token = "token";
 
@@ -55,6 +57,8 @@ describe("Auth Store Module", () => {
 
         expect(store.getters["auth/loginIsLoading"]).toBe(false);
         expect(store.getters["auth/loginError"]).toBe(false);
+        expect(router.push).toBeCalledTimes(1);
+        expect(router.push).toBeCalledWith({ name: "groups:list" });
       });
     });
 
@@ -73,6 +77,7 @@ describe("Auth Store Module", () => {
   describe("Auth Store Module: Actions", () => {
     describe("Action: login", () => {
       it("gets a token successfuly", async () => {
+        router.push = jest.fn();
         const store = getStore();
         api.auth.login = jest.fn().mockResolvedValue("token");
 
@@ -80,8 +85,10 @@ describe("Auth Store Module", () => {
 
         expect(store.getters["auth/loginIsLoading"]).toBe(false);
         expect(store.getters["auth/loginError"]).toBe(false);
+        expect(router.push).toBeCalledTimes(1);
       });
       it("gets a failure when asking for the token", async () => {
+        router.push = jest.fn();
         const store = getStore();
         api.auth.login = jest.fn().mockRejectedValue(new ApiError("XERROR"));
 
@@ -89,6 +96,7 @@ describe("Auth Store Module", () => {
 
         expect(store.getters["auth/loginIsLoading"]).toBe(false);
         expect(store.getters["auth/loginError"]).toBe("XERROR");
+        expect(router.push).toBeCalledTimes(0);
       });
     });
   });

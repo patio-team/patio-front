@@ -18,9 +18,9 @@
 
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
+import { LoginInput } from "@/services/api/types";
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
-import { LoginInput } from "@/components/shared/LoginForm/LoginFormTypes";
 import router from "@/router";
 
 const initialState: AuthState = {
@@ -42,7 +42,7 @@ const mutations: MutationTree<AuthState> = {
     state.loading = false;
 
     api.setAuthorization(token);
-    router.push({ name: "home" });
+    router.push({ name: "groups:list" });
   },
   loginError(state: AuthState, error: string) {
     state.loading = false;
@@ -57,10 +57,10 @@ const actions: ActionTree<AuthState, RootState> = {
   ) {
     commit("loginRequest");
     try {
-      const token = await api.auth.login(input.email, input.password);
+      const token = await api.auth.login(input);
       commit("loginSuccess", token);
     } catch (error) {
-      commit("loginError", error.code);
+      commit("loginError", error.code || error );
     }
   },
 };

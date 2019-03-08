@@ -16,10 +16,14 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@import "../../assets/css/mixins.css";
+
 .login {
+  @mixin view;
+
   max-width: 600px;
 }
 
 .title {
-  padding-bottom: 1em;
+  padding-bottom: 1rem;
 }

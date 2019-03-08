@@ -18,7 +18,6 @@
 
 import MockAdapter from "axios-mock-adapter";
 import { client } from "@/services/api";
-import { login } from "@/__mocks__/data/auth";
 import { LoginQuery } from "./queries/auth";
 import api from "./auth";
 
@@ -31,12 +30,14 @@ describe("API Auth Services", () => {
 
   describe("API Auth Services: login", () => {
     it("should get token from a successful login", async () => {
-      const token = login("e@mail.com", "secret");
-      const email = "aaaa@email.com";
-      const password = "password";
+      const token = "TOKEN";
+      const input = {
+        email: "aaaa@email.com",
+        password: "password",
+      };
 
       mock
-        .onPost("", { query: LoginQuery, variables: { email, password } })
+        .onPost("", { query: LoginQuery, variables: input })
         .reply(
           200,
           JSON.stringify({
@@ -44,16 +45,18 @@ describe("API Auth Services", () => {
           }),
         );
 
-      const data = await api(client).login(email, password);
+      const data = await api(client).login(input);
       expect(data).toEqual(token);
     });
 
     it("should throw an error", async () => {
-      const email = "";
-      const password = "";
+      const input = {
+        email: "",
+        password: "",
+      };
 
       mock
-        .onPost("", { query: LoginQuery, variables: { email, password } })
+        .onPost("", { query: LoginQuery, variables: input })
         .reply(
           200,
           JSON.stringify({
@@ -64,7 +67,7 @@ describe("API Auth Services", () => {
       let err;
 
       try {
-        await api(client).login(email, password);
+        await api(client).login(input);
       } catch (e) { err = e; }
 
       expect(err.code).toBe("API_ERRORS.BAD_CREDENTIALS");

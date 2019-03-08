@@ -16,7 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const ListGroupsQuery: string = `
+export const ListGroupsQuery = `
 query{
   listGroups{
     id
@@ -29,3 +29,14 @@ query{
     }
   }
 }`;
+
+export const CreateGroupMutation = `
+mutation createGroup($name: String!, $visibleMemberList: Boolean!, $anonymousVote: Boolean!) {
+  createGroup(name: $name, visibleMemberList: $visibleMemberList, anonymousVote: $anonymousVote){
+    id
+    name
+    visibleMemberList
+    anonymousVote
+  }
+}
+`;

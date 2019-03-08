@@ -17,12 +17,14 @@
  */
 
 import MockAdapter from "axios-mock-adapter";
-import { generateGroupList } from "@/__mocks__/data/groups";
+import { generateGroup, generateGroupList } from "@/__mocks__/data/groups";
 
 import { client } from "@/services/api";
+
 import api from "./groups";
 
 import {
+  CreateGroupMutation,
   ListGroupsQuery,
 } from "./queries/groups";
 
@@ -63,6 +65,62 @@ describe("API Groups Services", () => {
       let err;
       try {
         await api(client).list();
+      } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+
+  describe.skip("API Groups Services: create", () => {
+    it("should get data from API", async () => {
+      const group = generateGroup();
+      delete group.members;
+
+      const input = {
+        name: group.name,
+        visibleMemberList: group.visibleMemberList,
+        anonymousVote: group.anonymousVote,
+        votingDays: group.votingDays,
+        votingTime: group.votingTime,
+      };
+
+      mock
+        .onPost("", { query: CreateGroupMutation, variables: input })
+        .reply(
+          200,
+          JSON.stringify({
+            data: { createGroup: group },
+          }),
+        );
+
+      const data = await api(client).create(input);
+      expect(data).toEqual(group);
+    });
+
+    it("should throw an error", async () => {
+      const group = generateGroup();
+      delete group.members;
+
+      const variables = {
+        name: group.name,
+        visibleMemberList: group.visibleMemberList,
+        anonymousVote: group.anonymousVote,
+        votingDays: group.votingDays,
+        votingTime: group.votingTime,
+      };
+
+      mock
+        .onPost("", { query: CreateGroupMutation, variables })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).create(variables);
       } catch (e) { err = e; }
 
       expect(err.code).toEqual("ERROR_CODE");

@@ -14,20 +14,19 @@
 
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
-  
+
 form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
-    fieldset.username
-      label email
-      input(data-testid="email" type="email" placeholder="type your email" required v-model="input.email")
+  .error(data-testid="error" v-if="error" role="alert")
+    | {{ error }}
 
-    fieldset.password
-      label password
-      input(data-testid="password" type="password" placeholder="type your password" required v-model="input.password")
+  fieldset.email
+    label(for="email") email
+    input(data-testid="email" id="email" name="email" type="email" placeholder="type your email" required v-model="input.email")
 
-    button.btn.submit(data-testid="submit" type="submit" :disabled="isLoading") Sign in
-    
-    a(data-testid="forgot-password").forgot-password(tabindex="0") Forgot password?
+  fieldset.password
+    label(for="password") password
+    input(data-testid="password" id="password" name="password" type="password" placeholder="type your password" required v-model="input.password")
 
-    .error(v-if="getLoginError")
-      | {{getLoginError}}
+  button.submit(data-testid="submit" type="submit" :disabled="isLoading") Sign in
 
+  a.forgot-password(data-testid="forgot-password" tabindex="0") Forgot password?

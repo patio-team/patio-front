@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,27 +16,34 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../assets/css/mixins.css";
+import { shallowMount } from "@vue/test-utils";
+import { Store } from "vuex-mock-store";
 
-.group-list {
-  @mixin view;
+import CreateGroup from "./CreateGroup.vue";
 
-  max-width: 800px;
-}
+const getStore = () => {
+  return new Store({
+    state: {
+      groups: {},
+    },
+    getters: {
+      "groups/createGroupIsLoading": false,
+      "groups/createGroupError": false,
+    },
+  });
+};
+const getWrapper = (...params: any) => {
+  return shallowMount(
+    CreateGroup,
+    ...params,
+  );
+};
 
-.head {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 2rem;
-  width: 100%;
+describe("View: CreateGroup", () => {
+  it("show the form", () => {
+    const store = getStore();
+    const wrapper = getWrapper({ mocks: { $store: store } });
 
-  & .actions {
-    padding-left: 2rem;
-
-    & .create-group {
-      @mixin as-button;
-    }
-  }
-}
+    expect(wrapper.contains("[data-testid='group-form']")).toBe(true);
+  });
+});

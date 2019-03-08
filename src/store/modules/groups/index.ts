@@ -19,6 +19,9 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 
 import api from "@/services/api";
+import { CreateGroupInput } from "@/services/api/types";
+
+import router from "@/router";
 
 import { Group } from "@/domain";
 
@@ -26,27 +29,51 @@ import { RootState } from "@/store/types";
 import { GroupsState } from "./types";
 
 const initialState: GroupsState = {
+  createGroupIsLoading: false,
+  createGroupError: false,
   groupList: [] as Group[],
   groupListIsLoading: false,
   groupListError: false,
 };
 
+
 const getters: GetterTree<GroupsState, RootState> = {
+  createGroupIsLoading(state: GroupsState): boolean { return state.createGroupIsLoading; },
+  createGroupError(state: GroupsState): string | boolean { return state.createGroupError; },
   groupList(state: GroupsState): Group[] { return state.groupList; },
   groupListIsLoading(state: GroupsState): boolean { return state.groupListIsLoading; },
   groupListError(state: GroupsState): string | boolean { return state.groupListError; },
 };
 
 const mutations: MutationTree<GroupsState> = {
-  getGroupListRequest(state: GroupsState) {
+  // createGroups
+  createGroupRequest(state: GroupsState) {
+    state.createGroupIsLoading = true;
+    state.createGroupError = false;
+  },
+  createGroupSuccess(state: GroupsState, group: Group ) {
+    state.createGroupIsLoading = false;
+    state.createGroupError = false;
+
+    router.push({ name: "groups:detail", params: { id: group.id } });
+  },
+  createGroupFail(state: GroupsState, error: string) {
+    state.createGroupIsLoading = false;
+    state.createGroupError = error;
+  },
+
+  // groupList
+  groupListRequest(state: GroupsState) {
     state.groupListIsLoading = true;
     state.groupListError = false;
   },
-  getGroupListSuccess(state: GroupsState, groupList: Group []) {
+  groupListSuccess(state: GroupsState, groupList: Group []) {
     state.groupListIsLoading = false;
+    state.groupListError = false;
+
     state.groupList = groupList;
   },
-  getGroupListFail(state: GroupsState, error: string) {
+  groupListFail(state: GroupsState, error: string) {
     state.groupListIsLoading = false;
     state.groupListError = error;
   },
@@ -54,12 +81,24 @@ const mutations: MutationTree<GroupsState> = {
 
 const actions: ActionTree<GroupsState, RootState> = {
   async getGroupList({commit, state}: {commit: Commit, state: GroupsState}) {
-    commit("getGroupListRequest");
+    commit("groupListRequest");
     try {
       const groupList = await api.groups.list();
-      commit("getGroupListSuccess", groupList);
+      commit("groupListSuccess", groupList);
     } catch (error) {
-      commit("getGroupListFail", error.code);
+      commit("groupListFail", error.code);
+    }
+  },
+  async createGroup(
+    {commit, state}: {commit: Commit, state: GroupsState},
+    input: CreateGroupInput,
+  ) {
+    commit("createGroupRequest");
+    try {
+      const group = await api.groups.create(input);
+      commit("createGroupSuccess", group);
+    } catch (error) {
+      commit("createGroupFail", error.code);
     }
   },
 };

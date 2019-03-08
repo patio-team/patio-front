@@ -16,9 +16,5 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import faker from "faker";
-faker.seed(161803);
-
-export const login = (username: string, password: string): string => {
-  return faker.random.uuid();
-};
+export * from "./auth";
+export * from "./groups";

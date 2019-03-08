@@ -19,6 +19,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
 import Login from "@/views/Login/Login.vue";
 
@@ -30,13 +31,22 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "login",
+      component: Login,
+    },
+    {
+      path: "/groups",
+      name: "groups:list",
       component: GroupList,
     },
     {
-      path: "/login",
-      name: "login",
-      component: Login,
+      path: "/groups/create",
+      name: "groups:create",
+      component: CreateGroup,
+    },
+    {
+      path: "/groups/:id",
+      name: "groups:detail",
     },
     // NOTE: Don"t delete, useful to know how to create chunks of views
     // {

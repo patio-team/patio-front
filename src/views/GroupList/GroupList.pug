@@ -15,10 +15,11 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.view.group-list
+.group-list
   .head
     h2.title My groups
     .actions
-      button.btn(data-testid="action-add") + Add group
+      router-link.create-group(v-bind:to="{ name: 'groups:create' }" data-testid="action-create")
+        | + New group
 
   dw-groups-table(data-testid="groups-table")

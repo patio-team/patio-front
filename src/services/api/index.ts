@@ -20,6 +20,7 @@ import axios, { AxiosInstance } from "axios";
 import { localStorage } from "@/services/storage";
 
 import { responseInterceptor, responseErrorInterceptor } from "./interceptors";
+import { transformRequest, transformResponse } from "./transforms";
 
 import Auth from "./auth";
 import Groups from "./groups";
@@ -32,6 +33,9 @@ export const client: AxiosInstance = axios.create({
 
 client.defaults.headers["Content-Type"] = "application/json";
 client.defaults.headers.Accept = "application/json";
+
+client.defaults.transformRequest = transformRequest;
+client.defaults.transformResponse = transformResponse;
 
 const setAuthorization = (jwtToken: string) => {
   if (jwtToken) {
@@ -49,7 +53,6 @@ if (token) {
 }
 
 client.interceptors.response.use(responseInterceptor, responseErrorInterceptor);
-
 
 export default {
   setAuthorization,

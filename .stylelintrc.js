@@ -5,6 +5,9 @@ module.exports = {
   'rules': {
     'number-leading-zero': 'never',
     'declaration-no-important': true,
-    'order/properties-alphabetical-order': true
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["define-mixin", "mixin"]
+    }],
+    'order/properties-alphabetical-order': true,
   }
 }

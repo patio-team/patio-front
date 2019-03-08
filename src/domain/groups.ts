@@ -16,12 +16,26 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { DateTime } from "@/utils/datetime";
+
 import { User } from "./users";
 
+export type Day =
+    | "MONDAY"
+    | "TUESDAY"
+    | "WEDNESDAY"
+    | "THURSDAY"
+    | "FRIDAY"
+    | "SATURDAY"
+    | "SUNDAY";
+
+
 export interface Group {
-  uuid: string;
+  id: string;
+  name: string;
   visibleMemberList: boolean;
   anonymousVote: boolean;
-  name: string;
+  votingDays: Day[];
+  votingTime: DateTime;
   members?: User[];
 }

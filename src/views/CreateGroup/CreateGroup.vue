@@ -16,30 +16,30 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./LoginForm.pug" lang="pug"></template>
-<style src="./LoginForm.css" scoped></style>
+<template src="./CreateGroup.pug" lang="pug"></template>
+<style src="./CreateGroup.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, namespace } from "vuex-class";
 
-const Auth = namespace("auth");
+import GroupForm from "@/components/shared/GroupForm/GroupForm.vue";
 
-@Component
-export default class LoginForm extends Vue {
-  private input = { email: "", password: "" };
+const GroupsStore = namespace("groups");
 
-  @Auth.Getter("loginIsLoading")
+@Component({
+  components: {
+    "dw-group-form": GroupForm,
+  },
+})
+export default class CreateGroup extends Vue {
+  @GroupsStore.Getter("createGroupIsLoading")
   private isLoading!: boolean;
 
-  @Auth.Getter("loginError")
+  @GroupsStore.Getter("createGroupError")
   private error!: boolean | string;
 
-  @Auth.Action("login")
-  private login: any;
-
-  private handleSubmit(): void {
-    this.login(this.input);
-  }
+  @GroupsStore.Action("createGroup")
+  private createGroup: any;
 }
 </script>

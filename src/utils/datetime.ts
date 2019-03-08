@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,27 +16,24 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../assets/css/mixins.css";
+import { DateTime, DateTimeFormatOptions } from "luxon";
 
-.group-list {
-  @mixin view;
+export { DateTime } from  "luxon";
 
-  max-width: 800px;
-}
+export const toDateTime = (text: string): DateTime =>
+  DateTime.fromISO(text);
 
-.head {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 2rem;
-  width: 100%;
+// Utils to work with the API
+export const formatUTCtoISO = (text: string): string =>
+  toDateTime(text).toUTC().toISO();
 
-  & .actions {
-    padding-left: 2rem;
+export const formatUTCtoISODate = (text: string): string =>
+  toDateTime(text).toUTC().toISODate();
 
-    & .create-group {
-      @mixin as-button;
-    }
-  }
-}
+export const formatUTCtoISOTime = (text: string): string =>
+  toDateTime(text).toUTC().toFormat("HH:mm:ss.SSS");
+
+// Utils to work with HTML inputs
+export const formatToTime24Simple = (datetime: DateTime): string =>
+  datetime.toLocaleString(DateTime.TIME_24_SIMPLE);
+

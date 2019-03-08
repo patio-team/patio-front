@@ -56,8 +56,7 @@ export const responseInterceptor = (res: AxiosResponse): any => {
     return res.data.data;
   }
 
-  const error = res.data.errors[0];
-  const { message, extensions } = error;
+  const { message, extensions } = res.data.errors[0];
   const code = extensions ? extensions.code : "API_ERRORS.GENERIC";
 
   switch (code) {

@@ -53,9 +53,11 @@ describe("Component: shared/LoginForm", () => {
     const store = getStore();
     const wrapper = getWrapper({ mocks: { $store: store } });
 
+    expect(wrapper.contains("[data-testid='submit']:disabled")).toBe(false);
+
     store.getters["auth/loginIsLoading"] = true;
 
-    expect(wrapper.find(".loading")).toBeTruthy();
+    expect(wrapper.contains("[data-testid='submit']:disabled")).toBe(true);
   });
   it("triggers login", () => {
     const store = getStore();
@@ -74,6 +76,6 @@ describe("Component: shared/LoginForm", () => {
 
     store.getters["auth/loginError"] = true;
 
-    expect(wrapper.find(".error")).toBeTruthy();
+    expect(wrapper.contains("[data-testid='error']")).toBe(true);
   });
 });
