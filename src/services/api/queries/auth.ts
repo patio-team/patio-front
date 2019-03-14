@@ -16,7 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const LoginQuery: string = `
+export const LoginQuery = `
 query Login($email: String!, $password: String!) {
   login (email: $email, password: $password) {
     token

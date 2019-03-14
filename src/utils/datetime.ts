@@ -16,9 +16,24 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import faker from "faker";
-faker.seed(161803);
+import { DateTime, DateTimeFormatOptions } from "luxon";
 
-export const login = (username: string, password: string): string => {
-  return faker.random.uuid();
-};
+export { DateTime } from  "luxon";
+
+export const toDateTime = (text: string): DateTime =>
+  DateTime.fromISO(text);
+
+// Utils to work with the API
+export const formatUTCtoISO = (text: string): string =>
+  toDateTime(text).toUTC().toISO();
+
+export const formatUTCtoISODate = (text: string): string =>
+  toDateTime(text).toUTC().toISODate();
+
+export const formatUTCtoISOTime = (text: string): string =>
+  toDateTime(text).toUTC().toFormat("HH:mm:ss.SSS'Z'");
+
+// Utils to work with HTML inputs
+export const formatToTime24Simple = (datetime: DateTime): string =>
+  datetime.toLocaleString(DateTime.TIME_24_SIMPLE);
+

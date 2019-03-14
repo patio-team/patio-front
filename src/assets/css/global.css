@@ -17,6 +17,7 @@
  */
 
 @import "./colors.css";
+@import "./mixins.css";
 
 /* Fonts
    ========================================================================== */
@@ -28,6 +29,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+*:focus {
+  @mixin outline;
 }
 
 /* Body
@@ -60,18 +65,47 @@ svg {
 /* Forms
    ========================================================================== */
 
-fieldset {
-  border: none;
+form {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  margin: 0;
 }
 
+fieldset {
+  align-items: flex-start;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: .5rem;
+}
+
+legend,
 label {
   color: var(--black-400);
   font-family: "Roboto", sans-serif;
+  font-size: 1rem;
   padding: .6rem .3rem;
 }
 
 input {
+  border: 1px solid var(--gray-300);
+  border-radius: 3px;
   font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 2rem;
+  padding: .2rem .5rem;
+
+  &[type="date"],
+  &[type="email"],
+  &[type="password"],
+  &[type="text"],
+  &[type="time"] {
+    min-width: 21rem;
+    width: 100%;
+  }
 }
 
 ::-webkit-input-placeholder,
@@ -80,9 +114,29 @@ input {
 }
 
 button {
+  background-color: var(--orange-400);
+  border: 1px solid var(--black-400);
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px 0 var(--black-400-40);
+  color: var(--white-400);
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
+  font-weight: bolder;
+  margin: 1.5rem 0;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
+  text-transform: uppercase;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--green-400);
+  }
+
+  &:disabled {
+    background-color: var(--gray-300);
+  }
 }
 
 /* Links
@@ -94,8 +148,7 @@ link {
   cursor: pointer;
   transition: all .3s ease;
 
-  &:hover,
-  &:focus {
+  &:hover {
     text-decoration: underline;
   }
 }

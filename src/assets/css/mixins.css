@@ -16,9 +16,17 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* Generic container for a view
+@import "./colors.css";
+
+/* generic outline
    =============================== */
-.view {
+@define-mixin outline {
+  outline: var(--blue-400) dotted 1px;
+}
+
+/* generic container for a view
+   =============================== */
+@define-mixin view {
   align-items: flex-start;
   background-color: var(--white-400-40);
   display: flex;
@@ -28,31 +36,19 @@
   padding: 1rem 2rem;
 }
 
-/* Generic button
+/* generic error form
    =============================== */
-.btn {
-  background-color: var(--orange-400);
-  border: 1px solid var(--black-400);
-  border-radius: 6px;
-  box-shadow: 3px 3px 3px 0 var(--black-400-40);
-  color: var(--white-400);
-  font-weight: bolder;
-  height: 2.5rem;
-  margin: 1.5rem 0;
-  padding: 0 1rem;
-  text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
-  text-transform: uppercase;
-  width: 100%;
-
-  &:hover,
-  &:focus {
-    background-color: var(--green-400);
-  }
+@define-mixin error-form {
+  background-color: var(--red-100);
+  color: var(--red-400);
+  margin-bottom: 1rem;
+  padding: .8rem;
+  text-align: center;
 }
 
-/* Generic button as links
+/* Generic button as link
    =============================== */
-.btn-link {
+@define-mixin as-link {
   background: none;
   border: none;
   color: var(--orange-400);
@@ -64,5 +60,33 @@
   &:hover,
   &:focus {
     text-decoration: underline;
+  }
+}
+
+/* Generic link as button
+   =============================== */
+@define-mixin as-button {
+  background-color: var(--orange-400);
+  border: 1px solid var(--black-400);
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px 0 var(--black-400-40);
+  color: var(--white-400);
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 1.5rem 0;
+  padding: 0 1rem;
+  text-decoration: none;
+  text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
+  text-transform: uppercase;
+  vertical-align: center;
+
+  &:hover,
+  &:focus {
+    background-color: var(--green-400);
   }
 }

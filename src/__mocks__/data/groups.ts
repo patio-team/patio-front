@@ -19,16 +19,21 @@
 import faker from "faker";
 faker.seed(161803);
 
+import { toDateTime } from "@/utils/datetime";
+
 import { generateUserList } from "./users";
+
 import { Group } from "@/domain";
 
 export function generateGroup(...params: any): Group {
   return Object.assign(
     {
-      uuid: faker.random.uuid(),
+      id: faker.random.uuid(),
       name: faker.company.companyName(),
       visibleMemberList: true,
       anonymousVote: true,
+      votingDays: ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"],
+      votingTime: toDateTime("12:00"),
       members: faker.random.boolean() ? generateUserList() : undefined,
     },
     params,

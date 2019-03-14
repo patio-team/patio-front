@@ -15,9 +15,12 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.login
-  h2.title(data-testid="title") Sign in
+.create-group
+  h2.title(data-testid="title") Create a new group
 
-  dw-login-form(data-testid="login-form")
-
-  p Don't have an account #[a.sign-up(data-testid="sign-up" tabindex="0") Sign up]
+  dw-group-form(
+    data-testid="group-form"
+    v-bind:is-loading="isLoading"
+    v-bind:error="error"
+    v-bind:on-submit="createGroup"
+  )

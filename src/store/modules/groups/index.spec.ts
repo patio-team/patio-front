@@ -20,9 +20,10 @@ import { createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import cloneDeep from "lodash.clonedeep";
 
-import { generateGroupList } from "@/__mocks__/data/groups";
+import { generateGroup, generateGroupList } from "@/__mocks__/data/groups";
 
 import api, { ApiError } from "@/services/api";
+import router from "@/router";
 
 import groupsModule from "@/store/modules/groups";
 
@@ -40,38 +41,75 @@ const getStore = () => {
 
 describe("Groups Store Module", () => {
   describe("Groups Store Module: Mutations", () => {
-    describe("Mutation: getGroupListRequest", () => {
+    // list group
+    describe("Mutation: groupListRequest", () => {
       it("change to pending state when 'get group list' API request is started", () => {
         const store = getStore();
 
-        store.commit("groups/getGroupListRequest");
+        store.commit("groups/groupListRequest");
 
         expect(store.getters["groups/groupList"]).toEqual([]);
         expect(store.getters["groups/groupListIsLoading"]).toEqual(true);
         expect(store.getters["groups/groupListError"]).toEqual(false);
       });
     });
-    describe("Mutation: getGroupListSuccess", () => {
+    describe("Mutation: groupListSuccess", () => {
       it("change to success state when 'get group list' API request finish successfully", () => {
         const store = getStore();
         const groupList = generateGroupList();
 
-        store.commit("groups/getGroupListSuccess", groupList);
+        store.commit("groups/groupListSuccess", groupList);
 
         expect(store.getters["groups/groupList"]).toEqual(groupList);
         expect(store.getters["groups/groupListIsLoading"]).toEqual(false);
         expect(store.getters["groups/groupListError"]).toEqual(false);
       });
     });
-    describe("Mutation: getGroupListFail", () => {
+    describe("Mutation: groupListFail", () => {
       it("change to error state when 'get group list' API request fail", () => {
         const store = getStore();
 
-        store.commit("groups/getGroupListFail", "ERROR");
+        store.commit("groups/groupListFail", "ERROR");
 
         expect(store.getters["groups/groupList"]).toEqual([]);
         expect(store.getters["groups/groupListIsLoading"]).toEqual(false);
         expect(store.getters["groups/groupListError"]).toEqual("ERROR");
+      });
+    });
+
+    // create group
+    describe("Mutation: createGroupRequest", () => {
+      it("change to pending state when 'create group' API request is started", () => {
+        const store = getStore();
+
+        store.commit("groups/createGroupRequest");
+
+        expect(store.getters["groups/createGroupIsLoading"]).toEqual(true);
+        expect(store.getters["groups/createGroupError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: createGroupSuccess", () => {
+      it("change to success state when 'create group' API request finish successfully", () => {
+        router.push = jest.fn();
+        const store = getStore();
+        const group = generateGroup();
+
+        store.commit("groups/createGroupSuccess", group);
+
+        expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
+        expect(store.getters["groups/createGroupError"]).toEqual(false);
+        expect(router.push).toBeCalledTimes(1);
+        expect(router.push).toBeCalledWith({ name: "groups:detail", params: { id: group.id } });
+      });
+    });
+    describe("Mutation: createGroupFail", () => {
+      it("change to error state when 'create group' API request fail", () => {
+        const store = getStore();
+
+        store.commit("groups/createGroupFail", "ERROR");
+
+        expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
+        expect(store.getters["groups/createGroupError"]).toEqual("ERROR");
       });
     });
   });
@@ -100,6 +138,33 @@ describe("Groups Store Module", () => {
         expect(store.getters["groups/groupList"]).toEqual([]);
         expect(store.getters["groups/groupListIsLoading"]).toEqual(false);
         expect(store.getters["groups/groupListError"]).toEqual("ERROR");
+      });
+    });
+    describe("Action: createGroup", () => {
+      it("create a group successfuly", async () => {
+        router.push = jest.fn();
+        const store = getStore();
+        const group = generateGroup();
+
+        api.groups.create = jest.fn().mockResolvedValue(group);
+
+        await store.dispatch("groups/createGroup");
+
+        expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
+        expect(store.getters["groups/createGroupError"]).toEqual(false);
+        expect(router.push).toBeCalledTimes(1);
+      });
+      it("icreate a group throw an error", async () => {
+        router.push = jest.fn();
+        const store = getStore();
+
+        api.groups.create = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+
+        await store.dispatch("groups/createGroup");
+
+        expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
+        expect(store.getters["groups/createGroupError"]).toEqual("ERROR");
+        expect(router.push).toBeCalledTimes(0);
       });
     });
   });

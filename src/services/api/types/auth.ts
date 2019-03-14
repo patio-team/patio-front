@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,27 +16,8 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../assets/css/mixins.css";
-
-.group-list {
-  @mixin view;
-
-  max-width: 800px;
+export interface LoginInput {
+  email: string;
+  password: string;
 }
 
-.head {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 2rem;
-  width: 100%;
-
-  & .actions {
-    padding-left: 2rem;
-
-    & .create-group {
-      @mixin as-button;
-    }
-  }
-}

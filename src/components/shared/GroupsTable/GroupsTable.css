@@ -16,6 +16,8 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@import "../../../assets/css/mixins.css";
+
 .groups-table {
   border-bottom: 3px solid var(--orange-400);
   border-top: 3px solid var(--orange-400);
@@ -58,6 +60,14 @@
     & > :not(:first-child) {
       display: block;
       margin-left: .5rem;
+    }
+
+    & .edit {
+      @mixin as-link;
+    }
+
+    & .delete {
+      @mixin as-link;
     }
   }
 }

@@ -1,0 +1,64 @@
+//-
+  Copyright (C) 2019 Kaleidos Open Source SL
+
+  This file is part of Dont Worry Be Happy (DWBH).
+  DWBH is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  DWBH is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+
+form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
+  .error(data-testid="error" v-if="error" role="alert")
+    | {{ error }}
+
+  fieldset.name
+    label(for="name") Select a name
+    input(data-testid="name" id="name" name="name" type="text" placeholder="type the group name" required v-model="input.name")
+
+  fieldset.visible-member-list
+    input(data-testid="visible-member-list" id="visible-member-list" name="visible-member-list" type="checkbox" v-model="input.visibleMemberList")
+    label(for="visible-member-list") All members can view the list of members
+
+  fieldset.anonymous-vote
+    input(data-testid="anonymous-vote" id="anonymous-vote" name="anonymous-vote" type="checkbox" v-model="input.anonymousVote")
+    label(for="anonymous-vote") Members can sent anonymous votes
+
+  fieldset.voting-days
+    legend What days do you want to vote?
+
+    .week-days-selector
+      .day
+        input(data-testid="voting-day-mon" id="mon" name="mon" type="checkbox" value="MONDAY" v-model="input.votingDays")
+        label(for="mon") Mon
+      .day
+        input(data-testid="voting-day-tue" id="tue" name="tue" type="checkbox" value="TUESDAY" v-model="input.votingDays")
+        label(for="tue") Tue
+      .day
+        input(data-testid="voting-day-wed" id="wed" name="wed" type="checkbox" value="WEDNESDAY" v-model="input.votingDays")
+        label(for="wed") Wed
+      .day
+        input(data-testid="voting-day-thu" id="thu" name="thu" type="checkbox" value="THURSDAY" v-model="input.votingDays")
+        label(for="thu") Thu
+      .day
+        input(data-testid="voting-day-fri" id="fri" name="fri" type="checkbox" value="FRIDAY" v-model="input.votingDays")
+        label(for="fri") Fri
+      .day
+        input(data-testid="voting-day-sat" id="sat" name="sat" type="checkbox" value="SATURDAY" v-model="input.votingDays")
+        label(for="sat") Sun
+      .day
+        input(data-testid="voting-day-sun" id="sun" name="sun" type="checkbox" value="SUNDAY" v-model="input.votingDays")
+        label(for="sun") Sat
+
+  fieldset.voting-time
+    label(for="voting-time") What time voting begins? (and reminder email will be sent)
+    input(data-testid="voting-time" id="voting-time" name="voting-time" type="time" required v-model="votingTime")
+
+  button.submit(data-testid="submit" type="submit" v-bind:disabled="isLoading") Save

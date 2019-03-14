@@ -16,62 +16,29 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-form {
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  font-size: 1rem;
-  margin: 0;
+@import "../../../assets/css/mixins.css";
 
-  & fieldset {
-    align-items: flex-start;
-    all: initial;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: .5rem;
+.error {
+  @mixin error-form;
 
-    & label {
-      font-size: 1rem;
-    }
+  order: 0;
+}
 
-    & input {
-      border: 1px solid var(--gray-300);
-      border-radius: 3px;
-      display: flex;
-      font-size: 1rem;
-      line-height: 2rem;
-      padding: .2rem .5rem;
-      width: 21rem;
-    }
-  }
+.email {
+  order: 1;
+}
 
-  & .username {
-    order: 1;
-  }
+.password {
+  order: 2;
+}
 
-  & .password {
-    order: 2;
-  }
+.submit {
+  order: 3;
+}
 
-  & .submit {
-    order: 3;
-
-    &:disabled {
-      background-color: var(--gray-300);
-    }
-  }
-
-  & .error {
-    color: var(--red-400);
-    order: 4;
-    text-align: center;
-  }
-
-  & .forgot-password {
-    align-self: flex-end;
-    font-size: .75rem;
-    line-height: 1rem;
-    order: 2;
-  }
+.forgot-password {
+  align-self: flex-end;
+  font-size: .75rem;
+  line-height: 1rem;
+  order: 2;
 }

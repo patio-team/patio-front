@@ -16,7 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import "./registerServiceWorker";
+import "@/registerServiceWorker";
 
 import Vue from "vue";
 

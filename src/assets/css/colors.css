@@ -17,17 +17,15 @@
  */
 
 :root {
-  --black-400: #000;
   --black-400-40: rgb(0, 0, 0, .4);
+  --black-400: #000;
+  --blue-400: #5d9dd5;
   --gray-300: #d1d1d1;
   --green-400: #bced09;
   --orange-400: #ffb138;
-  --white-400: #fff;
-  --white-400-40: rgba(255, 255, 255, .4);
-  --white-500: #fcfdff;
+  --red-100: #fff0ee;
   --red-400: #ff715b;
-
-  /*
-  --blue-400: #2f52e0;
-  */
+  --white-400-40: rgba(255, 255, 255, .4);
+  --white-400: #fff;
+  --white-500: #fcfdff;
 }

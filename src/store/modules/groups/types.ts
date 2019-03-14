@@ -19,6 +19,8 @@
 import { Group } from "@/domain";
 
 export interface GroupsState {
+  createGroupIsLoading: boolean;
+  createGroupError: boolean | string;
   groupList: Group[];
   groupListIsLoading: boolean;
   groupListError: boolean | string;

@@ -16,7 +16,14 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export interface LoginInput {
-  email: string;
-  password: string;
+import { DateTime } from "@/utils/datetime";
+
+import { Day } from "@/domain";
+
+export interface CreateGroupInput {
+  name: string;
+  visibleMemberList: boolean;
+  anonymousVote: boolean;
+  votingDays: Day[];
+  votingTime: DateTime;
 }

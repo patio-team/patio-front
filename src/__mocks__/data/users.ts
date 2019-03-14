@@ -24,7 +24,7 @@ import { User } from "@/domain";
 export function generateUser(...params: any): User {
   return Object.assign(
     {
-      uuid: faker.random.uuid(),
+      id: faker.random.uuid(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       email: faker.internet.email(),
     },
