@@ -31,12 +31,21 @@ query{
 }`;
 
 export const CreateGroupMutation = `
-mutation createGroup($name: String!, $visibleMemberList: Boolean!, $anonymousVote: Boolean!) {
-  createGroup(name: $name, visibleMemberList: $visibleMemberList, anonymousVote: $anonymousVote){
-    id
-    name
-    visibleMemberList
-    anonymousVote
-  }
-}
-`;
+mutation CreateGroup(
+  $name: String!,
+  $visibleMemberList: Boolean!,
+  $anonymousVote: Boolean!,
+  $votingTime: Time!,
+  $votingDays: [DayOfWeek]!) {
+    createGroup(
+      name: $name,
+      visibleMemberList: $visibleMemberList,
+      anonymousVote: $anonymousVote,
+      votingTime: $votingTime,
+      votingDays: $votingDays) {
+        id
+        name
+        visibleMemberList
+        anonymousVote
+      }
+  }`;
