@@ -31,7 +31,7 @@ export const formatUTCtoISODate = (text: string): string =>
   toDateTime(text).toUTC().toISODate();
 
 export const formatUTCtoISOTime = (text: string): string =>
-  toDateTime(text).toUTC().toFormat("HH:mm:ss.SSS");
+  toDateTime(text).toUTC().toFormat("HH:mm:ss.SSS'Z'");
 
 // Utils to work with HTML inputs
 export const formatToTime24Simple = (datetime: DateTime): string =>
