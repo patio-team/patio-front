@@ -17,48 +17,48 @@
 
 form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
   .error(data-testid="error" v-if="error" role="alert")
-    | {{ error }}
+    | {{ $t(error) }}
 
   fieldset.name
-    label(for="name") Select a name
-    input(data-testid="name" id="name" name="name" type="text" placeholder="type the group name" required v-model="input.name")
+    label(for="name") {{ $t("GROUP_FORM.INPUT_NAME.LABEL") }}
+    input(data-testid="name" id="name" name="name" type="text" v-bind:placeholder="$t('GROUP_FORM.INPUT_NAME.PLACEHOLDER')" required v-model="input.name")
 
   fieldset.visible-member-list
     input(data-testid="visible-member-list" id="visible-member-list" name="visible-member-list" type="checkbox" v-model="input.visibleMemberList")
-    label(for="visible-member-list") All members can view the list of members
+    label(for="visible-member-list") {{ $t("GROUP_FORM.INPUT_VISIBLE_MEMBER_LIST.LABEL") }}
 
   fieldset.anonymous-vote
     input(data-testid="anonymous-vote" id="anonymous-vote" name="anonymous-vote" type="checkbox" v-model="input.anonymousVote")
-    label(for="anonymous-vote") Members can sent anonymous votes
+    label(for="anonymous-vote") {{ $t("GROUP_FORM.INPUT_ANONYMOUS_VOTE.LABEL") }}
 
   fieldset.voting-days
-    legend What days do you want to vote?
+    legend {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LEGEND") }}
 
     .week-days-selector
       .day
         input(data-testid="voting-day-mon" id="mon" name="mon" type="checkbox" value="MONDAY" v-model="input.votingDays")
-        label(for="mon") Mon
+        label(for="mon") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_MON") }}
       .day
         input(data-testid="voting-day-tue" id="tue" name="tue" type="checkbox" value="TUESDAY" v-model="input.votingDays")
-        label(for="tue") Tue
+        label(for="tue") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_TUE") }}
       .day
         input(data-testid="voting-day-wed" id="wed" name="wed" type="checkbox" value="WEDNESDAY" v-model="input.votingDays")
-        label(for="wed") Wed
+        label(for="wed") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_WED") }}
       .day
         input(data-testid="voting-day-thu" id="thu" name="thu" type="checkbox" value="THURSDAY" v-model="input.votingDays")
-        label(for="thu") Thu
+        label(for="thu") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_THU") }}
       .day
         input(data-testid="voting-day-fri" id="fri" name="fri" type="checkbox" value="FRIDAY" v-model="input.votingDays")
-        label(for="fri") Fri
+        label(for="fri") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_FRI") }}
       .day
         input(data-testid="voting-day-sat" id="sat" name="sat" type="checkbox" value="SATURDAY" v-model="input.votingDays")
-        label(for="sat") Sun
+        label(for="sat") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SUN") }}
       .day
         input(data-testid="voting-day-sun" id="sun" name="sun" type="checkbox" value="SUNDAY" v-model="input.votingDays")
-        label(for="sun") Sat
+        label(for="sun") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SAT") }}
 
   fieldset.voting-time
-    label(for="voting-time") What time voting begins? (and reminder email will be sent)
+    label(for="voting-time") {{ $t("GROUP_FORM.INPUT_VOTING_TIME.LABEL") }}
     input(data-testid="voting-time" id="voting-time" name="voting-time" type="time" required v-model="votingTime")
 
-  button.submit(data-testid="submit" type="submit" v-bind:disabled="isLoading") Save
+  button.submit(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("GROUP_FORM.BUTTON_SUBMIT") }}

@@ -20,6 +20,7 @@ import "@/registerServiceWorker";
 
 import Vue from "vue";
 
+import i18n from "./i18n";
 import router from "./router";
 import store from "./store";
 
@@ -28,9 +29,10 @@ import App from "./App.vue";
 Vue.config.productionTip = false;
 
 const vue = new Vue({
-  el: "#app",
-  router,
-  store,
-  components: { App },
-  template: "<App/>",
+ el: "#app",
+ i18n,
+ router,
+ store,
+ components: { App },
+ template: "<App/>",
 });

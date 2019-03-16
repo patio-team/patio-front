@@ -1,0 +1,73 @@
+{
+  "API_ERRORS": {
+    "BAD_CREDENTIALS": "El email y password no coinciden",
+    "NOT_AN_ADMIN": "El usuario no es administrador del grupo",
+    "NOT_FOUND": "El elemento no ha sido encontrado",
+    "USER_ALREADY_ON_GROUP": "El usuario ya pertenece al grupo",
+    "PARSE_LITERAL_EXCEPTION": "API_ERRORS.PARSE_LITERAL_EXCEPTION",
+    "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION"
+  },
+  "GROUP_FORM": {
+    "INPUT_NAME": {
+      "LABEL": "Escoge un nombre",
+      "PLACEHOLDER": "ej. The Avengers"
+    },
+    "INPUT_VISIBLE_MEMBER_LIST": {
+      "LABEL": "Todos los miembros pueden ver la lista de miembros"
+    },
+    "INPUT_ANONYMOUS_VOTE": {
+      "LABEL": "Los miembros pueden enviar votos anónimamente"
+    },
+    "INPUT_VOTTING_DAYS": {
+      "LEGEND": "¿Qué días quieres votar?",
+      "LABEL_MON": "Lun",
+      "LABEL_TUE": "Mar",
+      "LABEL_WED": "Mie",
+      "LABEL_THU": "Jue",
+      "LABEL_FRI": "Vie",
+      "LABEL_SUN": "Sab",
+      "LABEL_SAT": "Dom"
+    },
+    "INPUT_VOTING_TIME": {
+      "LABEL": "¿Cuando debe comenzar la votación? (y el email recordatorio se enviará)"
+    },
+    "BUTTON_SUBMIT": "Guardar"
+  },
+  "GROUPS_TABLE": {
+    "LOADING": "Cargando...",
+    "EMPTY": "No hay grupos todavía.",
+    "ROW": {
+      "ACTION_EDIT": "Editar",
+      "ACTION_DELETE": "Borrar"
+    }
+  },
+  "HEADER": { },
+  "LOGIN_FORM": {
+    "INPUT_EMAIL": {
+      "LABEL": "email",
+      "PLACEHOLDER": "ej. tstark@email.com"
+    },
+    "INPUT_PASSWORD": {
+      "LABEL": "contraseña",
+      "PLACEHOLDER": "ej. avengers",
+      "LINK_FORGOT_PASSWORD": "¿La has olvidado?"
+    },
+    "BUTTON_SUBMIT": "Acceder"
+  },
+  "VIEWS": {
+   "CREATE_GROUP": {
+     "TITLE": "Creaar un nuevo grupo"
+   },
+   "GROUP_LIST": {
+     "TITLE": "Grupos",
+     "ACTION_NEW_GROUP": "+ Nuevo grupo"
+   },
+   "LOGIN": {
+     "TITLE": "Iniciar sesión",
+     "ACTION_SIGN_UP": {
+       "PARAGRAPH": "¿Todavía no tienes una cuenta?",
+       "BUTTON": "Regístrate"
+     }
+   }
+  }
+}

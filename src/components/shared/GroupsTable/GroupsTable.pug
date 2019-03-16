@@ -17,12 +17,12 @@
 
 .groups-table
   .loading(v-if="isLoading", data-testid="loading")
-    | LOADING...
+    | {{ $t("GROUPS_TABLE.LOADING") }}
   .table(v-else)
     .row(tabindex="0", v-for="group in groupList", data-testid="row")
       .name(data-testid="name") {{ group.name }}
       .actions
-        a.edit(type="button", data-testid="action-edit") Edit
-        a.delete(type="button", data-testid="action-delete") Delete
+        a.edit(type="button", data-testid="action-edit") {{ $t("GROUPS_TABLE.ROW.ACTION_EDIT") }}
+        a.delete(type="button", data-testid="action-delete") {{ $t("GROUPS_TABLE.ROW.ACTION_DELETE") }}
     .row.empty(v-if="groupList.length === 0", data-testid="row-empty")
-      | No groups yet
+      | {{ $t("GROUPS_TABLE.EMPTY") }}

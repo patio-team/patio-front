@@ -19,13 +19,15 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import i18n from "@/i18n";
+
 import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
 import Login from "@/views/Login/Login.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -59,3 +61,15 @@ export default new Router({
     // },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+   // For dev purpose. Change current locale with an url query param, 'lang'.
+   // E.g. 'http://localhost:9000/?lang=es'
+  const lang: string = to.query.lang as string;
+  if (lang && i18n.availableLocales.includes(lang) && lang !== i18n.locale) {
+    i18n.locale = lang;
+  }
+  return next();
+});
+
+export default router;

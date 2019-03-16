@@ -17,9 +17,9 @@
 
 .group-list
   .head
-    h2.title My groups
+    h2.title {{ $t("VIEWS.GROUP_LIST.TITLE") }}
     .actions
       router-link.create-group(v-bind:to="{ name: 'groups:create' }" data-testid="action-create")
-        | + New group
+        | {{ $t("VIEWS.GROUP_LIST.ACTION_NEW_GROUP") }}
 
   dw-groups-table(data-testid="groups-table")
