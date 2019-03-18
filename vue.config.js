@@ -6,8 +6,14 @@ module.exports = {
     port: 9000
   },
   pluginOptions: {
+    i18n: {
+      locale: 'en',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false
+    },
     lintStyleOnBuild: true,
-    stylelint: {}
+    stylelint: {},
   },
   runtimeCompiler: true
 }

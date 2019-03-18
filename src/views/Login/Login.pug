@@ -16,8 +16,8 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .login
-  h2.title(data-testid="title") Sign in
+  h2.title(data-testid="title") {{ $t("VIEWS.LOGIN.TITLE") }}
 
   dw-login-form(data-testid="login-form")
 
-  p Don't have an account #[a.sign-up(data-testid="sign-up" tabindex="0") Sign up]
+  p {{ $t("VIEWS.LOGIN.ACTION_SIGN_UP.PARAGRAPH") }} #[a.sign-up(data-testid="sign-up" tabindex="0") {{ $t("VIEWS.LOGIN.ACTION_SIGN_UP.BUTTON") }}]

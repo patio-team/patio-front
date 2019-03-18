@@ -1,0 +1,73 @@
+{
+  "API_ERRORS": {
+    "BAD_CREDENTIALS": "Email and password don't match.",
+    "NOT_AN_ADMIN": "The user is not an admin on the group",
+    "NOT_FOUND": "The element can be found",
+    "USER_ALREADY_ON_GROUP": "The user is already on the group",
+    "PARSE_LITERAL_EXCEPTION": "API_ERRORS.PARSE_LITERAL_EXCEPTION",
+    "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION"
+  },
+  "GROUP_FORM": {
+    "INPUT_NAME": {
+      "LABEL": "Select a name",
+      "PLACEHOLDER": "e. g. The Avengers"
+    },
+    "INPUT_VISIBLE_MEMBER_LIST": {
+      "LABEL": "All members can view the list of members"
+    },
+    "INPUT_ANONYMOUS_VOTE": {
+      "LABEL": "Members can sent anonymous votes"
+    },
+    "INPUT_VOTTING_DAYS": {
+      "LEGEND": "What days do you want to vote?",
+      "LABEL_MON": "Mon",
+      "LABEL_TUE": "Tue",
+      "LABEL_WED": "Wed",
+      "LABEL_THU": "Thu",
+      "LABEL_FRI": "Fri",
+      "LABEL_SUN": "Sun",
+      "LABEL_SAT": "Sat"
+    },
+    "INPUT_VOTING_TIME": {
+      "LABEL": "What time voting begins? (and reminder email will be sent)"
+    },
+    "BUTTON_SUBMIT": "Save"
+  },
+  "GROUPS_TABLE": {
+    "LOADING": "Loading...",
+    "EMPTY": "No groups yet.",
+    "ROW": {
+      "ACTION_EDIT": "Edit",
+      "ACTION_DELETE": "Delete"
+    }
+  },
+  "HEADER": { },
+  "LOGIN_FORM": {
+    "INPUT_EMAIL": {
+      "LABEL": "email",
+      "PLACEHOLDER": "e.g. tstark@email.com"
+    },
+    "INPUT_PASSWORD": {
+      "LABEL": "password",
+      "PLACEHOLDER": "e.g. avengers",
+      "LINK_FORGOT_PASSWORD": "Forgot password?"
+    },
+    "BUTTON_SUBMIT": "Sign in"
+  },
+  "VIEWS": {
+   "CREATE_GROUP": {
+     "TITLE": "Create a new group"
+   },
+   "GROUP_LIST": {
+     "TITLE": "Groups",
+     "ACTION_NEW_GROUP": "+ New group"
+   },
+   "LOGIN": {
+     "TITLE": "Sign in",
+     "ACTION_SIGN_UP": {
+       "PARAGRAPH": "Don't have an account?",
+       "BUTTON": "Sign up"
+     }
+   }
+  }
+}

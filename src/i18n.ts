@@ -17,29 +17,29 @@
  */
 
 import Vue from "vue";
-import Vuex, { StoreOptions } from "vuex";
+import VueI18n, { LocaleMessages } from "vue-i18n";
 
-import createLogger from "vuex/dist/logger";
+Vue.use(VueI18n);
 
-import groups from "@/store/modules/groups";
-import auth from "@/store/modules/auth";
-import me from "@/store/modules/me";
+const loadLocaleMessages = (): LocaleMessages => {
+  const messages: LocaleMessages = {};
+  if (process.env.NODE_ENV === "test") {
+    return messages;
+  }
 
-import { RootState } from "./types";
-
-Vue.use(Vuex);
-
-const store: StoreOptions<RootState> = {
-  state: {
-    version: "1.0.0",
-  },
-  modules: {
-    groups,
-    auth,
-    me,
-  },
-  strict: process.env.VUE_APP_DEBUG === "true",
-  plugins: process.env.VUE_APP_DEBUG ? [createLogger()] : [],
+  const locales = require.context("./locales", true, /[A-Za-z0-9-_,\s]+\.json$/i);
+  locales.keys().forEach((key) => {
+    const matched = key.match(/([A-Za-z0-9-_]+)\./i);
+    if (matched && matched.length > 1) {
+      const locale = matched[1];
+      messages[locale] = locales(key);
+    }
+  });
+  return messages;
 };
 
-export default new Vuex.Store<RootState>(store);
+export default new VueI18n({
+  locale: process.env.VUE_APP_I18N_LOCALE || "en",
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
+  messages: loadLocaleMessages(),
+});

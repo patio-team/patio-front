@@ -17,16 +17,18 @@
 
 form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
   .error(data-testid="error" v-if="error" role="alert")
-    | {{ error }}
+    | {{ $t(error) }}
 
   fieldset.email
-    label(for="email") email
-    input(data-testid="email" id="email" name="email" type="email" placeholder="type your email" required v-model="input.email")
+    label(for="email") {{ $t("LOGIN_FORM.INPUT_EMAIL.LABEL") }}
+    input(data-testid="email" id="email" name="email" type="email" v-bind:placeholder="$t('LOGIN_FORM.INPUT_EMAIL.PLACEHOLDER')" required
+          v-model="input.email")
 
   fieldset.password
-    label(for="password") password
-    input(data-testid="password" id="password" name="password" type="password" placeholder="type your password" required v-model="input.password")
+    label(for="password") {{ $t("LOGIN_FORM.INPUT_PASSWORD.LABEL") }}
+    input(data-testid="password" id="password" name="password" type="password" v-bind:placeholder="$t('LOGIN_FORM.INPUT_PASSWORD.PLACEHOLDER')" required
+          v-model="input.password")
 
-  button.submit(data-testid="submit" type="submit" :disabled="isLoading") Sign in
+  button.submit(data-testid="submit" type="submit" :disabled="isLoading") {{ $t("LOGIN_FORM.BUTTON_SUBMIT") }}
 
-  a.forgot-password(data-testid="forgot-password" tabindex="0") Forgot password?
+  a.forgot-password(data-testid="forgot-password" tabindex="0") {{ $t("LOGIN_FORM.INPUT_PASSWORD.LINK_FORGOT_PASSWORD") }}
