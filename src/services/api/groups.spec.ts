@@ -27,7 +27,9 @@ import {
   CreateGroupMutation,
   GetGroupQuery,
   ListMyGroupsQuery,
+  GetGroupWithNoMembersQuery,
 } from "./queries/groups";
+import { CreateGroupInput } from "./types";
 
 const mock = new MockAdapter(client);
 
@@ -83,7 +85,7 @@ describe("API Groups Services", () => {
         anonymousVote: group.anonymousVote,
         votingDays: group.votingDays,
         votingTime: group.votingTime,
-      };
+      } as CreateGroupInput;
 
       mock
         .onPost("", { query: CreateGroupMutation, variables: input })
@@ -128,7 +130,7 @@ describe("API Groups Services", () => {
     });
   });
 
-  describe.skip("API Groups Services: get", () => {
+  describe("API Groups Services: get", () => {
     it("should get data from API", async () => {
       const group = generateGroup();
       delete group.members;
@@ -142,7 +144,7 @@ describe("API Groups Services", () => {
         .reply(
           200,
           JSON.stringify({
-            data: { createGroup: group },
+            data: { getGroup: group },
           }),
         );
 
@@ -172,6 +174,57 @@ describe("API Groups Services", () => {
         await api(client).get(variables);
       } catch (e) { err = e; }
 
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+
+  describe("API Groups Services: getWithNoMembers", () => {
+    it("should get data from API", async () => {
+      const group = generateGroup();
+      delete group.members;
+      delete group.votingTime;
+      delete group.visibleMemberList;
+      delete group.anonymousVote;
+      delete group.isCurrentUserAdmin;
+
+      const input = {
+        id: group.id,
+      };
+
+      const json = JSON.stringify({
+        data: { getGroup: group },
+      });
+
+      mock
+        .onPost("", { query: GetGroupWithNoMembersQuery, variables: input })
+        .reply(200, json);
+
+      const data = await api(client).getWithNoMembers(input);
+      expect(data).toEqual(group);
+    });
+
+    it("should throw an error", async () => {
+      const group = generateGroup();
+      delete group.members;
+      delete group.votingTime;
+
+      const variables = {
+        id: group.id,
+      };
+
+      mock
+        .onPost("", { query: GetGroupWithNoMembersQuery, variables })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).getWithNoMembers(variables);
+      } catch (e) { err = e; }
       expect(err.code).toEqual("ERROR_CODE");
     });
   });

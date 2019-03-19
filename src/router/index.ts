@@ -25,6 +25,7 @@ import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
 import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
 import Login from "@/views/Login/Login.vue";
+import Vote from "@/views/Vote/Vote.vue";
 
 Vue.use(Router);
 
@@ -56,6 +57,15 @@ const router = new Router({
       path: "/groups",
       name: "groups:list",
       component: GroupList,
+    },
+    {
+      path: "/groups/:group/votings/:voting",
+      name: "groups:votings:detail",
+    },
+    {
+      path: "/groups/:group/votings/:voting/vote",
+      name: "votings:vote",
+      component: Vote,
     },
     // NOTE: Don"t delete, useful to know how to create chunks of views
     // {

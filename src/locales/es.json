@@ -16,7 +16,8 @@
     "NOT_FOUND": "El elemento no ha sido encontrado",
     "USER_ALREADY_ON_GROUP": "El usuario ya pertenece al grupo",
     "PARSE_LITERAL_EXCEPTION": "API_ERRORS.PARSE_LITERAL_EXCEPTION",
-    "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION"
+    "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION",
+    "SCORE_IS_INVALID": "La puntuación debe estar entre 1 y 5"
   },
   "GROUP_FORM": {
     "INPUT_NAME": {
@@ -73,6 +74,9 @@
     },
     "BUTTON_SUBMIT": "Acceder"
   },
+  "VOTE_FORM": {
+    "BUTTON_SUBMIT": "Enviar"
+  },
   "VIEWS": {
     "CREATE_GROUP": {
       "TITLE": "Creaar un nuevo grupo"
@@ -97,6 +101,9 @@
         "PARAGRAPH": "¿Todavía no tienes una cuenta?",
         "BUTTON": "Regístrate"
       }
-    }
+    },
+    "VOTE": {
+      "TITLE": "¿Cómo te encuentras hoy?"
+   }
   }
 }
