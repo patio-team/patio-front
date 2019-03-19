@@ -128,7 +128,6 @@ button {
   padding: 0 1rem;
   text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
   text-transform: uppercase;
-  width: 100%;
 
   &:hover {
     background-color: var(--green-400);

@@ -44,5 +44,9 @@ export default class GroupsTable extends Vue {
   public mounted() {
     this.getGroupList();
   }
+
+  private handleClickRow(groupId: string) {
+    this.$router.push({ name: "groups:detail", params: { id: groupId } });
+  }
 }
 </script>

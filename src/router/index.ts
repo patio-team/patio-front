@@ -37,9 +37,9 @@ const router = new Router({
       component: Login,
     },
     {
-      path: "/groups",
-      name: "groups:list",
-      component: GroupList,
+      path: "/groups/:id/edit",
+      name: "groups:edit",
+      // TODO
     },
     {
       path: "/groups/create",
@@ -49,6 +49,11 @@ const router = new Router({
     {
       path: "/groups/:id",
       name: "groups:detail",
+    },
+    {
+      path: "/groups",
+      name: "groups:list",
+      component: GroupList,
     },
     // NOTE: Don"t delete, useful to know how to create chunks of views
     // {

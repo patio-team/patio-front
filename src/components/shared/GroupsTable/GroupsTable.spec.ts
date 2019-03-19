@@ -17,7 +17,7 @@
  */
 
 import { Store } from "vuex-mock-store";
-import { mount } from "@vue/test-utils";
+import { mount, RouterLinkStub } from "@vue/test-utils";
 
 import { Group } from "@/domain";
 import { generateGroup } from "@/__mocks__/data/groups";
@@ -38,8 +38,14 @@ const getStore = () => {
   });
 };
 
-const getWrapper = (...params: any) => {
-  return mount(GroupsTable, ...params);
+const getWrapper = ({...params}) => {
+  return mount(
+    GroupsTable,
+    {
+      stubs: { RouterLink: RouterLinkStub },
+      ...params,
+    },
+  );
 };
 
 describe("Component: shared/GroupsTable", () => {

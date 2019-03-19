@@ -57,17 +57,10 @@
     flex-direction: row;
     justify-content: space-between;
 
-    & > :not(:first-child) {
-      display: block;
-      margin-left: .5rem;
-    }
-
-    & .edit {
-      @mixin as-link;
-    }
-
     & .delete {
       @mixin as-link;
+
+      margin-left: .5rem;
     }
   }
 }

@@ -51,14 +51,26 @@
 @define-mixin as-link {
   background: none;
   border: none;
+  border-radius: initial;
+  box-shadow: initial;
   color: var(--orange-400);
   cursor: pointer;
   font: inherit;
-  padding: 0;
+  font-size: inherit;
+  height: initial;
+  margin: initial;
+  min-height: initial;
+  padding: initial;
+  text-shadow: initial;
+  text-transform: initial;
   transition: all .3s ease;
+  width: initial;
 
-  &:hover,
   &:focus {
+    @mixin outline;
+  }
+
+  &:hover {
     text-decoration: underline;
   }
 }
