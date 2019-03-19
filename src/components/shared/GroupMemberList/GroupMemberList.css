@@ -18,45 +18,49 @@
 
 @import "../../../assets/css/mixins.css";
 
-.groups-table {
+.group-member-list {
+  @mixin section;
+
   display: flex;
   flex-direction: column;
-  min-width: 600px;
+  width: 100%;
 
-  & .loading {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+  & .head {
+    @mixin section-header;
   }
 
-  & .row {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    height: 3rem;
-    justify-content: space-between;
-    padding: .5rem;
-    transition: background-color .2s;
+  & .table {
+    @mixin section-content;
 
-    &:hover:not(.empty) {
-      background-color: var(--orange-100);
-      cursor: pointer;
+    & .row {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      height: 1.5rem;
+      justify-content: space-between;
+      padding: .5rem;
+      transition: background-color .2s;
+
+      &:hover:not(.empty) {
+        background-color: var(--orange-100);
+        cursor: pointer;
+      }
     }
-  }
 
-  & .name {
-    font-size: 1.25rem;
-  }
+    & .name {
+      min-width: 400px;
+    }
 
-  & .actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    & .actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
 
-    & .delete {
-      @mixin as-link;
+      & .delete {
+        @mixin as-link;
 
-      margin-left: .5rem;
+        margin-left: .5rem;
+      }
     }
   }
 }

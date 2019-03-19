@@ -33,12 +33,12 @@
 }
 
 .submit {
+  margin: 2rem 0 .5rem 0;
   order: 3;
 }
 
 .forgot-password {
   align-self: flex-end;
   font-size: .75rem;
-  line-height: 1rem;
   order: 2;
 }

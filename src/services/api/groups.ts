@@ -19,10 +19,14 @@
 import { AxiosInstance } from "axios";
 
 import { Group } from "@/domain";
-import { CreateGroupInput } from "./types";
+import {
+  CreateGroupInput,
+  GetGroupInput,
+} from "./types";
 
 import {
   CreateGroupMutation,
+  GetGroupQuery,
   ListMyGroupsQuery,
 } from "./queries/groups";
 
@@ -39,6 +43,13 @@ export default (client: AxiosInstance) => ({
       .post("", { query: CreateGroupMutation, variables: input })
       .then((data: any): Group => {
         return data.createGroup;
+      });
+  },
+  get(input: GetGroupInput) {
+    return client
+      .post("", { query: GetGroupQuery, variables: input })
+      .then((data: any): Group => {
+        return data.getGroup;
       });
   },
 });

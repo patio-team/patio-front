@@ -21,7 +21,7 @@ faker.seed(161803);
 
 import { User } from "@/domain";
 
-export function generateUser(...params: any): User {
+export function generateUser(params: any = {}): User {
   return Object.assign(
     {
       id: faker.random.uuid(),

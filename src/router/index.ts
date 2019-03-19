@@ -22,6 +22,7 @@ import Router from "vue-router";
 import i18n from "@/i18n";
 
 import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
+import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
 import Login from "@/views/Login/Login.vue";
 
@@ -49,6 +50,7 @@ const router = new Router({
     {
       path: "/groups/:id",
       name: "groups:detail",
+      component: GroupDetail,
     },
     {
       path: "/groups",

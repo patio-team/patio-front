@@ -18,45 +18,46 @@
 
 @import "../../../assets/css/mixins.css";
 
-.groups-table {
-  display: flex;
-  flex-direction: column;
-  min-width: 600px;
+.group-stats {
+  display: grid;
+  grid-gap: 1px;
+  grid-template: repeat(5, 30px) / repeat(14, 30px);
+  place-content: center;
+  place-items: stretch;
+  width: 100%;
 
-  & .loading {
+  & .vote {
     align-items: center;
     display: flex;
+    font-size: calc(30px * var(--vote-font-size-factor));
     justify-content: center;
-  }
+    opacity: .4;
+    transition: transform .2s, opacity .2s;
 
-  & .row {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    height: 3rem;
-    justify-content: space-between;
-    padding: .5rem;
-    transition: background-color .2s;
+    &.v1 { @mixin vote-1; }
+    &.v2 { @mixin vote-2; }
+    &.v3 { @mixin vote-3; }
+    &.v4 { @mixin vote-4; }
+    &.v5 { @mixin vote-5; }
+    &.ve { @mixin vote-empty; }
 
-    &:hover:not(.empty) {
-      background-color: var(--orange-100);
-      cursor: pointer;
+    &.v1,
+    &.v2,
+    &.v3,
+    &.v4,
+    &.v5 {
+      &:hover {
+        opacity: .5;
+        transform: scale(1.05);
+      }
     }
-  }
 
-  & .name {
-    font-size: 1.25rem;
-  }
+    &.last {
+      opacity: 1;
 
-  & .actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    & .delete {
-      @mixin as-link;
-
-      margin-left: .5rem;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

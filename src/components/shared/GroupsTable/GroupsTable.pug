@@ -24,7 +24,7 @@
          v-on:keyup.enter="handleClickRow(group.id)"
       )
       .name(data-testid="name") {{ group.name }}
-      .actions
+      .actions(data-testid="actions" v-if="group.isCurrentUserAdmin")
         router-link.edit(data-testid="action-edit" v-bind:to="{ name: 'groups:edit', params: { id: group.id } }" tabindex="0")
           | {{ $t("GROUPS_TABLE.ROW.ACTION_EDIT") }}
         button.delete(data-testid="action-delete")

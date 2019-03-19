@@ -27,3 +27,7 @@ export interface CreateGroupInput {
   votingDays: Day[];
   votingTime: DateTime;
 }
+
+export interface GetGroupInput {
+  id: string;
+}

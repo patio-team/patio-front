@@ -1,0 +1,39 @@
+//-
+  Copyright (C) 2019 Kaleidos Open Source SL
+
+  This file is part of Dont Worry Be Happy (DWBH).
+  DWBH is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  DWBH is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+
+.group-detail(v-if="group")
+  .head
+    h1.title {{ group.name }}
+    .actions(v-if="group.isCurrentUserAdmin")
+      router-link.edit-group(data-testid="action-edit" v-bind:to="{ name: 'groups:edit', params: { id: group.id } }")
+        | {{ $t("VIEWS.GROUP_DETAIL.ACTION_EDIT_GROUP") }}
+
+  .details
+    .voting-days
+      span.description {{ $t("VIEWS.GROUP_DETAIL.DETAILS.VOTING_DAYS_LABEL") }}
+      span.value(data-testid="voting-days") {{ group.votingDays | toListOfDays }}
+    .voting-time
+      span.description {{ $t("VIEWS.GROUP_DETAIL.DETAILS.VOTING_TIME_LABEL") }}
+      span.value(data-testid="voting-time") {{ group.votingTime | toTime }}
+    .anonymous-vote
+      span.description {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_LABEL") }}
+      span.value.allowed(data-testid="anonymous-vote-allowed" v-if="group.anonymousVote") {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_ALLOWED_VALUE") }}
+      span.value.deny(data-testid="anonymous-vote-deny" v-else) {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_DENY_VALUE") }}
+
+  dwbh-group-stats.stats(v-bind:group-id="group.id" v-bind:votes="[]")
+
+  dwbh-group-member-list.members(data-testid="member-list" v-if="group.visibleMemberList" v-bind:group="group")

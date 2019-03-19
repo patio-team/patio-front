@@ -21,6 +21,7 @@ import Vuex, { StoreOptions } from "vuex";
 
 import createLogger from "vuex/dist/logger";
 
+import group from "@/store/modules/group";
 import groups from "@/store/modules/groups";
 import auth from "@/store/modules/auth";
 import me from "@/store/modules/me";
@@ -34,6 +35,7 @@ const store: StoreOptions<RootState> = {
     version: "1.0.0",
   },
   modules: {
+    group,
     groups,
     auth,
     me,
