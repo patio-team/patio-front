@@ -23,15 +23,15 @@ import { CreateGroupInput } from "./types";
 
 import {
   CreateGroupMutation,
-  ListGroupsQuery,
+  ListMyGroupsQuery,
 } from "./queries/groups";
 
 export default (client: AxiosInstance) => ({
   list() {
     return client
-      .post("", { query: ListGroupsQuery })
+      .post("", { query: ListMyGroupsQuery })
       .then((data: any): Group[] => {
-        return data.listGroups;
+        return data.listMyGroups;
       });
   },
   create(input: CreateGroupInput) {

@@ -16,9 +16,9 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const ListGroupsQuery = `
-query{
-  listGroups{
+export const ListMyGroupsQuery = `
+query {
+  listMyGroups {
     id
     visibleMemberList
     anonymousVote

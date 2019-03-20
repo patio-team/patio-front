@@ -25,7 +25,7 @@ import api from "./groups";
 
 import {
   CreateGroupMutation,
-  ListGroupsQuery,
+  ListMyGroupsQuery,
 } from "./queries/groups";
 
 const mock = new MockAdapter(client);
@@ -40,11 +40,11 @@ describe("API Groups Services", () => {
       const groupList = generateGroupList();
 
       mock
-        .onPost("", { query: ListGroupsQuery })
+        .onPost("", { query: ListMyGroupsQuery })
         .reply(
           200,
           JSON.stringify({
-            data: { listGroups: groupList },
+            data: { listMyGroups: groupList },
           }),
         );
 
@@ -54,7 +54,7 @@ describe("API Groups Services", () => {
 
     it("should throw an error", async () => {
       mock
-        .onPost("", { query: ListGroupsQuery })
+        .onPost("", { query: ListMyGroupsQuery })
         .reply(
           200,
           JSON.stringify({
