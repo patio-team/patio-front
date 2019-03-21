@@ -16,37 +16,46 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./GroupsTable.pug" lang="pug"></template>
-<style src="./GroupsTable.css" scoped></style>
+<template src="./GroupDetail.pug" lang="pug"></template>
+<style src="./GroupDetail.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, namespace } from "vuex-class";
 
+import { formatToTime24Simple } from "@/utils/datetime";
+
+import GroupStats from "@/components/shared/GroupStats/GroupStats.vue";
+import GroupMemberList from "@/components/shared/GroupMemberList/GroupMemberList.vue";
+
 import { Group } from "@/domain";
 
-const GroupsStore = namespace("groups");
+const GroupsStore = namespace("group");
 
-@Component
-export default class GroupsTable extends Vue {
-  @GroupsStore.Getter("groupList")
-  private groupList!: Group[];
+@Component({
+  components: {
+    "dwbh-group-stats": GroupStats,
+    "dwbh-group-member-list": GroupMemberList,
+  },
+})
+export default class GroupDetail extends Vue {
+  @GroupsStore.Getter("group")
+  private group!: Group;
 
-  @GroupsStore.Getter("groupListIsLoading")
+  @GroupsStore.Getter("getGroupIsLoading")
   private isLoading!: boolean;
 
-  @GroupsStore.Getter("groupListError")
+  @GroupsStore.Getter("getGroupError")
   private error!: boolean | string;
 
-  @GroupsStore.Action("getGroupList")
-  private getGroupList: any;
+  @GroupsStore.Action("getGroup")
+  private getGroup: any;
 
   public mounted() {
-    this.getGroupList();
-  }
-
-  private handleClickRow(groupId: string) {
-    this.$router.push({ name: "groups:detail", params: { id: groupId } });
+    const input = {
+      id: this.$route.params.id,
+    };
+    this.getGroup(input);
   }
 }
 </script>

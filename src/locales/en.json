@@ -1,4 +1,15 @@
 {
+  "COMMON": {
+    "DAYS": {
+      "MONDAY": "monday",
+      "TUESDAY": "tuesday",
+      "WEDNESDAY": "wednesday",
+      "THURSDAY": "thursday",
+      "FRIDAY": "friday",
+      "SATURDAY": "saturday",
+      "SUNDAY": "sunday"
+    }
+  },
   "API_ERRORS": {
     "BAD_CREDENTIALS": "Email and password don't match.",
     "NOT_AN_ADMIN": "The user is not an admin on the group",
@@ -33,6 +44,14 @@
     },
     "BUTTON_SUBMIT": "Save"
   },
+  "GROUP_MEMBER_LIST": {
+    "ACTION_ADD_MEMBER": "+ Invite",
+    "EMPTY": "No members yet.",
+    "ROW": {
+      "ACTION_DELETE_MEMBER": "Delete"
+    },
+    "TITLE": "Members"
+  },
   "GROUPS_TABLE": {
     "LOADING": "Loading...",
     "EMPTY": "No groups yet.",
@@ -55,19 +74,29 @@
     "BUTTON_SUBMIT": "Sign in"
   },
   "VIEWS": {
-   "CREATE_GROUP": {
-     "TITLE": "Create a new group"
-   },
-   "GROUP_LIST": {
-     "TITLE": "Groups",
-     "ACTION_NEW_GROUP": "+ New group"
-   },
-   "LOGIN": {
-     "TITLE": "Sign in",
-     "ACTION_SIGN_UP": {
-       "PARAGRAPH": "Don't have an account?",
-       "BUTTON": "Sign up"
-     }
-   }
+    "CREATE_GROUP": {
+      "TITLE": "Create a new group"
+    },
+    "GROUP_DETAIL": {
+      "ACTION_EDIT_GROUP": "Edit",
+       "DETAILS": {
+         "VOTING_DAYS_LABEL": "Voting on",
+         "VOTING_TIME_LABEL": "Voting at",
+         "ANONYMOUS_VOTE_LABEL": "Anonymous votes are",
+         "ANONYMOUS_VOTE_ALLOWED_VALUE": "allowed",
+         "ANONYMOUS_VOTE_DENY_VALUE": "deny"
+       }
+    },
+    "GROUP_LIST": {
+      "TITLE": "My Groups",
+      "ACTION_NEW_GROUP": "+ New group"
+    },
+    "LOGIN": {
+      "TITLE": "Sign in",
+      "ACTION_SIGN_UP": {
+        "PARAGRAPH": "Don't have an account?",
+        "BUTTON": "Sign up"
+      }
+    }
   }
 }

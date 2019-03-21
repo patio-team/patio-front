@@ -19,10 +19,15 @@
   .loading(v-if="isLoading", data-testid="loading")
     | {{ $t("GROUPS_TABLE.LOADING") }}
   .table(v-else)
-    .row(tabindex="0", v-for="group in groupList", data-testid="row")
+    .row(tabindex="0", v-for="group in groupList", data-testid="row" role="link"
+         v-on:click="handleClickRow(group.id)"
+         v-on:keyup.enter="handleClickRow(group.id)"
+      )
       .name(data-testid="name") {{ group.name }}
-      .actions
-        a.edit(type="button", data-testid="action-edit") {{ $t("GROUPS_TABLE.ROW.ACTION_EDIT") }}
-        a.delete(type="button", data-testid="action-delete") {{ $t("GROUPS_TABLE.ROW.ACTION_DELETE") }}
+      .actions(data-testid="actions" v-if="group.isCurrentUserAdmin")
+        router-link.edit(data-testid="action-edit" v-bind:to="{ name: 'groups:edit', params: { id: group.id } }" tabindex="0")
+          | {{ $t("GROUPS_TABLE.ROW.ACTION_EDIT") }}
+        button.delete(data-testid="action-delete")
+          | {{ $t("GROUPS_TABLE.ROW.ACTION_DELETE") }}
     .row.empty(v-if="groupList.length === 0", data-testid="row-empty")
       | {{ $t("GROUPS_TABLE.EMPTY") }}

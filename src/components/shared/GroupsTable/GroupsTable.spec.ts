@@ -17,13 +17,12 @@
  */
 
 import { Store } from "vuex-mock-store";
-import { mount } from "@vue/test-utils";
+import { mount, RouterLinkStub } from "@vue/test-utils";
 
 import { Group } from "@/domain";
 import { generateGroup } from "@/__mocks__/data/groups";
 
 import GroupsTable from "./GroupsTable.vue";
-
 
 const getStore = () => {
   return new Store({
@@ -38,8 +37,14 @@ const getStore = () => {
   });
 };
 
-const getWrapper = (...params: any) => {
-  return mount(GroupsTable, ...params);
+const getWrapper = ({...params}) => {
+  return mount(
+    GroupsTable,
+    {
+      stubs: { RouterLink: RouterLinkStub },
+      ...params,
+    },
+  );
 };
 
 describe("Component: shared/GroupsTable", () => {
@@ -63,20 +68,39 @@ describe("Component: shared/GroupsTable", () => {
     expect(wrapper.contains("[data-testid='row-empty']")).toBe(false);
     expect(wrapper.contains("[data-testid='row']")).toBe(false);
   });
-  it("list two groups", () => {
+  it("list two groups and I an admin for the second one", () => {
     const store = getStore();
     const wrapper = getWrapper({ mocks: { $store: store } });
-    const groupList = [generateGroup(), generateGroup()];
+    const groupList = [generateGroup({isCurrentUserAdmin: false}), generateGroup({isCurrentUserAdmin: true})];
 
     store.getters["groups/groupList"] = groupList;
 
     const rows = wrapper.findAll("[data-testid='row']");
     expect(rows.length).toBe(2);
     expect(rows.at(0).find("[data-testid='name']").text()).toEqual(groupList[0].name);
-    expect(rows.at(0).contains("[data-testid='action-edit']")).toBe(true);
-    expect(rows.at(0).contains("[data-testid='action-delete']")).toBe(true);
+    expect(rows.at(0).contains("[data-testid='action-edit']")).toBe(false);
+    expect(rows.at(0).contains("[data-testid='action-delete']")).toBe(false);
     expect(rows.at(1).find("[data-testid='name']").text()).toEqual(groupList[1].name);
     expect(rows.at(1).contains("[data-testid='action-edit']")).toBe(true);
     expect(rows.at(1).contains("[data-testid='action-delete']")).toBe(true);
+  });
+  it("should go to group detail page when a row is clicked", () => {
+    const store = getStore();
+    const router = { push: jest.fn() };
+    const wrapper = getWrapper({
+      mocks: {
+        $store: store,
+        $router: router,
+      },
+    });
+    const groupList = [generateGroup({isCurrentUserAdmin: false}), generateGroup({isCurrentUserAdmin: true})];
+
+    store.getters["groups/groupList"] = groupList;
+
+    const rows = wrapper.findAll("[data-testid='row']");
+    rows.at(1).trigger("click");
+
+    expect(router.push).toBeCalledTimes(1);
+    expect(router.push).toBeCalledWith({ name: "groups:detail", params: { id: groupList[1].id } });
   });
 });

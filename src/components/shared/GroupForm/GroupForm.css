@@ -68,6 +68,7 @@
     height: 40px;
     min-width: 3rem;
     text-align: center;
+    transition: background-color .2s, color .2s;
   }
 
   & input[type=checkbox]:focus + label {
@@ -76,6 +77,10 @@
 
   & input[type=checkbox]:checked + label {
     background: var(--orange-400);
-    color: var(--whithe-400);
+    color: var(--white-400);
   }
+}
+
+.submit {
+  margin-top: 1.5rem;
 }

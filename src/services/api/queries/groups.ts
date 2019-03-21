@@ -20,13 +20,33 @@ export const ListMyGroupsQuery = `
 query {
   listMyGroups {
     id
+    name
     visibleMemberList
     anonymousVote
-    name
     members {
       id
       name
     }
+    isCurrentUserAdmin
+  }
+}`;
+
+export const GetGroupQuery = `
+query GetGroup(
+  $id: ID!
+) {
+  getGroup(id: $id) {
+    id
+    name
+    visibleMemberList
+    anonymousVote
+    votingDays
+    votingTime
+    members {
+      id
+      name
+    }
+    isCurrentUserAdmin
   }
 }`;
 
@@ -36,16 +56,19 @@ mutation CreateGroup(
   $visibleMemberList: Boolean!,
   $anonymousVote: Boolean!,
   $votingTime: Time!,
-  $votingDays: [DayOfWeek]!) {
-    createGroup(
-      name: $name,
-      visibleMemberList: $visibleMemberList,
-      anonymousVote: $anonymousVote,
-      votingTime: $votingTime,
-      votingDays: $votingDays) {
-        id
-        name
-        visibleMemberList
-        anonymousVote
-      }
-  }`;
+  $votingDays: [DayOfWeek]!
+) {
+  createGroup(
+    name: $name,
+    visibleMemberList: $visibleMemberList,
+    anonymousVote: $anonymousVote,
+    votingTime: $votingTime,
+    votingDays: $votingDays
+  ) {
+    id
+    name
+    visibleMemberList
+    anonymousVote
+    isCurrentUserAdmin
+  }
+}`;

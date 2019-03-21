@@ -38,4 +38,5 @@ export interface Group {
   votingDays: Day[];
   votingTime: DateTime;
   members?: User[];
+  isCurrentUserAdmin: boolean;
 }

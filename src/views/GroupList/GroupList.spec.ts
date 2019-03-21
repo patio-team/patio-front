@@ -20,7 +20,7 @@ import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 
 import GroupList from "./GroupList.vue";
 
-const getWrapper = (...params: any) => {
+const getWrapper = ({...params}) => {
   return shallowMount(
     GroupList,
     {
@@ -32,7 +32,7 @@ const getWrapper = (...params: any) => {
 
 describe("View: GroupList", () => {
   it("show the groups table", () => {
-    const wrapper = getWrapper();
+    const wrapper = getWrapper({});
 
     expect(wrapper.contains("[data-testid='action-create']")).toBe(true);
     expect(wrapper.contains("[data-testid='groups-table']")).toBe(true);

@@ -18,7 +18,7 @@
 
 import { DateTime, DateTimeFormatOptions } from "luxon";
 
-export { DateTime } from  "luxon";
+export { DateTime } from "luxon";
 
 export const toDateTime = (text: string): DateTime =>
   DateTime.fromISO(text);
@@ -37,3 +37,5 @@ export const formatUTCtoISOTime = (text: string): string =>
 export const formatToTime24Simple = (datetime: DateTime): string =>
   datetime.toLocaleString(DateTime.TIME_24_SIMPLE);
 
+export const formatToTimeSimple = (datetime: DateTime): string =>
+  datetime.toLocaleString(DateTime.TIME_SIMPLE);

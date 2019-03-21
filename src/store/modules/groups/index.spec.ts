@@ -124,6 +124,8 @@ describe("Groups Store Module", () => {
 
         await store.dispatch("groups/getGroupList");
 
+        expect(api.groups.list).toBeCalledTimes(1);
+        expect(api.groups.list).toBeCalledWith();
         expect(store.getters["groups/groupList"]).toEqual(groupList);
         expect(store.getters["groups/groupListIsLoading"]).toEqual(false);
         expect(store.getters["groups/groupListError"]).toEqual(false);
@@ -135,6 +137,8 @@ describe("Groups Store Module", () => {
 
         await store.dispatch("groups/getGroupList");
 
+        expect(api.groups.list).toBeCalledTimes(1);
+        expect(api.groups.list).toBeCalledWith();
         expect(store.getters["groups/groupList"]).toEqual([]);
         expect(store.getters["groups/groupListIsLoading"]).toEqual(false);
         expect(store.getters["groups/groupListError"]).toEqual("ERROR");
@@ -145,23 +149,42 @@ describe("Groups Store Module", () => {
         router.push = jest.fn();
         const store = getStore();
         const group = generateGroup();
+        const input = {
+          name: group.name,
+          anonymousVote: group.anonymousVote,
+          visibleMemberList: group.visibleMemberList,
+          votingDays: group.votingDays,
+          votingTime: group.votingTime,
+        };
 
         api.groups.create = jest.fn().mockResolvedValue(group);
 
-        await store.dispatch("groups/createGroup");
+        await store.dispatch("groups/createGroup", input);
 
+        expect(api.groups.create).toBeCalledTimes(1);
+        expect(api.groups.create).toBeCalledWith(input);
         expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
         expect(store.getters["groups/createGroupError"]).toEqual(false);
         expect(router.push).toBeCalledTimes(1);
       });
-      it("icreate a group throw an error", async () => {
+      it("create a group throw an error", async () => {
         router.push = jest.fn();
         const store = getStore();
+        const group = generateGroup();
+        const input = {
+          name: group.name,
+          anonymousVote: group.anonymousVote,
+          visibleMemberList: group.visibleMemberList,
+          votingDays: group.votingDays,
+          votingTime: group.votingTime,
+        };
 
         api.groups.create = jest.fn().mockRejectedValue(new ApiError("ERROR"));
 
-        await store.dispatch("groups/createGroup");
+        await store.dispatch("groups/createGroup", input);
 
+        expect(api.groups.create).toBeCalledTimes(1);
+        expect(api.groups.create).toBeCalledWith(input);
         expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
         expect(store.getters["groups/createGroupError"]).toEqual("ERROR");
         expect(router.push).toBeCalledTimes(0);

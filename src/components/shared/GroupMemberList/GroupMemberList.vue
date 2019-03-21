@@ -16,37 +16,17 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./GroupsTable.pug" lang="pug"></template>
-<style src="./GroupsTable.css" scoped></style>
+<template src="./GroupMemberList.pug" lang="pug"></template>
+<style src="./GroupMemberList.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 import { Group } from "@/domain";
 
-const GroupsStore = namespace("groups");
-
 @Component
-export default class GroupsTable extends Vue {
-  @GroupsStore.Getter("groupList")
-  private groupList!: Group[];
-
-  @GroupsStore.Getter("groupListIsLoading")
-  private isLoading!: boolean;
-
-  @GroupsStore.Getter("groupListError")
-  private error!: boolean | string;
-
-  @GroupsStore.Action("getGroupList")
-  private getGroupList: any;
-
-  public mounted() {
-    this.getGroupList();
-  }
-
-  private handleClickRow(groupId: string) {
-    this.$router.push({ name: "groups:detail", params: { id: groupId } });
-  }
+export default class GroupMemberList extends Vue {
+  @Prop(Object)
+  private readonly group!: Group;
 }
 </script>

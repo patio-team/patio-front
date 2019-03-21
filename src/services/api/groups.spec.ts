@@ -25,6 +25,7 @@ import api from "./groups";
 
 import {
   CreateGroupMutation,
+  GetGroupQuery,
   ListMyGroupsQuery,
 } from "./queries/groups";
 
@@ -121,6 +122,54 @@ describe("API Groups Services", () => {
       let err;
       try {
         await api(client).create(variables);
+      } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+
+  describe.skip("API Groups Services: get", () => {
+    it("should get data from API", async () => {
+      const group = generateGroup();
+      delete group.members;
+
+      const input = {
+        id: group.id,
+      };
+
+      mock
+        .onPost("", { query: GetGroupQuery, variables: input })
+        .reply(
+          200,
+          JSON.stringify({
+            data: { createGroup: group },
+          }),
+        );
+
+      const data = await api(client).get(input);
+      expect(data).toEqual(group);
+    });
+
+    it("should throw an error", async () => {
+      const group = generateGroup();
+      delete group.members;
+
+      const variables = {
+        id: group.id,
+      };
+
+      mock
+        .onPost("", { query: GetGroupQuery, variables })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).get(variables);
       } catch (e) { err = e; }
 
       expect(err.code).toEqual("ERROR_CODE");

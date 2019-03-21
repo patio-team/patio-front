@@ -32,8 +32,36 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 1200px;
-  padding: 1rem 2rem;
+  max-width: 964px;
+  padding: 1rem 4.5rem;
+}
+
+/* generic section mixins
+   =============================== */
+@define-mixin section {
+  margin: 1rem 0;
+}
+
+@define-mixin section-header {
+  align-items: center;
+  border-bottom: 1px solid var(--black-400);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem .5rem;
+
+  & h2 {
+    margin: 0;
+  }
+}
+
+@define-mixin section-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem .5rem;
+  width: 100%;
 }
 
 /* generic error form
@@ -51,14 +79,27 @@
 @define-mixin as-link {
   background: none;
   border: none;
+  border-radius: initial;
+  box-shadow: initial;
   color: var(--orange-400);
   cursor: pointer;
   font: inherit;
-  padding: 0;
+  font-size: inherit;
+  height: initial;
+  margin: initial;
+  min-height: initial;
+  padding: initial;
+  text-shadow: initial;
+  text-transform: initial;
   transition: all .3s ease;
+  width: initial;
 
-  &:hover,
   &:focus {
+    @mixin outline;
+  }
+
+  &:hover {
+    color: var(--orange-500);
     text-decoration: underline;
   }
 }
@@ -66,27 +107,69 @@
 /* Generic link as button
    =============================== */
 @define-mixin as-button {
+  align-items: center;
   background-color: var(--orange-400);
-  border: 1px solid var(--black-400);
+  border: none;
   border-radius: 6px;
-  box-shadow: 3px 3px 3px 0 var(--black-400-40);
+  box-shadow: none;
   color: var(--white-400);
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: bolder;
   height: 2.5rem;
-  line-height: 2.5rem;
-  margin: 1.5rem 0;
+  justify-content: center;
   padding: 0 1rem;
   text-decoration: none;
-  text-shadow: -1px 0 var(--black-400), 0 1px var(--black-400), 1px 0 var(--black-400), 0 -1px var(--black-400);
   text-transform: uppercase;
   vertical-align: center;
 
   &:hover,
   &:focus {
-    background-color: var(--green-400);
+    background-color: var(--orange-500);
   }
+}
+
+/* Votes
+   =============================== */
+@define-mixin vote {
+  color: var(--white-400);
+  text-decoration: initial;
+}
+
+@define-mixin vote-1 {
+  @mixin vote;
+
+  background-color: var(--vote-1);
+}
+
+@define-mixin vote-2 {
+  @mixin vote;
+
+  background-color: var(--vote-2);
+}
+
+@define-mixin vote-3 {
+  @mixin vote;
+
+  background-color: var(--vote-3);
+}
+
+@define-mixin vote-4 {
+  @mixin vote;
+
+  background-color: var(--vote-4);
+}
+
+@define-mixin vote-5 {
+  @mixin vote;
+
+  background-color: var(--vote-5);
+}
+
+@define-mixin vote-empty {
+  @mixin vote;
+
+  background-color: var(--vote-empty);
 }

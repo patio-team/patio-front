@@ -15,11 +15,19 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.group-list
+.group-member-list(v-if="group")
   .head
-    h1.title {{ $t("VIEWS.GROUP_LIST.TITLE") }}
-    .actions
-      router-link.create-group(v-bind:to="{ name: 'groups:create' }" data-testid="action-create")
-        | {{ $t("VIEWS.GROUP_LIST.ACTION_NEW_GROUP") }}
-
-  dw-groups-table(data-testid="groups-table")
+    h2 {{ $t("GROUP_MEMBER_LIST.TITLE") }}
+    button.add-member(data-testid="action-add-member" v-if="group.isCurrentUserAdmin")
+      | {{ $t("GROUP_MEMBER_LIST.ACTION_ADD_MEMBER") }}
+  .table
+    .row(tabindex="0", v-for="member in group.members", data-testid="row" role="link"
+       v-on:click=""
+       v-on:keyup.enter=""
+    )
+      .name(data-testid="name") {{ member.name }}
+      .actions(v-if="group.isCurrentUserAdmin")
+        button.delete(data-testid="action-delete-member")
+          | {{ $t("GROUP_MEMBER_LIST.ROW.ACTION_DELETE_MEMBER") }}
+    .row.empty(v-if="group.members.length === 0", data-testid="row-empty")
+      | {{ $t("GROUP_MEMBER_LIST.EMPTY") }}

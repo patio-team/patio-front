@@ -23,6 +23,7 @@ import Vue from "vue";
 import i18n from "./i18n";
 import router from "./router";
 import store from "./store";
+import "./filters";
 
 import App from "./App.vue";
 

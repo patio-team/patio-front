@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,24 +16,11 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-:root {
-  --black-400: #000;
-  --blue-400: #5d9dd5;
-  --gray-300: #d1d1d1;
-  --gray-800: #515151;
-  --green-800: #00c843;
-  --orange-100: #fff6e9;
-  --orange-400: #ffb138;
-  --orange-500: #eb8f00;
-  --red-100: #fff0ee;
-  --red-400: #ff715b;
-  --white-400-40: rgba(255, 255, 255, .4);
-  --white-400: #fff;
-  --white-500: #fcfdff;
-  --vote-1: #ff4056;
-  --vote-2: #ff9959;
-  --vote-3: #f2ea49;
-  --vote-4: #358bd4;
-  --vote-5: #52cc7b;
-  --vote-empty: #fff0ee;
+import { Group } from "@/domain";
+
+export interface GroupState {
+  group?: Group;
+  getGroupIsLoading: boolean;
+  getGroupError: boolean | string;
 }
+

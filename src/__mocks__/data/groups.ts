@@ -25,7 +25,7 @@ import { generateUserList } from "./users";
 
 import { Group } from "@/domain";
 
-export function generateGroup(...params: any): Group {
+export function generateGroup(params: any = {}): Group {
   return Object.assign(
     {
       id: faker.random.uuid(),
@@ -35,6 +35,7 @@ export function generateGroup(...params: any): Group {
       votingDays: ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"],
       votingTime: toDateTime("12:00"),
       members: faker.random.boolean() ? generateUserList() : undefined,
+      isCurrentUserAdmin: faker.random.boolean(),
     },
     params,
   );
