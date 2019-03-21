@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,32 +16,13 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-:root {
-  --black-400: #000;
-  --black-400-10: rgba(0, 0, 0, .1);
-  --black-400-40: rgba(0, 0, 0, .4);
-  --blue-100: #e4eff6;
-  --blue-400: #5d9dd5;
-  --blue-700: #235a8b;
-  --gray-300: #d1d1d1;
-  --gray-500: #919191;
-  --gray-800: #515151;
-  --green-100: #ebfff2;
-  --green-800: #00c843;
-  --green-900: #00852c;
-  --orange-100: #fff6e9;
-  --orange-400: #ffb138;
-  --orange-500: #eb8f00;
-  --red-100: #fff0ee;
-  --red-400: #ff715b;
-  --red-800: #d61d00;
-  --white-400-40: rgba(255, 255, 255, .4);
-  --white-400: #fff;
-  --white-500: #fcfdff;
-  --vote-1: #ff4056;
-  --vote-2: #ff9959;
-  --vote-3: #f2ea49;
-  --vote-4: #358bd4;
-  --vote-5: #52cc7b;
-  --vote-empty: #fff0ee;
+// ID function
+function* _segIDGenerator() {
+  let n = 1;
+  while(true) {
+    yield n++;
+  }
 }
+
+const _ID = _segIDGenerator();
+export const ID = () => _ID.next().value;

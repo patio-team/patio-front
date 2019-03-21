@@ -16,20 +16,41 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./App.pug" lang="pug"></template>
-<style src="./App.css"></style>
+<template src="./AddMemberForm.pug" lang="pug"></template>
+<style src="./AddMemberForm.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 
-import { Notifications } from "@/plugins/notifications";
-import Header from "@/components/shared/Header/Header.vue";
+import { Group } from "@/domain";
 
-@Component({
-  components: {
-    "notifications": Notifications,
-    "dw-header": Header,
-  },
-})
-export default class App extends Vue {}
+
+@Component
+export default class AddMemberForm extends Vue {
+  public input = {
+    email: "",
+  };
+
+  @Prop(Object)
+  private readonly group!: Group;
+
+  @Prop(Boolean)
+  private readonly isLoading!: boolean;
+
+  @Prop([String, Boolean])
+  private readonly error!: string | boolean;
+
+  @Emit("submit")
+  private handleSubmit() {
+    return {
+      groupId: this.group.id,
+      ...this.input,
+    };
+  }
+
+  @Emit("cancel")
+  private handleCancel() {
+    return;
+  }
+}
 </script>

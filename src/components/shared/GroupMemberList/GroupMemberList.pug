@@ -15,19 +15,39 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.group-member-list(v-if="group")
+.group-member-list(data-testid="group-member-list" v-if="group")
   .head
     h2 {{ $t("GROUP_MEMBER_LIST.TITLE") }}
-    button.add-member(data-testid="action-add-member" v-if="group.isCurrentUserAdmin")
+    button.add-member(
+      data-testid="action-add-member"
+      v-if="group.isCurrentUserAdmin"
+      v-on:click="handleAddMemberButton"
+    )
       | {{ $t("GROUP_MEMBER_LIST.ACTION_ADD_MEMBER") }}
   .table
-    .row(tabindex="0", v-for="member in group.members", data-testid="row" role="link"
-       v-on:click=""
-       v-on:keyup.enter=""
+    .row(
+      data-testid="row"
+      v-for="member in group.members"
+      tabindex="0"
+      role="link"
+      v-on:click=""
+      v-on:keyup.enter=""
     )
       .name(data-testid="name") {{ member.name }}
       .actions(v-if="group.isCurrentUserAdmin")
         button.delete(data-testid="action-delete-member")
           | {{ $t("GROUP_MEMBER_LIST.ROW.ACTION_DELETE_MEMBER") }}
-    .row.empty(v-if="group.members.length === 0", data-testid="row-empty")
+    .row.empty(
+      data-testid="row-empty"
+      v-if="group.members.length === 0"
+    )
       | {{ $t("GROUP_MEMBER_LIST.EMPTY") }}
+
+  dw-dialog(name="add-member" v-on:close="handleAddMemberCancel")
+    dw-add-member-form(
+      v-bind:group="group"
+      v-bind:isLoading="addUserToGroupIsLoading"
+      v-bind:error="addUserToGroupError"
+      v-on:submit="handleAddMemberSubmit"
+      v-on:cancel="handleAddMemberCancel"
+    )

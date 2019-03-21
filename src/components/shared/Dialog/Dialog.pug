@@ -15,7 +15,12 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.vote
-  h1.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
-
-  dw-vote-form(data-testid="vote-form")
+modal(
+  v-bind="$attrs"
+  v-on="$listeners"
+  v-bind:name="name"
+)
+  div.modal-backdrop(slot="backdrop")
+  div
+    button.modal-close-button(type="button" @click="close") X
+    slot

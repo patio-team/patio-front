@@ -31,3 +31,8 @@ export interface CreateGroupInput {
 export interface GetGroupInput {
   id: string;
 }
+
+export interface AddUserToGroupInput {
+  groupId: string;
+  email: string;
+}

@@ -19,4 +19,8 @@
 :root {
   /* Factor to calculate font-size for voting squares according to square width */
   --vote-font-size-factor: calc(36 / 95);
+
+  /** Z Indexes */
+  --z-modal: 1000;
+  --z-notifications: 5000;
 }

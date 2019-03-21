@@ -23,7 +23,8 @@
 
   max-width: 800px;
 
-  & h2 {
+  & .title {
+    align-self: center;
     color: var(--black-400);
     margin: auto auto 4rem;
   }

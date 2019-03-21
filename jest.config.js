@@ -34,6 +34,9 @@ module.exports = {
   ],
   collectCoverageFrom: [
     'src/**/*.{ts,vue}',
+    '!src/App.vue',
+    '!src/i18n.ts',
+    '!src/main.ts',
     '!**/node_modules/**',
     '!src/registerServiceWorker.ts'
   ],

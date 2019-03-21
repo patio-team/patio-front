@@ -87,3 +87,11 @@ mutation CreateGroup(
     isCurrentUserAdmin
   }
 }`;
+
+export const AddUserToGroupMutation = `
+mutation AddUserToGroup(
+  $groupId: ID!,
+  $email: String!
+) {
+  addUserToGroup( groupId: $groupId, email: $email)
+}`;

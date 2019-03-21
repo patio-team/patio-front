@@ -19,7 +19,7 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 
 import api from "@/services/api";
-import { GetGroupInput } from "@/services/api/types";
+import { GetGroupInput, AddUserToGroupInput } from "@/services/api/types";
 
 import router from "@/router";
 
@@ -32,16 +32,21 @@ const initialState: GroupState = {
   group: undefined,
   getGroupIsLoading: false,
   getGroupError: false,
+  addUserToGroupIsLoading: false,
+  addUserToGroupError: false,
 };
 
 const getters: GetterTree<GroupState, RootState> = {
   group(state: GroupState) { return state.group; },
   getGroupIsLoading(state: GroupState) { return state.getGroupIsLoading; },
   getGroupError(state: GroupState) { return state.getGroupError; },
+  addUserToGroupIsLoading(state: GroupState) { return state.addUserToGroupIsLoading; },
+  addUserToGroupError(state: GroupState) { return state.addUserToGroupError; },
 };
 
 const mutations: MutationTree<GroupState> = {
   // getGroup
+  // getGroupWithNoMembers
   getGroupRequest(state: GroupState) {
     state.getGroupIsLoading = true;
     state.getGroupError = false;
@@ -55,6 +60,19 @@ const mutations: MutationTree<GroupState> = {
   getGroupFail(state: GroupState, error: string) {
     state.getGroupIsLoading = false;
     state.getGroupError = error;
+  },
+  // addUserToGroup
+  addUserToGroupRequest(state: GroupState) {
+    state.addUserToGroupIsLoading = true;
+    state.addUserToGroupError = false;
+  },
+  addUserToGroupFail(state: GroupState, error: string) {
+    state.addUserToGroupIsLoading = false;
+    state.addUserToGroupError = error;
+  },
+  addUserToGroupReset(state: GroupState) {
+    state.addUserToGroupIsLoading = false;
+    state.addUserToGroupError = false;
   },
 };
 
@@ -82,6 +100,22 @@ const actions: ActionTree<GroupState, RootState> = {
     } catch (error) {
       commit("getGroupFail", error.code);
     }
+  },
+  async addUserToGroup(
+    {commit, state}: {commit: Commit, state: GroupState},
+    input: AddUserToGroupInput,
+  ) {
+    commit("addUserToGroupRequest");
+    let result = false;
+
+    try {
+      result = await api.groups.addUserToGroup(input);
+      commit("addUserToGroupReset");
+    } catch (error) {
+      commit("addUserToGroupFail", error.code);
+    }
+
+    return result;
   },
 };
 
