@@ -22,6 +22,7 @@ import { LoginInput } from "@/services/api/types";
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
 import router from "@/router";
+import { Login } from "@/domain/auth";
 
 const initialState: AuthState = {
   loading: false,
@@ -38,10 +39,10 @@ const mutations: MutationTree<AuthState> = {
     state.loading = true;
     state.error = false;
   },
-  loginSuccess(state: AuthState, token: string) {
+  loginSuccess(state: AuthState, login: Login) {
     state.loading = false;
 
-    api.setAuthorization(token);
+    api.setAuthorization(login.token);
     router.push({ name: "groups:list" });
   },
   loginError(state: AuthState, error: string) {
@@ -57,8 +58,8 @@ const actions: ActionTree<AuthState, RootState> = {
   ) {
     commit("loginRequest");
     try {
-      const token = await api.auth.login(input);
-      commit("loginSuccess", token);
+      const login = await api.auth.login(input);
+      commit("loginSuccess", login);
     } catch (error) {
       commit("loginError", error.code || error );
     }

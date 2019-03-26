@@ -16,17 +16,9 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { AxiosInstance } from "axios";
-import { LoginInput } from "./types";
-import { LoginQuery } from "./queries/auth";
-import { Login } from "@/domain/auth";
+import { User } from "./users";
 
-export default (client: AxiosInstance) => ({
-  login(input: LoginInput) {
-    return client
-      .post("", { query: LoginQuery, variables: input })
-      .then((data: any): Login => {
-        return data.login;
-      });
-  },
-});
+export interface Login {
+  token: string;
+  profile: User;
+}

@@ -30,7 +30,12 @@ describe("API Auth Services", () => {
 
   describe("API Auth Services: login", () => {
     it("should get token from a successful login", async () => {
-      const token = "TOKEN";
+      const payload = {
+        token: "TOKEN",
+        profile: {
+          email: "some@email.com",
+        },
+      };
       const input = {
         email: "aaaa@email.com",
         password: "password",
@@ -41,12 +46,12 @@ describe("API Auth Services", () => {
         .reply(
           200,
           JSON.stringify({
-            data: { login: { token } },
+            data: { login: payload },
           }),
         );
 
       const data = await api(client).login(input);
-      expect(data).toEqual(token);
+      expect(data).toEqual(payload);
     });
 
     it("should throw an error", async () => {
