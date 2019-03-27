@@ -16,7 +16,12 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { User } from "@/domain";
+
 export interface AuthState {
-  loading: boolean;
-  error: boolean | string;
+  loginIsLoading: boolean;
+  loginError: boolean | string;
+  myProfile?: User;
+  myProfileIsLoading: boolean;
+  myProfileError: boolean | string;
 }

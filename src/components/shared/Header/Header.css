@@ -16,13 +16,75 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@import "../../../assets/css/mixins.css";
+
 .header {
   align-items: center;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  margin: 4rem 0;
+  padding: 0 10vw;
   width: 100%;
+
+  & .logo {
+    margin-right: 2rem;
+  }
+
+  & .actions {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+    justify-content: flex-end;
+
+    & .action {
+      text-decoration: none;
+    }
+
+    & > :not(:first-child) {
+      padding-left: 2rem;
+    }
+  }
 }
 
-.logo {
-  padding: 4rem 10%;
+.user-menu {
+  display: flex;
+  position: relative;
+
+  & .user {
+    align-items: center;
+    display: flex;
+
+    & .avatar {
+      border: 3px solid var(--orange-400);
+      border-radius: 50%;
+      margin-left: .5rem;
+      width: 50px;
+    }
+  }
+
+  & .options-wrapper {
+    display: none;
+    padding-top: calc(2rem + 25px);
+    position: absolute;
+    right: 0;
+    transition: all .3s ease-in-out 0;
+    z-index: var(--z-dropdown-menu);
+
+    & .options-container {
+      box-shadow: 0 8px 16px 0 var(--black-400-10);
+      min-width: 10rem;
+
+      & > * {
+        @mixin as-button;
+
+        border-radius: 0;
+      }
+    }
+  }
+
+  &:hover .options-wrapper {
+    display: block;
+  }
 }

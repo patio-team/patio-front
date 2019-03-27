@@ -70,7 +70,15 @@
       "ACTION_DELETE": "Borrar"
     }
   },
-  "HEADER": { },
+  "HEADER": {
+    "ACTIONS": {
+      "MY_GROUPS": "Mis groupos"
+    },
+    "USER_ACTIONS": {
+      "MY_PROFILE": "Mi perfil",
+      "LOGOUT": "Logout"
+    }
+  },
   "LOGIN_FORM": {
     "INPUT_EMAIL": {
       "LABEL": "email",

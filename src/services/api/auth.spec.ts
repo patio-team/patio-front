@@ -18,7 +18,10 @@
 
 import MockAdapter from "axios-mock-adapter";
 import { client } from "@/services/api";
-import { LoginQuery } from "./queries/auth";
+import {
+  LoginQuery,
+  MyProfileQuery,
+} from "./queries/auth";
 import api from "./auth";
 
 const mock = new MockAdapter(client);
@@ -73,6 +76,44 @@ describe("API Auth Services", () => {
 
       try {
         await api(client).login(input);
+      } catch (e) { err = e; }
+
+      expect(err.code).toBe("API_ERRORS.BAD_CREDENTIALS");
+    });
+  });
+  describe("API Auth Services: myProfile", () => {
+    it("should get user profile from a successful call", async () => {
+      const payload = {
+        email: "some@email.com",
+      };
+
+      mock
+        .onPost("", { query: MyProfileQuery, variables: {} })
+        .reply(
+          200,
+          JSON.stringify({
+            data: { myProfile: payload },
+          }),
+        );
+
+      const data = await api(client).myProfile();
+      expect(data).toEqual(payload);
+    });
+
+    it("should throw an error", async () => {
+      mock
+        .onPost("", { query: MyProfileQuery, variables: {} })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{ extensions: { code: "API_ERRORS.BAD_CREDENTIALS" } }],
+          }),
+        );
+
+      let err;
+
+      try {
+        await api(client).myProfile();
       } catch (e) { err = e; }
 
       expect(err.code).toBe("API_ERRORS.BAD_CREDENTIALS");

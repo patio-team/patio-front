@@ -18,36 +18,73 @@
 
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
+import router from "@/router";
+
 import { LoginInput } from "@/services/api/types";
+
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
-import router from "@/router";
-import { Login } from "@/domain/auth";
+import { Login, User } from "@/domain";
+
 
 const initialState: AuthState = {
-  loading: false,
-  error: false,
+  loginIsLoading: false,
+  loginError: false,
+  myProfile: undefined,
+  myProfileIsLoading: false,
+  myProfileError: false,
 };
 
 const getters: GetterTree<AuthState, RootState> = {
-  loginIsLoading(state: AuthState): boolean { return state.loading; },
-  loginError(state: AuthState): string | boolean { return state.error; },
+  loginIsLoading(state: AuthState): boolean { return state.loginIsLoading; },
+  loginError(state: AuthState): string | boolean { return state.loginError; },
+  myProfile(state: AuthState) { return state.myProfile; },
+  myProfileIsLoading(state: AuthState): boolean { return state.myProfileIsLoading; },
+  myProfileError(state: AuthState): string | boolean { return state.myProfileError; },
 };
 
 const mutations: MutationTree<AuthState> = {
+  // login
   loginRequest(state: AuthState) {
-    state.loading = true;
-    state.error = false;
+    state.loginIsLoading = true;
+    state.loginError = false;
   },
   loginSuccess(state: AuthState, login: Login) {
-    state.loading = false;
+    state.loginIsLoading = false;
 
     api.setAuthorization(login.token);
-    router.push({ name: "groups:list" });
+    state.myProfile = login.profile;
+
+    const next = router.currentRoute.query.next
+      ? router.currentRoute!.query.next as string
+      : { name: "groups:list" };
+    router.push(next);
   },
   loginError(state: AuthState, error: string) {
-    state.loading = false;
-    state.error = error;
+    state.loginIsLoading = false;
+    state.loginError = error;
+  },
+  // logout
+  logout(state: AuthState) {
+    api.setAuthorization();
+    state.myProfile = undefined;
+
+    router.push({ name: "login" });
+  },
+  // myProfile
+  myProfileRequest(state: AuthState) {
+    state.myProfileIsLoading = true;
+    state.myProfileError = false;
+  },
+  myProfileSuccess(state: AuthState, myProfile: User) {
+    state.myProfileIsLoading = false;
+    state.myProfileError = false;
+    state.myProfile = myProfile;
+  },
+  myProfileError(state: AuthState, error: string) {
+    state.myProfileIsLoading = false;
+    state.myProfileError = error;
+    state.myProfile = undefined;
   },
 };
 
@@ -62,6 +99,29 @@ const actions: ActionTree<AuthState, RootState> = {
       commit("loginSuccess", login);
     } catch (error) {
       commit("loginError", error.code || error );
+    }
+  },
+  async logout(
+    { commit, state }: { commit: Commit, state: AuthState },
+  ) {
+    commit("logout");
+  },
+  async getMyProfile(
+    { commit, state }: { commit: Commit, state: AuthState },
+    { force }: { force: boolean } = { force: false },
+  ) {
+    if (!force && state.myProfile) {
+      return state.myProfile;
+    }
+
+    commit("myProfileRequest");
+    try {
+      const myProfile = await api.auth.myProfile();
+      commit("myProfileSuccess", myProfile);
+      return myProfile;
+    } catch (error) {
+      commit("myProfileError", error.code || error );
+      return;
     }
   },
 };

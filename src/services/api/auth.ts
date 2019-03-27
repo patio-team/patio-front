@@ -18,8 +18,8 @@
 
 import { AxiosInstance } from "axios";
 import { LoginInput } from "./types";
-import { LoginQuery } from "./queries/auth";
-import { Login } from "@/domain/auth";
+import { LoginQuery, MyProfileQuery } from "./queries/auth";
+import { Login, User } from "@/domain";
 
 export default (client: AxiosInstance) => ({
   login(input: LoginInput) {
@@ -27,6 +27,13 @@ export default (client: AxiosInstance) => ({
       .post("", { query: LoginQuery, variables: input })
       .then((data: any): Login => {
         return data.login;
+      });
+  },
+  myProfile() {
+    return client
+      .post("", { query: MyProfileQuery, variables: {} })
+      .then((data: any): User => {
+        return data.myProfile;
       });
   },
 });

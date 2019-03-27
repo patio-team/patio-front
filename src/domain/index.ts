@@ -16,6 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+export * from "./auth";
 export * from "./groups";
 export * from "./users";
 export * from "./votings";
