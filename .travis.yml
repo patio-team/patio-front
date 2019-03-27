@@ -4,13 +4,13 @@ cache:
   yarn: true
 
 script:
-  - yarn test:unit
+  - yarn test:unit:coverage
 
 # generates latest version of docker image
 deploy:
   - provider: script
-    script: 
-      - ./docker/docker-build.sh publish $DWBH_API_URL 
+    script:
+      - ./docker/docker-build.sh publish $DWBH_API_URL
       - ./docker/docker-push.sh $DWBH_DOCKER_USER $DWBH_DOCKER_KEY
     on:
       branch: release
