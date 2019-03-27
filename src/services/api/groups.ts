@@ -27,6 +27,7 @@ import {
 import {
   CreateGroupMutation,
   GetGroupQuery,
+  GetGroupWithNoMembersQuery,
   ListMyGroupsQuery,
 } from "./queries/groups";
 
@@ -48,6 +49,13 @@ export default (client: AxiosInstance) => ({
   get(input: GetGroupInput) {
     return client
       .post("", { query: GetGroupQuery, variables: input })
+      .then((data: any): Group => {
+        return data.getGroup;
+      });
+  },
+  getWithNoMembers(input: GetGroupInput) {
+    return client
+      .post("", { query: GetGroupWithNoMembersQuery, variables: input })
       .then((data: any): Group => {
         return data.getGroup;
       });

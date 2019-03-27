@@ -1,0 +1,50 @@
+//-
+  Copyright (C) 2019 Kaleidos Open Source SL
+
+  This file is part of Dont Worry Be Happy (DWBH).
+  DWBH is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  DWBH is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+
+form.vote-form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
+  .error(data-testid="error" v-if="error" role="alert")
+    | {{ $t(error) }}
+  .score-container
+    .score
+      input(data-testid="one" type="radio" id="one" name="score" value="1" v-model="input.score")
+      label(for="one") {{ "1" }}
+
+    .score
+      input(type="radio" id="two" name="score" value="2" v-model="input.score")
+      label(for="two") {{ "2" }}
+
+    .score
+      input(type="radio" id="three" name="score" value="3" v-model="input.score")
+      label(for="three") {{ "3" }}
+
+    .score
+      input(type="radio" id="four" name="score" value="4" v-model="input.score")
+      label(for="four") {{ "4" }}
+
+    .score
+      input(type="radio" id="five" name="score" value="5" v-model="input.score")
+      label(for="five") {{ "5" }}
+
+  .comment
+    label(data-testid="commentlabel" for="comment") {{ "is there anything else you want to say ?" }}
+    textarea(data-testid="comment" id="comment" v-model="input.comment")
+
+  .anonymous(data-testid="anonymouscontainer" v-if="group")
+    input(v-if="group.anonymousVote" data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
+    label(v-if="group.anonymousVote" data-testid="anonymouslabel" for="anonymous") {{ "I want this vote to be anonymous" }}
+
+  button.submit(data-testid="submit" type="submit") {{ $t("VOTE_FORM.BUTTON_SUBMIT") }}

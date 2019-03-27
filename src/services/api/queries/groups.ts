@@ -50,6 +50,21 @@ query GetGroup(
   }
 }`;
 
+export const GetGroupWithNoMembersQuery = `
+query GetGroup(
+  $id: ID!
+) {
+  getGroup(id: $id) {
+    id
+    name
+    visibleMemberList
+    anonymousVote
+    votingDays
+    votingTime
+    isCurrentUserAdmin
+  }
+}`;
+
 export const CreateGroupMutation = `
 mutation CreateGroup(
   $name: String!,

@@ -16,34 +16,13 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Vue from "vue";
-import Vuex, { StoreOptions } from "vuex";
+import { AxiosInstance } from "axios";
+import { CreateVoteInput } from "./types";
+import { CreateVoteMutation } from "./queries/votings";
 
-import createLogger from "vuex/dist/logger";
-
-import group from "@/store/modules/group";
-import groups from "@/store/modules/groups";
-import auth from "@/store/modules/auth";
-import me from "@/store/modules/me";
-import votings from "@/store/modules/votings";
-
-import { RootState } from "./types";
-
-Vue.use(Vuex);
-
-const store: StoreOptions<RootState> = {
-  state: {
-    version: "1.0.0",
+export default (client: AxiosInstance) => ({
+  createVote(input: CreateVoteInput) {
+    return client
+      .post("", { query: CreateVoteMutation, variables: {...input} });
   },
-  modules: {
-    group,
-    groups,
-    auth,
-    me,
-    votings,
-  },
-  strict: process.env.VUE_APP_DEBUG === "true",
-  plugins: process.env.VUE_APP_DEBUG ? [createLogger()] : [],
-};
-
-export default new Vuex.Store<RootState>(store);
+});

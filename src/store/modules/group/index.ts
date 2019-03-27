@@ -71,6 +71,18 @@ const actions: ActionTree<GroupState, RootState> = {
       commit("getGroupFail", error.code);
     }
   },
+  async getGroupWithNoMembers(
+    {commit, state}: {commit: Commit, state: GroupState},
+    input: GetGroupInput,
+  ) {
+    commit("getGroupRequest");
+    try {
+      const group = await api.groups.getWithNoMembers(input);
+      commit("getGroupSuccess", group);
+    } catch (error) {
+      commit("getGroupFail", error.code);
+    }
+  },
 };
 
 const module: Module<GroupState, RootState> = {

@@ -108,5 +108,36 @@ describe("Group Store Module", () => {
         expect(store.getters["group/getGroupError"]).toEqual("ERROR");
       });
     });
+
+    describe("Action: getGroupWithNoMembers", () => {
+      it("get a group successfuly", async () => {
+        const store = getStore();
+        const group = generateGroup();
+        const input = { id: group.id };
+
+        api.groups.getWithNoMembers = jest.fn().mockResolvedValue(group);
+
+        await store.dispatch("group/getGroupWithNoMembers", input);
+
+        expect(api.groups.getWithNoMembers).toBeCalledTimes(1);
+        expect(api.groups.getWithNoMembers).toBeCalledWith(input);
+        expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupError"]).toEqual(false);
+      });
+      it("get a group throw an error", async () => {
+        const store = getStore();
+        const group = generateGroup();
+        const input = { id: group.id };
+
+        api.groups.getWithNoMembers = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+
+        await store.dispatch("group/getGroupWithNoMembers", input);
+
+        expect(api.groups.getWithNoMembers).toBeCalledTimes(1);
+        expect(api.groups.getWithNoMembers).toBeCalledWith(input);
+        expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupError"]).toEqual("ERROR");
+      });
+    });
   });
 });
