@@ -21,7 +21,33 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Action, Getter, namespace } from "vuex-class";
 
+import { User } from "@/domain";
+
+import md5 from "md5";
+
+const AuthStore = namespace("auth");
 @Component
-export default class Header extends Vue {}
+export default class Header extends Vue {
+  @AuthStore.Getter("myProfile")
+  private me!: User;
+
+  @AuthStore.Action("logout")
+  private logout!: any;
+
+  get gravatarImageSrc() {
+    if (!this.me || !this.me.email) {
+      return "";
+    }
+
+    const hash = md5(this.me.email.trim().toLowerCase());
+
+    return `https://www.gravatar.com/avatar/${hash}?s=50&d=robohash`;
+  }
+
+  private handleClickLogout() {
+    this.logout();
+  }
+}
 </script>

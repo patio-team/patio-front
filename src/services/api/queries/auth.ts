@@ -21,7 +21,17 @@ query Login($email: String!, $password: String!) {
   login (email: $email, password: $password) {
     token
     profile {
+      id
+      name
       email
     }
+  }
+}`;
+export const MyProfileQuery = `
+query MyProfile {
+  myProfile {
+    id
+    name
+    email
   }
 }`;

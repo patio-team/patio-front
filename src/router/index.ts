@@ -39,28 +39,42 @@ const router = new Router({
       component: Login,
     },
     {
-      path: "/groups/:id/edit",
-      name: "groups:edit",
-      // TODO
+      path: "/groups",
+      name: "groups:list",
+      component: GroupList,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/groups/create",
       name: "groups:create",
       component: CreateGroup,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/groups/:id",
       name: "groups:detail",
       component: GroupDetail,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
-      path: "/groups",
-      name: "groups:list",
-      component: GroupList,
+      path: "/groups/:id/edit",
+      name: "groups:edit",
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/groups/:group/votings/:voting",
       name: "groups:votings:detail",
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/groups/:group/votings/:voting/vote",
@@ -79,13 +93,26 @@ const router = new Router({
   ],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
    // For dev purpose. Change current locale with an url query param, 'lang'.
    // E.g. 'http://localhost:9000/?lang=es'
   const lang: string = to.query.lang as string;
   if (lang && i18n.availableLocales.includes(lang) && lang !== i18n.locale) {
     i18n.locale = lang;
   }
+
+  // Check authentication requirements
+  const store = require("@/store").default; // Noto: To prevent circular dependency
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  if (requiresAuth) {
+    if (!await store.dispatch("auth/getMyProfile")) {
+      return next({
+        name: "login",
+        query: { next: window.location.pathname },
+      });
+    }
+  }
+
   return next();
 });
 

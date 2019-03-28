@@ -38,7 +38,7 @@ client.defaults.headers.Accept = "application/json";
 client.defaults.transformRequest = transformRequest;
 client.defaults.transformResponse = transformResponse;
 
-const setAuthorization = (jwtToken: string) => {
+const setAuthorization = (jwtToken?: string) => {
   if (jwtToken) {
     client.defaults.headers.common.Authorization = `JWT ${jwtToken}`;
     localStorage.set("authToken", jwtToken);

@@ -82,7 +82,15 @@
       "ACTION_DELETE": "Delete"
     }
   },
-  "HEADER": { },
+  "HEADER": {
+    "ACTIONS": {
+      "MY_GROUPS": "My groups"
+    },
+    "USER_ACTIONS": {
+      "MY_PROFILE": "My profile",
+      "LOGOUT": "Logout"
+    }
+  },
   "LOGIN_FORM": {
     "INPUT_EMAIL": {
       "LABEL": "email",

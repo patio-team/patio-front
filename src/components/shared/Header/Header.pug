@@ -18,3 +18,13 @@
 .header
   .logo(data-testid="logo")
     include ../../../assets/img/logo.svg
+  .actions(data-testid="actions" v-if="me")
+    router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
+    div.user-menu(data-testid="user-menu")
+      div.user
+        span.name(data-testid="user-name") {{ me.name }}
+        img.avatar(data-testid="user-avatar" v-bind:src="gravatarImageSrc" alt)
+      div.options-wrapper(data-testid="user-actions")
+        div.options-container
+          a.my-profile {{ $t("HEADER.USER_ACTIONS.MY_PROFILE")}}
+          a.logout(data-testid="action-logout" v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}
