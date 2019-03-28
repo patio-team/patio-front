@@ -64,7 +64,7 @@
   width: 100%;
 }
 
-/* generic error form
+/* Generic error form
    =============================== */
 @define-mixin error-form {
   background-color: var(--red-100);
@@ -72,6 +72,43 @@
   margin-bottom: 1rem;
   padding: .8rem;
   text-align: center;
+}
+
+/* Generic button stiles
+   =============================== */
+
+@define-mixin button-primary {
+  background-color: var(--orange-400);
+  border: none;
+  color: var(--white-400);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--orange-500);
+  }
+
+  &:disabled {
+    background-color: var(--gray-300);
+    cursor: not-allowed;
+  }
+}
+
+@define-mixin button-secondary {
+  background-color: var(--white-400);
+  border: 1px solid var(--gray-500);
+  color: var(--gray-500);
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid var(--gray-800);
+    color: var(--gray-800);
+  }
+
+  &:disabled {
+    border: 1px solid var(--gray-300);
+    color: var(--gray-300);
+    cursor: not-allowed;
+  }
 }
 
 /* Generic button as link
@@ -134,8 +171,13 @@
 /* Votes
    =============================== */
 @define-mixin vote {
+  align-items: center;
   color: var(--white-400);
+  display: flex;
+  font-weight: 800;
+  justify-content: center;
   text-decoration: initial;
+  transition: transform .2s, opacity .2s;
 }
 
 @define-mixin vote-1 {

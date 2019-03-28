@@ -16,8 +16,6 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import "@/filters";
-
 import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 import { Store } from "vuex-mock-store";
 import { toDateTime } from "@/utils/datetime";

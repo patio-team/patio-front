@@ -41,7 +41,7 @@ const getStore = () => {
 describe("Group Store Module", () => {
   describe("Group Store Module: Mutations", () => {
     // get group
-    describe("Mutation: getGgroupRequest", () => {
+    describe("Mutation: getGroupRequest", () => {
       it("change to pending state when 'get group' API request is started", () => {
         const store = getStore();
 
@@ -73,6 +73,37 @@ describe("Group Store Module", () => {
         expect(store.getters["group/group"]).toEqual(undefined);
         expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
         expect(store.getters["group/getGroupError"]).toEqual("ERROR");
+      });
+    });
+    // add user to group
+    describe("Mutation: addUserToGroupRequest", () => {
+      it("change to pending state when 'add user to group' API request is started", () => {
+        const store = getStore();
+
+        store.commit("group/addUserToGroupRequest");
+
+        expect(store.getters["group/addUserToGroupIsLoading"]).toEqual(true);
+        expect(store.getters["group/addUserToGroupError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: addUserToGroupFail", () => {
+      it("change to error state when 'add user to group' API request fail", () => {
+        const store = getStore();
+
+        store.commit("group/addUserToGroupFail", "ERROR");
+
+        expect(store.getters["group/addUserToGroupIsLoading"]).toEqual(false);
+        expect(store.getters["group/addUserToGroupError"]).toEqual("ERROR");
+      });
+    });
+    describe("Mutation: addUserToGroupReset", () => {
+      it("change to initial state for 'add user to group' API request", () => {
+        const store = getStore();
+
+        store.commit("group/addUserToGroupReset");
+
+        expect(store.getters["group/addUserToGroupIsLoading"]).toEqual(false);
+        expect(store.getters["group/addUserToGroupError"]).toEqual(false);
       });
     });
   });
@@ -137,6 +168,37 @@ describe("Group Store Module", () => {
         expect(api.groups.getWithNoMembers).toBeCalledWith(input);
         expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
         expect(store.getters["group/getGroupError"]).toEqual("ERROR");
+      });
+    });
+
+    describe("Action: addUserToGroup", () => {
+      it("add one user to a group successfuly", async () => {
+        const store = getStore();
+        const input = { groupId: "group-id", email: "user-email" };
+
+        api.groups.addUserToGroup = jest.fn().mockResolvedValue(true);
+
+        const result = await store.dispatch("group/addUserToGroup", input);
+
+        expect(api.groups.addUserToGroup).toBeCalledTimes(1);
+        expect(api.groups.addUserToGroup).toBeCalledWith(input);
+        expect(store.getters["group/addUserToGroupIsLoading"]).toEqual(false);
+        expect(store.getters["group/addUserToGroupError"]).toEqual(false);
+        expect(result).toEqual(true);
+      });
+      it("add one user to a group throw an error", async () => {
+        const store = getStore();
+        const input = { groupId: "group-id", email: "user-email" };
+
+        api.groups.addUserToGroup = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+
+        const result = await store.dispatch("group/addUserToGroup", input);
+
+        expect(api.groups.addUserToGroup).toBeCalledTimes(1);
+        expect(api.groups.addUserToGroup).toBeCalledWith(input);
+        expect(store.getters["group/addUserToGroupIsLoading"]).toEqual(false);
+        expect(store.getters["group/addUserToGroupError"]).toEqual("ERROR");
+        expect(result).toEqual(false);
       });
     });
   });

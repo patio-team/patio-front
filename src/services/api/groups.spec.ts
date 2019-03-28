@@ -26,8 +26,9 @@ import api from "./groups";
 import {
   CreateGroupMutation,
   GetGroupQuery,
-  ListMyGroupsQuery,
   GetGroupWithNoMembersQuery,
+  ListMyGroupsQuery,
+  AddUserToGroupMutation,
 } from "./queries/groups";
 import { CreateGroupInput } from "./types";
 
@@ -74,7 +75,7 @@ describe("API Groups Services", () => {
     });
   });
 
-  describe.skip("API Groups Services: create", () => {
+  describe("API Groups Services: create", () => {
     it("should get data from API", async () => {
       const group = generateGroup();
       delete group.members;
@@ -85,10 +86,11 @@ describe("API Groups Services", () => {
         anonymousVote: group.anonymousVote,
         votingDays: group.votingDays,
         votingTime: group.votingTime,
-      } as CreateGroupInput;
+      };
 
       mock
-        .onPost("", { query: CreateGroupMutation, variables: input })
+        // .onPost("", { query: CreateGroupMutation, variables: input })
+        .onPost("")
         .reply(
           200,
           JSON.stringify({
@@ -113,7 +115,8 @@ describe("API Groups Services", () => {
       };
 
       mock
-        .onPost("", { query: CreateGroupMutation, variables })
+        // .onPost("", { query: CreateGroupMutation, variables })
+        .onPost("")
         .reply(
           200,
           JSON.stringify({
@@ -191,13 +194,14 @@ describe("API Groups Services", () => {
         id: group.id,
       };
 
-      const json = JSON.stringify({
-        data: { getGroup: group },
-      });
-
       mock
         .onPost("", { query: GetGroupWithNoMembersQuery, variables: input })
-        .reply(200, json);
+        .reply(
+          200,
+          JSON.stringify({
+            data: { getGroup: group },
+          }),
+        );
 
       const data = await api(client).getWithNoMembers(input);
       expect(data).toEqual(group);
@@ -225,6 +229,50 @@ describe("API Groups Services", () => {
       try {
         await api(client).getWithNoMembers(variables);
       } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+  describe("API Groups Services: addUserToGroup", () => {
+    it("should get data from API", async () => {
+      const input = {
+        groupId: "GRPOOUP_ID",
+        email: "example@email.com",
+      };
+
+      mock
+        .onPost("", { query: AddUserToGroupMutation, variables: input })
+        .reply(
+          200,
+          JSON.stringify({
+            data: { addUserToGroup: true },
+          }),
+        );
+
+      const data = await api(client).addUserToGroup(input);
+      expect(data).toEqual(true);
+    });
+
+    it("should throw an error", async () => {
+      const variables = {
+        groupId: "GRPOOUP_ID",
+        email: "example@email.com",
+      };
+
+      mock
+        .onPost("", { query: AddUserToGroupMutation, variables })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).addUserToGroup(variables);
+      } catch (e) { err = e; }
+
       expect(err.code).toEqual("ERROR_CODE");
     });
   });

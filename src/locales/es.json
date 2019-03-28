@@ -11,13 +11,22 @@
     }
   },
   "API_ERRORS": {
-    "BAD_CREDENTIALS": "El email y password no coinciden",
-    "NOT_AN_ADMIN": "El usuario no es administrador del grupo",
-    "NOT_FOUND": "El elemento no ha sido encontrado",
-    "USER_ALREADY_ON_GROUP": "El usuario ya pertenece al grupo",
+    "BAD_CREDENTIALS": "El email y password no coinciden.",
+    "NOT_AN_ADMIN": "El usuario no es administrador del grupo.",
+    "NOT_FOUND": "No encontrado.",
+    "USER_ALREADY_ON_GROUP": "El usuario ya pertenece al grupo.",
     "PARSE_LITERAL_EXCEPTION": "API_ERRORS.PARSE_LITERAL_EXCEPTION",
     "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION",
     "SCORE_IS_INVALID": "La puntuación debe estar entre 1 y 5"
+  },
+  "ADD_MEMBER_FORM": {
+    "TITLE": "Añadir un nuevo miembro",
+    "INPUT_EMAIL": {
+      "LABEL": "Escribe el email del nuevo miembro",
+      "PLACEHOLDER": "ej. mromanova@email.com"
+    },
+    "BUTTON_SUBMIT": "Añadir",
+    "BUTTON_CANCEL": "Cancel"
   },
   "GROUP_FORM": {
     "INPUT_NAME": {
@@ -75,6 +84,12 @@
     "BUTTON_SUBMIT": "Acceder"
   },
   "VOTE_FORM": {
+    "INPUT_COMMENT": {
+      "LABEL": "¿Hay algo más que quieras decir?"
+    },
+    "INPUT_ANONYMOUS": {
+      "LABEL": "Quiero que mi voto sea anónimo"
+    },
     "BUTTON_SUBMIT": "Enviar"
   },
   "VIEWS": {

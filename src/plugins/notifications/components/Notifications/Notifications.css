@@ -1,0 +1,90 @@
+/*
+ * Copyright (C) 2019 Kaleidos Open Source SL
+ *
+ * This file is part of Dont Worry Be Happy (DWBH).
+ * DWBH is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DWBH is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.notifications {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: var(--z-notifications);
+
+  & .notification-wrapper {
+    display: flex;
+    position: relative;
+
+    & .notification {
+      align-items: flex-start;
+      background-color: var(--white-400);
+      border-left: 8px solid var(--gray-800);
+      border-radius: 4px;
+      box-shadow: 0 8px 12px 0 var(--black-400-10);
+      color: var(--gray-800);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 1.5rem;
+      min-height: 4rem;
+      padding: 0 1rem 1rem 1rem;
+      position: absolute;
+      right: calc(50% - 20rem);
+      width: 40rem;
+
+      &.info {
+        background-color: var(--blue-100);
+        border-left: 8px solid var(--blue-700);
+
+        & .title {
+          color: var(--blue-700);
+        }
+      }
+
+      &.success {
+        background-color: var(--green-100);
+        border-left: 8px solid var(--green-900);
+
+        & .title {
+          color: var(--green-900);
+        }
+      }
+
+      &.error {
+        background-color: var(--red-100);
+        border-left: 8px solid var(--red-800);
+
+        & .title {
+          color: var(--red-800);
+        }
+      }
+    }
+  }
+
+  /* Slide animation */
+  & .slide-leave-active,
+  & .slide-enter-active {
+    transition: all .5s ease;
+  }
+
+  & .slide-enter,
+  & .slide-leave-to {
+    transform: translateY(-200%);
+  }
+
+  & .slide-enter-to,
+  & .slide-leave {
+    transform: translateY(0%);
+  }
+}

@@ -22,6 +22,7 @@ import { Group } from "@/domain";
 import {
   CreateGroupInput,
   GetGroupInput,
+  AddUserToGroupInput,
 } from "./types";
 
 import {
@@ -29,6 +30,7 @@ import {
   GetGroupQuery,
   GetGroupWithNoMembersQuery,
   ListMyGroupsQuery,
+  AddUserToGroupMutation,
 } from "./queries/groups";
 
 export default (client: AxiosInstance) => ({
@@ -58,6 +60,13 @@ export default (client: AxiosInstance) => ({
       .post("", { query: GetGroupWithNoMembersQuery, variables: input })
       .then((data: any): Group => {
         return data.getGroup;
+      });
+  },
+  addUserToGroup(input: AddUserToGroupInput) {
+    return client
+      .post("", { query: AddUserToGroupMutation, variables: input })
+      .then((data: any): boolean => {
+        return data.addUserToGroup;
       });
   },
 });

@@ -44,6 +44,7 @@
 
     & textarea {
       height: 10rem;
+      resize: vertical;
     }
   }
 
@@ -60,38 +61,34 @@
 
   & .score {
     & label {
-      align-items: center;
       border-radius: 10%;
-      color: var(--white-500);
       cursor: pointer;
-      display: flex;
       font-size: 2rem;
-      font-weight: 800;
+      font-size: calc(5rem * var(--vote-font-size-factor));
       height: 5rem;
-      justify-content: center;
       margin-right: 1.5rem;
       opacity: .2;
-      padding: 2rem;
-      transition: transform .2s;
+      width: 5rem;
 
       &[for="one"] {
-        background-color: var(--vote-1);
+        @mixin vote-1;
       }
 
       &[for="two"] {
-        background-color: var(--vote-2);
+        @mixin vote-2;
       }
 
       &[for="three"] {
-        background-color: var(--vote-3);
+        @mixin vote-3;
       }
 
       &[for="four"] {
-        background-color: var(--vote-4);
+        @mixin vote-4;
       }
 
       &[for="five"] {
-        background-color: var(--vote-5);
+        @mixin vote-5;
+
         margin-right: 0;
       }
     }
@@ -101,14 +98,21 @@
 
       &:checked + label,
       &:focus + label {
-        @mixin outline;
-
         opacity: 1;
         transform: scale(1.2);
       }
 
+      &:focus + label {
+        @mixin outline;
+      }
+
       &:not(:checked) + label {
         opacity: .2;
+
+        &:hover {
+          opacity: 1;
+          transform: scale(1.05);
+        }
       }
     }
   }

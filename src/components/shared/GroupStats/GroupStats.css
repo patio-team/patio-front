@@ -27,12 +27,8 @@
   width: 100%;
 
   & .vote {
-    align-items: center;
-    display: flex;
     font-size: calc(30px * var(--vote-font-size-factor));
-    justify-content: center;
-    opacity: .4;
-    transition: transform .2s, opacity .2s;
+    opacity: .2;
 
     &.v1 { @mixin vote-1; }
     &.v2 { @mixin vote-2; }
@@ -41,23 +37,13 @@
     &.v5 { @mixin vote-5; }
     &.ve { @mixin vote-empty; }
 
-    &.v1,
-    &.v2,
-    &.v3,
-    &.v4,
-    &.v5 {
-      &:hover {
-        opacity: .5;
-        transform: scale(1.05);
-      }
+    &:not(.ve):hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
 
     &.last {
       opacity: 1;
-
-      &:hover {
-        opacity: 1;
-      }
     }
   }
 }

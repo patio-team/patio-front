@@ -120,26 +120,17 @@ input {
 }
 
 button {
-  background-color: var(--orange-400);
-  border: none;
+  @mixin button-primary;
+
   border-radius: 6px;
   box-shadow: none;
-  color: var(--white-400);
-  cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: bolder;
   min-height: 2.5rem;
   padding: 0 1rem;
   text-transform: uppercase;
-
-  &:hover {
-    background-color: var(--orange-500);
-  }
-
-  &:disabled {
-    background-color: var(--gray-300);
-  }
+  transition: background-color .2s, border .2s, color .2s;
 }
 
 /* Links
