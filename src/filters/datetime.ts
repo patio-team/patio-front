@@ -24,11 +24,11 @@ import i18n from "@/i18n";
 
 import { Day } from "@/domain";
 
-const toTime = (dt: DateTime) =>
+export const toTime = (dt: DateTime) =>
   formatToTimeSimple(dt);
 Vue.filter("toTime", toTime);
 
-const toListOfDays = (votingDays: Day[]) =>
+export const toListOfDays = (votingDays: Day[]) =>
   votingDays
     .map((d) => i18n.t(`COMMON.DAYS.${d}`))
     .join(", ");

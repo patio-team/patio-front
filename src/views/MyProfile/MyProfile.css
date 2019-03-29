@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,5 +16,48 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import "./datetime";
-import "./gravatar";
+@import "../../assets/css/mixins.css";
+
+.my-profile {
+  @mixin view;
+
+  min-width: 800px;
+}
+
+.title {
+  padding-bottom: 1rem;
+}
+
+.profile {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+
+  & .avatar {
+    border: 6px solid var(--orange-400);
+    border-radius: 50%;
+    width: 100px;
+  }
+
+  & .info {
+    flex: 1 0;
+    padding-left: 3rem;
+
+    & .name {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
+
+  & .actions {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+
+    & .action {
+      line-height: 1.5rem;
+    }
+  }
+}

@@ -125,6 +125,11 @@
         "BUTTON": "Regístrate"
       }
     },
+    "MY_PROFILE": {
+      "TITLE": "Mi Perfil",
+      "ACTION_EDIT": "Editar",
+      "ACTION_CHANGE_PASSWORD": "Cambiar contraseña"
+    },
     "VOTE": {
       "TITLE": "¿Cómo te encuentras hoy?"
    }

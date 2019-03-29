@@ -137,6 +137,11 @@
         "BUTTON": "Sign up"
       }
     },
+    "MY_PROFILE": {
+      "TITLE": "My Profile",
+      "ACTION_EDIT": "Edit",
+      "ACTION_CHANGE_PASSWORD": "Change password"
+    },
     "VOTE": {
       "TITLE": "How are you today?"
     }

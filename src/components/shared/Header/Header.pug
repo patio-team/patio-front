@@ -23,8 +23,8 @@
     div.user-menu(data-testid="user-menu")
       div.user
         span.name(data-testid="user-name") {{ me.name }}
-        img.avatar(data-testid="user-avatar" v-bind:src="gravatarImageSrc" alt)
+        img.avatar(data-testid="user-avatar" v-bind:src="me.email|gravatarImage" alt)
       div.options-wrapper(data-testid="user-actions")
         div.options-container
-          a.my-profile {{ $t("HEADER.USER_ACTIONS.MY_PROFILE")}}
+          router-link.my-profile(v-bind:to="{ name: 'my-profile' }") {{ $t("HEADER.USER_ACTIONS.MY_PROFILE")}}
           a.logout(data-testid="action-logout" v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}

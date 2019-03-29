@@ -24,8 +24,9 @@ import i18n from "@/i18n";
 import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
 import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
-import Login from "@/views/Login/Login.vue";
 import Vote from "@/views/Vote/Vote.vue";
+import MyProfile from "@/views/MyProfile/MyProfile.vue";
+import Login from "@/views/Login/Login.vue";
 
 Vue.use(Router);
 
@@ -37,6 +38,14 @@ const router = new Router({
       path: "/",
       name: "login",
       component: Login,
+    },
+    {
+      path: "/me",
+      name: "my-profile",
+      component: MyProfile,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/groups",

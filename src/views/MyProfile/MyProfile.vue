@@ -16,27 +16,21 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./Header.pug" lang="pug"></template>
-<style src="./Header.css"></style>
+<template src="./MyProfile.pug" lang="pug"></template>
+<style src="./MyProfile.css"></style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { Getter, namespace } from "vuex-class";
 
 import { User } from "@/domain";
 
-const AuthStore = namespace("auth");
+import md5 from "md5";
 
+const AuthStore = namespace("auth");
 @Component
-export default class Header extends Vue {
+export default class MyProfile extends Vue {
   @AuthStore.Getter("myProfile")
   private me!: User;
-
-  @AuthStore.Action("logout")
-  private logout!: any;
-
-  private handleClickLogout() {
-    this.logout();
-  }
 }
 </script>

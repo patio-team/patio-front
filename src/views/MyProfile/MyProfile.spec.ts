@@ -21,7 +21,7 @@ import { mount, RouterLinkStub } from "@vue/test-utils";
 
 import { generateUser } from "@/__mocks__/data/users";
 
-import Header from "./Header.vue";
+import MyProfile from "./MyProfile.vue";
 
 const getStore = () => {
   return new Store({
@@ -36,7 +36,7 @@ const getStore = () => {
 
 const getWrapper = ({...params} = {}) => {
   return mount(
-    Header,
+    MyProfile,
     {
       stubs: { RouterLink: RouterLinkStub },
       ...params,
@@ -44,37 +44,17 @@ const getWrapper = ({...params} = {}) => {
   );
 };
 
-describe("Component: shared/Header", () => {
-  it("initial status for anonymous user", () => {
-    const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
-
-    expect(wrapper.contains("[data-testid='logo']")).toBe(true);
-    expect(wrapper.contains("[data-testid='actions']")).toBe(false);
-  });
-  it("initial status for authenticated user", () => {
+describe("View: MyProfile", () => {
+  it("initial status", () => {
     const me = generateUser({email: "email@email.com"});
     const store = getStore();
     const wrapper = getWrapper({ mocks: { $store: store }});
 
     store.getters["auth/myProfile"] = me;
 
-    expect(wrapper.contains("[data-testid='logo']")).toBe(true);
-    expect(wrapper.contains("[data-testid='actions']")).toBe(true);
     expect(wrapper.find("[data-testid='user-name']").text()).toEqual(me.name);
+    expect(wrapper.find("[data-testid='user-email']").text()).toEqual(me.email);
     expect(wrapper.find("[data-testid='user-avatar']").attributes("src")).toEqual(
-      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=50&d=robohash");
-  });
-  it("logout from m the app", () => {
-    const me = generateUser({email: "email@email.com"});
-    const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
-
-    store.getters["auth/myProfile"] = me;
-    wrapper.find("[data-testid='user-menu'").trigger("mouseover");
-    wrapper.find("[data-testid='action-logout'").trigger("click");
-
-    expect(store.dispatch).toBeCalledTimes(1);
-    expect(store.dispatch).toBeCalledWith("auth/logout");
+      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=150&d=robohash");
   });
 });
