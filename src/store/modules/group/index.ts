@@ -122,8 +122,10 @@ const actions: ActionTree<GroupState, RootState> = {
     try {
       const group = await api.groups.get(input);
       commit("getGroupSuccess", group);
+      return group;
     } catch (error) {
       commit("getGroupFail", error.code);
+      return;
     }
   },
   async getGroupWithNoMembers(

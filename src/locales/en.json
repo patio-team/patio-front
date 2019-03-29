@@ -150,6 +150,9 @@
         "ANONYMOUS_VOTE_LABEL": "Anonymous votes are",
         "ANONYMOUS_VOTE_ALLOWED_VALUE": "allowed",
         "ANONYMOUS_VOTE_DENY_VALUE": "deny"
+      },
+      "STATS": {
+        "NO_VOTING_YET": "Sin votaciones todavía"
       }
     },
     "GROUP_LIST": {

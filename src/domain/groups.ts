@@ -18,7 +18,7 @@
 
 import { DateTime } from "@/utils/datetime";
 
-import { User } from "./users";
+import { User, VotingStat } from "@/domain";
 
 export type Day =
     | "MONDAY"
@@ -37,6 +37,7 @@ export interface Group {
   anonymousVote: boolean;
   votingDays: Day[];
   votingTime: DateTime;
-  members?: User[];
   isCurrentUserAdmin: boolean;
+  members?: User[];
+  votings?: VotingStat[];
 }

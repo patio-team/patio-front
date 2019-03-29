@@ -16,12 +16,42 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { DateTime, DateTimeFormatOptions } from "luxon";
+import {
+  DateTime,
+  DateTimeFormatOptions,
+  Duration,
+  DurationObject,
+} from "luxon";
 
 export { DateTime } from "luxon";
 
 export const toDateTime = (text: string): DateTime =>
   DateTime.fromISO(text);
+
+export const now = (): DateTime =>
+  DateTime.local();
+
+export const plus = (duration: Duration | number | DurationObject): DateTime =>
+  DateTime.local().plus(duration);
+
+export const minus = (duration: Duration | number | DurationObject): DateTime =>
+  DateTime.local().minus(duration);
+
+export const getListOfDays = (from: DateTime, to: DateTime): DateTime[] => {
+  const list = [] as DateTime[];
+  const end = from > to ? from : to;
+  let current = from < to ? from : to;
+
+  while(!current.hasSame(end, "day")) {
+    current = current.plus({days: 1});
+    list.push(current);
+  }
+
+  return list;
+};
+
+export const isToday = (datetime?: DateTime): boolean =>
+  datetime ? DateTime.local().hasSame(datetime, "day") : false;
 
 // Utils to work with the API
 export const formatUTCtoISO = (text: string): string =>
@@ -34,8 +64,13 @@ export const formatUTCtoISOTime = (text: string): string =>
   toDateTime(text).toUTC().toFormat("HH:mm:ss.SSS'Z'");
 
 // Utils to work with HTML inputs
+export const formatToDateSimpleWithWeekDay = (datetime: DateTime): string =>
+  datetime.toLocaleString({ weekday: "long", month: "long", day: "2-digit" });
+
 export const formatToTime24Simple = (datetime: DateTime): string =>
   datetime.toLocaleString(DateTime.TIME_24_SIMPLE);
 
 export const formatToTimeSimple = (datetime: DateTime): string =>
   datetime.toLocaleString(DateTime.TIME_SIMPLE);
+
+

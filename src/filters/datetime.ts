@@ -18,7 +18,7 @@
 
 import Vue from "vue";
 
-import { DateTime, formatToTimeSimple } from "@/utils/datetime";
+import { DateTime, formatToDateSimpleWithWeekDay, formatToTimeSimple } from "@/utils/datetime";
 
 import i18n from "@/i18n";
 
@@ -27,6 +27,11 @@ import { Day } from "@/domain";
 export const toTime = (dt: DateTime) =>
   formatToTimeSimple(dt);
 Vue.filter("toTime", toTime);
+
+export const toDateSimpleWithWeekDay = (dt: DateTime) => {
+  return formatToDateSimpleWithWeekDay(dt);
+};
+Vue.filter("toDateSimpleWithWeekDay", toDateSimpleWithWeekDay);
 
 export const toListOfDays = (votingDays: Day[]) =>
   votingDays

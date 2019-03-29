@@ -34,6 +34,8 @@ query {
 export const GetGroupQuery = `
 query GetGroup(
   $id: ID!
+  $startDateTime: DateTime!,
+  $endDateTime: DateTime!
 ) {
   getGroup(id: $id) {
     id
@@ -42,11 +44,16 @@ query GetGroup(
     anonymousVote
     votingDays
     votingTime
+    isCurrentUserAdmin
     members {
       id
       name
     }
-    isCurrentUserAdmin
+    votings(startDateTime: $startDateTime, endDateTime: $endDateTime) {
+      id
+      createdAtDateTime
+      average
+    }
   }
 }`;
 

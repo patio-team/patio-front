@@ -23,7 +23,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, namespace } from "vuex-class";
 
-import { formatToTime24Simple } from "@/utils/datetime";
+import { now, minus, formatToTime24Simple } from "@/utils/datetime";
 
 import ConfirmDialog from "@/components/shared/ConfirmDialog/ConfirmDialog.vue";
 import GroupStats from "./GroupStats/GroupStats.vue";
@@ -62,9 +62,15 @@ export default class GroupDetail extends Vue {
   @GroupsStore.Action("leave")
   private leave: any;
 
+  private statsStartDateTime = minus({days: 5 * 4 * 7});
+
+  private statsEndDateTime = now();
+
   public mounted() {
     const input = {
       id: this.$route.params.id,
+      startDateTime: this.statsStartDateTime,
+      endDateTime: this.statsEndDateTime,
     };
     this.getGroup(input);
   }

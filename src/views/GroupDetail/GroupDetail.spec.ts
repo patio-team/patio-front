@@ -60,11 +60,16 @@ describe("View: GroupDetail", () => {
         $route: route,
       },
     });
+    const vm = wrapper.vm as any;
 
     store.getters["group/group"] = group;
 
     expect(store.dispatch).toHaveBeenCalledTimes(1);
-    expect(store.dispatch).toHaveBeenCalledWith("group/getGroup", {id: group.id});
+    expect(store.dispatch).toHaveBeenCalledWith("group/getGroup", {
+      id: group.id,
+      endDateTime: vm.statsEndDateTime,
+      startDateTime: vm.statsStartDateTime,
+    });
   });
   it("show admin actions for user with privileges", () => {
     const group = generateGroup({ isCurrentUserAdmin: true });
