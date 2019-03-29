@@ -30,8 +30,7 @@ describe("NotifyProvider", () => {
     expect(NotificationsEventBus.$emit).toBeCalledWith(
       "add",
       {
-        title: "",
-        message: "test",
+        title: "test",
         group: "default",
       },
     );
@@ -65,8 +64,7 @@ describe("NotifyProvider", () => {
     expect(NotificationsEventBus.$emit).toBeCalledWith(
       "add",
       {
-        title: "",
-        message: "test",
+        title: "test",
         group: "default",
         type: "info",
       },
@@ -104,8 +102,7 @@ describe("NotifyProvider", () => {
     expect(NotificationsEventBus.$emit).toBeCalledWith(
       "add",
       {
-        title: "",
-        message: "test",
+        title: "test",
         group: "default",
         type: "success",
       },
@@ -143,8 +140,7 @@ describe("NotifyProvider", () => {
     expect(NotificationsEventBus.$emit).toBeCalledWith(
       "add",
       {
-        title: "",
-        message: "test",
+        title: "test",
         group: "default",
         type: "error",
       },

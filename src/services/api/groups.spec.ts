@@ -29,6 +29,7 @@ import {
   GetGroupWithNoMembersQuery,
   ListMyGroupsQuery,
   AddUserToGroupMutation,
+  LeaveGroupMutation,
 } from "./queries/groups";
 import { CreateGroupInput } from "./types";
 
@@ -271,6 +272,47 @@ describe("API Groups Services", () => {
       let err;
       try {
         await api(client).addUserToGroup(variables);
+      } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+  describe("API Groups Services: leave", () => {
+    it("should get data from API", async () => {
+      const input = {
+        groupId: "GRPOOUP_ID",
+      };
+
+      mock
+        .onPost("", { query: LeaveGroupMutation, variables: input })
+        .reply(
+          200,
+          JSON.stringify({
+            data: { leaveGroup: true },
+          }),
+        );
+
+      const data = await api(client).leave(input);
+      expect(data).toEqual(true);
+    });
+
+    it("should throw an error", async () => {
+      const variables = {
+        groupId: "GRPOOUP_ID",
+      };
+
+      mock
+        .onPost("", { query: LeaveGroupMutation, variables })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).leave(variables);
       } catch (e) { err = e; }
 
       expect(err.code).toEqual("ERROR_CODE");

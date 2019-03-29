@@ -25,6 +25,7 @@ import { Action, Getter, namespace } from "vuex-class";
 
 import { formatToTime24Simple } from "@/utils/datetime";
 
+import ConfirmDialog from "@/components/shared/ConfirmDialog/ConfirmDialog.vue";
 import GroupStats from "./GroupStats/GroupStats.vue";
 import GroupMemberList from "./GroupMemberList/GroupMemberList.vue";
 
@@ -34,8 +35,9 @@ const GroupsStore = namespace("group");
 
 @Component({
   components: {
-    "dwbh-group-stats": GroupStats,
-    "dwbh-group-member-list": GroupMemberList,
+    "dw-group-stats": GroupStats,
+    "dw-group-member-list": GroupMemberList,
+    "dw-confirm-dialog": ConfirmDialog,
   },
 })
 export default class GroupDetail extends Vue {
@@ -51,11 +53,48 @@ export default class GroupDetail extends Vue {
   @GroupsStore.Action("getGroup")
   private getGroup: any;
 
+  @GroupsStore.Getter("leaveIsLoading")
+  private leaveIsLoading!: boolean;
+
+  @GroupsStore.Getter("leaveError")
+  private leaveError!: boolean | string;
+
+  @GroupsStore.Action("leave")
+  private leave: any;
+
   public mounted() {
     const input = {
       id: this.$route.params.id,
     };
     this.getGroup(input);
+  }
+
+  private handleLeaveButton() {
+    this.$modal.push("confirm-leave-group");
+  }
+
+  private async handleLeaveAcept() {
+    const hasLeft = await this.leave({ groupId: this.group.id });
+
+    this.$modal.pop();
+
+    if (hasLeft) {
+      this.$notify.success(
+        this.$t("VIEWS.GROUP_DETAIL.NOTIFICATIONS.LEAVE_GROUP.SUCCESS", {name: this.group.name}) as string,
+      );
+      this.$router.push({ name: "groups:list" });
+    } else {
+      this.$notify.error({
+        title: this.$t("VIEWS.GROUP_DETAIL.NOTIFICATIONS.LEAVE_GROUP.ERROR.TITLE") as string,
+        message: this.leaveError === "API_ERRORS.UNIQUE_ADMIN"
+          ? this.$t("VIEWS.GROUP_DETAIL.NOTIFICATIONS.LEAVE_GROUP.ERROR.MESSAGE_UNIQUE_ADMIN") as string
+          : undefined,
+      });
+    }
+  }
+
+  private handleLeaveReject() {
+    this.$modal.pop();
   }
 }
 </script>

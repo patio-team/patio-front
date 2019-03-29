@@ -139,6 +139,12 @@
     color: var(--orange-500);
     text-decoration: underline;
   }
+
+  &[disabled] {
+    color: var(--gray-300);
+    pointer-events: none;
+    text-decoration: line-through;
+  }
 }
 
 /* Generic link as button

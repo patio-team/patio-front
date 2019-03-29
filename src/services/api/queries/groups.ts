@@ -93,5 +93,12 @@ mutation AddUserToGroup(
   $groupId: ID!,
   $email: String!
 ) {
-  addUserToGroup( groupId: $groupId, email: $email)
+  addUserToGroup(groupId: $groupId, email: $email)
+}`;
+
+export const LeaveGroupMutation = `
+mutation LeaveGroup(
+  $groupId: ID!
+) {
+  leaveGroup(groupId: $groupId)
 }`;

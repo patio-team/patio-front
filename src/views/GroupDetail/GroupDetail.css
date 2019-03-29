@@ -32,7 +32,22 @@
     width: 100%;
 
     & .actions {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
       padding-left: 2rem;
+
+      & > * {
+        padding-bottom: .3rem;
+      }
+
+      & .delete-group,
+      & .leave-group {
+        @mixin as-link;
+
+        padding-bottom: .3rem;
+      }
     }
   }
 }

@@ -23,5 +23,11 @@
       .name(data-testid="user-name") {{ me.name }}
       .email(data-testid="user-email") {{ me.email }}
     .actions
-      a.action.edit {{ $t("VIEWS.MY_PROFILE.ACTION_EDIT") }}
-      a.action.change-password {{ $t("VIEWS.MY_PROFILE.ACTION_CHANGE_PASSWORD") }}
+      a.action.edit(
+        disabled aria-disabled="true" tabindex="-1"
+      )
+        | {{ $t("VIEWS.MY_PROFILE.ACTION_EDIT") }}
+      a.action.change-password(
+        disabled aria-disabled="true" tabindex="-1"
+      )
+        | {{ $t("VIEWS.MY_PROFILE.ACTION_CHANGE_PASSWORD") }}

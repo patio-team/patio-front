@@ -23,6 +23,7 @@ import {
   CreateGroupInput,
   GetGroupInput,
   AddUserToGroupInput,
+  LeaveGroupInput,
 } from "./types";
 
 import {
@@ -31,6 +32,7 @@ import {
   GetGroupWithNoMembersQuery,
   ListMyGroupsQuery,
   AddUserToGroupMutation,
+  LeaveGroupMutation,
 } from "./queries/groups";
 
 export default (client: AxiosInstance) => ({
@@ -67,6 +69,13 @@ export default (client: AxiosInstance) => ({
       .post("", { query: AddUserToGroupMutation, variables: input })
       .then((data: any): boolean => {
         return data.addUserToGroup;
+      });
+  },
+  leave(input: LeaveGroupInput) {
+    return client
+      .post("", { query: LeaveGroupMutation, variables: input })
+      .then((data: any): boolean => {
+        return data.leaveGroup;
       });
   },
 });

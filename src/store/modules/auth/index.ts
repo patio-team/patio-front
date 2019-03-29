@@ -98,7 +98,7 @@ const actions: ActionTree<AuthState, RootState> = {
       const login = await api.auth.login(input);
       commit("loginSuccess", login);
     } catch (error) {
-      commit("loginError", error.code || error );
+      commit("loginError", error.code );
     }
   },
   async logout(
@@ -120,7 +120,7 @@ const actions: ActionTree<AuthState, RootState> = {
       commit("myProfileSuccess", myProfile);
       return myProfile;
     } catch (error) {
-      commit("myProfileError", error.code || error );
+      commit("myProfileError", error.code);
       return;
     }
   },

@@ -36,3 +36,7 @@ export interface AddUserToGroupInput {
   groupId: string;
   email: string;
 }
+
+export interface LeaveGroupInput {
+  groupId: string;
+}

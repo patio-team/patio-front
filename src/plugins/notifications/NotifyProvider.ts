@@ -48,10 +48,10 @@ export class NotifyProvider implements NotifyProviderInterface {
   }
 
   private createNotificationEvents(attr: string | NotificationEvent): NotificationEvent {
-    let event = { title: "", message: "", group: "default" };
+    let event = { title: "", group: "default" };
 
     if (typeof attr === "string") {
-      event.message = attr;
+      event.title = attr;
     } else {
       event = Object.assign({}, event, attr);
     }

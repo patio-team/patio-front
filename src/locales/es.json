@@ -106,6 +106,23 @@
     },
     "GROUP_DETAIL": {
       "ACTION_EDIT_GROUP": "Editar",
+      "ACTION_DELETE_GROUP": "Borrar",
+      "ACTION_LEAVE_GROUP": "Abandonar",
+      "CONFIRM_DIALOG_LEAVE": {
+        "TITLE": "¿Seguro que quieres abandonar el grupo?",
+        "MESSAGE": "Si abandonas el grupo, no podrás acceder a él ni participar en ninguna de sus votaciones.",
+        "ACEPT_BUTTON_TEXT": "Sí, me quiero ir",
+        "REJECT_BUTTON_TEXT": "No, quiero seguir en él"
+      },
+      "NOTIFICATIONS": {
+        "LEAVE_GROUP": {
+          "SUCCESS": "Acabas de abandonar el grupo \"{name}\"",
+          "ERROR": {
+            "TITLE": "No puedes abandonar este grupo,",
+            "MESSAGE_UNIQUE_ADMIN": "Eres la única persona con permisos de administración en el grupo. No puedes dejar el grupo hasta que no haya al menos otro persona con estos permisos."
+          }
+        }
+      },
       "DETAILS": {
         "VOTING_DAYS_LABEL": "Votar el",
         "VOTING_TIME_LABEL": "Votar a las",

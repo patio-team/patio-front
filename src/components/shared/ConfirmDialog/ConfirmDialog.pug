@@ -15,16 +15,18 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.groups-table
-  .loading(v-if="isLoading", data-testid="loading")
-    | {{ $t("GROUPS_TABLE.LOADING") }}
-  .table(v-else)
-    .row(
-      data-testid="row" tabindex="0" role="link"
-      v-for="group in groupList"
-      v-on:click="handleClickRow(group.id)"
-      v-on:keyup.enter="handleClickRow(group.id)"
-     )
-      .name(data-testid="name") {{ group.name }}
-    .row.empty(v-if="groupList.length === 0", data-testid="row-empty")
-      | {{ $t("GROUPS_TABLE.EMPTY") }}
+dw-dialog(v-bind:name="name" v-on:close="handleClose")
+  .confirm
+    h2.title(data-testid="title" if="title") {{ title}}
+    .message(data-testid="message" if="message") {{ message }}
+    .actions
+      button.reject(
+        data-testid="reject-button"
+        v-on:click="$emit('reject')"
+        v-bind:disabled="isLoading"
+      ) {{ rejectButtonText }}
+      button.confirm(
+        data-testid="acept-button"
+        v-on:click="$emit('acept')"
+        v-bind:disabled="isLoading"
+      ) {{ aceptButtonText }}
