@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import GroupsTable from "@/components/shared/GroupsTable/GroupsTable.vue";
+import GroupsTable from "./GroupsTable/GroupsTable.vue";
 
 @Component({
   components: {

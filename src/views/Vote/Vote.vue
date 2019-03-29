@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import VoteForm from "@/components/shared/VoteForm/VoteForm.vue";
+import VoteForm from "./VoteForm/VoteForm.vue";
 
 @Component({
   components: {

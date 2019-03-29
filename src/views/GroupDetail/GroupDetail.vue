@@ -25,8 +25,8 @@ import { Action, Getter, namespace } from "vuex-class";
 
 import { formatToTime24Simple } from "@/utils/datetime";
 
-import GroupStats from "@/components/shared/GroupStats/GroupStats.vue";
-import GroupMemberList from "@/components/shared/GroupMemberList/GroupMemberList.vue";
+import GroupStats from "./GroupStats/GroupStats.vue";
+import GroupMemberList from "./GroupMemberList/GroupMemberList.vue";
 
 import { Group } from "@/domain";
 

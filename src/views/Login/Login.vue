@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import LoginForm from "@/components/shared/LoginForm/LoginForm.vue";
+import LoginForm from "./LoginForm/LoginForm.vue";
 
 @Component({
   components: {

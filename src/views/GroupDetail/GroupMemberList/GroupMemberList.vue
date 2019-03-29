@@ -24,7 +24,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, namespace } from "vuex-class";
 
 import Dialog from "@/components/shared/Dialog/Dialog.vue";
-import AddMemberForm from "@/components/shared/AddMemberForm/AddMemberForm.vue";
+import AddMemberForm from "./AddMemberForm/AddMemberForm.vue";
 
 import { Group } from "@/domain";
 
