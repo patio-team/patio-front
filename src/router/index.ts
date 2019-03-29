@@ -36,6 +36,11 @@ const router = new Router({
   routes: [
     {
       path: "/",
+      name: "home",
+      redirect: { name: "groups:list" },
+    },
+    {
+      path: "/login",
       name: "login",
       component: Login,
     },

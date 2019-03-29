@@ -26,6 +26,11 @@ import api, { ApiError } from "@/services/api";
 import router from "@/router";
 import authModule from "@/store/modules/auth";
 
+jest.mock("@/router", () => ({
+  push: jest.fn(),
+  currentRoute: { query: {} } as any,
+}));
+
 const getStore = () => {
   const localVue = createLocalVue();
   localVue.use(Vuex);
@@ -72,16 +77,15 @@ describe("Auth Store Module", () => {
       });
     });
 
-    describe("Mutation: loginSuccess (with next as query param)", () => {
+    describe("Mutation: loginSuccess (with next as query param)", async () => {
       it("stores token and redirects when login succeeded", () => {
         api.setAuthorization = jest.fn();
         router.push = jest.fn();
+        router.currentRoute.query = { next: "next-url" } as any;
 
         const store = getStore();
         const token = "token";
         const profile = generateUser();
-
-        router.replace({ query: { next: "next-url" } });
 
         store.commit("auth/loginSuccess", { token, profile });
 
