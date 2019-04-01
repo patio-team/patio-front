@@ -22,6 +22,8 @@ export interface GroupState {
   group?: Group;
   getGroupIsLoading: boolean;
   getGroupError: boolean | string;
+  editIsLoading: boolean;
+  editError: boolean | string;
   addUserToGroupIsLoading: boolean;
   addUserToGroupError: boolean | string;
   leaveIsLoading: boolean;

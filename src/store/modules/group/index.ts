@@ -21,6 +21,7 @@ import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
 import {
   GetGroupInput,
+  EditGroupInput,
   AddUserToGroupInput,
   LeaveGroupInput,
 } from "@/services/api/types";
@@ -36,6 +37,8 @@ const initialState: GroupState = {
   group: undefined,
   getGroupIsLoading: false,
   getGroupError: false,
+  editIsLoading: false,
+  editError: false,
   addUserToGroupIsLoading: false,
   addUserToGroupError: false,
   leaveIsLoading: false,
@@ -46,6 +49,8 @@ const getters: GetterTree<GroupState, RootState> = {
   group(state: GroupState) { return state.group; },
   getGroupIsLoading(state: GroupState) { return state.getGroupIsLoading; },
   getGroupError(state: GroupState) { return state.getGroupError; },
+  editIsLoading(state: GroupState) { return state.editIsLoading; },
+  editError(state: GroupState) { return state.editError; },
   addUserToGroupIsLoading(state: GroupState) { return state.addUserToGroupIsLoading; },
   addUserToGroupError(state: GroupState) { return state.addUserToGroupError; },
   leaveIsLoading(state: GroupState) { return state.leaveIsLoading; },
@@ -68,6 +73,19 @@ const mutations: MutationTree<GroupState> = {
   getGroupFail(state: GroupState, error: string) {
     state.getGroupIsLoading = false;
     state.getGroupError = error;
+  },
+  // edit
+  editRequest(state: GroupState) {
+    state.editIsLoading = true;
+    state.editError = false;
+  },
+  editSuccess(state: GroupState) {
+    state.editIsLoading = false;
+    state.editError = false;
+  },
+  editFail(state: GroupState, error: string) {
+    state.editIsLoading = false;
+    state.editError = error;
   },
   // addUserToGroup
   addUserToGroupRequest(state: GroupState) {
@@ -120,6 +138,20 @@ const actions: ActionTree<GroupState, RootState> = {
       commit("getGroupSuccess", group);
     } catch (error) {
       commit("getGroupFail", error.code);
+    }
+  },
+  async edit(
+    {commit, state}: {commit: Commit, state: GroupState},
+    input: EditGroupInput,
+  ) {
+    commit("editRequest");
+    try {
+      const group = await api.groups.edit(input);
+      commit("editSuccess", group);
+      return group;
+    } catch (error) {
+      commit("editFail", error.code);
+      return false;
     }
   },
   async addUserToGroup(

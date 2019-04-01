@@ -84,6 +84,35 @@ mutation CreateGroup(
     name
     visibleMemberList
     anonymousVote
+    votingTime
+    votingDays
+    isCurrentUserAdmin
+  }
+}`;
+
+export const EditGroupMutation = `
+mutation UpdateGroup(
+  $id: ID!,
+  $name: String!,
+  $visibleMemberList: Boolean!,
+  $anonymousVote: Boolean!,
+  $votingTime: Time!,
+  $votingDays: [DayOfWeek]!
+) {
+  updateGroup(
+    groupId: $id
+    name: $name,
+    visibleMemberList: $visibleMemberList,
+    anonymousVote: $anonymousVote,
+    votingTime: $votingTime,
+    votingDays: $votingDays
+  ) {
+    id
+    name
+    visibleMemberList
+    anonymousVote
+    votingTime
+    votingDays
     isCurrentUserAdmin
   }
 }`;

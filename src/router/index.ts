@@ -22,6 +22,7 @@ import Router from "vue-router";
 import i18n from "@/i18n";
 
 import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
+import EditGroup from "@/views/EditGroup/EditGroup.vue";
 import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
 import Vote from "@/views/Vote/Vote.vue";
@@ -79,6 +80,7 @@ const router = new Router({
     {
       path: "/groups/:id/edit",
       name: "groups:edit",
+      component: EditGroup,
       meta: {
         requiresAuth: true,
       },

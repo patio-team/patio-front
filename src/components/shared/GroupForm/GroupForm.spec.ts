@@ -19,6 +19,7 @@
 import { mount } from "@vue/test-utils";
 
 import { toDateTime, formatToTime24Simple } from "@/utils/datetime";
+import { generateGroup } from "@/__mocks__/data/groups";
 
 import GroupForm from "./GroupForm.vue";
 
@@ -44,6 +45,28 @@ describe("Component: shared/GroupForm", () => {
     expect(vm.input.anonymousVote).toEqual(false);
     expect(vm.input.votingDays).toEqual(["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]);
     expect(vm.input.votingTime).toEqual(toDateTime("12:00"));
+  });
+  it("show empty initial state with group", () => {
+    const group = generateGroup();
+
+    const props = {
+      group,
+      isLoading: false,
+      error: false,
+      onSubmit: jest.fn(),
+    };
+    const wrapper = getWrapper({ propsData: props });
+    const vm = wrapper.vm as any;
+
+    expect(props.onSubmit).toHaveBeenCalledTimes(0);
+    expect(wrapper.contains("[data-testid='form']")).toBe(true);
+    expect(wrapper.contains("[data-testid='error']")).toBe(false);
+    expect(vm.input.id).toEqual(group.id);
+    expect(vm.input.name).toEqual(group.name);
+    expect(vm.input.visibleMemberList).toEqual(group.visibleMemberList);
+    expect(vm.input.anonymousVote).toEqual(group.anonymousVote);
+    expect(vm.input.votingDays).toEqual(group.votingDays);
+    expect(vm.input.votingTime).toEqual(group.votingTime);
   });
   it("show loading state", () => {
     const props = {
@@ -81,8 +104,8 @@ describe("Component: shared/GroupForm", () => {
 
     wrapper.find("[data-testid='form']").trigger("submit.prevent");
 
-    expect(props.onSubmit).toHaveBeenCalledTimes(1);
-    expect(props.onSubmit).toHaveBeenCalledWith({
+    expect(wrapper.emitted().submit).toBeTruthy();
+    expect(wrapper.emitted().submit[0][0]).toEqual({
       name: "TEST NAME",
       visibleMemberList: true,
       anonymousVote: false,

@@ -104,6 +104,19 @@
     "CREATE_GROUP": {
       "TITLE": "Creaar un nuevo grupo"
     },
+    "EDIT_GROUP": {
+      "TITLE": "Editar grupo \"{group}\"",
+      "NOTIFICATIONS": {
+        "EDIT": {
+          "SUCCESS": {
+            "TITLE": "Tus cambios han sido aplicados con éxito."
+          },
+          "ERROR": {
+            "TITLE": "No hemos podido aplicar tus cambios."
+          }
+        }
+      }
+    },
     "GROUP_DETAIL": {
       "ACTION_EDIT_GROUP": "Editar",
       "ACTION_DELETE_GROUP": "Borrar",

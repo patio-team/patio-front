@@ -28,6 +28,10 @@ export interface CreateGroupInput {
   votingTime: DateTime;
 }
 
+export interface EditGroupInput extends CreateGroupInput {
+  id: string;
+}
+
 export interface GetGroupInput {
   id: string;
 }
