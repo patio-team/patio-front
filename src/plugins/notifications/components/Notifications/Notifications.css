@@ -37,11 +37,14 @@
       flex-direction: column;
       justify-content: center;
       margin-top: 1.5rem;
-      min-height: 4rem;
-      padding: 0 1rem 1rem 1rem;
+      padding: .5rem 1rem .5rem 1rem;
       position: absolute;
       right: calc(50% - 20rem);
       width: 40rem;
+
+      & .message {
+        padding-bottom: 1rem;
+      }
 
       &.info {
         background-color: var(--blue-100);

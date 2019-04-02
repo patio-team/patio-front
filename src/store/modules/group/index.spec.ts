@@ -106,6 +106,37 @@ describe("Group Store Module", () => {
         expect(store.getters["group/addUserToGroupError"]).toEqual(false);
       });
     });
+    // leave group
+    describe("Mutation: leaveRequest", () => {
+      it("change to pending state when 'leave group' API request is started", () => {
+        const store = getStore();
+
+        store.commit("group/leaveRequest");
+
+        expect(store.getters["group/leaveIsLoading"]).toEqual(true);
+        expect(store.getters["group/leaveError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: leaveFail", () => {
+      it("change to error state when 'leave group'' API request fail", () => {
+        const store = getStore();
+
+        store.commit("group/leaveFail", "ERROR");
+
+        expect(store.getters["group/leaveIsLoading"]).toEqual(false);
+        expect(store.getters["group/leaveError"]).toEqual("ERROR");
+      });
+    });
+    describe("Mutation: leaveReset", () => {
+      it("change to initial state for 'leave group' API request", () => {
+        const store = getStore();
+
+        store.commit("group/leaveReset");
+
+        expect(store.getters["group/leaveIsLoading"]).toEqual(false);
+        expect(store.getters["group/leaveError"]).toEqual(false);
+      });
+    });
   });
 
   describe("Group Store Module: Actions", () => {
@@ -198,6 +229,37 @@ describe("Group Store Module", () => {
         expect(api.groups.addUserToGroup).toBeCalledWith(input);
         expect(store.getters["group/addUserToGroupIsLoading"]).toEqual(false);
         expect(store.getters["group/addUserToGroupError"]).toEqual("ERROR");
+        expect(result).toEqual(false);
+      });
+    });
+
+    describe("Action: leave", () => {
+      it("add one user to a group successfuly", async () => {
+        const store = getStore();
+        const input = { groupId: "group-id" };
+
+        api.groups.leave = jest.fn().mockResolvedValue(true);
+
+        const result = await store.dispatch("group/leave", input);
+
+        expect(api.groups.leave).toBeCalledTimes(1);
+        expect(api.groups.leave).toBeCalledWith(input);
+        expect(store.getters["group/leaveIsLoading"]).toEqual(false);
+        expect(store.getters["group/leaveError"]).toEqual(false);
+        expect(result).toEqual(true);
+      });
+      it("add one user to a group throw an error", async () => {
+        const store = getStore();
+        const input = { groupId: "group-id" };
+
+        api.groups.leave = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+
+        const result = await store.dispatch("group/leave", input);
+
+        expect(api.groups.leave).toBeCalledTimes(1);
+        expect(api.groups.leave).toBeCalledWith(input);
+        expect(store.getters["group/leaveIsLoading"]).toEqual(false);
+        expect(store.getters["group/leaveError"]).toEqual("ERROR");
         expect(result).toEqual(false);
       });
     });

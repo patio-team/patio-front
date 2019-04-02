@@ -16,48 +16,34 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../assets/css/mixins.css";
+@import "../../../assets/css/mixins.css";
 
-.my-profile {
-  @mixin view;
-
-  min-width: 800px;
+.confirm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   & .title {
-    padding-bottom: 1rem;
+    align-self: center;
   }
 
-  & .profile {
+  & .message {
+    color: var(--gray-800);
+  }
+
+  & .actions {
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: flex-end;
+    margin-top: 3rem;
 
-    & .avatar {
-      border: 6px solid var(--orange-400);
-      border-radius: 50%;
-      width: 100px;
+    & > * {
+      margin-right: .5rem;
     }
 
-    & .info {
-      flex: 1 0;
-      padding-left: 3rem;
-
-      & .name {
-        font-size: 1.5rem;
-        line-height: 2rem;
-      }
-    }
-
-    & .actions {
-      align-items: flex-end;
-      display: flex;
-      flex-direction: column;
-
-      & .action {
-        line-height: 1.5rem;
-      }
+    & .reject {
+      @mixin button-secondary;
     }
   }
 }

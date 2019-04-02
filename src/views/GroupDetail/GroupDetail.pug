@@ -18,9 +18,27 @@
 .group-detail(v-if="group")
   .head
     h1.title {{ group.name }}
-    .actions(v-if="group.isCurrentUserAdmin")
-      router-link.edit-group(data-testid="action-edit" v-bind:to="{ name: 'groups:edit', params: { id: group.id } }")
+    .actions
+      router-link.edit-group(
+        data-testid="action-edit"
+        v-if="group.isCurrentUserAdmin"
+        v-bind:to="{ name: 'groups:edit', params: { id: group.id } }"
+        disabled aria-disabled="true" tabindex="-1"
+      )
         | {{ $t("VIEWS.GROUP_DETAIL.ACTION_EDIT_GROUP") }}
+      button.leave-group(
+        data-testid="action-leave"
+        tabindex="0"
+        v-on:click="handleLeaveButton"
+      )
+        | {{ $t("VIEWS.GROUP_DETAIL.ACTION_LEAVE_GROUP") }}
+      button.delete-group(
+        data-testid="action-delete"
+        v-if="group.isCurrentUserAdmin"
+        tabindex="-1"
+        disabled aria-disabled="true"
+      )
+        | {{ $t("VIEWS.GROUP_DETAIL.ACTION_DELETE_GROUP") }}
 
   .details
     .voting-days
@@ -31,9 +49,26 @@
       span.value(data-testid="voting-time") {{ group.votingTime | toTime }}
     .anonymous-vote
       span.description {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_LABEL") }}
-      span.value.allowed(data-testid="anonymous-vote-allowed" v-if="group.anonymousVote") {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_ALLOWED_VALUE") }}
-      span.value.deny(data-testid="anonymous-vote-deny" v-else) {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_DENY_VALUE") }}
+      span.value.allowed(
+        data-testid="anonymous-vote-allowed"
+        v-if="group.anonymousVote"
+      ) {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_ALLOWED_VALUE") }}
+      span.value.deny(
+        data-testid="anonymous-vote-deny"
+        v-else
+      ) {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_DENY_VALUE") }}
 
-  dwbh-group-stats.stats(v-bind:group-id="group.id" v-bind:votes="[]")
+  dw-group-stats.stats(v-bind:group-id="group.id" v-bind:votes="[]")
 
-  dwbh-group-member-list.members(data-testid="member-list" v-if="group.visibleMemberList")
+  dw-group-member-list.members(data-testid="member-list" v-if="group.visibleMemberList")
+
+  dw-confirm-dialog(
+    name="confirm-leave-group"
+    v-bind:title="$t('VIEWS.GROUP_DETAIL.CONFIRM_DIALOG_LEAVE.TITLE')"
+    v-bind:message="$t('VIEWS.GROUP_DETAIL.CONFIRM_DIALOG_LEAVE.MESSAGE')"
+    v-bind:acept-button-text="$t('VIEWS.GROUP_DETAIL.CONFIRM_DIALOG_LEAVE.ACEPT_BUTTON_TEXT')"
+    v-bind:reject-button-text="$t('VIEWS.GROUP_DETAIL.CONFIRM_DIALOG_LEAVE.REJECT_BUTTON_TEXT')"
+    v-bind:is-loading="isLoading"
+    v-on:acept="handleLeaveAcept"
+    v-on:reject="handleLeaveReject"
+  )

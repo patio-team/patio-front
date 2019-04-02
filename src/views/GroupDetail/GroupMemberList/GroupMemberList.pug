@@ -34,8 +34,12 @@
       v-on:keyup.enter=""
     )
       .name(data-testid="name") {{ member.name }}
-      .actions(v-if="group.isCurrentUserAdmin")
-        button.delete(data-testid="action-delete-member")
+      .actions
+        button.delete(
+          v-if="group.isCurrentUserAdmin"
+          data-testid="action-delete-member"
+          disabled aria-disabled="true" tabindex="-1"
+        )
           | {{ $t("GROUP_MEMBER_LIST.ROW.ACTION_DELETE_MEMBER") }}
     .row.empty(
       data-testid="row-empty"

@@ -47,16 +47,4 @@
   & .name {
     font-size: 1.25rem;
   }
-
-  & .actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    & .delete {
-      @mixin as-link;
-
-      margin-left: .5rem;
-    }
-  }
 }

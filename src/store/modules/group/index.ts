@@ -19,7 +19,11 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 
 import api from "@/services/api";
-import { GetGroupInput, AddUserToGroupInput } from "@/services/api/types";
+import {
+  GetGroupInput,
+  AddUserToGroupInput,
+  LeaveGroupInput,
+} from "@/services/api/types";
 
 import router from "@/router";
 
@@ -34,6 +38,8 @@ const initialState: GroupState = {
   getGroupError: false,
   addUserToGroupIsLoading: false,
   addUserToGroupError: false,
+  leaveIsLoading: false,
+  leaveError: false,
 };
 
 const getters: GetterTree<GroupState, RootState> = {
@@ -42,6 +48,8 @@ const getters: GetterTree<GroupState, RootState> = {
   getGroupError(state: GroupState) { return state.getGroupError; },
   addUserToGroupIsLoading(state: GroupState) { return state.addUserToGroupIsLoading; },
   addUserToGroupError(state: GroupState) { return state.addUserToGroupError; },
+  leaveIsLoading(state: GroupState) { return state.leaveIsLoading; },
+  leaveError(state: GroupState) { return state.leaveError; },
 };
 
 const mutations: MutationTree<GroupState> = {
@@ -73,6 +81,19 @@ const mutations: MutationTree<GroupState> = {
   addUserToGroupReset(state: GroupState) {
     state.addUserToGroupIsLoading = false;
     state.addUserToGroupError = false;
+  },
+  // leave
+  leaveRequest(state: GroupState) {
+    state.leaveIsLoading = true;
+    state.leaveError = false;
+  },
+  leaveFail(state: GroupState, error: string) {
+    state.leaveIsLoading = false;
+    state.leaveError = error;
+  },
+  leaveReset(state: GroupState) {
+    state.leaveIsLoading = false;
+    state.leaveError = false;
   },
 };
 
@@ -113,6 +134,22 @@ const actions: ActionTree<GroupState, RootState> = {
       commit("addUserToGroupReset");
     } catch (error) {
       commit("addUserToGroupFail", error.code);
+    }
+
+    return result;
+  },
+  async leave(
+    {commit, state}: {commit: Commit, state: GroupState},
+    input: AddUserToGroupInput,
+  ) {
+    commit("leaveRequest");
+    let result = false;
+
+    try {
+      result = await api.groups.leave(input);
+      commit("leaveReset");
+    } catch (error) {
+      commit("leaveFail", error.code);
     }
 
     return result;

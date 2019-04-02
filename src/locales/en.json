@@ -76,11 +76,7 @@
   },
   "GROUPS_TABLE": {
     "LOADING": "Loading...",
-    "EMPTY": "No groups yet.",
-    "ROW": {
-      "ACTION_EDIT": "Edit",
-      "ACTION_DELETE": "Delete"
-    }
+    "EMPTY": "No groups yet."
   },
   "HEADER": {
     "ACTIONS": {
@@ -118,6 +114,23 @@
     },
     "GROUP_DETAIL": {
       "ACTION_EDIT_GROUP": "Edit",
+      "ACTION_DELETE_GROUP": "Delete",
+      "ACTION_LEAVE_GROUP": "Leave",
+      "CONFIRM_DIALOG_LEAVE": {
+        "TITLE": "Are you sure you want to leave the group?",
+        "MESSAGE": "If you leave the group you will not be able to access it or participate in any of its votes.",
+        "ACEPT_BUTTON_TEXT": "Yes, I want to leave",
+        "REJECT_BUTTON_TEXT": "Nope, I want to remain a member"
+      },
+      "NOTIFICATIONS": {
+        "LEAVE_GROUP": {
+          "SUCCESS": "You just left the group \"{name}\"",
+          "ERROR": {
+            "TITLE": "You can't leave this group",
+            "MESSAGE_UNIQUE_ADMIN": "You are the only administrator of the group. You can't leave the group until there is another one at least."
+          }
+        }
+      },
       "DETAILS": {
         "VOTING_DAYS_LABEL": "Voting on",
         "VOTING_TIME_LABEL": "Voting at",

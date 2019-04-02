@@ -20,4 +20,4 @@
 
   dw-login-form(data-testid="login-form")
 
-  p {{ $t("VIEWS.LOGIN.ACTION_SIGN_UP.PARAGRAPH") }} #[a.sign-up(data-testid="sign-up" tabindex="0") {{ $t("VIEWS.LOGIN.ACTION_SIGN_UP.BUTTON") }}]
+  p {{ $t("VIEWS.LOGIN.ACTION_SIGN_UP.PARAGRAPH") }} #[a.sign-up(data-testid="sign-up" disabled aria-disabled="true" tabindex="-1") {{ $t("VIEWS.LOGIN.ACTION_SIGN_UP.BUTTON") }}]
