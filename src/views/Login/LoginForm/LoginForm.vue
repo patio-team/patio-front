@@ -38,8 +38,14 @@ export default class LoginForm extends Vue {
   @Auth.Action("login")
   private login: any;
 
-  private handleSubmit(): void {
-    this.login(this.input);
+  private async handleSubmit() {
+    const isLogin = await this.login(this.input);
+
+    if (isLogin) {
+      const next = this.$route.query.next as string
+        || { name: "groups:list" };
+      this.$router.push(next);
+    }
   }
 }
 </script>

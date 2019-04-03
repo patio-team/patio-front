@@ -18,6 +18,7 @@
 
 import { Store } from "vuex-mock-store";
 import { mount, RouterLinkStub } from "@vue/test-utils";
+import flushPromises from "flush-promises";
 
 import { generateUser } from "@/__mocks__/data/users";
 
@@ -65,16 +66,21 @@ describe("Component: shared/Header", () => {
     expect(wrapper.find("[data-testid='user-avatar']").attributes("src")).toEqual(
       "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=50&d=robohash");
   });
-  it("logout from m the app", () => {
+  it("logout from the app", async () => {
     const me = generateUser({email: "email@email.com"});
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const router = { push: jest.fn() };
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router }});
 
     store.getters["auth/myProfile"] = me;
     wrapper.find("[data-testid='user-menu'").trigger("mouseover");
     wrapper.find("[data-testid='action-logout'").trigger("click");
 
+    await flushPromises();
+
     expect(store.dispatch).toBeCalledTimes(1);
     expect(store.dispatch).toBeCalledWith("auth/logout");
+    expect(router.push).toBeCalledTimes(1);
+    expect(router.push).toBeCalledWith({name: "login"});
   });
 });

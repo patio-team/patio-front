@@ -23,13 +23,7 @@ import cloneDeep from "lodash.clonedeep";
 
 import { generateUser } from "@/__mocks__/data/users";
 import api, { ApiError } from "@/services/api";
-import router from "@/router";
 import authModule from "@/store/modules/auth";
-
-jest.mock("@/router", () => ({
-  push: jest.fn(),
-  currentRoute: { query: {} } as any,
-}));
 
 const getStore = () => {
   const localVue = createLocalVue();
@@ -59,7 +53,6 @@ describe("Auth Store Module", () => {
     describe("Mutation: loginSuccess", () => {
       it("stores token and redirects when login succeeded", () => {
         api.setAuthorization = jest.fn();
-        router.push = jest.fn();
 
         const store = getStore();
         const token = "token";
@@ -72,30 +65,6 @@ describe("Auth Store Module", () => {
         expect(store.getters["auth/myProfile"]).toEqual(profile);
         expect(api.setAuthorization).toBeCalledTimes(1);
         expect(api.setAuthorization).toBeCalledWith(token);
-        expect(router.push).toBeCalledTimes(1);
-        expect(router.push).toBeCalledWith({ name: "groups:list" });
-      });
-    });
-
-    describe("Mutation: loginSuccess (with next as query param)", async () => {
-      it("stores token and redirects when login succeeded", () => {
-        api.setAuthorization = jest.fn();
-        router.push = jest.fn();
-        router.currentRoute.query = { next: "next-url" } as any;
-
-        const store = getStore();
-        const token = "token";
-        const profile = generateUser();
-
-        store.commit("auth/loginSuccess", { token, profile });
-
-        expect(store.getters["auth/loginIsLoading"]).toBe(false);
-        expect(store.getters["auth/loginError"]).toBe(false);
-        expect(store.getters["auth/myProfile"]).toEqual(profile);
-        expect(api.setAuthorization).toBeCalledTimes(1);
-        expect(api.setAuthorization).toBeCalledWith(token);
-        expect(router.push).toBeCalledTimes(1);
-        expect(router.push).toBeCalledWith("next-url");
       });
     });
 
@@ -112,8 +81,7 @@ describe("Auth Store Module", () => {
 
     // logout
     describe("Mutation: logout", () => {
-      it("delete token and  my profile, them redirects to login page", () => {
-        router.push = jest.fn();
+      it("delete token and my profile", () => {
         const store = getStore();
         const profile = generateUser();
 
@@ -124,10 +92,9 @@ describe("Auth Store Module", () => {
         store.commit("auth/logout");
 
         expect(store.getters["auth/myProfile"]).toBe(undefined);
-        expect(router.push).toBeCalledTimes(1);
-        expect(router.push).toBeCalledWith({ name: "login" });
       });
     });
+
     // myProfile
     describe("Mutation: myProfileRequest", () => {
       it("changes to pending state when myProfile is requested", () => {
@@ -142,7 +109,6 @@ describe("Auth Store Module", () => {
 
     describe("Mutation: myProfileSuccess", () => {
       it("stores token and redirects when myProfile succeeded", () => {
-        router.push = jest.fn();
         const store = getStore();
         const myProfile = { email: "email@email.com" };
 
@@ -170,7 +136,6 @@ describe("Auth Store Module", () => {
   describe("Auth Store Module: Actions", () => {
     describe("Action: login", () => {
       it("gets a token successfuly", async () => {
-        router.push = jest.fn();
         const store = getStore();
         api.auth.login = jest.fn().mockResolvedValue("token");
 
@@ -178,10 +143,8 @@ describe("Auth Store Module", () => {
 
         expect(store.getters["auth/loginIsLoading"]).toBe(false);
         expect(store.getters["auth/loginError"]).toBe(false);
-        expect(router.push).toBeCalledTimes(1);
       });
       it("gets a failure when asking for the token", async () => {
-        router.push = jest.fn();
         const store = getStore();
         api.auth.login = jest.fn().mockRejectedValue(new ApiError("XERROR"));
 
@@ -189,12 +152,10 @@ describe("Auth Store Module", () => {
 
         expect(store.getters["auth/loginIsLoading"]).toBe(false);
         expect(store.getters["auth/loginError"]).toBe("XERROR");
-        expect(router.push).toBeCalledTimes(0);
       });
     });
     describe("Action: logout", () => {
       it("logout", async () => {
-        router.push = jest.fn();
         const store = getStore();
         const profile = generateUser();
 
@@ -205,7 +166,6 @@ describe("Auth Store Module", () => {
         await store.dispatch("auth/logout");
 
         expect(store.getters["auth/myProfile"]).toBe(undefined);
-        expect(router.push).toBeCalledTimes(1);
       });
     });
     describe("Action: getMyProfile", () => {

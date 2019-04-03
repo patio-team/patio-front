@@ -35,8 +35,9 @@ export default class Header extends Vue {
   @AuthStore.Action("logout")
   private logout!: any;
 
-  private handleClickLogout() {
-    this.logout();
+  private async handleClickLogout() {
+    await this.logout();
+    this.$router.push({ name: "login" });
   }
 }
 </script>
