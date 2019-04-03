@@ -20,7 +20,9 @@
 <style src="./GroupForm.css" scoped></style>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+
+import { Group } from "@/domain";
 
 import { toDateTime, formatToTime24Simple } from "@/utils/datetime";
 
@@ -33,6 +35,9 @@ export default class GroupForm extends Vue {
     votingDays: ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"],
     votingTime: toDateTime("12:00"),
   };
+
+  @Prop(Object)
+  private readonly group!: Group;
 
   @Prop(Boolean)
   private readonly isLoading!: boolean;
@@ -51,8 +56,19 @@ export default class GroupForm extends Vue {
     this.input.votingTime = toDateTime(value);
   }
 
-  private handleSubmit(): void {
-    this.onSubmit(this.input);
+  private mounted() {
+    if (this.group) {
+      this.input = Object.assign(
+        {},
+        this.input,
+        this.group,
+      );
+    }
+  }
+
+  @Emit("submit")
+  private handleSubmit() {
+    return this.input;
   }
 }
 </script>

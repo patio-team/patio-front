@@ -75,6 +75,37 @@ describe("Group Store Module", () => {
         expect(store.getters["group/getGroupError"]).toEqual("ERROR");
       });
     });
+    // edit group
+    describe("Mutation: editRequest", () => {
+      it("change to pending state when 'edit group' API request is started", () => {
+        const store = getStore();
+
+        store.commit("group/editRequest");
+
+        expect(store.getters["group/editIsLoading"]).toEqual(true);
+        expect(store.getters["group/editError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: editSuccess", () => {
+      it("change to initial state for 'edit group' API request", () => {
+        const store = getStore();
+
+        store.commit("group/editSuccess");
+
+        expect(store.getters["group/editIsLoading"]).toEqual(false);
+        expect(store.getters["group/editError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: editFail", () => {
+      it("change to error state when 'edit group'' API request fail", () => {
+        const store = getStore();
+
+        store.commit("group/editFail", "ERROR");
+
+        expect(store.getters["group/editIsLoading"]).toEqual(false);
+        expect(store.getters["group/editError"]).toEqual("ERROR");
+      });
+    });
     // add user to group
     describe("Mutation: addUserToGroupRequest", () => {
       it("change to pending state when 'add user to group' API request is started", () => {
@@ -199,6 +230,53 @@ describe("Group Store Module", () => {
         expect(api.groups.getWithNoMembers).toBeCalledWith(input);
         expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
         expect(store.getters["group/getGroupError"]).toEqual("ERROR");
+      });
+    });
+
+    describe("Action: edit", () => {
+      it("edit a group successfuly", async () => {
+        const store = getStore();
+        const group = generateGroup();
+        const input = {
+          id: group.id,
+          name: group.name,
+          anonymousVote: group.anonymousVote,
+          visibleMemberList: group.visibleMemberList,
+          votingDays: group.votingDays,
+          votingTime: group.votingTime,
+        };
+
+        api.groups.edit = jest.fn().mockResolvedValue(group);
+
+        const editedGroup = await store.dispatch("group/edit", input);
+
+        expect(api.groups.edit).toBeCalledTimes(1);
+        expect(api.groups.edit).toBeCalledWith(input);
+        expect(store.getters["group/editIsLoading"]).toEqual(false);
+        expect(store.getters["group/editError"]).toEqual(false);
+        expect(editedGroup).toEqual(group);
+      });
+      it("edit a group throw an error", async () => {
+        const store = getStore();
+        const group = generateGroup();
+        const input = {
+          id: group.id,
+          name: group.name,
+          anonymousVote: group.anonymousVote,
+          visibleMemberList: group.visibleMemberList,
+          votingDays: group.votingDays,
+          votingTime: group.votingTime,
+        };
+
+        api.groups.edit = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+
+        const edittedGroup = await store.dispatch("group/edit", input);
+
+        expect(api.groups.edit).toBeCalledTimes(1);
+        expect(api.groups.edit).toBeCalledWith(input);
+        expect(store.getters["group/editIsLoading"]).toEqual(false);
+        expect(store.getters["group/editError"]).toEqual("ERROR");
+        expect(edittedGroup).toEqual(false);
       });
     });
 

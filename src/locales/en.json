@@ -112,6 +112,19 @@
     "CREATE_GROUP": {
       "TITLE": "Create a new group"
     },
+    "EDIT_GROUP": {
+      "TITLE": "Edit group \"{group}\"",
+      "NOTIFICATIONS": {
+        "EDIT": {
+          "SUCCESS": {
+            "TITLE": "Your changes have been applied successfully"
+          },
+          "ERROR": {
+            "TITLE": "We were unable to apply your changes."
+          }
+        }
+      }
+    },
     "GROUP_DETAIL": {
       "ACTION_EDIT_GROUP": "Edit",
       "ACTION_DELETE_GROUP": "Delete",

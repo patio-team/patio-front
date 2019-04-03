@@ -21,9 +21,9 @@
     .actions
       router-link.edit-group(
         data-testid="action-edit"
+        tabindex="0"
         v-if="group.isCurrentUserAdmin"
         v-bind:to="{ name: 'groups:edit', params: { id: group.id } }"
-        disabled aria-disabled="true" tabindex="-1"
       )
         | {{ $t("VIEWS.GROUP_DETAIL.ACTION_EDIT_GROUP") }}
       button.leave-group(

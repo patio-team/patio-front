@@ -25,6 +25,7 @@ import api from "./groups";
 
 import {
   CreateGroupMutation,
+  EditGroupMutation,
   GetGroupQuery,
   GetGroupWithNoMembersQuery,
   ListMyGroupsQuery,
@@ -128,6 +129,66 @@ describe("API Groups Services", () => {
       let err;
       try {
         await api(client).create(variables);
+      } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+
+  describe("API Groups Services: edit", () => {
+    it("should get data from API", async () => {
+      const group = generateGroup();
+      delete group.members;
+
+      const input = {
+        id: group.id,
+        name: group.name,
+        visibleMemberList: group.visibleMemberList,
+        anonymousVote: group.anonymousVote,
+        votingDays: group.votingDays,
+        votingTime: group.votingTime,
+      };
+
+      mock
+        // .onPost("", { query: EditGroupMutation, variables: input })
+        .onPost("")
+        .reply(
+          200,
+          JSON.stringify({
+            data: { updateGroup: group },
+          }),
+        );
+
+      const data = await api(client).edit(input);
+      expect(data).toEqual(group);
+    });
+
+    it("should throw an error", async () => {
+      const group = generateGroup();
+      delete group.members;
+
+      const variables = {
+        id: group.id,
+        name: group.name,
+        visibleMemberList: group.visibleMemberList,
+        anonymousVote: group.anonymousVote,
+        votingDays: group.votingDays,
+        votingTime: group.votingTime,
+      };
+
+      mock
+        // .onPost("", { query: EditGroupMutation, variables: input })
+        .onPost("")
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).edit(variables);
       } catch (e) { err = e; }
 
       expect(err.code).toEqual("ERROR_CODE");

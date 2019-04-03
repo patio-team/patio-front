@@ -21,6 +21,7 @@ import { AxiosInstance } from "axios";
 import { Group } from "@/domain";
 import {
   CreateGroupInput,
+  EditGroupInput,
   GetGroupInput,
   AddUserToGroupInput,
   LeaveGroupInput,
@@ -28,6 +29,7 @@ import {
 
 import {
   CreateGroupMutation,
+  EditGroupMutation,
   GetGroupQuery,
   GetGroupWithNoMembersQuery,
   ListMyGroupsQuery,
@@ -48,6 +50,13 @@ export default (client: AxiosInstance) => ({
       .post("", { query: CreateGroupMutation, variables: input })
       .then((data: any): Group => {
         return data.createGroup;
+      });
+  },
+  edit(input: EditGroupInput) {
+    return client
+      .post("", { query: EditGroupMutation, variables: input })
+      .then((data: any): Group => {
+        return data.updateGroup;
       });
   },
   get(input: GetGroupInput) {
