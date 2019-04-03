@@ -79,15 +79,6 @@ form {
   margin: 0;
 }
 
-fieldset {
-  align-items: flex-start;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: .5rem;
-}
-
 legend,
 label {
   color: var(--black-400);
@@ -101,8 +92,7 @@ input {
   border-radius: 3px;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
-  line-height: 2rem;
-  padding: .2rem .5rem;
+  padding: .6rem .5rem;
 
   &[type="date"],
   &[type="email"],

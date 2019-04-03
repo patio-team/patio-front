@@ -64,6 +64,17 @@
   width: 100%;
 }
 
+/* Generic fieldset
+   =============================== */
+@define-mixin fieldset {
+  align-items: flex-start;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: .5rem;
+}
+
 /* Generic error form
    =============================== */
 @define-mixin error-form {

@@ -19,12 +19,12 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
 
-  fieldset.email
+  .email
     label(for="email") {{ $t("LOGIN_FORM.INPUT_EMAIL.LABEL") }}
     input(data-testid="email" id="email" name="email" type="email" v-bind:placeholder="$t('LOGIN_FORM.INPUT_EMAIL.PLACEHOLDER')" required
           v-model="input.email")
 
-  fieldset.password
+  .password
     label(for="password") {{ $t("LOGIN_FORM.INPUT_PASSWORD.LABEL") }}
     input(data-testid="password" id="password" name="password" type="password" v-bind:placeholder="$t('LOGIN_FORM.INPUT_PASSWORD.PLACEHOLDER')" required
           v-model="input.password")

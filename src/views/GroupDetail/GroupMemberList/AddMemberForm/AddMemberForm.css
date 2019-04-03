@@ -23,6 +23,10 @@
     @mixin error-form;
   }
 
+  & .email {
+    @mixin fieldset;
+  }
+
   & .actions {
     align-items: center;
     display: flex;

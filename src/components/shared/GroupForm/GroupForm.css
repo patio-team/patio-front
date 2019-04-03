@@ -22,6 +22,14 @@
   @mixin error-form;
 }
 
+.name,
+.visible-member-list,
+.anonymous-vote,
+.voting-days,
+.voting-time {
+  @mixin fieldset;
+}
+
 .visible-member-list,
 .anonymous-vote {
   align-items: center;

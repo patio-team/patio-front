@@ -19,19 +19,19 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
 
-  fieldset.name
+  .name
     label(for="name") {{ $t("GROUP_FORM.INPUT_NAME.LABEL") }}
     input(data-testid="name" id="name" name="name" type="text" v-bind:placeholder="$t('GROUP_FORM.INPUT_NAME.PLACEHOLDER')" required v-model="input.name")
 
-  fieldset.visible-member-list
+  .visible-member-list
     input(data-testid="visible-member-list" id="visible-member-list" name="visible-member-list" type="checkbox" v-model="input.visibleMemberList")
     label(for="visible-member-list") {{ $t("GROUP_FORM.INPUT_VISIBLE_MEMBER_LIST.LABEL") }}
 
-  fieldset.anonymous-vote
+  .anonymous-vote
     input(data-testid="anonymous-vote" id="anonymous-vote" name="anonymous-vote" type="checkbox" v-model="input.anonymousVote")
     label(for="anonymous-vote") {{ $t("GROUP_FORM.INPUT_ANONYMOUS_VOTE.LABEL") }}
 
-  fieldset.voting-days
+  .voting-days
     legend {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LEGEND") }}
 
     .week-days-selector
@@ -57,7 +57,7 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
         input(data-testid="voting-day-sun" id="sun" name="sun" type="checkbox" value="SUNDAY" v-model="input.votingDays")
         label(for="sun") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SAT") }}
 
-  fieldset.voting-time
+  .voting-time
     label(for="voting-time") {{ $t("GROUP_FORM.INPUT_VOTING_TIME.LABEL") }}
     input(data-testid="voting-time" id="voting-time" name="voting-time" type="time" required v-model="votingTime")
 

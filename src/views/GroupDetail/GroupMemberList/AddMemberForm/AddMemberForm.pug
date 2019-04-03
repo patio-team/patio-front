@@ -24,7 +24,7 @@ form.add-member-form(
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
 
-  fieldset.email
+  .email
     label(for="email") {{ $t("ADD_MEMBER_FORM.INPUT_EMAIL.LABEL") }}
     input(
       data-testid="email"
