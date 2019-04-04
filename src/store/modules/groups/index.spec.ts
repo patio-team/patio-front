@@ -23,7 +23,6 @@ import cloneDeep from "lodash.clonedeep";
 import { generateGroup, generateGroupList } from "@/__mocks__/data/groups";
 
 import api, { ApiError } from "@/services/api";
-import router from "@/router";
 
 import groupsModule from "@/store/modules/groups";
 
@@ -90,16 +89,12 @@ describe("Groups Store Module", () => {
     });
     describe("Mutation: createGroupSuccess", () => {
       it("change to success state when 'create group' API request finish successfully", () => {
-        router.push = jest.fn();
         const store = getStore();
-        const group = generateGroup();
 
-        store.commit("groups/createGroupSuccess", group);
+        store.commit("groups/createGroupSuccess");
 
         expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
         expect(store.getters["groups/createGroupError"]).toEqual(false);
-        expect(router.push).toBeCalledTimes(1);
-        expect(router.push).toBeCalledWith({ name: "groups:detail", params: { id: group.id } });
       });
     });
     describe("Mutation: createGroupFail", () => {
@@ -146,7 +141,6 @@ describe("Groups Store Module", () => {
     });
     describe("Action: createGroup", () => {
       it("create a group successfuly", async () => {
-        router.push = jest.fn();
         const store = getStore();
         const group = generateGroup();
         const input = {
@@ -165,10 +159,8 @@ describe("Groups Store Module", () => {
         expect(api.groups.create).toBeCalledWith(input);
         expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
         expect(store.getters["groups/createGroupError"]).toEqual(false);
-        expect(router.push).toBeCalledTimes(1);
       });
       it("create a group throw an error", async () => {
-        router.push = jest.fn();
         const store = getStore();
         const group = generateGroup();
         const input = {
@@ -187,7 +179,6 @@ describe("Groups Store Module", () => {
         expect(api.groups.create).toBeCalledWith(input);
         expect(store.getters["groups/createGroupIsLoading"]).toEqual(false);
         expect(store.getters["groups/createGroupError"]).toEqual("ERROR");
-        expect(router.push).toBeCalledTimes(0);
       });
     });
   });

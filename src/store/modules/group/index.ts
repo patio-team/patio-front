@@ -26,8 +26,6 @@ import {
   LeaveGroupInput,
 } from "@/services/api/types";
 
-import router from "@/router";
-
 import { Group } from "@/domain";
 
 import { RootState } from "@/store/types";
