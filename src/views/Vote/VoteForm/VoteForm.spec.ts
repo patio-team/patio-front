@@ -18,6 +18,7 @@
 
 import { Store } from "vuex-mock-store";
 import { mount } from "@vue/test-utils";
+import flushPromises from "flush-promises";
 import VoteForm from "./VoteForm.vue";
 
 const getStore = () => {
@@ -60,26 +61,68 @@ describe("Component: shared/VoteForm", () => {
     expect(wrapper.contains("[data-testid='anonymous']")).toBeFalsy();
   });
 
-  it("create vote successfully", () => {
+  it("create vote successfully", async () => {
     const store = getStore();
+    const router = { push: jest.fn() };
     const route = { params: { voting: "votingId", group: "groupId"}};
     const wrapper = getWrapper({
-      mocks: { $store: store, $route: route},
+      mocks: { $store: store, $router: router, $route: route},
     });
 
     store.dispatch.mockClear();
+    store.dispatch.mockResolvedValue(true);
 
     wrapper.find("[data-testid='one']").setChecked();
     wrapper.find("[data-testid='comment']").setValue("comment");
     wrapper.find("[data-testid='submit']").trigger("submit.prevent");
 
+    await flushPromises();
+
     expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith(
-      "votings/createVote", {
+      "votings/createVote",
+      {
         anonymous: false,
         comment: "comment",
         groupId: "groupId",
         score: "1",
-        votingId: "votingId"});
+        votingId: "votingId",
+      },
+    );
+    expect(router.push).toHaveBeenCalledTimes(1);
+    expect(router.push).toHaveBeenCalledWith(
+      {name: "groups:votings:detail", params: {group: "groupId", voting: "votingId"}},
+    );
+  });
+
+  it("create vote error", async () => {
+    const store = getStore();
+    const router = { push: jest.fn() };
+    const route = { params: { voting: "votingId", group: "groupId"}};
+    const wrapper = getWrapper({
+      mocks: { $store: store, $router: router, $route: route},
+    });
+
+    store.dispatch.mockClear();
+    store.dispatch.mockResolvedValue(undefined);
+
+    wrapper.find("[data-testid='one']").setChecked();
+    wrapper.find("[data-testid='comment']").setValue("comment");
+    wrapper.find("[data-testid='submit']").trigger("submit.prevent");
+
+    await flushPromises();
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith(
+      "votings/createVote",
+      {
+        anonymous: false,
+        comment: "comment",
+        groupId: "groupId",
+        score: "1",
+        votingId: "votingId",
+      },
+    );
+    expect(router.push).toHaveBeenCalledTimes(0);
   });
 });

@@ -60,11 +60,22 @@ export default class VoteForm extends Vue {
     this.getGroup(input);
   }
 
-  private handleSubmit(): void {
-    this.createVote({
+  private async handleSubmit() {
+    const isCreated = await this.createVote({
       ...this.input,
       votingId: this.$route.params.voting,
-      groupId: this.$route.params.group});
+      groupId: this.$route.params.group,
+    });
+
+    if(isCreated) {
+      this.$router.push({
+        name: "groups:votings:detail",
+        params: {
+          group: this.$route.params.group,
+          voting: this.$route.params.voting,
+        },
+      });
+    }
   }
 }
 </script>

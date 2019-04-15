@@ -51,7 +51,7 @@ describe("Votings Store Module", () => {
       const store = getStore();
       const voting = {groupId: "groupId", id: "id"};
 
-      store.commit("votings/createVoteSuccess", voting);
+      store.commit("votings/createVoteSuccess");
 
       expect(store.getters["votings/createVoteIsLoading"]).toBe(false);
       expect(store.getters["votings/createVoteError"]).toBe(false);
