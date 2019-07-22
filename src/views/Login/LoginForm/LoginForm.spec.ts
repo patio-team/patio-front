@@ -16,8 +16,9 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Store } from "vuex-mock-store";
 import { mount } from "@vue/test-utils";
+import { Store } from "vuex-mock-store";
+import flushPromises from "flush-promises";
 import LoginForm from "./LoginForm.vue";
 
 const getStore = () => {
@@ -59,16 +60,60 @@ describe("Component: shared/LoginForm", () => {
 
     expect(wrapper.contains("[data-testid='submit']:disabled")).toBe(true);
   });
-  it("triggers login", () => {
+  it("triggers login without redirect", async () => {
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store } });
+    const router = { push: jest.fn() };
+    const route = {query: {}};
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router, $route: route } });
+
+    store.dispatch.mockResolvedValue(true);
 
     wrapper.find("[data-testid='password']").setValue("password");
     wrapper.find("[data-testid='email']").setValue("email@email.com");
     wrapper.find("[data-testid='form']").trigger("submit.prevent");
 
+    await flushPromises();
+
     expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith("auth/login", { email: "email@email.com", password: "password" });
+    expect(router.push).toHaveBeenCalledTimes(1);
+    expect(router.push).toHaveBeenCalledWith({name: "groups:list"});
+  });
+  it("triggers login with redirect", async () => {
+    const store = getStore();
+    const router = { push: jest.fn() };
+    const route = {query: {next: "/profile"}};
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router, $route: route } });
+
+    store.dispatch.mockResolvedValue(true);
+
+    wrapper.find("[data-testid='password']").setValue("password");
+    wrapper.find("[data-testid='email']").setValue("email@email.com");
+    wrapper.find("[data-testid='form']").trigger("submit.prevent");
+
+    await flushPromises();
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith("auth/login", { email: "email@email.com", password: "password" });
+    expect(router.push).toHaveBeenCalledTimes(1);
+    expect(router.push).toHaveBeenCalledWith("/profile");
+  });
+  it("triggers login throw an error", async () => {
+    const store = getStore();
+    const router = { push: jest.fn() };
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router } });
+
+    store.dispatch.mockResolvedValue(false);
+
+    wrapper.find("[data-testid='password']").setValue("password");
+    wrapper.find("[data-testid='email']").setValue("email@email.com");
+    wrapper.find("[data-testid='form']").trigger("submit.prevent");
+
+    await flushPromises();
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith("auth/login", { email: "email@email.com", password: "password" });
+    expect(router.push).toHaveBeenCalledTimes(0);
   });
   it("show error state", () => {
     const store = getStore();

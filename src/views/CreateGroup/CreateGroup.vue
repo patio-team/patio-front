@@ -23,6 +23,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Action, Getter, namespace } from "vuex-class";
 
+import { CreateGroupInput } from "@/services/api/types";
+
 import GroupForm from "@/components/shared/GroupForm/GroupForm.vue";
 
 const GroupsStore = namespace("groups");
@@ -41,5 +43,13 @@ export default class CreateGroup extends Vue {
 
   @GroupsStore.Action("createGroup")
   private createGroup: any;
+
+  private async handleCreateGroupSubmit(input: CreateGroupInput) {
+    const group = await this.createGroup(input);
+
+    if (group) {
+      this.$router.push({ name: "groups:detail", params: { id: group.id } });
+    }
+  }
 }
 </script>

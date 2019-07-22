@@ -21,8 +21,6 @@ import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
 import { CreateGroupInput } from "@/services/api/types";
 
-import router from "@/router";
-
 import { Group } from "@/domain";
 
 import { RootState } from "@/store/types";
@@ -51,11 +49,9 @@ const mutations: MutationTree<GroupsState> = {
     state.createGroupIsLoading = true;
     state.createGroupError = false;
   },
-  createGroupSuccess(state: GroupsState, group: Group ) {
+  createGroupSuccess(state: GroupsState ) {
     state.createGroupIsLoading = false;
     state.createGroupError = false;
-
-    router.push({ name: "groups:detail", params: { id: group.id } });
   },
   createGroupFail(state: GroupsState, error: string) {
     state.createGroupIsLoading = false;
@@ -96,9 +92,11 @@ const actions: ActionTree<GroupsState, RootState> = {
     commit("createGroupRequest");
     try {
       const group = await api.groups.create(input);
-      commit("createGroupSuccess", group);
+      commit("createGroupSuccess");
+      return group;
     } catch (error) {
       commit("createGroupFail", error.code);
+      return;
     }
   },
 };

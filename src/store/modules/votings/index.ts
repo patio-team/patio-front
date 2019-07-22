@@ -19,7 +19,6 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 
 import api from "@/services/api";
-import router from "@/router";
 import { RootState } from "@/store/types";
 import { VotingsState } from "./types";
 import { Voting } from "@/domain";
@@ -43,8 +42,6 @@ const mutations: MutationTree<VotingsState> = {
   createVoteSuccess(state: VotingsState, voting: Voting) {
     state.createVoteIsLoading = false;
     state.createVoteError = false;
-
-    router.push({name: "groups:votings:detail", params: {group: voting.groupId, voting: voting.id}});
   },
   createVoteError(state: VotingsState, error: string) {
     state.createVoteIsLoading = false;
@@ -55,13 +52,16 @@ const mutations: MutationTree<VotingsState> = {
 const actions: ActionTree<VotingsState, RootState> = {
   async createVote(
     {commit, state}: {commit: Commit, state: VotingsState},
-    input: CreateVoteInput) {
+    input: CreateVoteInput,
+  ) {
     commit("createVoteRequest");
     try {
-      await api.votings.createVote(input);
-      commit("createVoteSuccess", {id: input.votingId, groupId: input.groupId} as Voting);
+      const vote = await api.votings.createVote(input);
+      commit("createVoteSuccess");
+      return vote;
     } catch (error) {
       commit("createVoteError", error.code);
+      return;
     }
   },
 };

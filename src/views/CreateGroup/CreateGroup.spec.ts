@@ -19,6 +19,8 @@
 import { shallowMount } from "@vue/test-utils";
 import { Store } from "vuex-mock-store";
 
+import { generateGroup } from "@/__mocks__/data/groups";
+
 import CreateGroup from "./CreateGroup.vue";
 
 const getStore = () => {
@@ -45,5 +47,43 @@ describe("View: CreateGroup", () => {
     const wrapper = getWrapper({ mocks: { $store: store } });
 
     expect(wrapper.contains("[data-testid='group-form']")).toBe(true);
+  });
+
+  it("successfully submit the form", async () => {
+    const group = generateGroup();
+    delete group.members;
+    const createGroupInput = Object.assign({}, {...group});
+    delete createGroupInput.id;
+
+    const store = getStore();
+    const router = { push: jest.fn() };
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router } });
+    const vm = wrapper.vm as any;
+
+    store.dispatch.mockResolvedValue(group);
+
+    await vm.handleCreateGroupSubmit(createGroupInput);
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith("groups/createGroup", createGroupInput);
+    expect(router.push).toHaveBeenCalledTimes(1);
+    expect(router.push).toHaveBeenCalledWith({name: "groups:detail", params: {id: group.id}});
+  });
+  it("submit the form with errors", async () => {
+    const group = generateGroup();
+    delete group.members;
+    const createGroupInput = Object.assign({}, {...group});
+    delete createGroupInput.id;
+
+    const store = getStore();
+    const router = { push: jest.fn() };
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router } });
+    const vm = wrapper.vm as any;
+
+    await vm.handleCreateGroupSubmit(createGroupInput);
+
+    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(store.dispatch).toHaveBeenCalledWith("groups/createGroup", createGroupInput);
+    expect(router.push).toHaveBeenCalledTimes(0);
   });
 });
