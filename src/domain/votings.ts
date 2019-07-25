@@ -16,7 +16,15 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
- export interface Voting {
-   id: string;
-   groupId: string;
- }
+import { Group, User } from "@/domain";
+import { DateTime } from "@/utils/datetime";
+
+export interface Voting {
+  id: string;
+  group: Group;
+  createdAtDateTime: DateTime;
+  createdBy: User;
+  average: number;
+}
+
+export type VotingStat = Pick<Voting, "id" | "createdAtDateTime" | "average">;

@@ -22,14 +22,60 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { Group } from "@/domain";
+import { DateTime, getListOfDays, isToday } from "@/utils/datetime";
+
+import { Group, Voting } from "@/domain";
 
 @Component
 export default class GroupStats extends Vue {
-  @Prop(Array)
-  private readonly votes!: any;
+  @Prop(Object)
+  private readonly group!: Group;
 
-  @Prop(String)
-  private readonly groupId!: string;
+  @Prop(Object)
+  private readonly startDateTime!: DateTime;
+
+  @Prop(Object)
+  private readonly endDateTime!: DateTime;
+
+  get votings() {
+    const groupVotings = this.group.votings;
+    const votingsMap = new Map();
+    let votings = [] as any[];
+
+    if (!groupVotings) {
+      return votings;
+    }
+
+    // Add current votings
+    groupVotings.forEach((voting) => {
+      votingsMap.set(voting.createdAtDateTime.toISODate(), voting);
+    });
+
+    // Add null for days withoy vottings
+    getListOfDays(this.startDateTime, this.endDateTime).forEach((day) => {
+      if (!votingsMap.get(day.toISODate())) {
+        votingsMap.set(day.toISODate(), null);
+      }
+    });
+
+    // Sort
+    votings = [...votingsMap];
+    votings.sort((a, b) => a[0] === b[0]? 0: a[0] > b[0]? 1: -1);
+
+    return votings.map((d) => d[1]);
+  }
+
+  public getVotingClasses(voting?: Voting) {
+    return voting
+      ? [
+        // vote
+        "vote",
+        // v1 v2 v3 v4 v5 ve
+        `v${voting.average || "e"}`,
+        // last
+        isToday(voting.createdAtDateTime) ? "last" : "",
+      ]
+    : ["vote", "ve"];
+  }
 }
 </script>

@@ -16,19 +16,27 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@import "../../../assets/css/colors.css";
 @import "../../../assets/css/mixins.css";
 
 .group-stats {
   display: grid;
   grid-gap: 1px;
-  grid-template: repeat(5, 30px) / repeat(14, 30px);
+  grid-template: repeat(5, 28px) / repeat(28, 28px);
   place-content: center;
   place-items: stretch;
   width: 100%;
 
+  &.empty {
+    color: var(--gray-300);
+    display: flex;
+    font-size: 1rem;
+    padding: 2rem;
+  }
+
   & .vote {
-    font-size: calc(30px * var(--vote-font-size-factor));
-    opacity: .2;
+    font-size: calc(28px * var(--vote-font-size-factor));
+    opacity: .4;
 
     &.v1 { @mixin vote-1; }
     &.v2 { @mixin vote-2; }

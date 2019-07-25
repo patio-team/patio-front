@@ -58,7 +58,11 @@
         v-else
       ) {{ $t("VIEWS.GROUP_DETAIL.DETAILS.ANONYMOUS_VOTE_DENY_VALUE") }}
 
-  dw-group-stats.stats(v-bind:group-id="group.id" v-bind:votes="[]")
+  template(v-if="group")
+    dw-group-stats.stats(
+      v-bind:group="group",
+      v-bind:start-date-time="statsStartDateTime"
+      v-bind:end-date-time="statsEndDateTime")
 
   dw-group-member-list.members(data-testid="member-list" v-if="group.visibleMemberList")
 

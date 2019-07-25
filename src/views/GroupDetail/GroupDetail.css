@@ -21,8 +21,6 @@
 .group-detail {
   @mixin view;
 
-  width: 800px;
-
   & .head {
     align-items: center;
     display: flex;

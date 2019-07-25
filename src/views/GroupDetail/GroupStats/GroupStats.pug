@@ -15,78 +15,17 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.group-stats(data-testid="stats")
-  router-link.vote.v4(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  router-link.vote.v2(to="") 2
-  router-link.vote.v4(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v4(to="") 4
-  router-link.vote.v3(to="") 3
-  router-link.vote.v5(to="") 5
-  router-link.vote.v4.last(to="") 4
-
-  router-link.vote.v5(to="") 5
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 1
-  router-link.vote.v1(to="") 1
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 1
-  router-link.vote.v2(to="") 2
-  router-link.vote.v3(to="") 3
-  router-link.vote.v4(to="") 4
-
-  router-link.vote.v5(to="") 5
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 1
-  router-link.vote.v1(to="") 1
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 1
-  router-link.vote.v2(to="") 2
-  router-link.vote.v3(to="") 3
-  router-link.vote.v4(to="") 4
-
-  router-link.vote.v5(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 1
-  router-link.vote.v1(to="") 1
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 1
-  router-link.vote.v2(to="") 1
-  router-link.vote.v3(to="") 3
-  router-link.vote.v4(to="") 4
-
-  router-link.vote.v5(to="") 4
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 3
-  router-link.vote.v1(to="") 1
-  router-link.vote.v4(to="") 4
-  router-link.vote.v4(to="") 5
-  router-link.vote.v4(to="") 5
-  .vote.ve(tabindex="0") -
-  .vote.ve(tabindex="0") -
-  router-link.vote.v1(to="") 3
-  router-link.vote.v2(to="") 4
-  router-link.vote.v3(to="") 5
-  router-link.vote.v4(to="") 4
+.group-stats.empty(data-testid="stats" v-if="votings.length === 0")
+  | {{ $t('VIEWS.GROUP_DETAIL.STATS.NO_VOTING_YET') }}
+.group-stats(data-testid="stats" v-else)
+  template(v-for="voting in votings")
+    router-link(
+      v-if="voting"
+      v-bind:class="getVotingClasses(voting)"
+      v-bind:to="{name: 'groups:votings:detail', params: {group: group.id, voting: voting.id} }"
+      v-bind:title="voting.createdAtDateTime | toDateSimpleWithWeekDay"
+    ) {{ voting.average }}
+    div(
+      v-else
+      v-bind:class="getVotingClasses(voting)"
+    ) --

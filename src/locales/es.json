@@ -142,6 +142,9 @@
         "ANONYMOUS_VOTE_LABEL": "Voto anonimo",
         "ANONYMOUS_VOTE_ALLOWED_VALUE": "permitido",
         "ANONYMOUS_VOTE_DENY_VALUE": "prohibido"
+      },
+      "STATS": {
+        "NO_VOTING_YET": "No voting yet"
       }
     },
     "GROUP_LIST": {
