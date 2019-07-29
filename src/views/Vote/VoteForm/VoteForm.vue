@@ -55,7 +55,7 @@ export default class VoteForm extends Vue {
 
   public mounted() {
     const input = {
-      id: this.$route.params.group,
+      id: this.$route.params.groupId,
     };
     this.getGroup(input);
   }
@@ -63,16 +63,16 @@ export default class VoteForm extends Vue {
   private async handleSubmit() {
     const isCreated = await this.createVote({
       ...this.input,
-      votingId: this.$route.params.voting,
-      groupId: this.$route.params.group,
+      votingId: this.$route.params.votingId,
+      groupId: this.$route.params.groupId,
     });
 
     if(isCreated) {
       this.$router.push({
         name: "groups:votings:detail",
         params: {
-          group: this.$route.params.group,
-          voting: this.$route.params.voting,
+          group: this.$route.params.groupId,
+          voting: this.$route.params.votingId,
         },
       });
     }

@@ -68,7 +68,7 @@ export default class GroupDetail extends Vue {
 
   public mounted() {
     const input = {
-      id: this.$route.params.id,
+      id: this.$route.params.groupId,
       startDateTime: this.statsStartDateTime,
       endDateTime: this.statsEndDateTime,
     };

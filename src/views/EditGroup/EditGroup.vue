@@ -53,7 +53,7 @@ export default class EditGroup extends Vue {
 
   public mounted() {
     const input = {
-      id: this.$route.params.id,
+      id: this.$route.params.groupId,
     };
     this.getGroup(input);
   }
