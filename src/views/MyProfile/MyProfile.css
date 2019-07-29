@@ -21,8 +21,6 @@
 .my-profile {
   @mixin view;
 
-  min-width: 800px;
-
   & .title {
     padding-bottom: 1rem;
   }

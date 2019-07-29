@@ -21,10 +21,9 @@ import { Vue } from "vue-property-decorator";
 import md5 from "md5";
 
 export const gravatarImage = (
-  email: string,
+  hash: string,
   { size }: { size: number} = { size: 50 },
 ): string => {
-  const hash = md5(email.trim().toLowerCase());
   return `https://www.gravatar.com/avatar/${hash}?s=${size}&d=robohash`;
 };
 Vue.filter("gravatarImage", gravatarImage);

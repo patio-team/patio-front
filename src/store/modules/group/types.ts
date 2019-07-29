@@ -16,12 +16,18 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Group } from "@/domain";
+import { Group, VotingStat, User } from "@/domain";
 
 export interface GroupState {
   group?: Group;
   getGroupIsLoading: boolean;
   getGroupError: boolean | string;
+  stats?: VotingStat[];
+  getGroupStatsIsLoading: boolean;
+  getGroupStatsError: boolean | string;
+  members?: User[];
+  getGroupMembersIsLoading: boolean;
+  getGroupMembersError: boolean | string;
   editIsLoading: boolean;
   editError: boolean | string;
   addUserToGroupIsLoading: boolean;

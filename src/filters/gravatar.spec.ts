@@ -21,20 +21,11 @@ import { gravatarImage } from "./gravatar";
 
 describe("filters: gravatar/gravatarImage", () => {
   it("return a gravatar url with default size", () => {
-    expect(gravatarImage("email@email.com")).toEqual(
+    expect(gravatarImage("4f64c9f81bb0d4ee969aaf7b4a5a6f40")).toEqual(
       "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=50&d=robohash");
   });
   it("return a gravatar url with 150px size", () => {
-    expect(gravatarImage("email@email.com", {size: 150})).toEqual(
+    expect(gravatarImage("4f64c9f81bb0d4ee969aaf7b4a5a6f40", {size: 150})).toEqual(
       "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=150&d=robohash");
-  });
-  it("return the same gravatar url with an email with uppercase letters", () => {
-    expect(gravatarImage("email@email.com")).toEqual(gravatarImage("eMAil@emaIL.Com"));
-  });
-  it("return the same gravatar url with an email with extra spaces", () => {
-    expect(gravatarImage("email@email.com")).toEqual(gravatarImage("    email@email.com              "));
-  });
-  it("return the same gravatar url with an email with extra spaces and upper case letters", () => {
-    expect(gravatarImage("email@email.com")).toEqual(gravatarImage("    eMAil@emaIL.Com              "));
   });
 });

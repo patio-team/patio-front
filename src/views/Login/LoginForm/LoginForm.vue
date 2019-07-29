@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { namespace } from "vuex-class";
 
 const Auth = namespace("auth");
 

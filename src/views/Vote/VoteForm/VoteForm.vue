@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { namespace } from "vuex-class";
 import { CreateVoteInput } from "@/services/api/types";
 import { Group } from "@/domain";
 
@@ -50,7 +50,7 @@ export default class VoteForm extends Vue {
   @Votings.Action("createVote")
   private createVote: any;
 
-  @Group.Action("getGroupWithNoMembers")
+  @Group.Action("getGroup")
   private getGroup: any;
 
   public mounted() {
@@ -71,8 +71,8 @@ export default class VoteForm extends Vue {
       this.$router.push({
         name: "groups:votings:detail",
         params: {
-          group: this.$route.params.groupId,
-          voting: this.$route.params.votingId,
+          groupId: this.$route.params.groupId,
+          votingId: this.$route.params.votingId,
         },
       });
     }

@@ -23,3 +23,7 @@ export interface CreateVoteInput {
   score: number;
   votingId: string;
 }
+
+export interface GetVotingInput {
+  id: string;
+}

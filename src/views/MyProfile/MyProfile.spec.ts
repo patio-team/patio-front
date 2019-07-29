@@ -54,7 +54,6 @@ describe("View: MyProfile", () => {
 
     expect(wrapper.find("[data-testid='user-name']").text()).toEqual(me.name);
     expect(wrapper.find("[data-testid='user-email']").text()).toEqual(me.email);
-    expect(wrapper.find("[data-testid='user-avatar']").attributes("src")).toEqual(
-      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=150&d=robohash");
+    expect(wrapper.find("[data-testid='user-avatar']").attributes("src")).toContain(me.hash);
   });
 });

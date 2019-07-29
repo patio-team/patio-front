@@ -22,13 +22,14 @@
 
 .app {
   align-items: center;
+  background-attachment: fixed;
   background-color: var(--white-500);
   background-image: url(./assets/img/bg.svg);
   background-size: cover;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
 
   & .fade-enter-active,
   & .fade-leave-active {

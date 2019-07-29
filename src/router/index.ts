@@ -21,11 +21,15 @@ import Router from "vue-router";
 
 import i18n from "@/i18n";
 
-import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
-import EditGroup from "@/views/EditGroup/EditGroup.vue";
-import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupList from "@/views/GroupList/GroupList.vue";
+import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
+import GroupLayout from "@/views/GroupLayout/GroupLayout.vue";
+import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
+import GroupDetailActions from "@/views/GroupDetail/GroupDetailActions/GroupDetailActions.vue";
+import EditGroup from "@/views/EditGroup/EditGroup.vue";
+import VotingDetail from "@/views/VotingDetail/VotingDetail.vue";
 import Vote from "@/views/Vote/Vote.vue";
+
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
 import Login from "@/views/Login/Login.vue";
 
@@ -70,32 +74,45 @@ const router = new Router({
       },
     },
     {
-      path: "/groups/:groupId",
-      name: "groups:detail",
-      component: GroupDetail,
+      path: "/groups/:groupId/",
+      component: GroupLayout,
       meta: {
         requiresAuth: true,
       },
-    },
-    {
-      path: "/groups/:groupId/edit",
-      name: "groups:edit",
-      component: EditGroup,
-      meta: {
-        requiresAuth: true,
-      },
-    },
-    {
-      path: "/groups/:group/votings/:voting",
-      name: "groups:votings:detail",
-      meta: {
-        requiresAuth: true,
-      },
-    },
-    {
-      path: "/groups/:groupId/votings/:votingId/vote",
-      name: "votings:vote",
-      component: Vote,
+      children: [
+        {
+          path: "",
+          name: "groups:detail",
+          components: {
+            default: GroupDetail,
+            actions: GroupDetailActions,
+          },
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "edit",
+          name: "groups:edit",
+          component: EditGroup,
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "votings/:votingId",
+          name: "groups:votings:detail",
+          component: VotingDetail,
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "votings/:votingId/vote",
+          name: "votings:vote",
+          component: Vote,
+        },
+      ],
     },
     // NOTE: Don"t delete, useful to know how to create chunks of views
     // {

@@ -17,11 +17,10 @@
 -->
 
 <template src="./EditGroup.pug" lang="pug"></template>
-<style src="./EditGroup.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 
 import { Group } from "@/domain";
 import { EditGroupInput } from "@/services/api/types";
@@ -36,8 +35,8 @@ const GroupStore = namespace("group");
   },
 })
 export default class EditGroup extends Vue {
-  @GroupStore.Getter("group")
-  private group!: Group;
+  @Prop(Object)
+  private readonly group!: Group;
 
   @GroupStore.Getter("editIsLoading")
   private isLoading!: boolean;
@@ -45,17 +44,11 @@ export default class EditGroup extends Vue {
   @GroupStore.Getter("editError")
   private error!: boolean | string;
 
-  @GroupStore.Action("getGroup")
-  private getGroup: any;
-
   @GroupStore.Action("edit")
   private edit: any;
 
   public mounted() {
-    const input = {
-      id: this.$route.params.groupId,
-    };
-    this.getGroup(input);
+    this.$emit("set-subtitle", this.$t("VIEWS.EDIT_GROUP.SUBTITLE"));
   }
 
   private async handleSubmit(input: EditGroupInput) {

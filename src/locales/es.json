@@ -28,6 +28,29 @@
     "BUTTON_SUBMIT": "Añadir",
     "BUTTON_CANCEL": "Cancel"
   },
+  "GROUP_DETAIL_ACTIONS": {
+    "ACTION_EDIT_GROUP": "Editar",
+    "ACTION_DELETE_GROUP": "Borrar",
+    "ACTION_LEAVE_GROUP": "Abandonar",
+    "CONFIRM_DIALOG_LEAVE": {
+      "TITLE": "¿Seguro que quieres abandonar el grupo?",
+      "MESSAGE": "Si abandonas el grupo, no podrás acceder a él ni participar en ninguna de sus votaciones.",
+      "ACEPT_BUTTON_TEXT": "Sí, me quiero ir",
+      "REJECT_BUTTON_TEXT": "No, quiero seguir en él"
+    },
+    "NOTIFICATIONS": {
+      "LEAVE_GROUP": {
+        "SUCCESS": "Acabas de abandonar el grupo \"{name}\"",
+        "ERROR": {
+          "TITLE": "No puedes abandonar este grupo,",
+          "MESSAGE_UNIQUE_ADMIN": "Eres la única persona con permisos de administración en el grupo. No puedes dejar el grupo hasta que no haya al menos otro persona con estos permisos."
+        }
+      }
+    }
+  },
+  "GROUP_STATS": {
+    "NO_VOTING_YET": "No voting yet"
+  },
   "GROUP_FORM": {
     "INPUT_NAME": {
       "LABEL": "Escoge un nombre",
@@ -105,7 +128,7 @@
       "TITLE": "Creaar un nuevo grupo"
     },
     "EDIT_GROUP": {
-      "TITLE": "Editar grupo \"{group}\"",
+      "SUBTITLE": "Editar",
       "NOTIFICATIONS": {
         "EDIT": {
           "SUCCESS": {
@@ -118,34 +141,11 @@
       }
     },
     "GROUP_DETAIL": {
-      "ACTION_EDIT_GROUP": "Editar",
-      "ACTION_DELETE_GROUP": "Borrar",
-      "ACTION_LEAVE_GROUP": "Abandonar",
-      "CONFIRM_DIALOG_LEAVE": {
-        "TITLE": "¿Seguro que quieres abandonar el grupo?",
-        "MESSAGE": "Si abandonas el grupo, no podrás acceder a él ni participar en ninguna de sus votaciones.",
-        "ACEPT_BUTTON_TEXT": "Sí, me quiero ir",
-        "REJECT_BUTTON_TEXT": "No, quiero seguir en él"
-      },
-      "NOTIFICATIONS": {
-        "LEAVE_GROUP": {
-          "SUCCESS": "Acabas de abandonar el grupo \"{name}\"",
-          "ERROR": {
-            "TITLE": "No puedes abandonar este grupo,",
-            "MESSAGE_UNIQUE_ADMIN": "Eres la única persona con permisos de administración en el grupo. No puedes dejar el grupo hasta que no haya al menos otro persona con estos permisos."
-          }
-        }
-      },
-      "DETAILS": {
-        "VOTING_DAYS_LABEL": "Votar el",
-        "VOTING_TIME_LABEL": "Votar a las",
-        "ANONYMOUS_VOTE_LABEL": "Voto anonimo",
-        "ANONYMOUS_VOTE_ALLOWED_VALUE": "permitido",
-        "ANONYMOUS_VOTE_DENY_VALUE": "prohibido"
-      },
-      "STATS": {
-        "NO_VOTING_YET": "No voting yet"
-      }
+      "VOTING_DAYS_LABEL": "Votar el",
+      "VOTING_TIME_LABEL": "Votar a las",
+      "ANONYMOUS_VOTE_LABEL": "Voto anonimo",
+      "ANONYMOUS_VOTE_ALLOWED_VALUE": "permitido",
+      "ANONYMOUS_VOTE_DENY_VALUE": "prohibido"
     },
     "GROUP_LIST": {
       "TITLE": "Mis Grupos",

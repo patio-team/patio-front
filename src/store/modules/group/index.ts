@@ -21,12 +21,13 @@ import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
 import {
   GetGroupInput,
+  GetGroupStatsInput,
   EditGroupInput,
   AddUserToGroupInput,
   LeaveGroupInput,
 } from "@/services/api/types";
 
-import { Group } from "@/domain";
+import { Group, User, VotingStat } from "@/domain";
 
 import { RootState } from "@/store/types";
 import { GroupState } from "./types";
@@ -35,6 +36,12 @@ const initialState: GroupState = {
   group: undefined,
   getGroupIsLoading: false,
   getGroupError: false,
+  stats: undefined,
+  getGroupStatsIsLoading: false,
+  getGroupStatsError: false,
+  members: undefined,
+  getGroupMembersIsLoading: false,
+  getGroupMembersError: false,
   editIsLoading: false,
   editError: false,
   addUserToGroupIsLoading: false,
@@ -47,6 +54,12 @@ const getters: GetterTree<GroupState, RootState> = {
   group(state: GroupState) { return state.group; },
   getGroupIsLoading(state: GroupState) { return state.getGroupIsLoading; },
   getGroupError(state: GroupState) { return state.getGroupError; },
+  stats(state: GroupState) { return state.stats; },
+  getGroupStatsIsLoading(state: GroupState) { return state.getGroupStatsIsLoading; },
+  getGroupStatsError(state: GroupState) { return state.getGroupStatsError; },
+  members(state: GroupState) { return state.members; },
+  getGroupMembersIsLoading(state: GroupState) { return state.getGroupMembersIsLoading; },
+  getGroupMembersError(state: GroupState) { return state.getGroupMembersError; },
   editIsLoading(state: GroupState) { return state.editIsLoading; },
   editError(state: GroupState) { return state.editError; },
   addUserToGroupIsLoading(state: GroupState) { return state.addUserToGroupIsLoading; },
@@ -57,7 +70,6 @@ const getters: GetterTree<GroupState, RootState> = {
 
 const mutations: MutationTree<GroupState> = {
   // getGroup
-  // getGroupWithNoMembers
   getGroupRequest(state: GroupState) {
     state.getGroupIsLoading = true;
     state.getGroupError = false;
@@ -71,6 +83,36 @@ const mutations: MutationTree<GroupState> = {
   getGroupFail(state: GroupState, error: string) {
     state.getGroupIsLoading = false;
     state.getGroupError = error;
+  },
+  // getGroupStats
+  getGroupStatsRequest(state: GroupState) {
+    state.getGroupStatsIsLoading = true;
+    state.getGroupStatsError = false;
+  },
+  getGroupStatsSuccess(state: GroupState, stats: VotingStat[] ) {
+    state.getGroupStatsIsLoading = false;
+    state.getGroupStatsError = false;
+
+    state.stats = stats;
+  },
+  getGroupStatsFail(state: GroupState, error: string) {
+    state.getGroupStatsIsLoading = false;
+    state.getGroupStatsError = error;
+  },
+  // getGroupMembers
+  getGroupMembersRequest(state: GroupState) {
+    state.getGroupMembersIsLoading = true;
+    state.getGroupMembersError = false;
+  },
+  getGroupMembersSuccess(state: GroupState, members: User[] ) {
+    state.getGroupMembersIsLoading = false;
+    state.getGroupMembersError = false;
+
+    state.members = members;
+  },
+  getGroupMembersFail(state: GroupState, error: string) {
+    state.getGroupMembersIsLoading = false;
+    state.getGroupMembersError = error;
   },
   // edit
   editRequest(state: GroupState) {
@@ -128,16 +170,32 @@ const actions: ActionTree<GroupState, RootState> = {
       return;
     }
   },
-  async getGroupWithNoMembers(
+  async getGroupStats(
+    {commit, state}: {commit: Commit, state: GroupState},
+    input: GetGroupStatsInput,
+  ) {
+    commit("getGroupStatsRequest");
+    try {
+      const stats = await api.groups.getGroupStats(input);
+      commit("getGroupStatsSuccess", stats);
+      return stats;
+    } catch (error) {
+      commit("getGroupStatsFail", error.code);
+      return;
+    }
+  },
+  async getGroupMembers(
     {commit, state}: {commit: Commit, state: GroupState},
     input: GetGroupInput,
   ) {
-    commit("getGroupRequest");
+    commit("getGroupMembersRequest");
     try {
-      const group = await api.groups.getWithNoMembers(input);
-      commit("getGroupSuccess", group);
+      const members = await api.groups.getGroupMembers(input);
+      commit("getGroupMembersSuccess", members);
+      return members;
     } catch (error) {
-      commit("getGroupFail", error.code);
+      commit("getGroupMembersFail", error.code);
+      return;
     }
   },
   async edit(

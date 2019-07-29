@@ -21,8 +21,6 @@
 .vote {
   @mixin view;
 
-  max-width: 800px;
-
   & .title {
     align-self: center;
     color: var(--black-400);

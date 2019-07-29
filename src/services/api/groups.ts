@@ -23,6 +23,7 @@ import {
   CreateGroupInput,
   EditGroupInput,
   GetGroupInput,
+  GetGroupStatsInput,
   AddUserToGroupInput,
   LeaveGroupInput,
 } from "./types";
@@ -31,7 +32,8 @@ import {
   CreateGroupMutation,
   EditGroupMutation,
   GetGroupQuery,
-  GetGroupWithNoMembersQuery,
+  GetGroupMembersQuery,
+  GetGroupStatsQuery,
   ListMyGroupsQuery,
   AddUserToGroupMutation,
   LeaveGroupMutation,
@@ -66,11 +68,18 @@ export default (client: AxiosInstance) => ({
         return data.getGroup;
       });
   },
-  getWithNoMembers(input: GetGroupInput) {
+  getGroupStats(input: GetGroupStatsInput) {
     return client
-      .post("", { query: GetGroupWithNoMembersQuery, variables: input })
+      .post("", { query: GetGroupStatsQuery, variables: input })
       .then((data: any): Group => {
-        return data.getGroup;
+        return data.getGroup.votings;
+      });
+  },
+  getGroupMembers(input: GetGroupInput) {
+    return client
+      .post("", { query: GetGroupMembersQuery, variables: input })
+      .then((data: any): Group => {
+        return data.getGroup.members;
       });
   },
   addUserToGroup(input: AddUserToGroupInput) {

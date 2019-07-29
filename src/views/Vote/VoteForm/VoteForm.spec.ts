@@ -43,7 +43,7 @@ describe("Component: shared/VoteForm", () => {
   it("show empty initial state", () => {
     const store = getStore();
     const group = { anonymousVote: false };
-    const route = { params: { voting: "", group: ""}};
+    const route = { params: { votingId: "", groupId: ""}};
     const wrapper = getWrapper({
       mocks: { $store: store, $route: route},
     });
@@ -64,7 +64,7 @@ describe("Component: shared/VoteForm", () => {
   it("create vote successfully", async () => {
     const store = getStore();
     const router = { push: jest.fn() };
-    const route = { params: { voting: "votingId", group: "groupId"}};
+    const route = { params: { votingId: "votingId", groupId: "groupId"}};
     const wrapper = getWrapper({
       mocks: { $store: store, $router: router, $route: route},
     });
@@ -91,14 +91,14 @@ describe("Component: shared/VoteForm", () => {
     );
     expect(router.push).toHaveBeenCalledTimes(1);
     expect(router.push).toHaveBeenCalledWith(
-      {name: "groups:votings:detail", params: {group: "groupId", voting: "votingId"}},
+      {name: "groups:votings:detail", params: {groupId: "groupId", votingId: "votingId"}},
     );
   });
 
   it("create vote error", async () => {
     const store = getStore();
     const router = { push: jest.fn() };
-    const route = { params: { voting: "votingId", group: "groupId"}};
+    const route = { params: { votingId: "votingId", groupId: "groupId"}};
     const wrapper = getWrapper({
       mocks: { $store: store, $router: router, $route: route},
     });

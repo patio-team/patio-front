@@ -33,22 +33,30 @@
     @mixin section-content;
 
     & .row {
+      align-content: center;
       align-items: center;
       display: flex;
       flex-direction: row;
-      height: 1.5rem;
+      height: 3rem;
       justify-content: space-between;
       padding: .5rem;
       transition: background-color .2s;
 
-      &:hover:not(.empty) {
+      &:hover {
         background-color: var(--orange-100);
         cursor: pointer;
       }
     }
 
+    & .avatar {
+      border: 1px solid var(--orange-400);
+      border-radius: 50%;
+      width: 40px;
+    }
+
     & .name {
-      min-width: 400px;
+      flex-grow: 1;
+      margin: .5rem;
     }
 
     & .actions {
@@ -62,5 +70,12 @@
         margin-left: .5rem;
       }
     }
+  }
+
+  & .empty {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
   }
 }

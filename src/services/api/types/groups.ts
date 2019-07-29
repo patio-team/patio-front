@@ -34,6 +34,10 @@ export interface EditGroupInput extends CreateGroupInput {
 
 export interface GetGroupInput {
   id: string;
+}
+
+export interface GetGroupStatsInput {
+  id: string;
   startDateTime?: DateTime;
   endDateTime?: DateTime;
 }

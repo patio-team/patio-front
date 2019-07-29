@@ -19,35 +19,10 @@
 @import "../../assets/css/mixins.css";
 
 .group-detail {
-  @mixin view;
-
-  & .head {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-bottom: 1rem;
-    width: 100%;
-
-    & .actions {
-      align-items: flex-end;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-left: 2rem;
-
-      & > * {
-        padding-bottom: .3rem;
-      }
-
-      & .delete-group,
-      & .leave-group {
-        @mixin as-link;
-
-        padding-bottom: .3rem;
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .details {

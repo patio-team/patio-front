@@ -21,10 +21,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 
 import { DateTime, getListOfDays, isToday } from "@/utils/datetime";
 
-import { Group, Voting } from "@/domain";
+import { Group, VotingStat } from "@/domain";
+
+const GroupStore = namespace("group");
 
 @Component
 export default class GroupStats extends Vue {
@@ -37,8 +40,14 @@ export default class GroupStats extends Vue {
   @Prop(Object)
   private readonly endDateTime!: DateTime;
 
+  @GroupStore.Getter("stats")
+  private stats!: VotingStat[];
+
+  @GroupStore.Action("getGroupStats")
+  private getGroupStats: any;
+
   get votings() {
-    const groupVotings = this.group.votings;
+    const groupVotings = this.stats;
     const votingsMap = new Map();
     let votings = [] as any[];
 
@@ -54,7 +63,7 @@ export default class GroupStats extends Vue {
     // Add null for days withoy vottings
     getListOfDays(this.startDateTime, this.endDateTime).forEach((day) => {
       if (!votingsMap.get(day.toISODate())) {
-        votingsMap.set(day.toISODate(), null);
+        votingsMap.set(day.toISODate(), { createdAtDateTime: day });
       }
     });
 
@@ -65,7 +74,16 @@ export default class GroupStats extends Vue {
     return votings.map((d) => d[1]);
   }
 
-  public getVotingClasses(voting?: Voting) {
+  public mounted() {
+    const input = {
+      id: this.group.id,
+      startDateTime: this.startDateTime,
+      endDateTime: this.endDateTime,
+    };
+    this.getGroupStats(input);
+  }
+
+  public getVotingClasses(voting?: VotingStat) {
     return voting
       ? [
         // vote

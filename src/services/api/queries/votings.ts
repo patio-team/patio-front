@@ -21,12 +21,42 @@ mutation CreateVote(
   $votingId: ID!,
   $score: Int!,
   $anonymous: Boolean,
-  $comment: String) {
-    createVote(
-      votingId: $votingId,
-      score: $score,
-      anonymousVote: $anonymous,
-      comment: $comment) {
+  $comment: String
+) {
+  createVote(
+    votingId: $votingId,
+    score: $score,
+    anonymousVote: $anonymous,
+    comment: $comment
+  ) {
+    id
+  }
+}`;
+
+
+export const GetVotingQuery = `
+query GetVoting(
+  $id: ID!
+) {
+  getVoting(id: $id) {
+    id
+    average
+    createdAtDateTime
+    group {
+      id
+      name
+    }
+    votes {
+      id
+      score
+      createdAtDateTime
+      comment
+      createdBy {
         id
+        name
+        hash
       }
-  }`;
+    }
+  }
+}`;
+
