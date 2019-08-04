@@ -22,7 +22,7 @@
 .group-stats {
   display: grid;
   grid-gap: 1px;
-  grid-template: repeat(5, 28px) / repeat(28, 28px);
+  grid-template: repeat(6, 28px) / repeat(21, 28px);
   place-content: center;
   place-items: stretch;
   width: 100%;

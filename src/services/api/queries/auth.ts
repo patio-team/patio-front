@@ -24,6 +24,7 @@ query Login($email: String!, $password: String!) {
       id
       name
       email
+      hash
     }
   }
 }`;
@@ -33,5 +34,6 @@ query MyProfile {
     id
     name
     email
+    hash
   }
 }`;

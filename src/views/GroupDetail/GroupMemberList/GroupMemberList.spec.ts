@@ -31,7 +31,9 @@ const getStore = () => {
       group: {},
     },
     getters: {
-      "group/group": undefined as any,
+      "group/members": undefined as any,
+      "group/getGroupMembersError": false,
+      "group/getGroupMembersIsLoading": false,
       "group/addUserToGroupIsLoading": false,
       "group/addUserToGroupError": false,
     },
@@ -45,22 +47,30 @@ describe("Component: shared/GroupMemberList", () => {
   it("show empty list of members", () => {
     const group = generateGroup({ members: [] });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
 
-    store.getters["group/group"] = group;
-
-    expect(wrapper.contains("[data-testid='row-empty']")).toBe(true);
+    expect(wrapper.contains("[data-testid='empty']")).toBe(true);
     expect(wrapper.contains("[data-testid='row']")).toBe(false);
   });
   it("show two members for admin users", () => {
     const members = [generateUser(), generateUser()];
-    const group = generateGroup({ members, isCurrentUserAdmin: true });
+    const group = generateGroup({ isCurrentUserAdmin: true });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
 
-    store.getters["group/group"] = group;
+    store.getters["group/members"] = members;
 
-    expect(wrapper.contains("[data-testid='row-empty']")).toBe(false);
+    expect(wrapper.contains("[data-testid='empty']")).toBe(false);
     expect(wrapper.contains("[data-testid='row']")).toBe(true);
     expect(wrapper.contains("[data-testid='action-add-member']")).toBe(true);
 
@@ -73,13 +83,18 @@ describe("Component: shared/GroupMemberList", () => {
   });
   it("show two members for no-admin users", () => {
     const members = [generateUser(), generateUser()];
-    const group = generateGroup({ members, isCurrentUserAdmin: false });
+    const group = generateGroup({ isCurrentUserAdmin: false });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
 
-    store.getters["group/group"] = group;
+    store.getters["group/members"] = members;
 
-    expect(wrapper.contains("[data-testid='row-empty']")).toBe(false);
+    expect(wrapper.contains("[data-testid='empty']")).toBe(false);
     expect(wrapper.contains("[data-testid='row']")).toBe(true);
     expect(wrapper.contains("[data-testid='action-add-member']")).toBe(false);
 
@@ -91,13 +106,19 @@ describe("Component: shared/GroupMemberList", () => {
     expect(rows.at(0).contains("[data-testid='action-delete-member']")).toBe(false);
   });
   it("show add member dialog", () => {
-    const group = generateGroup({ members: [], isCurrentUserAdmin: true });
+    const group = generateGroup({ isCurrentUserAdmin: true });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
+
     const vm = wrapper.vm as any;
 
     vm.$modal.push = jest.fn();
-    store.getters["group/group"] = group;
+    store.getters["group/members"] = [];
 
     wrapper.find("[data-testid='action-add-member']").trigger("click");
 
@@ -105,13 +126,19 @@ describe("Component: shared/GroupMemberList", () => {
     expect(vm.$modal.push).toBeCalledWith("add-member");
   });
   it("close add member dialog", () => {
-    const group = generateGroup({ members: [], isCurrentUserAdmin: true });
+    const group = generateGroup({ isCurrentUserAdmin: true });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
+
     const vm = wrapper.vm as any;
 
     vm.$modal.pop = jest.fn();
-    store.getters["group/group"] = group;
+    store.getters["group/members"] = [];
 
     vm.handleAddMemberCancel();
 
@@ -121,14 +148,21 @@ describe("Component: shared/GroupMemberList", () => {
     expect(store.commit).toBeCalledWith("group/addUserToGroupReset");
   });
   it("add a member successfully", async () => {
-    const group = generateGroup({ members: [], isCurrentUserAdmin: true });
+    const group = generateGroup({ isCurrentUserAdmin: true });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
+
     const vm = wrapper.vm as any;
 
     vm.$modal.pop = jest.fn();
     vm.$notify.success = jest.fn();
-    store.getters["group/group"] = group;
+    store.getters["group/members"] = [];
+    store.dispatch.mockReset();
     store.dispatch.mockReturnValue(Promise.resolve(true));
 
     const input = { groupId: "123", email: "email@email.com" };
@@ -136,7 +170,7 @@ describe("Component: shared/GroupMemberList", () => {
 
     expect(store.dispatch).toHaveBeenCalledTimes(2);
     expect(store.dispatch).toHaveBeenNthCalledWith(1, "group/addUserToGroup", input);
-    expect(store.dispatch).toHaveBeenNthCalledWith(2, "group/getGroup", {id: group.id});
+    expect(store.dispatch).toHaveBeenNthCalledWith(2, "group/getGroupMembers", {id: group.id});
     expect(store.commit).toBeCalledTimes(1);
     expect(store.commit).toBeCalledWith("group/addUserToGroupReset");
     expect(vm.$modal.pop).toBeCalledTimes(1);
@@ -144,14 +178,21 @@ describe("Component: shared/GroupMemberList", () => {
     expect(vm.$notify.success).toBeCalledTimes(1);
   });
   it("add a member throw and error", async () => {
-    const group = generateGroup({ members: [], isCurrentUserAdmin: true });
+    const group = generateGroup({ isCurrentUserAdmin: true });
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store }});
+    const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
+      mocks: { $store: store },
+    });
+
     const vm = wrapper.vm as any;
 
     vm.$modal.pop = jest.fn();
     vm.$notify.error = jest.fn();
-    store.getters["group/group"] = group;
+    store.getters["group/members"] = [];
+    store.dispatch.mockReset();
     store.dispatch.mockReturnValue(Promise.resolve(false));
 
     const input = { groupId: "123", email: "email@email.com" };

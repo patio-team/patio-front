@@ -21,12 +21,6 @@ query {
   listMyGroups {
     id
     name
-    visibleMemberList
-    anonymousVote
-    members {
-      id
-      name
-    }
     isCurrentUserAdmin
   }
 }`;
@@ -34,8 +28,6 @@ query {
 export const GetGroupQuery = `
 query GetGroup(
   $id: ID!
-  $startDateTime: DateTime!,
-  $endDateTime: DateTime!
 ) {
   getGroup(id: $id) {
     id
@@ -45,30 +37,36 @@ query GetGroup(
     votingDays
     votingTime
     isCurrentUserAdmin
-    members {
-      id
-      name
-    }
-    votings(startDateTime: $startDateTime, endDateTime: $endDateTime) {
-      id
-      createdAtDateTime
-      average
-    }
   }
 }`;
 
-export const GetGroupWithNoMembersQuery = `
+export const GetGroupMembersQuery = `
 query GetGroup(
   $id: ID!
 ) {
   getGroup(id: $id) {
     id
-    name
-    visibleMemberList
-    anonymousVote
-    votingDays
-    votingTime
-    isCurrentUserAdmin
+    members {
+      id
+      name
+      hash
+    }
+  }
+}`;
+
+export const GetGroupStatsQuery = `
+query GetGroup(
+  $id: ID!
+  $startDateTime: DateTime!,
+  $endDateTime: DateTime!
+) {
+  getGroup(id: $id) {
+    id
+    votings(startDateTime: $startDateTime, endDateTime: $endDateTime) {
+      id
+      createdAtDateTime
+      average
+    }
   }
 }`;
 

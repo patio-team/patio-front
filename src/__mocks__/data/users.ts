@@ -16,17 +16,23 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import md5 from "md5";
 import faker from "faker";
 faker.seed(161803);
+
 
 import { User } from "@/domain";
 
 export function generateUser(params: any = {}): User {
+  const email = faker.internet.email();
+  const hash = md5(email.trim().toLowerCase());
+
   return Object.assign(
     {
       id: faker.random.uuid(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-      email: faker.internet.email(),
+      email,
+      hash,
     },
     params,
   );

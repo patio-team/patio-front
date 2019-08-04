@@ -18,6 +18,10 @@
 
 @import "../../../assets/css/mixins.css";
 
+.form {
+  width: 100%;
+}
+
 .error {
   @mixin error-form;
 }

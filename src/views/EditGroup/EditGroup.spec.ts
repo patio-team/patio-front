@@ -29,7 +29,6 @@ const getStore = () => {
       group: {},
     },
     getters: {
-      "group/group": undefined as any,
       "group/editIsLoading": false,
       "group/editError": false as boolean | string,
     },
@@ -48,18 +47,16 @@ describe("View: EditGroup", () => {
     delete group.members;
 
     const store = getStore();
-    const route = { params: { id: group.id } };
     const wrapper = getWrapper({
+      propsData: {
+        group,
+      },
       mocks: {
         $store: store,
-        $route: route,
       },
     });
 
-    store.getters["group/group"] = group;
-
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-    expect(store.dispatch).toHaveBeenCalledWith("group/getGroup", {id: group.id});
+    expect(wrapper.emitted()["set-subtitle"][0]).toEqual(["VIEWS.EDIT_GROUP.SUBTITLE"]);
     expect(wrapper.contains("[data-testid='group-form']")).toBe(true);
   });
   describe("submit form action", () => {
@@ -68,11 +65,12 @@ describe("View: EditGroup", () => {
       delete group.members;
 
       const store = getStore();
-      const route = { params: { id: group.id } };
       const wrapper = getWrapper({
+        propsData: {
+          group,
+        },
         mocks: {
           $store: store,
-          $route: route,
         },
       });
       const vm = wrapper.vm as any;
@@ -80,7 +78,6 @@ describe("View: EditGroup", () => {
       vm.$notify.error = jest.fn();
       vm.$router = { push: jest.fn() };
 
-      store.getters["group/group"] = group;
       store.dispatch.mockResolvedValue(group);
 
       await vm.handleSubmit(group);
@@ -96,11 +93,12 @@ describe("View: EditGroup", () => {
       delete group.members;
 
       const store = getStore();
-      const route = { params: { id: group.id } };
       const wrapper = getWrapper({
+        propsData: {
+          group,
+        },
         mocks: {
           $store: store,
-          $route: route,
         },
       });
       const vm = wrapper.vm as any;
@@ -108,7 +106,6 @@ describe("View: EditGroup", () => {
       vm.$notify.error = jest.fn();
       vm.$router = { push: jest.fn() };
 
-      store.getters["group/group"] = group;
       store.dispatch.mockResolvedValue(false);
       store.getters["group/editError"] = "API_ERROR";
 

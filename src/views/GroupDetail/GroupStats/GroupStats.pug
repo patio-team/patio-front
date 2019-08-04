@@ -16,16 +16,17 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .group-stats.empty(data-testid="stats" v-if="votings.length === 0")
-  | {{ $t('VIEWS.GROUP_DETAIL.STATS.NO_VOTING_YET') }}
+  | {{ $t('GROUP_STATS.NO_VOTING_YET') }}
 .group-stats(data-testid="stats" v-else)
   template(v-for="voting in votings")
     router-link(
-      v-if="voting"
+      v-if="voting.average"
       v-bind:class="getVotingClasses(voting)"
-      v-bind:to="{name: 'groups:votings:detail', params: {group: group.id, voting: voting.id} }"
+      v-bind:to="{name: 'groups:votings:detail', params: {groupId: group.id, votingId: voting.id} }"
       v-bind:title="voting.createdAtDateTime | toDateSimpleWithWeekDay"
     ) {{ voting.average }}
     div(
       v-else
       v-bind:class="getVotingClasses(voting)"
+      v-bind:title="voting.createdAtDateTime | toDateSimpleWithWeekDay"
     ) --

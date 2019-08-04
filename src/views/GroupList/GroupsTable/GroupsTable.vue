@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { namespace } from "vuex-class";
 
 import { Group } from "@/domain";
 
@@ -46,7 +46,7 @@ export default class GroupsTable extends Vue {
   }
 
   private handleClickRow(groupId: string) {
-    this.$router.push({ name: "groups:detail", params: { id: groupId } });
+    this.$router.push({ name: "groups:detail", params: { groupId } });
   }
 }
 </script>

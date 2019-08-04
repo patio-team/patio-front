@@ -38,8 +38,6 @@
 
 .create-group {
   @mixin view;
-
-  max-width: 800px;
 }
 
 .title {

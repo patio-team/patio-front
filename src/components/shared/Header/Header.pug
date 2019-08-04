@@ -23,7 +23,7 @@
     div.user-menu(data-testid="user-menu")
       div.user
         span.name(data-testid="user-name") {{ me.name }}
-        img.avatar(data-testid="user-avatar" v-bind:src="me.email|gravatarImage" alt)
+        img.avatar(data-testid="user-avatar" v-bind:src="me.hash|gravatarImage" alt)
       div.options-wrapper(data-testid="user-actions")
         div.options-container
           router-link(v-bind:to="{ name: 'my-profile' }") {{ $t("HEADER.USER_ACTIONS.MY_PROFILE")}}

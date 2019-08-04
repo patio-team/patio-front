@@ -18,7 +18,12 @@
 
 import Vue from "vue";
 
-import { DateTime, formatToDateSimpleWithWeekDay, formatToTimeSimple } from "@/utils/datetime";
+import {
+  DateTime,
+  formatToDate,
+  formatToDateSimpleWithWeekDay,
+  formatToTimeSimple,
+} from "@/utils/datetime";
 
 import i18n from "@/i18n";
 
@@ -27,6 +32,10 @@ import { Day } from "@/domain";
 export const toTime = (dt: DateTime) =>
   formatToTimeSimple(dt);
 Vue.filter("toTime", toTime);
+
+export const toDate = (dt: DateTime) =>
+  formatToDate(dt);
+Vue.filter("toDate", toDate);
 
 export const toDateSimpleWithWeekDay = (dt: DateTime) => {
   return formatToDateSimpleWithWeekDay(dt);

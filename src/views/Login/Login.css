@@ -20,8 +20,6 @@
 
 .login {
   @mixin view;
-
-  max-width: 600px;
 }
 
 .title {

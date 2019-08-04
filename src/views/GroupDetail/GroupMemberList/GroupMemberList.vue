@@ -20,13 +20,13 @@
 <style src="./GroupMemberList.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Action, Getter, namespace } from "vuex-class";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 
 import Dialog from "@/components/shared/Dialog/Dialog.vue";
 import AddMemberForm from "./AddMemberForm/AddMemberForm.vue";
 
-import { Group } from "@/domain";
+import { Group, User } from "@/domain";
 
 import { AddUserToGroupInput } from "@/services/api/types";
 
@@ -39,11 +39,14 @@ const GroupStore = namespace("group");
   },
 })
 export default class GroupMemberList extends Vue {
-  @GroupStore.Getter("group")
-  private group!: Group;
+  @Prop(Object)
+  private readonly group!: Group;
 
-  @GroupStore.Action("getGroup")
-  private getGroup: any;
+  @GroupStore.Getter("members")
+  private members!: User[];
+
+  @GroupStore.Action("getGroupMembers")
+  private getGroupMembers: any;
 
   @GroupStore.Getter("addUserToGroupIsLoading")
   private addUserToGroupIsLoading!: Group;
@@ -56,6 +59,13 @@ export default class GroupMemberList extends Vue {
 
   @GroupStore.Action("addUserToGroup")
   private addUserToGroup: any;
+
+  public mounted() {
+    const input = {
+      id: this.group.id,
+    };
+    this.getGroupMembers(input);
+  }
 
   private handleAddMemberButton() {
     this.$modal.push("add-member");
@@ -70,7 +80,7 @@ export default class GroupMemberList extends Vue {
     const isAdded = await this.addUserToGroup(input);
 
     if (isAdded) {
-      this.getGroup({id: this.group.id});
+      this.getGroupMembers({id: this.group.id});
       this.$modal.pop();
       this.addUserToGroupReset();
       this.$notify.success({

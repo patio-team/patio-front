@@ -20,8 +20,6 @@
 
 .group-list {
   @mixin view;
-
-  max-width: 800px;
 }
 
 .head {

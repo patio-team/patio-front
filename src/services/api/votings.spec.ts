@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { generateVoting, generateVotingList } from "@/__mocks__/data/votings";
 
 import MockAdapter from "axios-mock-adapter";
 import { client } from "@/services/api";
@@ -23,8 +24,12 @@ import api from "./votings";
 
 import {
   CreateVoteMutation,
+  GetVotingQuery,
 } from "./queries/votings";
-import { CreateVoteInput } from "./types";
+import {
+  CreateVoteInput,
+  GetVotingInput,
+} from "./types";
 
 const mock = new MockAdapter(client);
 
@@ -33,7 +38,7 @@ describe("API Votings Services", () => {
     mock.reset();
   });
 
-  describe("API Votings Services: list", () => {
+  describe("API Votings Services: create vote", () => {
     it("should create a vote successfully", async () => {
       const input = {} as CreateVoteInput;
 
@@ -48,6 +53,71 @@ describe("API Votings Services", () => {
 
       const data = await api(client).createVote(input);
       expect(data).toBeTruthy();
+    });
+    it("should throw an error", async () => {
+      const input = {} as CreateVoteInput;
+
+      mock
+        // .onPost("", { query: CreateVoteMutation, variables: {} })
+        .onPost("")
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).createVote(input);
+      } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
+    });
+  });
+  describe("API Votings Services: get", () => {
+    it("should get voting data successfully", async () => {
+      const voting = generateVoting();
+
+      const input = {
+        id: voting.id,
+      };
+
+      mock
+        .onPost("", { query: GetVotingQuery, variables: input })
+        .reply(
+          200,
+          JSON.stringify({
+            data: { getVoting: voting },
+          }),
+        );
+
+      const data = await api(client).getVoting(input);
+      expect(data).toEqual(voting);
+    });
+
+    it("should throw an error", async () => {
+      const voting = generateVoting();
+
+      const variables = {
+        id: voting.id,
+      };
+
+      mock
+        .onPost("", { query: GetVotingQuery, variables })
+        .reply(
+          200,
+          JSON.stringify({
+            errors: [{extensions: {code: "ERROR_CODE"}, message: "ERROR_MESSAGE"}],
+          }),
+        );
+
+      let err;
+      try {
+        await api(client).getVoting(variables);
+      } catch (e) { err = e; }
+
+      expect(err.code).toEqual("ERROR_CODE");
     });
   });
 });

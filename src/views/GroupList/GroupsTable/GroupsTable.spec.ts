@@ -97,6 +97,6 @@ describe("Component: shared/GroupsTable", () => {
     rows.at(1).trigger("click");
 
     expect(router.push).toBeCalledTimes(1);
-    expect(router.push).toBeCalledWith({ name: "groups:detail", params: { id: groupList[1].id } });
+    expect(router.push).toBeCalledWith({ name: "groups:detail", params: { groupId: groupList[1].id } });
   });
 });

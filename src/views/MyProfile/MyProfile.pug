@@ -18,7 +18,7 @@
 .my-profile(v-if="me")
   h1.title {{ $t("VIEWS.MY_PROFILE.TITLE") }}
   .profile
-    img.avatar(data-testid="user-avatar" v-bind:src="me.email|gravatarImage({size: 150})" alt)
+    img.avatar(data-testid="user-avatar" v-bind:src="me.hash|gravatarImage({size: 40})" alt)
     .info
       .name(data-testid="user-name") {{ me.name }}
       .email(data-testid="user-email") {{ me.email }}

@@ -17,12 +17,26 @@
  */
 
 import { AxiosInstance } from "axios";
-import { CreateVoteInput } from "./types";
-import { CreateVoteMutation } from "./queries/votings";
+import { Voting } from "@/domain";
+import {
+  CreateVoteInput,
+  GetVotingInput,
+} from "./types";
+import {
+  CreateVoteMutation,
+  GetVotingQuery,
+} from "./queries/votings";
 
 export default (client: AxiosInstance) => ({
   createVote(input: CreateVoteInput) {
     return client
       .post("", { query: CreateVoteMutation, variables: {...input} });
+  },
+  getVoting(input: GetVotingInput) {
+    return client
+      .post("", { query: GetVotingQuery, variables: input })
+      .then((data: any): Voting => {
+        return data.getVoting;
+      });
   },
 });

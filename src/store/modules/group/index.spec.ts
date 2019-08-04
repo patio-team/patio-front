@@ -75,6 +75,76 @@ describe("Group Store Module", () => {
         expect(store.getters["group/getGroupError"]).toEqual("ERROR");
       });
     });
+    // get group members
+    describe("Mutation: getGroupMembersRequest", () => {
+      it("change to pending state when 'get group members' API request is started", () => {
+        const store = getStore();
+
+        store.commit("group/getGroupMembersRequest");
+
+        expect(store.getters["group/members"]).toEqual(undefined);
+        expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(true);
+        expect(store.getters["group/getGroupMembersError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: getGroupMembersSuccess", () => {
+      it("change to success state when 'get group members' API request finish successfully", () => {
+        const store = getStore();
+        const group = generateGroup();
+
+        store.commit("group/getGroupMembersSuccess", group.members);
+
+        expect(store.getters["group/members"]).toEqual(group.members);
+        expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupMembersError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: getGroupMembersFail", () => {
+      it("change to error state when 'get group members' API request fail", () => {
+        const store = getStore();
+
+        store.commit("group/getGroupMembersFail", "ERROR");
+
+        expect(store.getters["group/members"]).toEqual(undefined);
+        expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupMembersError"]).toEqual("ERROR");
+      });
+    });
+    // get group stats
+    describe("Mutation: getGroupStatsRequest", () => {
+      it("change to pending state when 'get group members' API request is started", () => {
+        const store = getStore();
+
+        store.commit("group/getGroupStatsRequest");
+
+        expect(store.getters["group/stats"]).toEqual(undefined);
+        expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(true);
+        expect(store.getters["group/getGroupStatsError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: getGroupStatsSuccess", () => {
+      it("change to success state when 'get group members' API request finish successfully", () => {
+        const store = getStore();
+        const group = generateGroup();
+
+        store.commit("group/getGroupStatsSuccess", group.votings);
+
+        expect(store.getters["group/stats"]).toEqual(group.votings);
+        expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupStatsError"]).toEqual(false);
+      });
+    });
+    describe("Mutation: getGroupStatsFail", () => {
+      it("change to error state when 'get group members' API request fail", () => {
+        const store = getStore();
+
+        store.commit("group/getGroupStatsFail", "ERROR");
+
+        expect(store.getters["group/stats"]).toEqual(undefined);
+        expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupStatsError"]).toEqual("ERROR");
+      });
+    });
     // edit group
     describe("Mutation: editRequest", () => {
       it("change to pending state when 'edit group' API request is started", () => {
@@ -202,34 +272,65 @@ describe("Group Store Module", () => {
       });
     });
 
-    describe("Action: getGroupWithNoMembers", () => {
-      it("get a group successfuly", async () => {
+    describe("Action: getGroupMembers", () => {
+      it("get a group member list successfuly", async () => {
         const store = getStore();
         const group = generateGroup();
         const input = { id: group.id };
 
-        api.groups.getWithNoMembers = jest.fn().mockResolvedValue(group);
+        api.groups.getGroupMembers = jest.fn().mockResolvedValue(group.members);
 
-        await store.dispatch("group/getGroupWithNoMembers", input);
+        await store.dispatch("group/getGroupMembers", input);
 
-        expect(api.groups.getWithNoMembers).toBeCalledTimes(1);
-        expect(api.groups.getWithNoMembers).toBeCalledWith(input);
-        expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
-        expect(store.getters["group/getGroupError"]).toEqual(false);
+        expect(api.groups.getGroupMembers).toBeCalledTimes(1);
+        expect(api.groups.getGroupMembers).toBeCalledWith(input);
+        expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupMembersError"]).toEqual(false);
       });
-      it("get a group throw an error", async () => {
+      it("get a group member list throw an error", async () => {
         const store = getStore();
         const group = generateGroup();
         const input = { id: group.id };
 
-        api.groups.getWithNoMembers = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+        api.groups.getGroupMembers = jest.fn().mockRejectedValue(new ApiError("ERROR"));
 
-        await store.dispatch("group/getGroupWithNoMembers", input);
+        await store.dispatch("group/getGroupMembers", input);
 
-        expect(api.groups.getWithNoMembers).toBeCalledTimes(1);
-        expect(api.groups.getWithNoMembers).toBeCalledWith(input);
-        expect(store.getters["group/getGroupIsLoading"]).toEqual(false);
-        expect(store.getters["group/getGroupError"]).toEqual("ERROR");
+        expect(api.groups.getGroupMembers).toBeCalledTimes(1);
+        expect(api.groups.getGroupMembers).toBeCalledWith(input);
+        expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupMembersError"]).toEqual("ERROR");
+      });
+    });
+
+    describe("Action: getGroupStatss", () => {
+      it("get a group member list successfuly", async () => {
+        const store = getStore();
+        const group = generateGroup();
+        const input = { id: group.id };
+
+        api.groups.getGroupStats = jest.fn().mockResolvedValue(group.votings);
+
+        await store.dispatch("group/getGroupStats", input);
+
+        expect(api.groups.getGroupStats).toBeCalledTimes(1);
+        expect(api.groups.getGroupStats).toBeCalledWith(input);
+        expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupStatsError"]).toEqual(false);
+      });
+      it("get a group member list throw an error", async () => {
+        const store = getStore();
+        const group = generateGroup();
+        const input = { id: group.id };
+
+        api.groups.getGroupStats = jest.fn().mockRejectedValue(new ApiError("ERROR"));
+
+        await store.dispatch("group/getGroupStats", input);
+
+        expect(api.groups.getGroupStats).toBeCalledTimes(1);
+        expect(api.groups.getGroupStats).toBeCalledWith(input);
+        expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(false);
+        expect(store.getters["group/getGroupStatsError"]).toEqual("ERROR");
       });
     });
 
