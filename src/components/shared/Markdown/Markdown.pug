@@ -15,20 +15,4 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.member-votes-list.empty(data-testid="votes-list" v-if="votes.length === 0")
-  | {{ $t('MEMBER_VOTES_LIST.NO_VOTES_YET') }}
-.member-votes-list(data-testid="votes-list" v-else)
-  .votes-list
-    .vote-detail(v-for="vote in votes")
-      .date {{ vote.createdAtDateTime | toDateTimeWithWeekDay }}
-      .info
-        .score(
-          v-bind:class="getVoteClasses(vote)"
-        ) {{ vote.score }}
-        .comment(v-if="vote.comment")
-          dw-markdown(:text="vote.comment")
-  button.more-votes(
-    v-if="showMoreButton"
-    v-on:click="handleClickMoreVotes"
-  )
-    | {{ $t('MEMBER_VOTES_LIST.BUTTON_SHOW_MORE') }}
+.markdown(v-html="outputHtml")

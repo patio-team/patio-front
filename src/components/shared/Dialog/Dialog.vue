@@ -17,7 +17,7 @@
 -->
 
 <template src="./Dialog.pug" lang="pug"></template>
-<style src="./Dialog.css"></style>
+<style src="./Dialog.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from "vue-property-decorator";

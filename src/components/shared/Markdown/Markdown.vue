@@ -16,28 +16,21 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./Header.pug" lang="pug"></template>
-<style src="./Header.css" scoped></style>
+<template src="./Markdown.pug" lang="pug"></template>
+<style src="./Markdown.css"></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 
-import { User } from "@/domain";
-
-const AuthStore = namespace("auth");
+import { fromMarkdownToHtml } from "@/utils/markdown";
 
 @Component
-export default class Header extends Vue {
-  @AuthStore.Getter("myProfile")
-  private me!: User;
+export default class Markdown extends Vue {
+  @Prop({ type: String, required: true })
+  private text!: string;
 
-  @AuthStore.Action("logout")
-  private logout!: any;
-
-  private async handleClickLogout() {
-    await this.logout();
-    this.$router.push({ name: "login" });
+  get outputHtml() {
+    return fromMarkdownToHtml(this.text);
   }
 }
 </script>

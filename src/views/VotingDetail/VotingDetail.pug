@@ -57,4 +57,5 @@
       .score(
         v-bind:class="getVoteClasses(vote)"
       ) {{ vote.score }}
-      .comment(v-if="vote.comment") {{ vote.comment }}
+      .comment(v-if="vote.comment")
+        dw-markdown(:text="vote.comment")

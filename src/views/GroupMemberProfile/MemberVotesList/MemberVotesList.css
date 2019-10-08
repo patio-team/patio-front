@@ -71,12 +71,10 @@
     }
 
     & .comment {
-      align-items: center;
       background: var(--white-400-80);
       border: 3px solid var(--orange-400);
       border-radius: 1rem;
       color: var(--black-400);
-      display: flex;
       flex: 1;
       margin-left: 1rem;
       padding: .8rem;

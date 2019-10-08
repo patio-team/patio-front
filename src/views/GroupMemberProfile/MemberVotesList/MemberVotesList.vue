@@ -23,13 +23,18 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
-import { DateTime, now, minusTo } from "@/utils/datetime";
+import Markdown from "@/components/shared/Markdown/Markdown.vue";
 
 import { Group, User, Vote } from "@/domain";
+import { DateTime, now, minusTo } from "@/utils/datetime";
 
 const ProfileStore = namespace("profile");
 
-@Component
+@Component({
+  components: {
+    "dw-markdown": Markdown,
+  },
+})
 export default class MemberVotesList extends Vue {
   @Prop(Object)
   private readonly group!: Group;

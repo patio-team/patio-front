@@ -22,12 +22,19 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
+
+import Markdown from "@/components/shared/Markdown/Markdown.vue";
+
 import { Group, Voting, VotingStats, Vote } from "@/domain";
 import { formatToDate } from "@/utils/datetime";
 
 const VotingsStore = namespace("voting");
 
-@Component({})
+@Component({
+  components: {
+    "dw-markdown": Markdown,
+  },
+})
 export default class VotingDetail extends Vue {
   @Prop(Object)
   private readonly group!: Group;
