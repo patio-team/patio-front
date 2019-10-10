@@ -30,8 +30,8 @@
       v-for="member in members"
       tabindex="0"
       role="link"
-      v-on:click=""
-      v-on:keyup.enter=""
+      v-on:click="handleClickRow(member.id)"
+      v-on:keyup.enter="handleClickRow(member.id)"
     )
       img.avatar(data-testid="avatar" v-bind:src="member.hash|gravatarImage({size: 50})" alt)
       .name(data-testid="name") {{ member.name }}

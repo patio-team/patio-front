@@ -54,12 +54,14 @@ export default class VotingDetail extends Vue {
     const voting = await this.getVoting(input);
     this.$emit("set-subtitle", formatToDate(voting.createdAtDateTime));
   }
+
   public getVotingClasses(voting: Voting) {
     return [
       // v1 v2 v3 v4 v5
       `v${ voting.average }`,
     ];
   }
+
   public getVoteClasses(vote: Vote) {
     return [
       // v1 v2 v3 v4 v5

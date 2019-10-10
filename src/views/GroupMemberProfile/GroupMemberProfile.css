@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,35 +16,37 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Group, User } from "@/domain";
-import { DateTime } from "@/utils/datetime";
-
-type score = 1 | 2 | 3 | 4 | 5;
-
-export interface Vote {
-  id: string;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  score: score;
-  comment: string;
-  voting?: Voting;
+.group-member-profile {
+  display: flex;
+  flex-direction: column;
 }
 
-export interface VotingStats {
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
-  count: number;
-}
-export interface Voting {
-  id: string;
-  group: Group;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  average: number;
-  votes?: Vote[];
+.profile {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+
+  & .avatar {
+    border: 6px solid var(--orange-400);
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+  }
+
+  & .info {
+    flex: 1 0;
+    padding-left: 3rem;
+
+    & .name {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }
 }
 
-export type VotingStat = Pick<Voting, "id" | "createdAtDateTime" | "average">;
+.votes {
+  align-self: center;
+  margin-top: 3rem;
+}

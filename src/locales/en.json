@@ -49,7 +49,7 @@
     }
   },
   "GROUP_STATS": {
-    "NO_VOTING_YET": "Sin votaciones todavía"
+    "NO_VOTING_YET": "No voting yet"
   },
   "GROUP_FORM": {
     "INPUT_NAME": {
@@ -122,6 +122,10 @@
     },
     "BUTTON_SUBMIT": "Sign in"
   },
+  "MEMBER_VOTES_LIST": {
+    "NO_VOTES_YET": "No voting yet",
+    "BUTTON_SHOW_MORE": "Show older"
+  },
   "VOTE_FORM": {
     "INPUT_COMMENT": {
       "LABEL": "Is there anything else you want to say?"
@@ -154,6 +158,9 @@
       "ANONYMOUS_VOTE_LABEL": "Anonymous votes are",
       "ANONYMOUS_VOTE_ALLOWED_VALUE": "allowed",
       "ANONYMOUS_VOTE_DENY_VALUE": "deny"
+    },
+    "GROUP_MEMBER_PROFILE": {
+      "TITLE": "Member Profile"
     },
     "GROUP_LIST": {
       "TITLE": "My Groups",

@@ -1,0 +1,105 @@
+/*
+ * Copyright (C) 2019 Kaleidos Open Source SL
+ *
+ * This file is part of Dont Worry Be Happy (DWBH).
+ * DWBH is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DWBH is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../../assets/css/mixins.css";
+
+.member-votes-list {
+  display: flex;
+  flex-direction: column;
+
+  &.empty {
+    color: var(--gray-300);
+    display: flex;
+    font-size: 1rem;
+    padding: 2rem;
+  }
+}
+
+.v1 { @mixin vote-1; }
+.v2 { @mixin vote-2; }
+.v3 { @mixin vote-3; }
+.v4 { @mixin vote-4; }
+.v5 { @mixin vote-5; }
+.ve { @mixin vote-empty; }
+
+.votes-list {
+  display: flex;
+  flex-direction: column;
+
+  & > *:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  & .vote-detail {
+    display: flex;
+    flex-direction: column;
+
+    & .info {
+      display: flex;
+      flex-direction: row;
+    }
+
+    & .date {
+      margin: .3rem 0;
+    }
+
+    & .score {
+      align-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 1.5rem;
+      height: 3rem;
+      justify-content: center;
+      margin: 0 .5rem;
+      width: 3rem;
+    }
+
+    & .comment {
+      align-items: center;
+      background: var(--white-400-80);
+      border: 3px solid var(--orange-400);
+      border-radius: 1rem;
+      color: var(--black-400);
+      display: flex;
+      flex: 1;
+      margin-left: 1rem;
+      padding: .8rem;
+      position: relative;
+      width: calc(100% - 20rem);
+
+      &::after {
+        border: 1rem solid transparent;
+        border-left: 0;
+        border-right-color: var(--orange-400);
+        border-top: 0;
+        content: '';
+        height: 0;
+        left: 0;
+        margin-left: -1rem;
+        margin-top: -.5rem;
+        position: absolute;
+        top: 1rem;
+        width: 0;
+      }
+    }
+  }
+}
+
+.more-votes {
+  margin-top: 2.5rem;
+}

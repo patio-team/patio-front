@@ -49,7 +49,7 @@
     }
   },
   "GROUP_STATS": {
-    "NO_VOTING_YET": "No voting yet"
+    "NO_VOTING_YET": "Sin votaciones todavía"
   },
   "GROUP_FORM": {
     "INPUT_NAME": {
@@ -114,6 +114,10 @@
     },
     "BUTTON_SUBMIT": "Acceder"
   },
+  "MEMBER_VOTES_LIST": {
+    "NO_VOTES_YET": "Sin votaciones todavía",
+    "BUTTON_SHOW_MORE": "Ver más antiguos"
+  },
   "VOTE_FORM": {
     "INPUT_COMMENT": {
       "LABEL": "¿Hay algo más que quieras decir?"
@@ -146,6 +150,9 @@
       "ANONYMOUS_VOTE_LABEL": "Voto anonimo",
       "ANONYMOUS_VOTE_ALLOWED_VALUE": "permitido",
       "ANONYMOUS_VOTE_DENY_VALUE": "prohibido"
+    },
+    "GROUP_MEMBER_PROFILE": {
+      "TITLE": "Perfil de miembro"
     },
     "GROUP_LIST": {
       "TITLE": "Mis Grupos",
