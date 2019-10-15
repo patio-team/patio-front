@@ -41,12 +41,15 @@
 
   .votes-list
     .vote-detail(v-for="vote in voting.votes")
-      img.avatar(
-        data-testid="avatar"
+      router-link(
         v-if="vote.createdBy"
-        v-bind:src="vote.createdBy.hash|gravatarImage({size: 48})"
-        v-bind:alt="vote.createdBy.name"
+        v-bind:to="{ name: 'groups:members:profile', params: { groupId: group.id, userId: vote.createdBy.id } }"
       )
+        img.avatar(
+          data-testid="avatar"
+          v-bind:src="vote.createdBy.hash|gravatarImage({size: 48})"
+          v-bind:alt="vote.createdBy.name"
+        )
       .anonymous(
         data-testid="anonymous"
         v-else

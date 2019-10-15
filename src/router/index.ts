@@ -25,6 +25,7 @@ import GroupList from "@/views/GroupList/GroupList.vue";
 import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
 import GroupLayout from "@/views/GroupLayout/GroupLayout.vue";
 import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
+import GroupMemberProfile from "@/views/GroupMemberProfile/GroupMemberProfile.vue";
 import GroupDetailActions from "@/views/GroupDetail/GroupDetailActions/GroupDetailActions.vue";
 import EditGroup from "@/views/EditGroup/EditGroup.vue";
 import VotingDetail from "@/views/VotingDetail/VotingDetail.vue";
@@ -95,6 +96,14 @@ const router = new Router({
           path: "edit",
           name: "groups:edit",
           component: EditGroup,
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "members/:userId",
+          name: "groups:members:profile",
+          component: GroupMemberProfile,
           meta: {
             requiresAuth: true,
           },

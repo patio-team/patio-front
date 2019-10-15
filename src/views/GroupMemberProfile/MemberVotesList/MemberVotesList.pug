@@ -15,19 +15,19 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.my-profile(v-if="me")
-  h1.title {{ $t("VIEWS.MY_PROFILE.TITLE") }}
-  .profile
-    img.avatar(data-testid="user-avatar" v-bind:src="me.hash|gravatarImage({size: 100})" alt)
-    .info
-      .name(data-testid="user-name") {{ me.name }}
-      .email(data-testid="user-email") {{ me.email }}
-    .actions
-      a.action.edit(
-        disabled aria-disabled="true" tabindex="-1"
-      )
-        | {{ $t("VIEWS.MY_PROFILE.ACTION_EDIT") }}
-      a.action.change-password(
-        disabled aria-disabled="true" tabindex="-1"
-      )
-        | {{ $t("VIEWS.MY_PROFILE.ACTION_CHANGE_PASSWORD") }}
+.member-votes-list.empty(data-testid="votes-list" v-if="votes.length === 0")
+  | {{ $t('MEMBER_VOTES_LIST.NO_VOTES_YET') }}
+.member-votes-list(data-testid="votes-list" v-else)
+  .votes-list
+    .vote-detail(v-for="vote in votes")
+      .date {{ vote.createdAtDateTime | toDateTimeWithWeekDay }}
+      .info
+        .score(
+          v-bind:class="getVoteClasses(vote)"
+        ) {{ vote.score }}
+        .comment(v-if="vote.comment") {{ vote.comment }}
+  button.more-votes(
+    v-if="showMoreButton"
+    v-on:click="handleClickMoreVotes"
+  )
+    | {{ $t('MEMBER_VOTES_LIST.BUTTON_SHOW_MORE') }}

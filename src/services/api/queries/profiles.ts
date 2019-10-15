@@ -16,35 +16,29 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Group, User } from "@/domain";
-import { DateTime } from "@/utils/datetime";
 
-type score = 1 | 2 | 3 | 4 | 5;
+export const GetUserQuery = `
+query GetUser(
+  $id: ID!
+) {
+  getUser(id: $id){
+    id
+    name
+    hash
+  }
+}`;
 
-export interface Vote {
-  id: string;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  score: score;
-  comment: string;
-  voting?: Voting;
-}
-
-export interface VotingStats {
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
-  count: number;
-}
-export interface Voting {
-  id: string;
-  group: Group;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  average: number;
-  votes?: Vote[];
-}
-
-export type VotingStat = Pick<Voting, "id" | "createdAtDateTime" | "average">;
+export const ListUserVotesInGroupQuery = `
+query ListUserVotesInGroup(
+  $userId: ID!,
+  $groupId: ID!,
+  $startDateTime: DateTime!,
+  $endDateTime: DateTime!
+) {
+  listUserVotesInGroup(userId: $userId, groupId: $groupId, startDateTime: $startDateTime, endDateTime: $endDateTime){
+    id
+    score
+    comment
+    createdAtDateTime
+  }
+}`;

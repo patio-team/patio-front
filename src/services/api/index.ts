@@ -24,6 +24,7 @@ import { transformRequest, transformResponse } from "./transforms";
 
 import Auth from "./auth";
 import Groups from "./groups";
+import Profiles from "./profiles";
 import Votings from "./votings";
 
 export { ApiError } from "./interceptors";
@@ -59,5 +60,6 @@ export default {
   setAuthorization,
   auth: Auth(client),
   groups: Groups(client),
+  profiles: Profiles(client),
   votings: Votings(client),
 };

@@ -16,35 +16,13 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Group, User } from "@/domain";
-import { DateTime } from "@/utils/datetime";
+import { User, Vote } from "@/domain";
 
-type score = 1 | 2 | 3 | 4 | 5;
-
-export interface Vote {
-  id: string;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  score: score;
-  comment: string;
-  voting?: Voting;
+export interface ProfileState {
+  profile?: User;
+  getProfileIsLoading: boolean;
+  getProfileError: boolean | string;
+  votes: Vote[];
+  getVotesIsLoading: boolean;
+  getVotesError: boolean | string;
 }
-
-export interface VotingStats {
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
-  count: number;
-}
-export interface Voting {
-  id: string;
-  group: Group;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  average: number;
-  votes?: Vote[];
-}
-
-export type VotingStat = Pick<Voting, "id" | "createdAtDateTime" | "average">;

@@ -24,6 +24,7 @@ import createLogger from "vuex/dist/logger";
 import auth from "@/store/modules/auth";
 import group from "@/store/modules/group";
 import groups from "@/store/modules/groups";
+import profile from "@/store/modules/profile";
 import voting from "@/store/modules/voting";
 import votings from "@/store/modules/votings";
 
@@ -39,6 +40,7 @@ const storeOptions: StoreOptions<RootState> = {
     auth,
     group,
     groups,
+    profile,
     voting,
     votings,
   },

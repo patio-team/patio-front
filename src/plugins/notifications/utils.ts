@@ -17,7 +17,7 @@
  */
 
 // ID function
-function* _segIDGenerator() {
+function* _segIDGenerator(): IterableIterator<number> {
   let n = 1;
   while(true) {
     yield n++;

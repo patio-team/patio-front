@@ -16,35 +16,34 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Group, User } from "@/domain";
-import { DateTime } from "@/utils/datetime";
+import { AxiosInstance } from "axios";
 
-type score = 1 | 2 | 3 | 4 | 5;
+import { User, Vote } from "@/domain";
 
-export interface Vote {
-  id: string;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  score: score;
-  comment: string;
-  voting?: Voting;
-}
+import {
+  GetUserInput,
+  ListUserVotesInGroupInput,
+} from "./types";
 
-export interface VotingStats {
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
-  count: number;
-}
-export interface Voting {
-  id: string;
-  group: Group;
-  createdAtDateTime: DateTime;
-  createdBy: User;
-  average: number;
-  votes?: Vote[];
-}
+import {
+  GetUserQuery,
+  ListUserVotesInGroupQuery,
+} from "./queries/profiles";
 
-export type VotingStat = Pick<Voting, "id" | "createdAtDateTime" | "average">;
+
+export default (client: AxiosInstance) => ({
+  get(input: GetUserInput) {
+    return client
+      .post("", { query: GetUserQuery, variables: input })
+      .then((data: any): User => {
+        return data.getUser;
+      });
+  },
+  listUserVotesInGroup(input: ListUserVotesInGroupInput) {
+    return client
+      .post("", { query: ListUserVotesInGroupQuery, variables: input })
+      .then((data: any): Vote[] => {
+        return data.listUserVotesInGroup;
+      });
+  },
+});

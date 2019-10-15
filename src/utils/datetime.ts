@@ -34,8 +34,14 @@ export const now = (): DateTime =>
 export const plus = (duration: Duration | number | DurationObject): DateTime =>
   DateTime.local().plus(duration);
 
+export const plusTo = (datetime: DateTime, duration: Duration | number | DurationObject): DateTime =>
+  datetime.plus(duration);
+
 export const minus = (duration: Duration | number | DurationObject): DateTime =>
   DateTime.local().minus(duration);
+
+export const minusTo = (datetime: DateTime, duration: Duration | number | DurationObject): DateTime =>
+  datetime.minus(duration);
 
 export const getListOfDays = (from: DateTime, to: DateTime): DateTime[] => {
   const list = [] as DateTime[];
@@ -69,6 +75,12 @@ export const formatToDate = (datetime: DateTime): string =>
 
 export const formatToDateSimpleWithWeekDay = (datetime: DateTime): string =>
   datetime.toLocaleString({ weekday: "long", month: "long", day: "2-digit" });
+
+export const formatToDateTimeWithWeekDay = (datetime: DateTime): string =>
+  datetime.toLocaleString({
+    weekday: "short", month: "short", day: "numeric", year: "numeric",
+    hour: "numeric", minute: "2-digit",
+  });
 
 export const formatToTime24Simple = (datetime: DateTime): string =>
   datetime.toLocaleString(DateTime.TIME_24_SIMPLE);

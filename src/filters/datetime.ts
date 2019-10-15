@@ -22,6 +22,7 @@ import {
   DateTime,
   formatToDate,
   formatToDateSimpleWithWeekDay,
+  formatToDateTimeWithWeekDay,
   formatToTimeSimple,
 } from "@/utils/datetime";
 
@@ -41,6 +42,11 @@ export const toDateSimpleWithWeekDay = (dt: DateTime) => {
   return formatToDateSimpleWithWeekDay(dt);
 };
 Vue.filter("toDateSimpleWithWeekDay", toDateSimpleWithWeekDay);
+
+export const toDateTimeWithWeekDay = (dt: DateTime) => {
+  return formatToDateTimeWithWeekDay(dt);
+};
+Vue.filter("toDateTimeWithWeekDay", toDateTimeWithWeekDay);
 
 export const toListOfDays = (votingDays: Day[]) =>
   votingDays

@@ -67,6 +67,10 @@ export default class GroupMemberList extends Vue {
     this.getGroupMembers(input);
   }
 
+  private handleClickRow(userId: string) {
+    this.$router.push({ name: "groups:members:profile", params: { groupId: this.group.id, userId } });
+  }
+
   private handleAddMemberButton() {
     this.$modal.push("add-member");
   }
