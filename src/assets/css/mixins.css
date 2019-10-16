@@ -189,6 +189,7 @@
    =============================== */
 @define-mixin vote {
   align-items: center;
+  border-radius: 10%;
   color: var(--white-400);
   display: flex;
   font-weight: 800;

@@ -43,19 +43,12 @@ export default class MemberVotesList extends Vue {
   @ProfileStore.Action("getVotes")
   private getVotes: any;
 
-  @ProfileStore.Mutation("resetState")
-  private resetState: any;
-
   private endDateTime: DateTime = now();
   private pageSize = 7;
   private showMoreButton = false;
 
   public mounted() {
     this.loadMoreVotes();
-  }
-
-  public destroyed() {
-    this.resetState();
   }
 
   public async handleClickMoreVotes() {
@@ -80,6 +73,5 @@ export default class MemberVotesList extends Vue {
     this.showMoreButton = newVotes && newVotes.length > 0;
     this.endDateTime = startDateTime;
   }
-
 }
 </script>

@@ -43,9 +43,16 @@ export default class GroupMemberProfile extends Vue {
   @ProfileStore.Action("getProfile")
   private getProfile: any;
 
+  @ProfileStore.Mutation("resetState")
+  private resetState: any;
+
   public mounted() {
     this.getProfile({id: this.$route.params.userId});
     this.$emit("set-subtitle", this.$t("VIEWS.GROUP_MEMBER_PROFILE.TITLE"));
+  }
+
+  public destroyed() {
+    this.resetState();
   }
 }
 </script>
