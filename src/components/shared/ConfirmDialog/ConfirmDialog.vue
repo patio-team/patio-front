@@ -17,7 +17,7 @@
 -->
 
 <template src="./ConfirmDialog.pug" lang="pug"></template>
-<style src="./ConfirmDialog.css"></style>
+<style src="./ConfirmDialog.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from "vue-property-decorator";
