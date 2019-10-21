@@ -28,7 +28,7 @@ import Markdown from "@/components/shared/Markdown/Markdown.vue";
 import { Group, Voting, VotingStats, Vote } from "@/domain";
 import { formatToDate } from "@/utils/datetime";
 
-const VotingsStore = namespace("voting");
+const VotingStore = namespace("voting");
 
 @Component({
   components: {
@@ -39,20 +39,23 @@ export default class VotingDetail extends Vue {
   @Prop(Object)
   private readonly group!: Group;
 
-  @VotingsStore.Getter("voting")
+  @VotingStore.Getter("voting")
   private voting!: Voting;
 
-  @VotingsStore.Getter("stats")
+  @VotingStore.Getter("stats")
   private stats!: VotingStats;
 
-  @VotingsStore.Getter("getVotingIsLoading")
+  @VotingStore.Getter("getVotingIsLoading")
   private isLoading!: boolean;
 
-  @VotingsStore.Getter("getVotingError")
+  @VotingStore.Getter("getVotingError")
   private error!: boolean | string;
 
-  @VotingsStore.Action("getVoting")
+  @VotingStore.Action("getVoting")
   private getVoting: any;
+
+  @VotingStore.Action("resetState")
+  private resetState: any;
 
   public async mounted() {
     const input = {
@@ -60,6 +63,10 @@ export default class VotingDetail extends Vue {
     };
     const voting = await this.getVoting(input);
     this.$emit("set-subtitle", formatToDate(voting.createdAtDateTime));
+  }
+
+  public destroyed() {
+    this.resetState();
   }
 
   public getVotingClasses(voting: Voting) {

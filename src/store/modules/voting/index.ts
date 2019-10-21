@@ -26,11 +26,13 @@ import { Voting } from "@/domain";
 import { RootState } from "@/store/types";
 import { VotingState } from "./types";
 
-const initialState: VotingState = {
+const getInitialState = (): VotingState => ({
   voting: undefined,
   getVotingIsLoading: false,
   getVotingError: false,
-};
+});
+
+const initialState = getInitialState();
 
 const getters: GetterTree<VotingState, RootState> = {
   voting(state: VotingState) { return state.voting; },
@@ -64,6 +66,10 @@ const mutations: MutationTree<VotingState> = {
   getVotingFail(state: VotingState, error: string) {
     state.getVotingIsLoading = false;
     state.getVotingError = error;
+  },
+  // reset
+  resetState(state: VotingState) {
+    Object.assign(state, getInitialState());
   },
 };
 

@@ -32,7 +32,7 @@ import { Group, User, VotingStat } from "@/domain";
 import { RootState } from "@/store/types";
 import { GroupState } from "./types";
 
-const initialState: GroupState = {
+const getInitialState = (): GroupState => ({
   group: undefined,
   getGroupIsLoading: false,
   getGroupError: false,
@@ -48,7 +48,9 @@ const initialState: GroupState = {
   addUserToGroupError: false,
   leaveIsLoading: false,
   leaveError: false,
-};
+});
+
+const initialState = getInitialState();
 
 const getters: GetterTree<GroupState, RootState> = {
   group(state: GroupState) { return state.group; },
@@ -152,6 +154,10 @@ const mutations: MutationTree<GroupState> = {
   leaveReset(state: GroupState) {
     state.leaveIsLoading = false;
     state.leaveError = false;
+  },
+  // reset
+  resetState(state: GroupState) {
+    Object.assign(state, getInitialState());
   },
 };
 

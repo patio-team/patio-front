@@ -27,23 +27,26 @@ import { now, minus, formatToTime24Simple } from "@/utils/datetime";
 
 import { Group } from "@/domain";
 
-const GroupsStore = namespace("group");
+const GroupStore = namespace("group");
 
 @Component({
   components: {},
 })
 export default class GroupLayout extends Vue {
-  @GroupsStore.Getter("group")
+  @GroupStore.Getter("group")
   private group!: Group;
 
-  @GroupsStore.Getter("getGroupIsLoading")
+  @GroupStore.Getter("getGroupIsLoading")
   private isLoading!: boolean;
 
-  @GroupsStore.Getter("getGroupError")
+  @GroupStore.Getter("getGroupError")
   private error!: boolean | string;
 
-  @GroupsStore.Action("getGroup")
+  @GroupStore.Action("getGroup")
   private getGroup: any;
+
+  @GroupStore.Action("resetState")
+  private resetState: any;
 
   private subtitle = "";
 
@@ -52,6 +55,10 @@ export default class GroupLayout extends Vue {
       id: this.$route.params.groupId,
     };
     this.getGroup(input);
+  }
+
+  public destroyed() {
+    this.resetState();
   }
 
   public setSubtitle(newSubtitle: string) {
