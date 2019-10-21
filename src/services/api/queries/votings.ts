@@ -26,7 +26,7 @@ mutation CreateVote(
   createVote(
     votingId: $votingId,
     score: $score,
-    anonymousVote: $anonymous,
+    anonymous: $anonymous,
     comment: $comment
   ) {
     id

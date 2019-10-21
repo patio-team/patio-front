@@ -17,7 +17,8 @@
     "USER_ALREADY_ON_GROUP": "El usuario ya pertenece al grupo.",
     "PARSE_LITERAL_EXCEPTION": "API_ERRORS.PARSE_LITERAL_EXCEPTION",
     "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION",
-    "SCORE_IS_INVALID": "La puntuación debe estar entre 1 y 5"
+    "SCORE_IS_INVALID": "Elige una puntuación, debe estar entre 1 y 5",
+    "USER_ALREADY_VOTE": "Lo siento pero ya has votado"
   },
   "ADD_MEMBER_FORM": {
     "TITLE": "Añadir un nuevo miembro",

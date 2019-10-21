@@ -16,6 +16,6 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .vote
-  h1.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
+  h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
 
-  dw-vote-form(data-testid="vote-form")
+  dw-vote-form(v-bind:group="group" v-bind:voting="voting" data-testid="vote-form")

@@ -17,22 +17,54 @@
  */
 
 import { shallowMount, RouterLinkStub } from "@vue/test-utils";
+import { Store } from "vuex-mock-store";
+
+import { generateGroup } from "@/__mocks__/data/groups";
+import { generateVoting } from "@/__mocks__/data/votings";
 
 import Vote from "./Vote.vue";
 
-const getWrapper = ({...params}) => {
+const getStore = () => {
+  return new Store({
+    state: {
+      group: {},
+      voting: {},
+    },
+    getters: {
+      "group/group": undefined as any,
+      "voting/voting": undefined as any,
+      "voting/getVotingIsLoading": false,
+      "voting/getVotingError": false,
+    },
+  });
+};
+
+const getWrapper = (...params: any) => {
   return shallowMount(
     Vote,
-    {
-      stubs: { RouterLink: RouterLinkStub },
+    Object.assign(
+      { stubs: { RouterLink: RouterLinkStub } },
       ...params,
-    },
+    ),
   );
 };
 
 describe("View: Vote", () => {
   it("show the form", () => {
-    const wrapper = getWrapper({});
+    const route = { params: { votingId: "voting-dd", groupId: "group-id"}};
+
+    const store = getStore();
+    const group = generateGroup();
+    const voting = generateVoting();
+
+    store.getters["group/group"] = group;
+    store.getters["voting/voting"] = voting;
+    store.dispatch.mockReturnValue(voting);
+
+    const wrapper = getWrapper({
+      propsData: { group },
+      mocks: { $store: store, $route: route},
+    });
 
     expect(wrapper.contains("[data-testid='vote-form']")).toBe(true);
   });

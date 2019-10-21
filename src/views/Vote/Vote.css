@@ -19,11 +19,13 @@
 @import "../../assets/css/mixins.css";
 
 .vote {
-  @mixin view;
+  display: flex;
+  flex-direction: column;
 
   & .title {
     align-self: center;
     color: var(--black-400);
-    margin: auto auto 4rem;
+    font-size: 1.8rem;
+    margin: 1rem auto 4rem;
   }
 }

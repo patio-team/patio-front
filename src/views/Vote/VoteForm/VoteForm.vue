@@ -20,13 +20,13 @@
 <style src="./VoteForm.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
+
 import { CreateVoteInput } from "@/services/api/types";
-import { Group } from "@/domain";
+import { Group, Voting } from "@/domain";
 
 const Votings = namespace("votings");
-const Group = namespace("group");
 
 @Component
 export default class VoteForm extends Vue {
@@ -38,8 +38,11 @@ export default class VoteForm extends Vue {
     groupId: "",
   } as CreateVoteInput;
 
-  @Group.Getter("group")
-  private group!: Group;
+  @Prop(Object)
+  private readonly group!: Group;
+
+  @Prop(Object)
+  private voting!: Voting;
 
   @Votings.Getter("createVoteIsLoading")
   private isLoading!: boolean;
@@ -50,29 +53,19 @@ export default class VoteForm extends Vue {
   @Votings.Action("createVote")
   private createVote: any;
 
-  @Group.Action("getGroup")
-  private getGroup: any;
-
-  public mounted() {
-    const input = {
-      id: this.$route.params.groupId,
-    };
-    this.getGroup(input);
-  }
-
   private async handleSubmit() {
     const isCreated = await this.createVote({
       ...this.input,
-      votingId: this.$route.params.votingId,
-      groupId: this.$route.params.groupId,
+      votingId: this.voting.id,
+      groupId: this.group.id,
     });
 
     if(isCreated) {
       this.$router.push({
         name: "groups:votings:detail",
         params: {
-          groupId: this.$route.params.groupId,
-          votingId: this.$route.params.votingId,
+          votingId: this.voting.id,
+          groupId: this.group.id,
         },
       });
     }

@@ -43,8 +43,8 @@ form.vote-form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocompl
     label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
     textarea(data-testid="comment" id="comment" v-model="input.comment")
 
-  .anonymous(data-testid="anonymouscontainer" v-if="group")
-    input(v-if="group.anonymousVote" data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
-    label(v-if="group.anonymousVote" data-testid="anonymouslabel" for="anonymous") {{ $t("VOTE_FORM.INPUT_ANONYMOUS.LABEL") }}
+  .anonymous(data-testid="anonymouscontainer" v-if="group && group.anonymousVote")
+    input(data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
+    label(data-testid="anonymouslabel" for="anonymous") {{ $t("VOTE_FORM.INPUT_ANONYMOUS.LABEL") }}
 
   button.submit(data-testid="submit" type="submit") {{ $t("VOTE_FORM.BUTTON_SUBMIT") }}

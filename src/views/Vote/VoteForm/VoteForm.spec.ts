@@ -16,21 +16,23 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Store } from "vuex-mock-store";
 import { mount } from "@vue/test-utils";
+import { Store } from "vuex-mock-store";
 import flushPromises from "flush-promises";
+
+import { generateGroup } from "@/__mocks__/data/groups";
+import { generateVoting } from "@/__mocks__/data/votings";
+
 import VoteForm from "./VoteForm.vue";
 
 const getStore = () => {
   return new Store({
     state: {
       votings: {},
-      group: {},
     },
     getters: {
       "votings/createVoteIsLoading": false,
       "votings/createVoteError": false,
-      "group/group": undefined as any,
     },
   });
 };
@@ -40,33 +42,47 @@ const getWrapper = (...params: any) => {
 };
 
 describe("Component: shared/VoteForm", () => {
-  it("show empty initial state", () => {
+  it("show empty initial statei when anonymous vote are anabled", () => {
     const store = getStore();
-    const group = { anonymousVote: false };
-    const route = { params: { votingId: "", groupId: ""}};
+    const group = generateGroup({anonymousVote: true});
+    const voting = generateVoting();
     const wrapper = getWrapper({
-      mocks: { $store: store, $route: route},
+      propsData: { group, voting },
+      mocks: { $store: store },
     });
-
-    store.getters["group/group"] = group;
-
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
 
     expect(wrapper.contains("[data-testid='form']")).toBeTruthy();
     expect(wrapper.contains("[data-testid='commentlabel']")).toBeTruthy();
     expect(wrapper.contains("[data-testid='comment']")).toBeTruthy();
 
     expect(wrapper.contains("[data-testid='anonymouscontainer']")).toBeTruthy();
-    expect(wrapper.contains("[data-testid='anonymouslabel']")).toBeFalsy();
-    expect(wrapper.contains("[data-testid='anonymous']")).toBeFalsy();
   });
+
+  it("show empty initial statei when anonymous vote are disabled", () => {
+    const store = getStore();
+    const group = generateGroup({anonymousVote: false});
+    const voting = generateVoting();
+    const wrapper = getWrapper({
+      propsData: { group, voting },
+      mocks: { $store: store },
+    });
+
+    expect(wrapper.contains("[data-testid='form']")).toBeTruthy();
+    expect(wrapper.contains("[data-testid='commentlabel']")).toBeTruthy();
+    expect(wrapper.contains("[data-testid='comment']")).toBeTruthy();
+
+    expect(wrapper.contains("[data-testid='anonymouscontainer']")).toBeFalsy();
+  });
+
 
   it("create vote successfully", async () => {
     const store = getStore();
+    const group = generateGroup({id: "groupId"});
+    const voting = generateVoting({id: "votingId"});
     const router = { push: jest.fn() };
-    const route = { params: { votingId: "votingId", groupId: "groupId"}};
     const wrapper = getWrapper({
-      mocks: { $store: store, $router: router, $route: route},
+      propsData: { group, voting },
+      mocks: { $store: store, $router: router },
     });
 
     store.dispatch.mockClear();
@@ -97,10 +113,12 @@ describe("Component: shared/VoteForm", () => {
 
   it("create vote error", async () => {
     const store = getStore();
+    const group = generateGroup({id: "groupId"});
+    const voting = generateVoting({id: "votingId"});
     const router = { push: jest.fn() };
-    const route = { params: { votingId: "votingId", groupId: "groupId"}};
     const wrapper = getWrapper({
-      mocks: { $store: store, $router: router, $route: route},
+      propsData: { group, voting },
+      mocks: { $store: store, $router: router },
     });
 
     store.dispatch.mockClear();

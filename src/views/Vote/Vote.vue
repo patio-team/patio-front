@@ -20,13 +20,43 @@
 <style src="./Vote.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
+
 import VoteForm from "./VoteForm/VoteForm.vue";
+
+import { Group, Voting } from "@/domain";
+import { formatToDate } from "@/utils/datetime";
+
+const VotingsStore = namespace("voting");
 
 @Component({
   components: {
     "dw-vote-form": VoteForm,
   },
 })
-export default class Vote extends Vue {}
+export default class Vote extends Vue {
+  @Prop(Object)
+  private readonly group!: Group;
+
+  @VotingsStore.Getter("voting")
+  private voting!: Voting;
+
+  @VotingsStore.Getter("getVotingIsLoading")
+  private isLoading!: boolean;
+
+  @VotingsStore.Getter("getVotingError")
+  private error!: boolean | string;
+
+  @VotingsStore.Action("getVoting")
+  private getVoting: any;
+
+  public async mounted() {
+    const input = {
+      id: this.$route.params.votingId,
+    };
+    const voting = await this.getVoting(input);
+    this.$emit("set-subtitle", formatToDate(voting.createdAtDateTime));
+  }
+}
 </script>
