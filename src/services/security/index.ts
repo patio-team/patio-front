@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,12 +16,26 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../assets/css/mixins.css";
+import Keycloak from "keycloak-js";
 
-.login {
-  @mixin view;
-}
+/**
+ * Mandatory parameters to connect to
+ * Keycloak server
+ */
+const keycloackOpts = {
+  url: "http://localhost:8000/auth",
+  realm: "dwbh",
+  clientId: "web-app",
+};
 
-.title {
-  padding-bottom: 1rem;
-}
+/**
+ * Creating an instance with provided
+ * options
+ */
+const keycloak = Keycloak(keycloackOpts);
+
+/**
+ * Finally we export it in order to use it
+ * throughout the application
+ */
+export default keycloak;

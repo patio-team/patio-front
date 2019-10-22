@@ -20,5 +20,4 @@ import { User } from "./users";
 
 export interface Login {
   token: string;
-  profile: User;
 }

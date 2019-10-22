@@ -17,6 +17,8 @@
  */
 
 import { AxiosResponse, AxiosRequestConfig, AxiosError} from "axios";
+import keycloak from "@/services/security";
+
 
 declare class Error {
   protected static captureStackTrace(error: Error, constructorOpt: any): any;
@@ -48,6 +50,7 @@ export class ApiError extends Error {
 // const tokenExpiredErrorHandler = (res: AxiosResponse, code: string, message: string) => {}
 
 const defaultApiErrorHandler = (res: AxiosResponse, code: string, message: string): Promise<AxiosResponse<any>> =>  {
+  // keycloak.logout();
   return Promise.reject(new ApiError(code, message));
 };
 

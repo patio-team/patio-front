@@ -16,17 +16,51 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./Login.pug" lang="pug"></template>
-<style src="./Login.css" scoped></style>
-
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import LoginForm from "./LoginForm/LoginForm.vue";
 
-@Component({
-  components: {
-    "dw-login-form": LoginForm,
-  },
-})
-export default class Login extends Vue {}
+import { Component, Vue } from "vue-property-decorator";
+import { namespace } from "vuex-class";
+import { KeycloakError } from "keycloak-js";
+
+import keycloak from "@/services/security";
+
+const Auth = namespace("auth");
+
+@Component
+export default class Login extends Vue {
+
+  @Auth.Action("login")
+  private login: any;
+
+  @Auth.Mutation("loginRequest")
+  private loginRequest: any;
+
+  @Auth.Mutation("loginSuccess")
+  private loginSuccess: any;
+
+  @Auth.Mutation("loginError")
+  private loginError: any;
+
+  public async mounted() {
+    this.loginRequest();
+    keycloak
+      .init({onLoad: "login-required"})
+      .success((ok) => {
+        const login = {
+          token: keycloak.token as string,
+        };
+        this.loginSuccess(login);
+        const next = this.$route.query.next as string
+          || { name: "groups:list" };
+        this.$router.push(next);
+      }).error((error) => {
+        this.loginError(error.error);
+        this.$notify.error(error.error);
+      });
+  }
+
+  public render() {
+    return;
+  }
+}
 </script>

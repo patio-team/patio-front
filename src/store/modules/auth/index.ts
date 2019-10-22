@@ -24,7 +24,7 @@ import { LoginInput } from "@/services/api/types";
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
 import { Login, User } from "@/domain";
-
+import keycloak from "@/services/security";
 
 const initialState: AuthState = {
   loginIsLoading: false,
@@ -52,7 +52,7 @@ const mutations: MutationTree<AuthState> = {
     state.loginIsLoading = false;
 
     api.setAuthorization(login.token);
-    state.myProfile = login.profile;
+    state.myProfile = undefined;
   },
   loginError(state: AuthState, error: string) {
     state.loginIsLoading = false;
@@ -81,23 +81,10 @@ const mutations: MutationTree<AuthState> = {
 };
 
 const actions: ActionTree<AuthState, RootState> = {
-  async login(
-    { commit, state }: { commit: Commit, state: AuthState },
-    input: LoginInput,
-  ) {
-    commit("loginRequest");
-    try {
-      const login = await api.auth.login(input);
-      commit("loginSuccess", login);
-      return true;
-    } catch (error) {
-      commit("loginError", error.code );
-      return false;
-    }
-  },
   async logout(
     { commit, state }: { commit: Commit, state: AuthState },
   ) {
+    keycloak.logout();
     commit("logout");
   },
   async getMyProfile(
