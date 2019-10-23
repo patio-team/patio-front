@@ -129,6 +129,9 @@
   },
   "VOTE_FORM": {
     "INPUT_COMMENT": {
+      "ACTION_EDIT": "edit",
+      "ACTION_PREVIEW": "preview",
+      "DESCRIPTION": "Markdown syntax help",
       "LABEL": "Is there anything else you want to say?"
     },
     "INPUT_ANONYMOUS": {

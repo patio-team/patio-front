@@ -40,8 +40,18 @@ form.vote-form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocompl
       label(for="five") {{ "5" }}
 
   .comment
-    label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
-    textarea(data-testid="comment" id="comment" v-model="input.comment")
+    .actons-container
+      label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
+      button.action(v-if="showPreview" type="button" v-on:click="handleClickEditButton")
+        | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_EDIT") }}
+      button.action(v-else type="button" v-on:click="handleClickPreviewButton")
+        | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_PREVIEW") }}
+    .preview(v-if="showPreview")
+      dw-markdown(v-bind:text="input.comment")
+    template(v-else)
+      textarea(data-testid="comment" id="comment" v-model="input.comment")
+      a.description(href='https://spec.commonmark.org/0.29/' target='_blank') &#128712; {{ $t("VOTE_FORM.INPUT_COMMENT.DESCRIPTION") }}
+
 
   .anonymous(data-testid="anonymouscontainer" v-if="group && group.anonymousVote")
     input(data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")

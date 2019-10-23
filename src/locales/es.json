@@ -121,6 +121,9 @@
   },
   "VOTE_FORM": {
     "INPUT_COMMENT": {
+      "ACTION_EDIT": "editar",
+      "ACTION_PREVIEW": "preview",
+      "DESCRIPTION": "Ayuda de syntaxis markdown",
       "LABEL": "¿Hay algo más que quieras decir?"
     },
     "INPUT_ANONYMOUS": {

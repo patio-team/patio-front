@@ -42,6 +42,49 @@
     padding: 0;
     width: 100%;
 
+    & .actons-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    & .action {
+      @mixin as-link;
+    }
+
+    & .preview {
+      background: var(--white-400-80);
+      border: 3px solid var(--orange-400);
+      border-radius: 1rem;
+      color: var(--black-400);
+      margin-left: 1rem;
+      min-height: 10rem;
+      padding: .8rem;
+      position: relative;
+
+      &::after {
+        border: 1rem solid transparent;
+        border-left: 0;
+        border-right-color: var(--orange-400);
+        border-top: 0;
+        content: '';
+        height: 0;
+        left: 0;
+        margin-left: -1rem;
+        margin-top: -.5rem;
+        position: absolute;
+        top: 1rem;
+        width: 0;
+      }
+    }
+
+    & .description {
+      align-self: flex-end;
+      font-size: .8rem;
+      line-height: 1.3rem;
+      margin: 0;
+    }
+
     & textarea {
       height: 10rem;
       resize: vertical;

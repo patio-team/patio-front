@@ -23,12 +23,18 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
+import Markdown from "@/components/shared/Markdown/Markdown.vue";
+
 import { CreateVoteInput } from "@/services/api/types";
 import { Group, Voting } from "@/domain";
 
 const Votings = namespace("votings");
 
-@Component
+@Component({
+  components: {
+    "dw-markdown": Markdown,
+  },
+})
 export default class VoteForm extends Vue {
   private input = {
     score: 0,
@@ -37,6 +43,8 @@ export default class VoteForm extends Vue {
     votingId: "",
     groupId: "",
   } as CreateVoteInput;
+
+  private showPreview = false;
 
   @Prop(Object)
   private readonly group!: Group;
@@ -52,6 +60,10 @@ export default class VoteForm extends Vue {
 
   @Votings.Action("createVote")
   private createVote: any;
+
+  public handleClickPreviewButton() { this.showPreview = true; }
+
+  public handleClickEditButton() { this.showPreview = false; }
 
   private async handleSubmit() {
     const isCreated = await this.createVote({
