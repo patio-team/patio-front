@@ -44,6 +44,7 @@
       router-link(
         v-if="vote.createdBy"
         v-bind:to="{ name: 'groups:members:profile', params: { groupId: group.id, userId: vote.createdBy.id } }"
+        v-bind:title="vote.createdBy.name"
       )
         img.avatar(
           data-testid="avatar"

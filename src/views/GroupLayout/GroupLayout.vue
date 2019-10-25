@@ -45,7 +45,7 @@ export default class GroupLayout extends Vue {
   @GroupStore.Action("getGroup")
   private getGroup: any;
 
-  @GroupStore.Action("resetState")
+  @GroupStore.Mutation("resetState")
   private resetState: any;
 
   private subtitle = "";

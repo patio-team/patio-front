@@ -54,7 +54,7 @@ export default class VotingDetail extends Vue {
   @VotingStore.Action("getVoting")
   private getVoting: any;
 
-  @VotingStore.Action("resetState")
+  @VotingStore.Mutation("resetState")
   private resetState: any;
 
   public async mounted() {
