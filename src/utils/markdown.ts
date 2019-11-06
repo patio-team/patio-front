@@ -25,7 +25,7 @@ import "highlight.js/styles/railscasts.css";
 marked.setOptions({ highlight: (code, lang, callback) => {
   try {
     return hljs.highlight(lang, code).value;
-  } catch {
+  } catch (e) {
     // Disabled auto mode, to enable it:
     //
     //   return hljs.highlightAuto(code).value;
