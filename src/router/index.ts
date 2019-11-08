@@ -33,6 +33,7 @@ import Vote from "@/views/Vote/Vote.vue";
 
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
 import Login from "@/views/Login/Login.vue";
+import Oauth2Callback from "@/views/Login/Oauth2/Callback.vue";
 
 Vue.use(Router);
 
@@ -49,6 +50,11 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: Login,
+    },
+    {
+      path: "/oauth2/callback",
+      name: "oauth2:callback",
+      component: Oauth2Callback,
     },
     {
       path: "/me",

@@ -37,6 +37,39 @@
   order: 2;
 }
 
+.google {
+  margin-bottom: 1em;
+  order: 3;
+}
+
+.google a {
+  @mixin as-social-button;
+
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  color: var(--gray-800);
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  line-height: 2.5em;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color .2s, border .2s, color .2s;
+}
+
+.google a i {
+  background-image: url(../../../assets/img/google.png);
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+  float: left;
+  height: 1.5em;
+  margin-top: .5em;
+  width: 1.5em;
+}
+
 .submit {
   margin: 2rem 0 .5rem 0;
   order: 3;

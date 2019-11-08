@@ -22,6 +22,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
+import { getAuthURL, isEnabled } from "@/services/security/oauth2";
 
 const Auth = namespace("auth");
 
@@ -46,6 +47,14 @@ export default class LoginForm extends Vue {
         || { name: "groups:list" };
       this.$router.push(next);
     }
+  }
+
+  private isOauth2Enabled(): boolean {
+    return isEnabled();
+  }
+
+  private getOauth2ProviderURL(): string {
+    return getAuthURL();
   }
 }
 </script>

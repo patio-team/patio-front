@@ -27,6 +27,7 @@
       "PLACEHOLDER": "ej. mromanova@email.com"
     },
     "BUTTON_SUBMIT": "Añadir",
+    "BUTTON_GOOGLE": "Sign in with Google",
     "BUTTON_CANCEL": "Cancel"
   },
   "GROUP_DETAIL_ACTIONS": {

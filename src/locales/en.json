@@ -121,7 +121,8 @@
       "PLACEHOLDER": "e.g. avengers",
       "LINK_FORGOT_PASSWORD": "Forgot password?"
     },
-    "BUTTON_SUBMIT": "Sign in"
+    "BUTTON_SUBMIT": "Sign in",
+    "BUTTON_GOOGLE": "Sign in with Google"
   },
   "MEMBER_VOTES_LIST": {
     "NO_VOTES_YET": "No voting yet",
