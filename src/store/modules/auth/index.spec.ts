@@ -55,16 +55,19 @@ describe("Auth Store Module", () => {
         api.setAuthorization = jest.fn();
 
         const store = getStore();
-        const token = "token";
         const profile = generateUser();
+        const tokens = {
+          authenticationToken: "",
+          refreshToken: "",
+        };
 
-        store.commit("auth/loginSuccess", { token, profile });
+        store.commit("auth/loginSuccess", { tokens, profile });
 
         expect(store.getters["auth/loginIsLoading"]).toBe(false);
         expect(store.getters["auth/loginError"]).toBe(false);
         expect(store.getters["auth/myProfile"]).toEqual(profile);
         expect(api.setAuthorization).toBeCalledTimes(1);
-        expect(api.setAuthorization).toBeCalledWith(token);
+        expect(api.setAuthorization).toBeCalledWith(tokens.authenticationToken);
       });
     });
 
@@ -137,7 +140,16 @@ describe("Auth Store Module", () => {
     describe("Action: login", () => {
       it("gets a token successfuly", async () => {
         const store = getStore();
-        api.auth.login = jest.fn().mockResolvedValue("token");
+        api.auth.login = jest.fn().mockResolvedValue({
+          tokens: {
+            authenticationToken: "",
+            refreshToken: "",
+          },
+          profile: {
+            id: "",
+            name: "",
+          },
+        });
 
         await store.dispatch("auth/login", { email: "", password: "" });
 

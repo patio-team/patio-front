@@ -25,3 +25,4 @@ export interface AuthState {
   myProfileIsLoading: boolean;
   myProfileError: boolean | string;
 }
+

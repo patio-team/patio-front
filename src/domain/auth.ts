@@ -18,7 +18,12 @@
 
 import { User } from "./users";
 
+export interface Tokens {
+  authenticationToken: string;
+  refreshToken?: string;
+}
+
 export interface Login {
-  token: string;
+  tokens: Tokens;
   profile: User;
 }

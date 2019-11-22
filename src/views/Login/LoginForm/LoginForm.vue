@@ -23,9 +23,15 @@
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
+import WithGoogleButton from "./WithGoogleButton/WithGoogleButton.vue";
+
 const Auth = namespace("auth");
 
-@Component
+@Component({
+  components: {
+    "dw-with-google-button": WithGoogleButton,
+  },
+})
 export default class LoginForm extends Vue {
   private input = { email: "", password: "" };
 

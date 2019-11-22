@@ -21,3 +21,6 @@ export interface LoginInput {
   password: string;
 }
 
+export interface LoginOauth2Input {
+  authorizationCode: string;
+}

@@ -19,7 +19,10 @@
 export const LoginQuery = `
 query Login($email: String!, $password: String!) {
   login (email: $email, password: $password) {
-    token
+    tokens {
+      authenticationToken
+      refreshToken
+    }
     profile {
       id
       name
@@ -37,3 +40,13 @@ query MyProfile {
     hash
   }
 }`;
+export const LoginOauth2Query = `
+query Login($authorizationCode: String!) {
+  loginOauth2(authorizationCode: $authorizationCode) {
+    tokens {
+      authenticationToken
+      refreshToken
+    }
+  }
+}
+`;

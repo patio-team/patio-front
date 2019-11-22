@@ -31,6 +31,8 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
 
   button.submit(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("LOGIN_FORM.BUTTON_SUBMIT") }}
 
+  dw-with-google-button.oauth
+
   a.forgot-password(
     data-testid="forgot-password"
     disabled aria-disabled="true" tabindex="-1"

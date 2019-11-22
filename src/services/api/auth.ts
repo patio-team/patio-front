@@ -17,8 +17,8 @@
  */
 
 import { AxiosInstance } from "axios";
-import { LoginInput } from "./types";
-import { LoginQuery, MyProfileQuery } from "./queries/auth";
+import { LoginInput, LoginOauth2Input } from "./types";
+import { LoginQuery, MyProfileQuery, LoginOauth2Query } from "./queries/auth";
 import { Login, User } from "@/domain";
 
 export default (client: AxiosInstance) => ({
@@ -28,6 +28,13 @@ export default (client: AxiosInstance) => ({
       .then((data: any): Login => {
         return data.login;
       });
+  },
+  loginOauth2(input: LoginOauth2Input) {
+    return client
+    .post("", { query: LoginOauth2Query, variables: input})
+    .then((data: any): Login => {
+      return data.loginOauth2;
+    });
   },
   myProfile() {
     return client

@@ -51,7 +51,7 @@ const mutations: MutationTree<AuthState> = {
   loginSuccess(state: AuthState, login: Login) {
     state.loginIsLoading = false;
 
-    api.setAuthorization(login.token);
+    api.setAuthorization(login.tokens.authenticationToken);
     state.myProfile = login.profile;
   },
   loginError(state: AuthState, error: string) {
@@ -94,6 +94,22 @@ const actions: ActionTree<AuthState, RootState> = {
       commit("loginError", error.code );
       return false;
     }
+  },
+  async storeJWTToken(
+    {commit, state}: {commit: Commit, state: AuthState},
+    authCode: string,
+  ) {
+    commit("loginRequest");
+    try {
+      const login: Login = await api.auth.loginOauth2({authorizationCode: authCode});
+
+      commit("loginSuccess", login);
+      return true;
+    } catch (error) {
+      commit("loginError", error.code);
+    }
+
+    return false;
   },
   async logout(
     { commit, state }: { commit: Commit, state: AuthState },
