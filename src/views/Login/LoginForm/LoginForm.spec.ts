@@ -16,7 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import { Store } from "vuex-mock-store";
 import flushPromises from "flush-promises";
 import LoginForm from "./LoginForm.vue";
@@ -34,7 +34,7 @@ const getStore = () => {
 };
 
 const getWrapper = (...params: any) => {
-  return mount(LoginForm, ...params);
+  return shallowMount(LoginForm, ...params);
 };
 
 describe("Component: shared/LoginForm", () => {
