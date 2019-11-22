@@ -25,8 +25,6 @@ import { namespace } from "vuex-class";
 
 import WithGoogleButton from "./WithGoogleButton/WithGoogleButton.vue";
 
-import { getAuthURL, isEnabled } from "@/services/security/oauth2";
-
 const Auth = namespace("auth");
 
 @Component({
@@ -54,14 +52,6 @@ export default class LoginForm extends Vue {
         || { name: "groups:list" };
       this.$router.push(next);
     }
-  }
-
-  private isOauth2Enabled(): boolean {
-    return isEnabled();
-  }
-
-  private getOauth2ProviderURL(): string {
-    return getAuthURL();
   }
 }
 </script>
