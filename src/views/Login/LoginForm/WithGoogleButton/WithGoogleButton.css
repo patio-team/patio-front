@@ -16,39 +16,22 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../../assets/css/mixins.css";
+@import "../../../../assets/css/mixins.css";
 
-.error {
-  @mixin error-form;
+.with-google {
+  @mixin as-social-button;
 
-  order: 0;
-}
+  & span {
+    display: flex;
+    flex-grow: 2;
+    justify-content: center;
+    vertical-align: middle;
+  }
 
-.email,
-.password {
-  @mixin fieldset;
-}
-
-.email {
-  order: 1;
-}
-
-.password {
-  order: 2;
-}
-
-.submit {
-  margin: 2rem 0 .5rem 0;
-  order: 3;
-}
-
-.oauth {
-  margin: .5rem 0 1rem 0;
-  order: 4;
-}
-
-.forgot-password {
-  align-self: flex-end;
-  font-size: .75rem;
-  order: 2;
+  & svg {
+    display: block;
+    height: 1.5rem;
+    vertical-align: middle;
+    width: 1.5rem;
+  }
 }

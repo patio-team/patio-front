@@ -33,7 +33,7 @@ import Vote from "@/views/Vote/Vote.vue";
 
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
 import Login from "@/views/Login/Login.vue";
-import Oauth2Callback from "@/views/Login/Oauth2/Callback.vue";
+import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
 
 Vue.use(Router);
 

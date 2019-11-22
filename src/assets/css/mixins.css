@@ -191,18 +191,20 @@
   border: 1px solid var(--gray-300);
   border-radius: 6px;
   box-shadow: none;
-  color: var(--white-400);
+  color: var(--gray-800);
   cursor: pointer;
   display: flex;
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: bolder;
   height: 2.5rem;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 0 1rem;
   text-decoration: none;
   text-transform: uppercase;
+  transition: background-color .2s, border .2s, color .2s;
   vertical-align: center;
+  white-space: nowrap;
 
   &:hover,
   &:focus {

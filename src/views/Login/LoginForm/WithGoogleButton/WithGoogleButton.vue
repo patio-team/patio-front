@@ -16,51 +16,20 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./LoginForm.pug" lang="pug"></template>
-<style src="./LoginForm.css" scoped></style>
+<template src="./WithGoogleButton.pug" lang="pug"></template>
+<style src="./WithGoogleButton.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
-
-import WithGoogleButton from "./WithGoogleButton/WithGoogleButton.vue";
-
 import { getAuthURL, isEnabled } from "@/services/security/oauth2";
 
-const Auth = namespace("auth");
-
-@Component({
-  components: {
-    "dw-with-google-button": WithGoogleButton,
-  },
-})
-export default class LoginForm extends Vue {
-  private input = { email: "", password: "" };
-
-  @Auth.Getter("loginIsLoading")
-  private isLoading!: boolean;
-
-  @Auth.Getter("loginError")
-  private error!: boolean | string;
-
-  @Auth.Action("login")
-  private login: any;
-
-  private async handleSubmit() {
-    const isLogin = await this.login(this.input);
-
-    if (isLogin) {
-      const next = this.$route.query.next as string
-        || { name: "groups:list" };
-      this.$router.push(next);
-    }
-  }
-
-  private isOauth2Enabled(): boolean {
+@Component
+export default class WithGoogleButton extends Vue {
+  get isGoogleAuthEnabled(): boolean {
     return isEnabled();
   }
 
-  private getOauth2ProviderURL(): string {
+  get url(): string {
     return getAuthURL();
   }
 }
