@@ -21,16 +21,44 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { getAuthURL, isEnabled } from "@/services/security/oauth2";
+
+import ClientOAuth2 from "client-oauth2";
 
 @Component
 export default class WithGoogleButton extends Vue {
-  get isGoogleAuthEnabled(): boolean {
-    return isEnabled();
+  public url = "";
+
+  public mounted() {
+    if (!this.isGoogleAuthEnabled) {
+      return;
+    }
+
+    // Calculate redirect url
+    const redirectUrl = this.$router.resolve({ name: "oauth2:callback" }).href;
+
+    // Send query params (`next` p. x.) in the  oauth state param.
+    const state = JSON.stringify(this.$route.query);
+
+    const oauth2Client = new ClientOAuth2({
+      clientId: process.env.VUE_APP_OAUTH2_CLIENT_ID,
+      accessTokenUri: process.env.VUE_APP_TOKEN_URI,
+      authorizationUri: process.env.VUE_APP_AUTH_URI,
+      redirectUri: `${location.origin}${redirectUrl}`,
+      scopes: [`${process.env.VUE_APP_SCOPE}`],
+      state,
+    });
+    this.url = oauth2Client.code.getUri();
   }
 
-  get url(): string {
-    return getAuthURL();
+  get isGoogleAuthEnabled(): boolean {
+    const requiredEntries = [
+      process.env.VUE_APP_OAUTH2_CLIENT_ID,
+      process.env.VUE_APP_TOKEN_URI,
+      process.env.VUE_APP_AUTH_URI,
+      process.env.VUE_APP_SCOPE,
+    ];
+
+    return requiredEntries.every((next) => typeof next !== "undefined");
   }
 }
 </script>

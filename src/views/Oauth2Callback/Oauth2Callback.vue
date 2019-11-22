@@ -34,6 +34,7 @@ export default class Oauth2Callback extends Vue {
     const authCode = this.$route.query.code;
 
     if (authCode) {
+
       const success = await this.storeJWTToken(authCode);
 
         /**
@@ -43,7 +44,11 @@ export default class Oauth2Callback extends Vue {
          * header
          */
       if (success) {
-        this.$router.push({name: "groups:list"});
+        // Try to get `next` query param from the oauth state param.
+        const state = JSON.parse(this.$route.query.state as string);
+
+        const next = state.next || { name: "groups:list" };
+        this.$router.push(next);
       }
     }
   }
