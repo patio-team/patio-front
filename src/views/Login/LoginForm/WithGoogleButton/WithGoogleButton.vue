@@ -58,7 +58,7 @@ export default class WithGoogleButton extends Vue {
       process.env.VUE_APP_SCOPE,
     ];
 
-    return requiredEntries.every((next) => typeof next !== "undefined");
+    return requiredEntries.every((next) => next);
   }
 }
 </script>
