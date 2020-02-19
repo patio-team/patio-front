@@ -67,7 +67,7 @@ describe("View: CreateGroup", () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith("groups/createGroup", createGroupInput);
     expect(router.push).toHaveBeenCalledTimes(1);
-    expect(router.push).toHaveBeenCalledWith({name: "groups:detail", params: {id: group.id}});
+    expect(router.push).toHaveBeenCalledWith({name: "groups:detail", params: {groupId: group.id}});
   });
   it("submit the form with errors", async () => {
     const group = generateGroup();
