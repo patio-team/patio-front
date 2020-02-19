@@ -103,26 +103,36 @@
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
-  width: 50rem;
 
   & > *:not(:last-child) {
-    margin-bottom: .8rem;
+    margin-bottom: 3rem;
   }
 
   & .vote-detail {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-auto-columns: min-content;
+    grid-auto-rows: min-content;
+    grid-column-gap: .4rem;
+    grid-row-gap: .5rem;
+    grid-template-areas:
+      "avatar name"
+      "score  comment"
+      " .     comment";
+    grid-template-columns: auto 1fr;
 
     & .avatar,
     & .anonymous {
-      border: 3px solid var(--orange-400);
+      border: 5px solid var(--orange-400);
       border-radius: 50%;
+      grid-area: avatar;
       height: 4rem;
       width: 4rem;
     }
 
-    & .anonymous {
-      border-color: var(--orange-100);
+    & .name {
+      align-self: center;
+      display: block;
+      grid-area: name;
     }
 
     & .score {
@@ -130,9 +140,9 @@
       align-items: center;
       display: flex;
       font-size: 1rem;
+      grid-area: score;
       height: 2rem;
-      justify-content: center;
-      margin: 0 .5rem;
+      justify-self: center;
       width: 2rem;
     }
 
@@ -141,25 +151,9 @@
       border: 3px solid var(--orange-400);
       border-radius: 1rem;
       color: var(--black-400);
-      margin-left: 1rem;
+      grid-area: comment;
       padding: .8rem;
-      position: relative;
-      width: calc(100% - 20rem);
-
-      &::after {
-        border: 1rem solid transparent;
-        border-left: 0;
-        border-right-color: var(--orange-400);
-        border-top: 0;
-        content: '';
-        height: 0;
-        left: 0;
-        margin-left: -1rem;
-        margin-top: -.5rem;
-        position: absolute;
-        top: 1rem;
-        width: 0;
-      }
+      width: 100%;
     }
   }
 }

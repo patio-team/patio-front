@@ -78,23 +78,7 @@
       flex: 1;
       margin-left: 1rem;
       padding: .8rem;
-      position: relative;
-      width: calc(100% - 20rem);
-
-      &::after {
-        border: 1rem solid transparent;
-        border-left: 0;
-        border-right-color: var(--orange-400);
-        border-top: 0;
-        content: '';
-        height: 0;
-        left: 0;
-        margin-left: -1rem;
-        margin-top: -.5rem;
-        position: absolute;
-        top: 1rem;
-        width: 0;
-      }
+      width: 100%;
     }
   }
 }
