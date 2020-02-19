@@ -51,6 +51,10 @@ export default class Vote extends Vue {
   @VotingsStore.Action("getVoting")
   private getVoting: any;
 
+  public created() {
+    this.initScore = Number(this.$route.query.vote);
+  }
+
   public async mounted() {
     const input = {
       id: this.$route.params.votingId,

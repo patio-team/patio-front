@@ -52,6 +52,9 @@ export default class VoteForm extends Vue {
   @Prop(Object)
   private voting!: Voting;
 
+  @Prop(Number)
+  private initScore!: number;
+
   @Votings.Getter("createVoteIsLoading")
   private isLoading!: boolean;
 
@@ -64,6 +67,12 @@ export default class VoteForm extends Vue {
   public handleClickPreviewButton() { this.showPreview = true; }
 
   public handleClickEditButton() { this.showPreview = false; }
+
+  public mounted() {
+    if (this.initScore) {
+      this.input.score = this.initScore;
+    }
+  }
 
   private async handleSubmit() {
     const isCreated = await this.createVote({

@@ -51,7 +51,7 @@ const getWrapper = (...params: any) => {
 
 describe("View: Vote", () => {
   it("show the form", () => {
-    const route = { params: { votingId: "voting-dd", groupId: "group-id"}};
+    const route = { params: { votingId: "voting-dd", groupId: "group-id"}, query: {} };
 
     const store = getStore();
     const group = generateGroup();
