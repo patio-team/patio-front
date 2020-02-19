@@ -36,6 +36,8 @@ const VotingsStore = namespace("voting");
   },
 })
 export default class Vote extends Vue {
+  public initScore = 0;
+
   @Prop(Object)
   private readonly group!: Group;
 
