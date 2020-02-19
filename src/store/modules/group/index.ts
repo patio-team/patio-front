@@ -121,9 +121,11 @@ const mutations: MutationTree<GroupState> = {
     state.editIsLoading = true;
     state.editError = false;
   },
-  editSuccess(state: GroupState) {
+  editSuccess(state: GroupState, group: Group) {
     state.editIsLoading = false;
     state.editError = false;
+
+    state.group = Object.assign({}, state.group, group);
   },
   editFail(state: GroupState, error: string) {
     state.editIsLoading = false;
