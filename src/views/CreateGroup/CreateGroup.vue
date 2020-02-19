@@ -48,7 +48,7 @@ export default class CreateGroup extends Vue {
     const group = await this.createGroup(input);
 
     if (group) {
-      this.$router.push({ name: "groups:detail", params: { id: group.id } });
+      this.$router.push({ name: "groups:detail", params: { groupId: group.id } });
     }
   }
 }
