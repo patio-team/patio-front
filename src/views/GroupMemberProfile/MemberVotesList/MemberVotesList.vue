@@ -49,7 +49,7 @@ export default class MemberVotesList extends Vue {
   private getVotes: any;
 
   private endDateTime: DateTime = now();
-  private pageSize = 7;
+  private pageSize = 30;
   private showMoreButton = false;
 
   public mounted() {
