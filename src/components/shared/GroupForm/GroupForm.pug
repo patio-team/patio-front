@@ -52,10 +52,10 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
         label(for="fri") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_FRI") }}
       .day
         input(data-testid="voting-day-sat" id="sat" name="sat" type="checkbox" value="SATURDAY" v-model="input.votingDays")
-        label(for="sat") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SUN") }}
+        label(for="sat") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SAT") }}
       .day
         input(data-testid="voting-day-sun" id="sun" name="sun" type="checkbox" value="SUNDAY" v-model="input.votingDays")
-        label(for="sun") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SAT") }}
+        label(for="sun") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SUN") }}
 
   .voting-time
     label(for="voting-time") {{ $t("GROUP_FORM.INPUT_VOTING_TIME.LABEL") }}
