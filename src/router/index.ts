@@ -156,7 +156,7 @@ router.beforeEach(async (to, from, next) => {
     if (!await store.dispatch("auth/getMyProfile")) {
       return next({
         name: "login",
-        query: { next: window.location.pathname },
+        query: { next: `${window.location.pathname}${window.location.search}` },
       });
     }
   }
