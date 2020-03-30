@@ -71,7 +71,7 @@ const mutations: MutationTree<ProfileState> = {
     state.getVotesIsLoading = false;
     state.getVotesError = false;
 
-    state.votes.push(...votes);
+    state.votes.push(...votes.reverse());
   },
   getVotesFail(state: ProfileState, error: string) {
     state.getVotesIsLoading = false;
