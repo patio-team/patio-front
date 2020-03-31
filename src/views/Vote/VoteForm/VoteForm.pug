@@ -15,7 +15,7 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-form.vote-form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
+form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" autocomplete="off")
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
   .score-container
