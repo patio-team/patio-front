@@ -71,7 +71,7 @@
     "vuex-mock-store": "^0.0.7"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged && python scripts/add_license_to_src_files.py"
+    "pre-commit": "lint-staged && python3 scripts/add_license_to_src_files.py"
   },
   "lint-staged": {
     "*.ts": [

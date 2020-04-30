@@ -19,8 +19,6 @@
 @import "../../../assets/css/mixins.css";
 
 .group-member-list {
-  @mixin section;
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -31,6 +29,8 @@
 
   & .table {
     @mixin section-content;
+
+    margin: 0;
 
     & .row {
       align-content: center;

@@ -27,8 +27,27 @@
   padding: 0 10vw;
   width: 100%;
 
+  @media only screen and (max-width: 767px) {
+    margin: 0;
+    padding: 1rem 1rem 0;
+  }
+
   & .logo {
     margin-right: 2rem;
+
+    @media only screen and (max-width: 767px) {
+      margin-right: 1rem;
+    }
+
+    & svg {
+      height: 130px;
+      width: 130px;
+
+      @media only screen and (max-width: 767px) {
+        height: 50px;
+        width: 50px;
+      }
+    }
   }
 
   & .actions {
