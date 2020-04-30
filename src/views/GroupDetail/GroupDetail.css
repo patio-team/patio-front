@@ -28,7 +28,11 @@
 .details {
   @mixin section-content;
 
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+
+  @media only screen and (max-width: 767px) {
+    margin-bottom: 1rem;
+  }
 
   & .description {
     color: var(--gray-300);
@@ -52,4 +56,8 @@
 
 .stats {
   margin: 2rem 0;
+
+  @media only screen and (max-width: 767px) {
+    margin: 0;
+  }
 }

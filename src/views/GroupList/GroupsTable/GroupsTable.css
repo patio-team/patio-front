@@ -21,7 +21,7 @@
 .groups-table {
   display: flex;
   flex-direction: column;
-  min-width: 600px;
+  width: 100%;
 
   & .loading {
     align-items: center;
@@ -39,7 +39,8 @@
     transition: background-color .2s;
 
     &:hover:not(.empty) {
-      background-color: var(--orange-100);
+      background-color: var(--orange-400);
+      color: var(--white-400);
       cursor: pointer;
     }
   }

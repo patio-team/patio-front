@@ -21,10 +21,6 @@
 .my-profile {
   @mixin view;
 
-  & .title {
-    padding-bottom: 1rem;
-  }
-
   & .profile {
     align-items: center;
     display: flex;
@@ -36,15 +32,24 @@
       border: 6px solid var(--orange-400);
       border-radius: 50%;
       width: 100px;
+
+      @media only screen and (max-width: 767px) {
+        border-width: 3px;
+        width: 70px;
+      }
     }
 
     & .info {
       flex: 1 0;
-      padding-left: 3rem;
+      padding: 0 1rem;
 
       & .name {
         font-size: 1.5rem;
         line-height: 2rem;
+
+        @media only screen and (max-width: 767px) {
+          font-size: 1.2rem;
+        }
       }
     }
 
