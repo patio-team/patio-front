@@ -23,14 +23,36 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, namespace } from "vuex-class";
 
+import Dialog from "@/components/shared/Dialog/Dialog.vue";
+import ChangePasswordForm from "./ChangePasswordForm/ChangePasswordForm.vue";
+
 import { User } from "@/domain";
 
 import md5 from "md5";
 
 const AuthStore = namespace("auth");
-@Component
+@Component({
+  components: {
+    "dw-dialog": Dialog,
+    "dw-change-password": ChangePasswordForm,
+  },
+})
+
 export default class MyProfile extends Vue {
   @AuthStore.Getter("myProfile")
   private me!: User;
+
+  private handleChangePasswordButton() {
+    this.$modal.push("edit-password");
+  }
+
+  private handleChangePasswordClose() {
+    this.$modal.pop();
+  }
+
+  private handleChangePasswordSubmit(input) {
+    alert(input.password);
+  }
+
 }
 </script>

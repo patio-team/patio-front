@@ -28,6 +28,13 @@
       )
         | {{ $t("VIEWS.MY_PROFILE.ACTION_EDIT") }}
       a.action.change-password(
-        disabled aria-disabled="true" tabindex="-1"
+        tabindex="-1"
+        v-on:click="handleChangePasswordButton"
       )
         | {{ $t("VIEWS.MY_PROFILE.ACTION_CHANGE_PASSWORD") }}
+
+  dw-dialog(name="edit-password" v-on:close="handleChangePasswordClose")
+    dw-change-password(
+      v-on:submit="handleChangePasswordSubmit",
+    )
+

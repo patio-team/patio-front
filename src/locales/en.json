@@ -181,7 +181,13 @@
     "MY_PROFILE": {
       "TITLE": "My Profile",
       "ACTION_EDIT": "Edit",
-      "ACTION_CHANGE_PASSWORD": "Change password"
+      "ACTION_CHANGE_PASSWORD": "Change password",
+      "NEW_PASSWORD": "New password",
+      "CHANGE_MAIL": "Change Email",
+      "CHANGE_MAIL_PLACEHOLDER": "Write your new email",
+      "CHANGE_NAME": "Change Name",
+      "CHANGE_NAME_PLACEHOLDER": "Write your new Username",
+      "CHANGE_AVATAR": "Change Avatar",
     },
     "VOTE": {
       "TITLE": "How are you today?"
