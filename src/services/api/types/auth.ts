@@ -24,3 +24,7 @@ export interface LoginInput {
 export interface LoginOauth2Input {
   authorizationCode: string;
 }
+
+export interface ResetInput {
+  email: string;
+}

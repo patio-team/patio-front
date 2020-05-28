@@ -140,6 +140,20 @@
     },
     "BUTTON_SUBMIT": "Submit"
   },
+  "RESET_PASSWORD_FORM": {
+    "TITLE": "Did you forget your password?",
+    "SUBTITLE": "Enter your email to get a new one",
+    "INPUT_EMAIL": {
+      "LABEL": "email",
+      "PLACEHOLDER": "e.g. tstark@email.com"
+    },
+    "BUTTON_SUBMIT": "Reset my password",
+    "LINK_CANCEL": "Nah, take me back. I think I remember it."
+  },
+  "RESET_CHECK_EMAIL": {
+    "BACK_HOME": "Back to login",
+    "CHECK_EMAIL": "Check your email, you should have received an email with instructions"
+  },
   "VIEWS": {
     "CREATE_GROUP": {
       "TITLE": "Create a new group"
@@ -185,6 +199,9 @@
     },
     "VOTE": {
       "TITLE": "How are you today?"
+    },
+    "RESET_PASSWORD": {
+      "ACTION_RESET_PASSWORD": "Send"
     }
   }
 }

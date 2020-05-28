@@ -24,5 +24,7 @@ export interface AuthState {
   myProfile?: User;
   myProfileIsLoading: boolean;
   myProfileError: boolean | string;
+  resetIsLoading: boolean;
+  resetError: boolean | string;
 }
 
