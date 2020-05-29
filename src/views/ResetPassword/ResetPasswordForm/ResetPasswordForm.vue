@@ -16,46 +16,38 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./LoginForm.pug" lang="pug"></template>
-<style src="./LoginForm.css" scoped></style>
+<template src="./ResetPasswordForm.pug" lang="pug"></template>
+<style src="./ResetPasswordForm.css" scoped></style>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
-import WithGoogleButton from "./WithGoogleButton/WithGoogleButton.vue";
-
 const Auth = namespace("auth");
 
-@Component({
-  components: {
-    "dw-with-google-button": WithGoogleButton,
-  },
-})
-export default class LoginForm extends Vue {
-  private input = { email: "", password: "" };
+@Component
+export default class ResetPasswordForm extends Vue {
+  private input = { email: ""};
 
-  @Auth.Getter("loginIsLoading")
+  @Auth.Getter("resetIsLoading")
   private isLoading!: boolean;
 
-  @Auth.Getter("loginError")
+  @Auth.Getter("resetError")
   private error!: boolean | string;
 
-  @Auth.Action("login")
-  private login: any;
+  @Auth.Action("resetPassword")
+  private resetPassword: any;
 
   private async handleSubmit() {
-    const isLogin = await this.login(this.input);
+    const sent = await this.resetPassword(this.input);
 
-    if (isLogin) {
-      const next = this.$route.query.next as string
-        || { name: "groups:list" };
-      this.$router.push(next);
+    if (sent) {
+      this.$router.push({ name: "security:reset:check" });
     }
   }
 
-  private forgotPassword() {
-    this.$router.push({ name: "security:reset"});
+  private backToLogin() {
+    this.$router.push({ name : "login" });
   }
 }
 </script>

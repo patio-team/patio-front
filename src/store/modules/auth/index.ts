@@ -19,7 +19,7 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
 
-import { LoginInput } from "@/services/api/types";
+import { LoginInput, ResetInput } from "@/services/api/types";
 
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
@@ -32,6 +32,8 @@ const initialState: AuthState = {
   myProfile: undefined,
   myProfileIsLoading: false,
   myProfileError: false,
+  resetIsLoading: false,
+  resetError: false,
 };
 
 const getters: GetterTree<AuthState, RootState> = {
@@ -40,6 +42,8 @@ const getters: GetterTree<AuthState, RootState> = {
   myProfile(state: AuthState) { return state.myProfile; },
   myProfileIsLoading(state: AuthState): boolean { return state.myProfileIsLoading; },
   myProfileError(state: AuthState): string | boolean { return state.myProfileError; },
+  resetIsLoading(state: AuthState): boolean { return state.resetIsLoading; },
+  resetError(state: AuthState): string | boolean { return state.resetError; },
 };
 
 const mutations: MutationTree<AuthState> = {
@@ -77,6 +81,19 @@ const mutations: MutationTree<AuthState> = {
     state.myProfileIsLoading = false;
     state.myProfileError = error;
     state.myProfile = undefined;
+  },
+  // resetPassword
+  resetPasswordRequest(state: AuthState) {
+    state.resetIsLoading = true;
+    state.resetError = false;
+  },
+  resetPasswordSuccess(state: AuthState) {
+    state.resetIsLoading = false;
+    state.resetError = false;
+  },
+  resetPasswordError(state: AuthState, error: string) {
+    state.resetIsLoading = false;
+    state.resetError = error;
   },
 };
 
@@ -132,6 +149,20 @@ const actions: ActionTree<AuthState, RootState> = {
     } catch (error) {
       commit("myProfileError", error.code);
       return;
+    }
+  },
+  async resetPassword(
+    { commit, state }: { commit: Commit, state: AuthState },
+    input: ResetInput,
+  ) {
+    commit("resetPasswordRequest");
+    try {
+      await api.auth.resetPassword(input);
+      commit("resetPasswordSuccess");
+      return true;
+    } catch (error) {
+      commit("resetPasswordError", error.code);
+      return false;
     }
   },
 };

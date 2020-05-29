@@ -132,6 +132,20 @@
     },
     "BUTTON_SUBMIT": "Enviar"
   },
+  "RESET_PASSWORD_FORM": {
+    "TITLE": "Olvidaste tu contraseña ?",
+    "SUBTITLE": "Introduce tu email para conseguir una nueva",
+    "INPUT_EMAIL": {
+      "LABEL": "email",
+      "PLACEHOLDER": "e.g. tstark@email.com"
+    },
+    "BUTTON_SUBMIT": "Resetear mi contraseña",
+    "LINK_CANCEL": "Nah, olvidalo. Creo que ya me acuerdo."
+  },
+  "RESET_CHECK_EMAIL": {
+    "BACK_HOME": "Volver al login",
+    "CHECK_EMAIL": "Comprueba tu email, debes haber recibido un email con instrucciones"
+  },
   "VIEWS": {
     "CREATE_GROUP": {
       "TITLE": "Creaar un nuevo grupo"
@@ -177,6 +191,9 @@
     },
     "VOTE": {
       "TITLE": "¿Cómo te encuentras hoy?"
+   },
+   "RESET_PASSWORD": {
+     "ACTION_RESET_PASSWORD": "Enviar"
    }
   }
 }

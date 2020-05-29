@@ -4,7 +4,7 @@ cache:
   yarn: true
 
 script:
-  - yarn test:unit:coverage
+  - yarn test:unit
 
 # generates latest version of docker image
 deploy:

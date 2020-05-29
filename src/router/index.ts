@@ -33,6 +33,9 @@ import Vote from "@/views/Vote/Vote.vue";
 
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
 import Login from "@/views/Login/Login.vue";
+import ResetPassword from "@/views/ResetPassword/ResetPassword.vue";
+import ResetPasswordCheck from "@/views/ResetPasswordCheck/ResetPasswordCheck.vue";
+import ResetPasswordLayout from "@/views/ResetPasswordLayout/ResetPasswordLayout.vue";
 import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
 
 Vue.use(Router);
@@ -63,6 +66,22 @@ const router = new Router({
       meta: {
         requiresAuth: true,
       },
+    },
+    {
+      path: "/reset",
+      component: ResetPasswordLayout,
+      children: [
+        {
+          path: "",
+          name: "security:reset",
+          component: ResetPassword,
+        },
+        {
+          path: "/reset/check",
+          name: "security:reset:check",
+          component: ResetPasswordCheck,
+        },
+      ],
     },
     {
       path: "/groups",
