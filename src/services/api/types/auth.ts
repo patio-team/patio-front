@@ -28,3 +28,9 @@ export interface LoginOauth2Input {
 export interface ResetInput {
   email: string;
 }
+
+export interface ChangePasswordInput {
+  otp: string;
+  password: string;
+  repeatPassword: string;
+}

@@ -17,8 +17,19 @@
  */
 
 import { AxiosInstance } from "axios";
-import { LoginInput, LoginOauth2Input, ResetInput } from "./types";
-import { LoginQuery, MyProfileQuery, LoginOauth2Query, ResetQuery } from "./queries/auth";
+import {
+  LoginInput,
+  LoginOauth2Input,
+  ResetInput,
+  ChangePasswordInput,
+} from "./types";
+import {
+  LoginQuery,
+  MyProfileQuery,
+  LoginOauth2Query,
+  ResetQuery,
+  ChangePasswordMutation,
+} from "./queries/auth";
 import { Login, User } from "@/domain";
 
 export default (client: AxiosInstance) => ({
@@ -48,6 +59,13 @@ export default (client: AxiosInstance) => ({
     .post("", { query: ResetQuery, variables: input })
     .then((data: any): boolean => {
       return data.reset;
+    });
+  },
+  changePassword(input: ChangePasswordInput) {
+    return client
+    .post("", { query: ChangePasswordMutation, variables: input})
+    .then((data: any): boolean => {
+      return data.changePassword;
     });
   },
 });
