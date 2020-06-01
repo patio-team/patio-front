@@ -18,7 +18,9 @@
     "PARSE_LITERAL_EXCEPTION": "API_ERRORS.PARSE_LITERAL_EXCEPTION",
     "PARSE_VALUE_EXCEPTION": "API_ERRORS.PARSE_VALUE_EXCEPTION",
     "SCORE_IS_INVALID": "Select one score, it should be between 1 and 5",
-    "USER_ALREADY_VOTE": "Sorry but you have already voted"
+    "USER_ALREADY_VOTE": "Sorry but you have already voted",
+    "PASSWORD_IS_BLANK": "The password provided is blank",
+    "PASSWORD_IS_THE_SAME": "New password must be different"
   },
   "ADD_MEMBER_FORM": {
     "TITLE": "Add a new member",
@@ -154,6 +156,22 @@
     "BACK_HOME": "Back to login",
     "CHECK_EMAIL": "Check your email, you should have received an email with instructions"
   },
+  "CHANGEPASS_FORM": {
+    "PASSWORD_DISCLAIMER": "A safe password must include at least one uppercase letter, one lowercase letter and one special character (!%#@,)",
+    "INPUT_PASSWORD": {
+      "LABEL": "New password",
+      "PLACEHOLDER": "Enter the new password"
+    },
+    "INPUT_REPEAT_PASSWORD": {
+      "LABEL": "Confirm new password",
+      "PLACEHOLDER": "Confirm the new password"
+    },
+    "BUTTON_SUBMIT": "Change password"
+  },
+  "CHANGEPASS_SUCCESS": {
+    "MESSAGE": "Password successfully changed. Now you can log in again into Patio",
+    "BACK_HOME": "Go to login"
+  },
   "VIEWS": {
     "CREATE_GROUP": {
       "TITLE": "Create a new group"
@@ -202,6 +220,15 @@
     },
     "RESET_PASSWORD": {
       "ACTION_RESET_PASSWORD": "Send"
+    },
+    "CHANGEPASS": {
+      "TITLE": "Change password"
     }
+  },
+  "VALIDATIONS": {
+    "required": "",
+    "min": "At least {length} characters",
+    "sameAsProperty": "must has the same value as {reference}",
+    "isPassword": "unsafe password"
   }
 }

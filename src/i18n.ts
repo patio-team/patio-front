@@ -18,6 +18,7 @@
 
 import Vue from "vue";
 import VueI18n, { LocaleMessages } from "vue-i18n";
+import { configure } from "vee-validate";
 
 Vue.use(VueI18n);
 
@@ -38,9 +39,21 @@ const loadLocaleMessages = (): LocaleMessages => {
   return messages;
 };
 
-export default new VueI18n({
+const i18n = new VueI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || "en",
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
   messages: loadLocaleMessages(),
   silentTranslationWarn: process.env.NODE_ENV !== "development",
 });
+
+configure({
+  defaultMessage: (field, values = {}) => {
+    const fieldName: string = `fields.${field.toString()}`.toString();
+    const validationKey: string = `VALIDATIONS.${values._rule_}`;
+
+    values._field_ = i18n.t(fieldName);
+    return i18n.t(validationKey, values).toString();
+  },
+});
+
+export default i18n;

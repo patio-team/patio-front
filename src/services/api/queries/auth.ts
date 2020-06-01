@@ -55,3 +55,8 @@ mutation ResetPassword($email: String!) {
   resetPassword(email: $email)
 }
 `;
+export const ChangePasswordMutation = `
+mutation ChangePasword($password: String!, $otp: String!) {
+  changePassword(password: $password, otp: $otp)
+}
+`;

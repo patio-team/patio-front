@@ -19,7 +19,7 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
 
-import { LoginInput, ResetInput } from "@/services/api/types";
+import { LoginInput, ResetInput, ChangePasswordInput } from "@/services/api/types";
 
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
@@ -34,6 +34,8 @@ const initialState: AuthState = {
   myProfileError: false,
   resetIsLoading: false,
   resetError: false,
+  changePasswordIsLoading: false,
+  changePasswordError: false,
 };
 
 const getters: GetterTree<AuthState, RootState> = {
@@ -44,6 +46,8 @@ const getters: GetterTree<AuthState, RootState> = {
   myProfileError(state: AuthState): string | boolean { return state.myProfileError; },
   resetIsLoading(state: AuthState): boolean { return state.resetIsLoading; },
   resetError(state: AuthState): string | boolean { return state.resetError; },
+  changePasswordIsLoading(state: AuthState): boolean { return state.changePasswordIsLoading; },
+  changePasswordError(state: AuthState): string | boolean { return state.changePasswordError; },
 };
 
 const mutations: MutationTree<AuthState> = {
@@ -94,6 +98,19 @@ const mutations: MutationTree<AuthState> = {
   resetPasswordError(state: AuthState, error: string) {
     state.resetIsLoading = false;
     state.resetError = error;
+  },
+  // changePassword
+  changePasswordRequest(state: AuthState) {
+    state.changePasswordIsLoading = true;
+    state.changePasswordError = false;
+  },
+  changePasswordSuccess(state: AuthState) {
+    state.changePasswordIsLoading = false;
+    state.changePasswordError = false;
+  },
+  changePasswordError(state: AuthState, error: string) {
+    state.changePasswordIsLoading = false;
+    state.changePasswordError = error;
   },
 };
 
@@ -162,6 +179,20 @@ const actions: ActionTree<AuthState, RootState> = {
       return true;
     } catch (error) {
       commit("resetPasswordError", error.code);
+      return false;
+    }
+  },
+  async changePassword(
+    { commit, state }: { commit: Commit, state: AuthState },
+    input: ChangePasswordInput,
+  ) {
+    commit("changePasswordRequest");
+    try {
+      await api.auth.changePassword(input);
+      commit("changePasswordSuccess");
+      return true;
+    } catch(error) {
+      commit("changePasswordError", error.code);
       return false;
     }
   },
