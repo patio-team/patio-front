@@ -172,6 +172,10 @@
     "MESSAGE": "Password successfully changed. Now you can log in again into Patio",
     "BACK_HOME": "Go to login"
   },
+  "CHANGEPASS_EXPIRED": {
+    "MESSAGE": "Change password link has expired, please request a new reset link",
+    "BACK_TO_RESET": "Reset password request"
+  },
   "VIEWS": {
     "CREATE_GROUP": {
       "TITLE": "Create a new group"

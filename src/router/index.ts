@@ -39,6 +39,7 @@ import ResetPasswordLayout from "@/views/ResetPasswordLayout/ResetPasswordLayout
 import ChangePassword from "@/views/ChangePassword/ChangePassword.vue";
 import ChangePasswordSuccess from "@/views/ChangePasswordSuccess/ChangePasswordSuccess.vue";
 import ChangePasswordLayout from "@/views/ChangePasswordLayout/ChangePasswordLayout.vue";
+import ChangePasswordExpired from "@/views/ChangePasswordExpired/ChangePasswordExpired.vue";
 import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
 
 Vue.use(Router);
@@ -99,6 +100,11 @@ const router = new Router({
           path: "/change-password/success",
           name: "security:change-password:success",
           component: ChangePasswordSuccess,
+        },
+        {
+          path: "/change-password/expired",
+          name: "security:change-password:expired",
+          component: ChangePasswordExpired,
         },
       ],
     },
