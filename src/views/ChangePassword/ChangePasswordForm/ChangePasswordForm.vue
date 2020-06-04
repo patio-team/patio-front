@@ -20,7 +20,7 @@
 <style src="./ChangePasswordForm.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
 import { required, min } from "vee-validate/dist/rules";
@@ -70,6 +70,13 @@ export default class ChangePasswordForm extends Vue {
 
     if (!otp) {
       this.$router.push({ name: "login" });
+    }
+  }
+
+  @Watch("error")
+  private onErrorChanged(val: boolean | string, oldval: boolean | string) {
+    if (val === "API_ERRORS.OTP_EXPIRED_FOR_USER") {
+      this.$router.push({ name: "security:change-password:expired" });
     }
   }
 }

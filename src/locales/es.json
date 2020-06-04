@@ -162,6 +162,10 @@
     "MESSAGE": "Contraseña cambiada con exito. Ahora puedes volver a entrar a Patio",
     "BACK_HOME": "Volver al login"
   },
+  "CHANGEPASS_EXPIRED": {
+    "MESSAGE": "El link de cambio de contraseña ha caducado, por favor solicita uno nuevo",
+    "BACK_TO_RESET": "Solicitar uno nuevo"
+  },
   "VIEWS": {
     "CREATE_GROUP": {
       "TITLE": "Creaar un nuevo grupo"
