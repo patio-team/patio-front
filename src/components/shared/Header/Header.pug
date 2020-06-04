@@ -15,16 +15,68 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.header
-  .logo(data-testid="logo")
-    include ../../../assets/img/logo.svg
-  .actions(data-testid="actions" v-if="me")
-    router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
-    div.user-menu(data-testid="user-menu")
-      div.user
-        span.name(data-testid="user-name") {{ me.name }}
-        img.avatar(data-testid="user-avatar" v-bind:src="me.hash|gravatarImage" alt)
-      div.options-wrapper(data-testid="user-actions")
-        div.options-container
-          router-link(v-bind:to="{ name: 'my-profile' }") {{ $t("HEADER.USER_ACTIONS.MY_PROFILE")}}
-          a(data-testid="action-logout" v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}
+
+.header-container
+  .header
+    .logo(data-testid="logo")
+      include ../../../assets/img/logo-patio.svg
+    .actions(data-testid="actions" v-if="me")
+      .user-menu(data-testid="user-menu")
+        //- div.user
+        //-   span.name(data-testid="user-name") {{ me.name }}
+        //-   img.avatar(data-testid="user-avatar" v-bind:src="me.hash|gravatarImage" alt)
+        .options-wrapper(
+          data-testid="user-actions"
+          v-bind:class="{visible: isDropdownVisible}"
+        )
+          //- .alert-container
+          //-   include ../../../assets/img/notification.svg
+          //-   span.alert 3
+          button.name-actions(
+            v-on:click="toggleDropdown()"
+          )
+            .avatar-container
+              dw-avatar(
+                name="Maria Maria"
+                mood="0"
+              )
+            .dropdown
+              include ../../../assets/img/chevron.svg
+
+    .options-menu(
+        v-bind:class="{visible: isDropdownVisible}"
+    )
+      .content
+        button.close(
+          v-on:click="toggleDropdown()"
+        )
+          include ../../../assets/img/cross.svg
+        .avatar-container
+          dw-avatar(
+            name="Maria Maria"
+            mood="0"
+          )
+        .options-text.name Maria Morales
+        .options-text.email elenagutemberg@mail.com
+        router-link.options-text.profile(v-bind:to="{ name: 'see-profile' }") {{ $t("HEADER.USER_ACTIONS.SEE_PROFILE")}}
+        .block
+          button.text-and-icon
+            include ../../../assets/img/settings.svg
+            span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
+        hr
+        .block.groups
+          h1 Grupos
+          ul
+            li
+              router-link.action(v-bind:to="{ name: 'groups:list' }") Grupo 1
+            li
+              router-link.action(v-bind:to="{ name: 'groups:list' }") Grupo 2
+            li
+              router-link.action(v-bind:to="{ name: 'groups:list' }") Grupo 3
+            li
+              button.text-and-icon
+                include ../../../assets/img/plus.svg
+                span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
+          //- router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
+      .actions
+        a.logout(data-testid="action-logout" v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}

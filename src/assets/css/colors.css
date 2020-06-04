@@ -17,6 +17,23 @@
  */
 
 :root {
+  --new-grey-900: #191825;
+  --new-grey-700: #34314c;
+  --new-grey-500: #948fb7;
+  --new-grey-200: #c3c1d7;
+  --new-grey-100: #dbdae7;
+  --new-grey-50: #f3f3f7;
+  --new-smily-gradient: linear-gradient(0deg, rgba(255, 255, 255, .4) 0%, rgba(255, 255, 255, 0) 100%);
+  --new-vote-1: #fe346e;
+  --new-vote-2: #ff7473;
+  --new-vote-3: #ffc952;
+  --new-vote-4: #98ddab;
+  --new-vote-5: #3fe3d2;
+  --new-blue-400: #3fa2f7;
+  --new-blue-400: #3fa3e7;
+
+  /* Soon to be deprecated colors */
+
   --black-400: #000;
   --black-400-10: rgba(0, 0, 0, .1);
   --black-400-40: rgba(0, 0, 0, .4);

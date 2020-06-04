@@ -19,10 +19,11 @@
 @import "./colors.css";
 @import "./mixins.css";
 @import "./props.css";
+@import "./font.css";
 
-/* Fonts
-   ========================================================================== */
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900);
+:root {
+  --content-max-width: 1600px;
+}
 
 /* Common
    ========================================================================== */
@@ -40,7 +41,7 @@
    ========================================================================== */
 body {
   color: var(--black-400);
-  font-family: "Roboto", sans-serif;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 100%;
   line-height: 1;
 
@@ -82,7 +83,7 @@ form {
 legend,
 label {
   color: var(--black-400);
-  font-family: "Roboto", sans-serif;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 1rem;
   padding: .6rem .3rem;
 }
@@ -90,7 +91,7 @@ label {
 input {
   border: 1px solid var(--gray-300);
   border-radius: 3px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 1rem;
   padding: .6rem .5rem;
 
@@ -114,7 +115,7 @@ button {
 
   border-radius: 6px;
   box-shadow: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 1rem;
   font-weight: bolder;
   min-height: 2.5rem;
@@ -128,19 +129,17 @@ button {
 a,
 area,
 link {
-  color: var(--orange-400);
+  color: var(--new-blue-400);
   cursor: pointer;
   text-decoration: none;
-  transition: all .3s ease;
+  transition: color .3s ease;
 
   &:hover {
-    color: var(--orange-500);
-    text-decoration: underline;
+    color: var(--new-blue-500);
   }
 
   &[disabled] {
-    color: var(--gray-300);
+    color: var(--new-blue-500);
     pointer-events: none;
-    text-decoration: line-through;
   }
 }

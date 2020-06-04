@@ -24,20 +24,34 @@ import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
 import { User } from "@/domain";
+import Avatar from "../Avatar/Avatar.vue";
 
 const AuthStore = namespace("auth");
 
-@Component
+@Component({
+  components: {
+    "dw-avatar": Avatar,
+  },
+})
 export default class Header extends Vue {
+
+  public isDropdownVisible: boolean = false;
+
   @AuthStore.Getter("myProfile")
   private me!: User;
 
   @AuthStore.Action("logout")
   private logout!: any;
 
+
   private async handleClickLogout() {
     await this.logout();
     this.$router.push({ name: "login" });
+    this.toggleDropdown();
+  }
+
+  private toggleDropdown() {
+    this.isDropdownVisible = !this.isDropdownVisible;
   }
 }
 </script>
