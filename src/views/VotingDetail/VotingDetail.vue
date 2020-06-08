@@ -27,6 +27,7 @@ import Markdown from "@/components/shared/Markdown/Markdown.vue";
 
 import { Group, Voting, VotingStats, Vote } from "@/domain";
 import { formatToDate } from "@/utils/datetime";
+import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
 
 const VotingStore = namespace("voting");
 

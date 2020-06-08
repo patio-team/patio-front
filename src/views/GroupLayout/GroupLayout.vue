@@ -26,12 +26,11 @@ import { namespace } from "vuex-class";
 import { now, minus, formatToTime24Simple } from "@/utils/datetime";
 
 import { Group } from "@/domain";
+import AverageMood from "../../components/shared/AverageMood/AverageMood.vue";
 
 const GroupStore = namespace("group");
 
-@Component({
-  components: {},
-})
+@Component
 export default class GroupLayout extends Vue {
   @GroupStore.Getter("group")
   private group!: Group;

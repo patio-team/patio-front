@@ -50,6 +50,18 @@
   width: 100%;
 }
 
+@define-mixin new-view {
+  align-items: flex-start;
+  background-color: var(--white-400-40);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 1rem 1rem;
+  max-width: var(--content-max-width);
+  padding: 1rem;
+  width: 100%;
+}
+
 /* generic section mixins
    =============================== */
 
