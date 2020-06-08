@@ -30,7 +30,7 @@ import AverageMood from "../../components/shared/AverageMood/AverageMood.vue";
 
 const GroupStore = namespace("group");
 
-@Component({})
+@Component
 export default class GroupLayout extends Vue {
   @GroupStore.Getter("group")
   private group!: Group;
