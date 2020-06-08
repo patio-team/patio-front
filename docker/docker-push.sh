@@ -5,12 +5,11 @@ set -e
 REGISTRY_USER=$1
 REGISTRY_KEY=$2
 VERSION=${3:-latest}
-DOCKER_REGISTRY="kaleidos-docker-registry.bintray.io"
-DOCKER_IMAGE_NAME="$DOCKER_REGISTRY/dwbh/dwbh-front:$VERSION"
-LOG_HEADER="DWBH: "
+DOCKER_IMAGE_NAME="kaleidosteam/patio-front:$VERSION"
+LOG_HEADER="PATIO: "
 
 function usage {
-    echo "Usage: dwbh-docker-push.sh registry_user registry_key"
+    echo "Usage: docker-push.sh registry_user registry_key"
 }
 
 function check_registry_credentials {
@@ -18,9 +17,9 @@ function check_registry_credentials {
         echo "$LOG_HEADER registry user not present"
         usage
         exit 1
-    fi  
+    fi
 
-    if [ -z "$REGISTRY_KEY"]; then
+    if [ -z "$REGISTRY_KEY" ]; then
         echo "$LOG_HEADER registry password not present"
         usage
         exit 1
@@ -30,7 +29,7 @@ function check_registry_credentials {
 function push {
     # check credentials
     check_registry_credentials
-    
+
     # first login to the remote registry
     echo "$LOG_HEADER login to remote registry"
     docker login -u $REGISTRY_USER -p $REGISTRY_KEY $DOCKER_REGISTRY

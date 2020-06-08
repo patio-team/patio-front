@@ -1,0 +1,66 @@
+name: Continuous Deployment (dev)
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: yarn-cache-${{ hashFiles('**/package-lock.json') }}
+      - name: Sets Up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: v10.15.1
+      - name: Install packages
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
+      - name: Runs Tests
+        run: yarn test:unit
+
+  docker:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Building Latest Docker Image
+        run: ./docker/docker-build.sh publish
+      - name: Pushing Docker Image To Registry
+        env:
+          REGISTRY_KEY: ${{ secrets.REGISTRY_KEY }}
+          REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+        run: ./docker/docker-push.sh $REGISTRY_USER $REGISTRY_KEY
+
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to K8s (dev)
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: set image deployment/patio-front patio-front=kaleidosteam/patio-front:latest
+      - name: Verify K8s Deployment (dev)
+        uses: steebchen/kubectl@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+          KUBECTL_VERSION: "1.15"
+        with:
+          args: rollout restart deployment/patio-front
+      - name: Create Notification Message
+        run: |
+          echo ${{ secrets.MATTERMOST_MESSAGE }} > mattermost.json
+      - name: Notify Possible Service Disruption
+        uses: mattermost/action-mattermost-notify@master
+        env:
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+

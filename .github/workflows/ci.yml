@@ -1,0 +1,24 @@
+name: Continuous Integration
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: yarn-cache-${{ hashFiles('**/package-lock.json') }}
+      - name: Sets Up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: v10.15.1
+      - name: Install packages
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
+      - name: Tests
+        run: yarn test:unit
