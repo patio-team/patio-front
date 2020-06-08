@@ -19,7 +19,7 @@
 @import "../../assets/css/mixins.css";
 
 .group-layout {
-  @mixin view;
+  @mixin new-view;
 
   & .head {
     align-items: center;

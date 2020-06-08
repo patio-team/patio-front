@@ -15,15 +15,15 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
+.average
+  .title
+    .title-text Última votación
+    .date 07/11/2020
+  .average-mood-container(
+      :class="getMood()"
+  )
+    .average-mood
+      .mood-decoration
+      .mood-average {{ moodAverage }}
 
-.group-layout(v-if="group")
-  .head
-    h1
-      router-link.title(data-testid="title" v-bind:to="{ name: 'groups:detail', params: group }")
-        | {{ group.name }}
-      transition(name="fade")
-        span.subtitle(data-testid="subtitle" v-if="subtitle") {{ subtitle }}
-    transition(name="fade" mode="out-in")
-      router-view(name="actions" v-bind:group="group")
-  transition(name="fade" mode="out-in")
-    router-view(v-bind:group="group" v-on:set-subtitle="setSubtitle")
+    .mood-text {{ averagePercentil }} below average
