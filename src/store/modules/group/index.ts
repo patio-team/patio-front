@@ -36,10 +36,10 @@ const getInitialState = (): GroupState => ({
   group: undefined,
   getGroupIsLoading: false,
   getGroupError: false,
-  stats: undefined,
+  stats: [],
   getGroupStatsIsLoading: false,
   getGroupStatsError: false,
-  members: undefined,
+  members: [],
   getGroupMembersIsLoading: false,
   getGroupMembersError: false,
   editIsLoading: false,
@@ -79,7 +79,8 @@ const mutations: MutationTree<GroupState> = {
   getGroupSuccess(state: GroupState, group: Group ) {
     state.getGroupIsLoading = false;
     state.getGroupError = false;
-
+    state.stats = [];
+    state.members = [];
     state.group = group;
   },
   getGroupFail(state: GroupState, error: string) {

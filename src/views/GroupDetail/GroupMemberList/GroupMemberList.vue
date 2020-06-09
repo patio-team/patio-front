@@ -20,7 +20,7 @@
 <style src="./GroupMemberList.css" scoped></style>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
 import Dialog from "@/components/shared/Dialog/Dialog.vue";
@@ -61,10 +61,20 @@ export default class GroupMemberList extends Vue {
   private addUserToGroup: any;
 
   public mounted() {
-    const input = {
-      id: this.group.id,
-    };
-    this.getGroupMembers(input);
+    this.loadMembers();
+  }
+
+  @Watch("group")
+  public whenGroupChanged(val: Group, old: Group) {
+    if (val.id === old.id) {
+      return;
+    }
+
+    this.loadMembers();
+  }
+
+  private loadMembers() {
+    this.getGroupMembers({ id: this.group.id });
   }
 
   private handleClickRow(userId: string) {

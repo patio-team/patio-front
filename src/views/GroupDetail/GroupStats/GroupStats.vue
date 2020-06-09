@@ -20,7 +20,7 @@
 <style src="./GroupStats.css" scoped></style>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
 import { DateTime, getListOfDays, isToday } from "@/utils/datetime";
@@ -75,6 +75,19 @@ export default class GroupStats extends Vue {
   }
 
   public mounted() {
+    this.loadStats();
+  }
+
+  @Watch("group")
+  public whenGroupChanged(val: Group, old: Group) {
+    if (val.id === old.id) {
+      return;
+    }
+
+    this.loadStats();
+  }
+
+  public loadStats() {
     const input = {
       id: this.group.id,
       startDateTime: this.startDateTime,

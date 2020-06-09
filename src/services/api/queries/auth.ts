@@ -28,6 +28,10 @@ query Login($email: String!, $password: String!) {
       name
       email
       hash
+      groups {
+        id
+        name
+      }
     }
   }
 }`;
@@ -38,6 +42,10 @@ query MyProfile {
     name
     email
     hash
+    groups {
+      id
+      name
+    }
   }
 }`;
 export const LoginOauth2Query = `

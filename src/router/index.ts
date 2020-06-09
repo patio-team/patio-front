@@ -127,6 +127,7 @@ const router = new Router({
     {
       path: "/groups/:groupId/",
       component: GroupLayout,
+      props: true,
       meta: {
         requiresAuth: true,
       },
