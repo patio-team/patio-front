@@ -109,6 +109,7 @@
       "MY_GROUPS": "My groups"
     },
     "USER_ACTIONS": {
+      "GROUPS": "Groups",
       "SETTINGS": "Settings",
       "CREATE_GROUP": "Create group",
       "SEE_PROFILE": "See profile",

@@ -48,25 +48,6 @@ const getWrapper = (...params: any) => {
 };
 
 describe("View: GroupLayout", () => {
-  it("call getGroup action after is monted", () => {
-    const group = generateGroup();
-    const store = getStore();
-    const route = { params: { groupId: group.id } };
-    const wrapper = getWrapper({
-      mocks: {
-        $store: store,
-        $route: route,
-      },
-    });
-    const vm = wrapper.vm as any;
-
-    store.getters["group/group"] = group;
-
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-    expect(store.dispatch).toHaveBeenCalledWith("group/getGroup", {
-      id: group.id,
-    });
-  });
   it("set a new subtitle", () => {
     const group = generateGroup();
     const store = getStore();

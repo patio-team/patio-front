@@ -20,7 +20,7 @@
 <style src="./GroupLayout.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
 import { now, minus, formatToTime24Simple } from "@/utils/datetime";
@@ -49,11 +49,18 @@ export default class GroupLayout extends Vue {
 
   private subtitle = "";
 
+  @Prop(String)
+  private groupId!: string;
+
   public mounted() {
-    const input = {
-      id: this.$route.params.groupId,
-    };
-    this.getGroup(input);
+    this.getGroup({ id: this.groupId });
+  }
+
+  @Watch("groupId")
+  public whenGroupIdChanged(val: string, old: string) {
+    if (val !== old) {
+      this.getGroup({ id: val });
+    }
   }
 
   public destroyed() {

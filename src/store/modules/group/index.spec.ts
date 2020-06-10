@@ -82,7 +82,7 @@ describe("Group Store Module", () => {
 
         store.commit("group/getGroupMembersRequest");
 
-        expect(store.getters["group/members"]).toEqual(undefined);
+        expect(store.getters["group/members"]).toEqual([]);
         expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(true);
         expect(store.getters["group/getGroupMembersError"]).toEqual(false);
       });
@@ -105,7 +105,7 @@ describe("Group Store Module", () => {
 
         store.commit("group/getGroupMembersFail", "ERROR");
 
-        expect(store.getters["group/members"]).toEqual(undefined);
+        expect(store.getters["group/members"]).toEqual([]);
         expect(store.getters["group/getGroupMembersIsLoading"]).toEqual(false);
         expect(store.getters["group/getGroupMembersError"]).toEqual("ERROR");
       });
@@ -117,7 +117,7 @@ describe("Group Store Module", () => {
 
         store.commit("group/getGroupStatsRequest");
 
-        expect(store.getters["group/stats"]).toEqual(undefined);
+        expect(store.getters["group/stats"]).toEqual([]);
         expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(true);
         expect(store.getters["group/getGroupStatsError"]).toEqual(false);
       });
@@ -140,7 +140,7 @@ describe("Group Store Module", () => {
 
         store.commit("group/getGroupStatsFail", "ERROR");
 
-        expect(store.getters["group/stats"]).toEqual(undefined);
+        expect(store.getters["group/stats"]).toEqual([]);
         expect(store.getters["group/getGroupStatsIsLoading"]).toEqual(false);
         expect(store.getters["group/getGroupStatsError"]).toEqual("ERROR");
       });

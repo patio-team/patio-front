@@ -34,7 +34,6 @@ const AuthStore = namespace("auth");
   },
 })
 export default class Header extends Vue {
-
   public isDropdownVisible: boolean = false;
 
   @AuthStore.Getter("myProfile")
@@ -43,11 +42,26 @@ export default class Header extends Vue {
   @AuthStore.Action("logout")
   private logout!: any;
 
+  get name() {
+    return this.me ? this.me.name : undefined;
+  }
+
+  get email() {
+    return this.me ? this.me.email : undefined;
+  }
+
+  get groups() {
+    return this.me ? this.me.groups : undefined;
+  }
 
   private async handleClickLogout() {
     await this.logout();
+
     this.$router.push({ name: "login" });
-    this.toggleDropdown();
+  }
+
+  private createNewGroup() {
+    this.$router.push({ name: "groups:create" });
   }
 
   private toggleDropdown() {

@@ -32,12 +32,10 @@
           //- .alert-container
           //-   include ../../../assets/img/notification.svg
           //-   span.alert 3
-          button.name-actions(
-            v-on:click="toggleDropdown()"
-          )
+          button.name-actions(v-on:click="toggleDropdown")
             .avatar-container
               dw-avatar(
-                name="Maria Maria"
+                :name="name"
                 mood="0"
               )
             .dropdown
@@ -47,36 +45,34 @@
         v-bind:class="{visible: isDropdownVisible}"
     )
       .content
-        button.close(
-          v-on:click="toggleDropdown()"
-        )
+        button.close(v-on:click="toggleDropdown")
           include ../../../assets/img/cross.svg
         .avatar-container
           dw-avatar(
-            name="Maria Maria"
+            :name="name"
             mood="0"
           )
-        .options-text.name Maria Morales
-        .options-text.email elenagutemberg@mail.com
-        router-link.options-text.profile(v-bind:to="{ name: 'see-profile' }") {{ $t("HEADER.USER_ACTIONS.SEE_PROFILE")}}
+        .options-text.name {{ name }}
+        .options-text.email {{ email }}
+        router-link.options-text.profile(v-bind:to="{ name: 'my-profile' }") {{ $t("HEADER.USER_ACTIONS.SEE_PROFILE")}}
         .block
-          button.text-and-icon
+          button.text-and-icon(v-on:click.capture="toggleDropdown")
             include ../../../assets/img/settings.svg
             span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
         hr
         .block.groups
-          h1 Grupos
+          h1 {{ $t("HEADER.USER_ACTIONS.GROUPS") }}
           ul
+            li(v-for="group in groups")
+              router-link.action(
+                v-bind:to="{ name: 'groups:detail', params: { groupId: group.id } }") {{ group.name }}
             li
-              router-link.action(v-bind:to="{ name: 'groups:list' }") Grupo 1
-            li
-              router-link.action(v-bind:to="{ name: 'groups:list' }") Grupo 2
-            li
-              router-link.action(v-bind:to="{ name: 'groups:list' }") Grupo 3
-            li
-              button.text-and-icon
+              button.text-and-icon(
+                v-on:click="createNewGroup")
                 include ../../../assets/img/plus.svg
                 span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
-          //- router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
+          router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
       .actions
-        a.logout(data-testid="action-logout" v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}
+        a.logout(
+          data-testid="action-logout"
+          v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}

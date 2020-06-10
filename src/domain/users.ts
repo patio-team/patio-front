@@ -16,9 +16,12 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Group } from "@/domain/groups";
+
 export interface User {
   id: string;
   name: string;
   email?: string;
   hash: string;
+  groups: Group[];
 }

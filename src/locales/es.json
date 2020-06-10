@@ -102,6 +102,7 @@
       "MY_GROUPS": "Mis groupos"
     },
     "USER_ACTIONS": {
+      "GROUPS": "Grupos",
       "SETTINGS": "Configuración",
       "CREATE_GROUP": "Crear grupo",
       "SEE_PROFILE": "Ver perfil",
