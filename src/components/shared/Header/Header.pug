@@ -33,13 +33,16 @@
           //-   include ../../../assets/img/notification.svg
           //-   span.alert 3
           button.name-actions(v-on:click="toggleDropdown")
+            .group-container
+              span GroupName
+              .dropdown
+                include ../../../assets/img/chevron.svg
             .avatar-container
               dw-avatar(
                 :name="name"
                 mood="0"
               )
-            .dropdown
-              include ../../../assets/img/chevron.svg
+
 
     .options-menu(
         v-bind:class="{visible: isDropdownVisible}"

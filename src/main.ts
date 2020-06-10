@@ -23,8 +23,16 @@ import Vue, { PluginFunction } from "vue";
 import i18n from "./i18n";
 import router from "./router";
 import store from "./store";
-
 import "./filters";
+import Vue2TouchEvents from "vue2-touch-events";
+Vue.use(Vue2TouchEvents, {
+  disableClick: false,
+  touchClass: "",
+  tapTolerance: 10,
+  touchHoldTolerance: 400,
+  swipeTolerance: 80,
+  longTapTimeInterval: 400,
+});
 
 import VueThinModal from "vue-thin-modal";
 Vue.use(VueThinModal, { autoMountPortal: false });
@@ -37,10 +45,10 @@ import App from "./App.vue";
 Vue.config.productionTip = false;
 
 const vue = new Vue({
- el: "#app",
- i18n,
- router,
- store,
- components: { App },
- template: "<App/>",
+  el: "#app",
+  i18n,
+  router,
+  store,
+  components: { App },
+  template: "<App/>",
 });

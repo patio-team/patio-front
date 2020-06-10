@@ -1,0 +1,82 @@
+/*
+ * Copyright (C) 2019 Kaleidos Open Source SL
+ *
+ * This file is part of Dont Worry Be Happy (DWBH).
+ * DWBH is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DWBH is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../../assets/css/mixins.css";
+
+.smile {
+  border-radius: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: all .5s ease;
+  width: 100%;
+  z-index: 15;
+
+  & .background-deco {
+    height: 100%;
+    transition: all .5s ease;
+    width: 100%;
+  }
+
+  & .smile-container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 16;
+
+    & svg {
+      fill: var(--new-grey-700);
+      height: 35%;
+      margin-left: 15%;
+      width: 35%;
+    }
+
+    & .gsap-mood-five,
+    & .gsap-mood-four,
+    & .gsap-mood-three,
+    & .gsap-mood-two,
+    & .gsap-mood-one {
+      opacity: 0;
+    }
+  }
+}
+
+.mood1.smile {
+  background: var(--new-vote-1);
+}
+
+.mood2.smile {
+  background: var(--new-vote-2);
+}
+
+.mood3.smile {
+  background: var(--new-vote-3);
+}
+
+.mood4.smile {
+  background: var(--new-vote-4);
+}
+
+.mood5.smile {
+  background: var(--new-vote-5);
+}

@@ -22,6 +22,7 @@ export interface CreateVoteInput {
   groupId: string;
   score: number;
   votingId: string;
+  hueMood: string;
 }
 
 export interface GetVotingInput {

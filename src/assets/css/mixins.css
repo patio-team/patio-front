@@ -88,13 +88,72 @@
 
 /* Generic fieldset
    =============================== */
-@define-mixin fieldset {
-  align-items: flex-start;
-  border: none;
+@define-mixin generic-input {
+  align-items: center;
+  border: 1px solid var(--gray-300);
+  border-radius: 3px;
+  color: var(--new-gray-500);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: .5rem;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: .1px;
+  line-height: 18px;
+  padding: .5rem;
+  width: 100%;
+
+  &::placeholder {
+    color: #948fb7;
+  }
+}
+
+@define-mixin generic-label {
+  color: var(--new-grey-700);
+  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: .1px;
+  line-height: 22px;
+}
+
+@define-mixin fieldset {
+  display: block;
+  width: 100%;
+
+  & .label-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &.input-container {
+    & input {
+      display: block;
+    }
+
+    & .description {
+      display: block;
+    }
+  }
+
+  & label {
+    @mixin generic-label;
+
+    margin-bottom: 12px;
+  }
+
+  & input {
+    @mixin generic-input;
+
+    margin-bottom: 12px;
+  }
+
+  & textarea {
+    @mixin generic-input;
+
+    min-height: 100px;
+  }
 }
 
 /* Generic error form
@@ -111,35 +170,84 @@
    =============================== */
 
 @define-mixin button-primary {
-  background-color: var(--orange-400);
-  border: none;
-  color: var(--white-400);
+  align-items: center;
+  background-color: var(--new-grey-700);
+  border: 2px solid var(--new-grey-700);
+  border-radius: 20px 0;
+  box-shadow: 4px 4px 10px rgba(73, 73, 73, .25);
+  color: white;
   cursor: pointer;
+  display: flex;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 1rem;
+  transition: background-color .2s, border .2s, color .2s;
 
-  &:hover {
-    background-color: var(--orange-500);
+  &:hover,
+  &:focus {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    border-radius: 20px 0;
+    color: var(--new-grey-700);
   }
 
   &:disabled {
-    background-color: var(--gray-300);
+    background-color: var(--gray-200);
+    border-color: var(--gray-200);
+    color: var(--white);
     cursor: not-allowed;
   }
 }
 
 @define-mixin button-secondary {
-  background-color: var(--white-400);
-  border: 1px solid var(--gray-500);
-  color: var(--gray-500);
+  align-items: center;
+  background-color: var(--white);
+  border: 2px solid var(--new-grey-700);
+  border-radius: 20px 0;
+  box-shadow: 4px 4px 10px rgba(73, 73, 73, .25);
+  color: var(--new-grey-700);
   cursor: pointer;
+  display: flex;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: bolder;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 1rem;
+  transition: background-color .2s, border .2s, color .2s;
 
-  &:hover {
-    border: 1px solid var(--gray-800);
-    color: var(--gray-800);
+  &:hover,
+  &:focus {
+    border-color: var(--cyan);
+    border-radius: 20px 0;
+    color: var(--cyan);
   }
 
   &:disabled {
-    border: 1px solid var(--gray-300);
-    color: var(--gray-300);
+    border-color: var(--gray-200);
+    color: var(--gray-200);
+    cursor: not-allowed;
+  }
+}
+
+@define-mixin button-noborder {
+  align-items: center;
+  background-color: 0;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: auto;
+
+  &:disabled {
+    background-color: var(--gray-300);
     cursor: not-allowed;
   }
 }
@@ -151,11 +259,11 @@
   border: none;
   border-radius: initial;
   box-shadow: initial;
-  color: var(--orange-400);
+  color: var(--link-blue);
   cursor: pointer;
   font: inherit;
   font-size: inherit;
-  height: initial;
+  height: 22px;
   margin: initial;
   min-height: initial;
   padding: initial;
@@ -169,8 +277,7 @@
   }
 
   &:hover {
-    color: var(--orange-500);
-    text-decoration: underline;
+    color: var(--new-grey-700);
   }
 
   &[disabled] {
@@ -237,6 +344,7 @@
 @define-mixin text-and-icon {
   align-items: center;
   background: none;
+  border: 0;
   display: flex;
   font-weight: 400;
   letter-spacing: 0;

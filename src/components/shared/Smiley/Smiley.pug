@@ -1,0 +1,47 @@
+//-
+  Copyright (C) 2019 Kaleidos Open Source SL
+
+  This file is part of Dont Worry Be Happy (DWBH).
+  DWBH is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  DWBH is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+
+.smile(
+  ref="holder"
+  v-bind:class="'mood' + voteScore"
+)
+  .background-deco
+  .smile-container(
+    v-if="!fixedMood"
+  )
+    include ../../../assets/img/emotions.svg
+  .smile-container(
+      v-if="voteScore === 1 && fixedMood"
+    )
+    include ../../../assets/img/emo1.svg
+  .smile-container(
+      v-if="voteScore === 2 && fixedMood"
+    )
+    include ../../../assets/img/emo2.svg
+  .smile-container(
+      v-if="voteScore === 3 && fixedMood"
+    )
+    include ../../../assets/img/emo3.svg
+  .smile-container(
+      v-if="voteScore === 4 && fixedMood"
+    )
+    include ../../../assets/img/emo4.svg
+  .smile-container(
+      v-if="voteScore === 5 && fixedMood"
+    )
+    include ../../../assets/img/emo5.svg
+
