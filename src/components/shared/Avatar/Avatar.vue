@@ -29,7 +29,7 @@ const AuthStore = namespace("auth");
 
 @Component
 export default class Avatar extends Vue {
-  @Prop({ default: "Jon Doe"})
+  @Prop({ default: ""})
   private name!: string;
 
   @Prop({ default: 0})

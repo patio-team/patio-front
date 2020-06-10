@@ -75,4 +75,4 @@
       .actions
         a.logout(
           data-testid="action-logout"
-          v-on:click="handleClickLogout") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}
+          v-on:click="toggleDropdown(); handleClickLogout();") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}
