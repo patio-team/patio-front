@@ -17,13 +17,9 @@
  */
 
 
+import { Vote } from "@/domain/votings";
 
-export interface PaginationRequest {
-  max: number;
-  page: number;
-}
-
-export interface PaginationResult<T> {
+export interface PaginatedVote {
   total: number;
-  data: T[];
+  data: Vote[];
 }

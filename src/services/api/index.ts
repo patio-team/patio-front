@@ -26,6 +26,7 @@ import Auth from "./auth";
 import Groups from "./groups";
 import Profiles from "./profiles";
 import Votings from "./votings";
+import Results from "./results";
 
 export { ApiError } from "./interceptors";
 
@@ -62,4 +63,5 @@ export default {
   groups: Groups(client),
   profiles: Profiles(client),
   votings: Votings(client),
+  results: Results(client),
 };

@@ -16,14 +16,27 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-
-export interface PaginationRequest {
-  max: number;
-  page: number;
+export const ListMembersMood = `
+query ListMembersMood($groupId: ID!, $page: Int, $max: Int) {
+  getLastVotingByGroup(groupId: $groupId) {
+    votes(page: $page, max: $max) {
+      total
+      data {
+        score
+        hueMood
+        createdBy {
+          name
+        }
+      }
+    }
+  }
 }
+`;
 
-export interface PaginationResult<T> {
-  total: number;
-  data: T[];
+export const GetFavouriteGroup = `
+query GetFavouriteGroup {
+  getMyFavouriteGroup {
+    id
+  }
 }
+`;
