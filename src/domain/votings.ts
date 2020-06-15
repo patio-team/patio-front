@@ -27,6 +27,7 @@ export interface Vote {
   createdBy: User;
   score: score;
   comment: string;
+  hueMood: string;
   voting?: Voting;
 }
 

@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,14 +16,11 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-
-export interface PaginationRequest {
-  max: number;
-  page: number;
-}
-
-export interface PaginationResult<T> {
-  total: number;
-  data: T[];
+.vote-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  padding: 0;
+  width: 100%;
 }

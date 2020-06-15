@@ -68,7 +68,7 @@
           ul
             li(v-for="group in groups")
               router-link.action(
-                v-bind:to="{ name: 'groups:detail', params: { groupId: group.id } }") {{ group.name }}
+                v-bind:to="{ name: 'voting:result', params: { selectedGroupId: group.id } }") {{ group.name }}
             li
               button.text-and-icon(
                 v-on:click="createNewGroup")

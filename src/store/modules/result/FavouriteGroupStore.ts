@@ -16,14 +16,25 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Action, getModule, Module, Mutation, VuexModule } from "vuex-module-decorators";
+import store from "@/store";
+import api from "@/services/api";
 
+const moduleName = "results:favourite-group";
 
-export interface PaginationRequest {
-  max: number;
-  page: number;
+@Module({ stateFactory: true, dynamic: true, namespaced: true, name: moduleName, store })
+export class FavouriteGroupStore extends VuexModule {
+  public groupId: string = "";
+
+  @Mutation
+  public setGroupId(id: string) {
+    this.groupId = id;
+  }
+
+  @Action({ commit: "setGroupId"})
+  public async fetchFavouriteGroupId() {
+    return await api.results.getFavouriteGroupId();
+  }
 }
 
-export interface PaginationResult<T> {
-  total: number;
-  data: T[];
-}
+export default getModule(FavouriteGroupStore);

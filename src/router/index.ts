@@ -41,6 +41,7 @@ import ChangePasswordSuccess from "@/views/ChangePasswordSuccess/ChangePasswordS
 import ChangePasswordLayout from "@/views/ChangePasswordLayout/ChangePasswordLayout.vue";
 import ChangePasswordExpired from "@/views/ChangePasswordExpired/ChangePasswordExpired.vue";
 import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
+import VotingResult from "@/views/VotingResult/VotingResult.vue";
 
 Vue.use(Router);
 
@@ -51,7 +52,7 @@ const router = new Router({
     {
       path: "/",
       name: "home",
-      redirect: { name: "groups:list" },
+      redirect: { name: "voting:result" },
     },
     {
       path: "/login",
@@ -120,6 +121,15 @@ const router = new Router({
       path: "/groups/create",
       name: "groups:create",
       component: CreateGroup,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/result/:selectedGroupId?",
+      name: "voting:result",
+      component: VotingResult,
+      props: true,
       meta: {
         requiresAuth: true,
       },
