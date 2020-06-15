@@ -16,29 +16,19 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./App.pug" lang="pug"></template>
-<style src="./App.css"></style>
+<template src="./Loader.pug" lang="pug"></template>
+<style src="./Loader.css" scoped></style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop, Ref } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 
-import { Notifications } from "@/plugins/notifications";
-import Header from "@/components/shared/Header/Header.vue";
+import { User } from "@/domain";
 
-@Component({
-  components: {
-    "notifications": Notifications,
-    "dw-header": Header,
-  },
-})
-export default class App extends Vue {
-  public mounted() {
-    const vh = window.innerHeight;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-    window.addEventListener("resize", () => {
-      const vhStyle = window.innerHeight;
-      document.documentElement.style.setProperty("--vh", `${vhStyle}px`);
-    });
-  }
+const AuthStore = namespace("auth");
+
+@Component
+export default class Loader extends Vue {
+
 }
 </script>

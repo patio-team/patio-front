@@ -36,18 +36,13 @@ const Votings = namespace("votings");
   },
 })
 export default class VoteForm extends Vue {
-  private input = {
-    score: 0,
-    comment: "",
-    anonymous: false,
-    votingId: "",
-    groupId: "",
-  } as CreateVoteInput;
-
   private showPreview = false;
 
   @Prop(Object)
   private readonly group!: Group;
+
+  @Prop(Number)
+  private readonly voteScore!: number;
 
   @Prop(Object)
   private voting!: Voting;
@@ -64,6 +59,15 @@ export default class VoteForm extends Vue {
   @Votings.Action("createVote")
   private createVote: any;
 
+  private input = {
+    score: (this.voteScore) ? this.voteScore : 3,
+    comment: "",
+    anonymous: false,
+    votingId: "",
+    groupId: "",
+    hueMood: "",
+  } as CreateVoteInput;
+
   public handleClickPreviewButton() { this.showPreview = true; }
 
   public handleClickEditButton() { this.showPreview = false; }
@@ -75,12 +79,14 @@ export default class VoteForm extends Vue {
   }
 
   private async handleSubmit() {
+    if (this.voteScore) {
+      this.input.score = this.voteScore;
+    }
     const isCreated = await this.createVote({
       ...this.input,
       votingId: this.voting.id,
       groupId: this.group.id,
     });
-
     if(isCreated) {
       this.$router.push({
         name: "groups:votings:detail",

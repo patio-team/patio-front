@@ -128,6 +128,8 @@
   },
   "VOTE_FORM": {
     "INPUT_COMMENT": {
+      "PLACEHOLDER_HUE": "EJ: Todo bien, he estado mejor",
+      "PLACEHOLDER_DESCRIPTION": "Añade algo de texto",
       "ACTION_EDIT": "editar",
       "ACTION_PREVIEW": "preview",
       "DESCRIPTION": "Ayuda de syntaxis markdown",
@@ -214,7 +216,10 @@
       "ACTION_CHANGE_PASSWORD": "Cambiar contraseña"
     },
     "VOTE": {
-      "TITLE": "¿Cómo te encuentras hoy?"
+      "TITLE": "¿Cómo te encuentras hoy?",
+      "COMMENT_SHARE": "Comenta y comparte",
+      "SELECT_MOOD": "Seleccion tu estado",
+      "SHARE": "¡Comparte!"
    },
    "RESET_PASSWORD": {
      "ACTION_RESET_PASSWORD": "Enviar"

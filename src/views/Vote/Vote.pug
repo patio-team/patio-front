@@ -15,12 +15,109 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.vote
-  h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
-
-  dw-vote-form(
-    v-bind:group="group"
-    v-bind:voting="voting"
-    v-bind:initScore="initScore"
-    data-testid="vote-form"
+.vote(
+  v-bind:class="getVoteClasses(voteScore)"
+)
+  .voting-interaction-mobile(
+    v-touch:swipe="swipeHandler"
+    v-bind:class="{ voted: voteSelected, 'animation-true': animationTrue, 'landscape': landscape, 'loaded': isLoaded }"
   )
+    .voting-title
+      .close-x
+        include ../../assets/img/cross.svg
+      .voting-smile
+        dw-smiley(
+          :voteScore="voteScore"
+        )
+      .swipe-action
+        .text-upper
+          span.comment-share {{ $t("VIEWS.VOTE.SHARE") }}
+
+        .text(
+          v-on:click="toggleMoodSelected()"
+        )
+          include ../../assets/img/up.svg
+          span.comment-share {{ $t("VIEWS.VOTE.COMMENT_SHARE") }}
+          span.select-mood {{ $t("VIEWS.VOTE.SELECT_MOOD") }}
+
+        .arrow(
+          v-on:click="worsenMood(1)"
+          v-bind:class="{ hide: voteSelected || voteScore === 1 }"
+        )
+          include ../../assets/img/chevron.svg
+        .arrow.reverse(
+          v-on:click="improveMood(1)"
+          v-bind:class="{ hide: voteSelected || voteScore === 5}"
+        )
+          include ../../assets/img/chevron.svg
+      .deco-background
+        .deco-gradient
+        dw-loader.loading
+    .form
+      dw-vote-form(
+        v-bind:group="group"
+        v-bind:voting="voting"
+        v-bind:initScore="initScore"
+        :voteScore="voteScore"
+        data-testid="vote-form"
+      )
+
+  .voting-interaction-desktop
+    .close-x
+      include ../../assets/img/cross.svg
+    .relative-container
+      .title-holder
+        h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
+        span.date Monday, July 9th, 2020
+      .smiley-containers
+        .smiley(
+          v-on:click="setMood(1)"
+          :class="{ 'selected': voteScore === 1}"
+        )
+          dw-smiley(
+            :voteScore="1",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(2)"
+          :class="{ 'selected': voteScore === 2}"
+        )
+          dw-smiley(
+            :voteScore="2",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(3)"
+          :class="{ 'selected': voteScore === 3}"
+        )
+          dw-smiley(
+            :voteScore="3",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(4)"
+          :class="{ 'selected': voteScore === 4}"
+        )
+          dw-smiley(
+            :voteScore="4",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(5)"
+          :class="{ 'selected': voteScore === 5}"
+        )
+          dw-smiley(
+            :voteScore="5",
+            :fixedMood="true"
+          )
+      .voting-background-desktop
+
+      dw-vote-form(
+        v-bind:group="group"
+        v-bind:voting="voting"
+        v-bind:initScore="initScore"
+        :voteScore="voteScore || 3"
+        data-testid="vote-form"
+      )
+
+

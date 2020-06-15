@@ -18,43 +18,34 @@
 form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" autocomplete="off")
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
-  .score-container
-    .score
-      input(data-testid="one" type="radio" id="one" name="score" value="1" v-model="input.score")
-      label(for="one") {{ "1" }}
 
-    .score
-      input(type="radio" id="two" name="score" value="2" v-model="input.score")
-      label(for="two") {{ "2" }}
-
-    .score
-      input(type="radio" id="three" name="score" value="3" v-model="input.score")
-      label(for="three") {{ "3" }}
-
-    .score
-      input(type="radio" id="four" name="score" value="4" v-model="input.score")
-      label(for="four") {{ "4" }}
-
-    .score
-      input(type="radio" id="five" name="score" value="5" v-model="input.score")
-      label(for="five") {{ "5" }}
-
+  .fieldset
+    .label-container
+      label(for="hueMood") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
+    .input-container
+      input(id="hueMood", v-model="input.hueMood", :placeholder="$t('VOTE_FORM.INPUT_COMMENT.PLACEHOLDER_HUE')")
   .comment
-    .actons-container
-      label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
-      button.action(v-if="showPreview" type="button" v-on:click="handleClickEditButton")
-        | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_EDIT") }}
-      button.action(v-else type="button" v-on:click="handleClickPreviewButton")
-        | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_PREVIEW") }}
-    .preview(v-if="showPreview")
-      dw-markdown(v-bind:text="input.comment")
-    template(v-else)
-      textarea(data-testid="comment" id="comment" v-model="input.comment")
-      a.description(href='https://spec.commonmark.org/0.29/' target='_blank') &#128712; {{ $t("VOTE_FORM.INPUT_COMMENT.DESCRIPTION") }}
+    .fieldset
+      .label-container
+        label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
+        button.action(v-if="showPreview" type="button" v-on:click="handleClickEditButton")
+          | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_EDIT") }}
+        button.action(v-else type="button" v-on:click="handleClickPreviewButton")
+          | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_PREVIEW") }}
+      .preview(v-if="showPreview")
+        dw-markdown(v-bind:text="input.comment")
+      .input-container(v-else)
+        textarea(data-testid="comment" id="comment" v-model="input.comment" :placeholder="$t('VOTE_FORM.INPUT_COMMENT.PLACEHOLDER_DESCRIPTION')")
+        a.description(href='https://spec.commonmark.org/0.29/' target='_blank') &#128712; {{ $t("VOTE_FORM.INPUT_COMMENT.DESCRIPTION") }}
 
 
   .anonymous(data-testid="anonymouscontainer" v-if="group && group.anonymousVote")
-    input(data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
-    label(data-testid="anonymouslabel" for="anonymous") {{ $t("VOTE_FORM.INPUT_ANONYMOUS.LABEL") }}
+    label.crc
+      input.crc_input(data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
+      span.crc_show.crc_show--checkbox
+      span.crc_text(data-testid="anonymouslabel" for="anonymous") {{ $t("VOTE_FORM.INPUT_ANONYMOUS.LABEL") }}
 
-  button.submit(data-testid="submit" type="submit") {{ $t("VOTE_FORM.BUTTON_SUBMIT") }}
+  button.primary.submit(
+    @:click="handleSubmit()"
+    v-bind:disabled="isLoading"
+  ) {{ $t("VOTE_FORM.BUTTON_SUBMIT") }}

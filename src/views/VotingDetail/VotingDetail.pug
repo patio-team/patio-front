@@ -40,7 +40,7 @@
           .circle {{ stats[5] }}
 
   .votes-list
-    .vote-detail(v-for="vote in voting.votes")
+    .vote-detail(v-for="vote in voting.votes.data")
       router-link(
         v-if="vote.createdBy"
         v-bind:to="{ name: 'groups:members:profile', params: { groupId: group.id, userId: vote.createdBy.id } }"

@@ -47,14 +47,17 @@ query GetVoting(
       name
     }
     votes {
-      id
-      score
-      createdAtDateTime
-      comment
-      createdBy {
+      total
+      data {
         id
-        name
-        hash
+        score
+        createdAtDateTime
+        comment
+        createdBy {
+          id
+          name
+          hash
+        }
       }
     }
   }

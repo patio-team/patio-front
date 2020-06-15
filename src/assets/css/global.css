@@ -39,15 +39,27 @@
 
 /* Body
    ========================================================================== */
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
 body {
+  box-sizing: border-box;
   color: var(--black-400);
   font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 100%;
+  height: 100%;
   line-height: 1;
 
   &.no-scroll {
     overflow: hidden;
   }
+}
+
+.fieldset {
+  @mixin fieldset;
 }
 
 /* Titles
@@ -85,15 +97,13 @@ label {
   color: var(--black-400);
   font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 1rem;
-  padding: .6rem .3rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 22px;
 }
 
 input {
-  border: 1px solid var(--gray-300);
-  border-radius: 3px;
-  font-family: 'Lato', 'Times New Roman', Times, serif;
-  font-size: 1rem;
-  padding: .6rem .5rem;
+  @mixin generic-input;
 
   &[type="date"],
   &[type="email"],
@@ -103,6 +113,49 @@ input {
     min-width: 21rem;
     width: 100%;
   }
+
+  &::placeholder {
+    color: #948fb7;
+  }
+}
+
+.crc {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+
+  & .crc_show--checkbox {
+    background-image: url(./assets/img/empty.svg);
+  }
+
+  & .crc_input {
+    display: none;
+  }
+
+  & .crc_show {
+    background-size: cover;
+    display: inline-block;
+    height: 24px;
+    margin-right: .5rem;
+    width: 24px;
+  }
+
+  & .crc_text {
+    color: var(--black-400);
+    font-family: 'Lato', 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 22px;
+  }
+
+  & .crc_input:checked + .crc_show--checkbox {
+    background-image: url(./assets/img/check.svg);
+  }
+}
+
+textarea {
+  @mixin generic-input;
 }
 
 ::-webkit-input-placeholder,
@@ -111,17 +164,13 @@ input {
 }
 
 button {
-  @mixin button-primary;
+  &.primary {
+    @mixin button-primary;
+  }
 
-  border-radius: 6px;
-  box-shadow: none;
-  font-family: 'Lato', 'Times New Roman', Times, serif;
-  font-size: 1rem;
-  font-weight: bolder;
-  min-height: 2.5rem;
-  padding: 0 1rem;
-  text-transform: uppercase;
-  transition: background-color .2s, border .2s, color .2s;
+  &.secondary {
+    @mixin button-secondary;
+  }
 }
 
 /* Links

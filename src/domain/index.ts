@@ -20,3 +20,4 @@ export * from "./auth";
 export * from "./groups";
 export * from "./users";
 export * from "./votings";
+export * from "./commons";

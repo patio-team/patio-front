@@ -19,10 +19,28 @@
 @import "../../../assets/css/colors.css";
 @import "../../../assets/css/mixins.css";
 
-.vote-form {
-  align-items: center;
+.line-form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
+  width: 100%;
+
+  & label {
+    margin-bottom: .75rem;
+  }
+}
+
+.vote-form {
+  align-self: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: auto;
+  z-index: 1;
+
+  @media (--small-viewport) {
+    max-width: 620px;
+    width: 100%;
+  }
 
   & .error {
     @mixin error-form;
@@ -46,6 +64,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      margin-bottom: .75rem;
     }
 
     & .action {
@@ -92,7 +111,7 @@
   }
 
   & .anonymous {
-    align-items: flex-start;
+    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -160,7 +179,7 @@
   }
 
   & .submit {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 20rem;
   }
 }

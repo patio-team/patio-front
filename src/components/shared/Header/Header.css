@@ -90,12 +90,20 @@
 }
 
 .name-actions {
+  @mixin button-noborder;
+
   align-items: center;
   background: none;
+  border: 0;
   color: var(--new-grey-700);
   display: flex;
   font-weight: 500;
   text-transform: none;
+}
+
+.group-container {
+  display: flex;
+  margin-right: 1.5rem;
 }
 
 .avatar-container {
@@ -108,7 +116,7 @@
   background: white;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
   padding-top: 1.75rem;
   position: absolute;
   right: -150vw;
@@ -128,6 +136,8 @@
   }
 
   & .close {
+    @mixin button-noborder;
+
     background: none;
     position: absolute;
     right: 1rem;

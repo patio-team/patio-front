@@ -136,6 +136,8 @@
   },
   "VOTE_FORM": {
     "INPUT_COMMENT": {
+      "PLACEHOLDER_HUE": "e.g. great!, been worse",
+      "PLACEHOLDER_DESCRIPTION": "Add some text",
       "ACTION_EDIT": "edit",
       "ACTION_PREVIEW": "preview",
       "DESCRIPTION": "Markdown syntax help",
@@ -224,7 +226,10 @@
       "ACTION_CHANGE_PASSWORD": "Change password"
     },
     "VOTE": {
-      "TITLE": "How are you today?"
+      "TITLE": "How are you today?",
+      "COMMENT_SHARE": "Comment and share",
+      "SELECT_MOOD": "Select mood",
+      "SHARE": "Share!"
     },
     "RESET_PASSWORD": {
       "ACTION_RESET_PASSWORD": "Send"

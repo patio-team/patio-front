@@ -1,0 +1,64 @@
+/*
+ * Copyright (C) 2019 Kaleidos Open Source SL
+ *
+ * This file is part of Dont Worry Be Happy (DWBH).
+ * DWBH is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DWBH is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../../assets/css/mixins.css";
+
+.loading {
+  display: flex;
+  justify-content: center;
+  left: calc(50% - 64px);
+  position: absolute;
+  top: calc(50% - 40px);
+  z-index: 300;
+
+  & .bubble {
+    animation: .8s bounce infinite alternate;
+    background: var(--new-vote-1);
+    border-radius: 50%;
+    height: 1rem;
+    margin: 2rem .3rem;
+    width: 1rem;
+
+    &:nth-child(2) {
+      animation-delay: .2s;
+      background: var(--new-vote-2);
+    }
+
+    &:nth-child(3) {
+      animation-delay: .4s;
+      background: var(--new-vote-3);
+    }
+
+    &:nth-child(4) {
+      animation-delay: .6s;
+      background: var(--new-vote-4);
+    }
+
+    &:nth-child(5) {
+      animation-delay: .8s;
+      background: var(--new-vote-5);
+    }
+  }
+}
+
+@keyframes bounce {
+  to {
+    opacity: .3;
+    transform: translate3d(0, 1rem, 0);
+  }
+}
