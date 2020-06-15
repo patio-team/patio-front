@@ -16,50 +16,9 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const CreateVoteMutation = `
-mutation CreateVote(
-  $votingId: ID!,
-  $score: Int!,
-  $anonymous: Boolean,
-  $comment: String
-) {
-  createVote(
-    votingId: $votingId,
-    score: $score,
-    anonymous: $anonymous,
-    comment: $comment
-  ) {
-    id
-  }
-}`;
 
 
-export const GetVotingQuery = `
-query GetVoting(
-  $id: ID!
-) {
-  getVoting(id: $id) {
-    id
-    average
-    createdAtDateTime
-    group {
-      id
-      name
-    }
-    votes {
-      total
-      data {
-        id
-        score
-        createdAtDateTime
-        comment
-        createdBy {
-          id
-          name
-          hash
-        }
-      }
-    }
-  }
-}`;
-
+export interface PaginationResult<T> {
+  total: number;
+  data: T[];
+}

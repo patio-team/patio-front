@@ -42,7 +42,7 @@ export default class VoteForm extends Vue {
   private readonly group!: Group;
 
   @Prop(Number)
-  private readonly voteScore: number = 3;
+  private readonly voteScore!: number;
 
   @Prop(Object)
   private voting!: Voting;
@@ -87,7 +87,7 @@ export default class VoteForm extends Vue {
       votingId: this.voting.id,
       groupId: this.group.id,
     });
-    if(isCreated || this.voteScore === 6) {
+    if(isCreated) {
       this.$router.push({
         name: "groups:votings:detail",
         params: {

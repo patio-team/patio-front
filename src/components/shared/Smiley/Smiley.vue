@@ -31,7 +31,7 @@ export default class Smiley extends Vue {
   private voteScore!: number;
 
   @Prop(Boolean)
-  private fixedMood: boolean = false;
+  private fixedMood!: boolean;
 
 }
 </script>

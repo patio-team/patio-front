@@ -9,8 +9,7 @@
 
   DWBH is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the[Vue warn]: Error in mounted hook (Promise/async): "SyntaxError: Failed to execute 'querySelector' on 'Document': '[object HTMLCollection]' is not a valid selector."
-
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
@@ -116,7 +115,7 @@
       v-bind:group="group"
       v-bind:voting="voting"
       v-bind:initScore="initScore"
-      :voteScore="voteScore"
+      :voteScore="voteScore || 3"
       data-testid="vote-form"
     )
 
