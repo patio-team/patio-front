@@ -51,8 +51,8 @@
         )
           include ../../assets/img/chevron.svg
       .deco-background
-          .deco-gradient
-          dw-loader.loading
+        .deco-gradient
+        dw-loader.loading
     .form
       dw-vote-form(
         v-bind:group="group"
@@ -65,58 +65,59 @@
   .voting-interaction-desktop
     .close-x
       include ../../assets/img/cross.svg
-    .title-holder
-      h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
-      span.date Monday, July 9th, 2020
-    .smiley-containers
-      .smiley(
-        v-on:click="setMood(1)"
-        :class="{ 'selected': voteScore === 1}"
-      )
-        dw-smiley(
-          :voteScore="1",
-          :fixedMood="true"
+    .relative-container
+      .title-holder
+        h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }}
+        span.date Monday, July 9th, 2020
+      .smiley-containers
+        .smiley(
+          v-on:click="setMood(1)"
+          :class="{ 'selected': voteScore === 1}"
         )
-      .smiley(
-        v-on:click="setMood(2)"
-        :class="{ 'selected': voteScore === 2}"
-      )
-        dw-smiley(
-          :voteScore="2",
-          :fixedMood="true"
+          dw-smiley(
+            :voteScore="1",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(2)"
+          :class="{ 'selected': voteScore === 2}"
         )
-      .smiley(
-        v-on:click="setMood(3)"
-        :class="{ 'selected': voteScore === 3}"
-      )
-        dw-smiley(
-          :voteScore="3",
-          :fixedMood="true"
+          dw-smiley(
+            :voteScore="2",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(3)"
+          :class="{ 'selected': voteScore === 3}"
         )
-      .smiley(
-        v-on:click="setMood(4)"
-        :class="{ 'selected': voteScore === 4}"
-      )
-        dw-smiley(
-          :voteScore="4",
-          :fixedMood="true"
+          dw-smiley(
+            :voteScore="3",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(4)"
+          :class="{ 'selected': voteScore === 4}"
         )
-      .smiley(
-        v-on:click="setMood(5)"
-        :class="{ 'selected': voteScore === 5}"
-      )
-        dw-smiley(
-          :voteScore="5",
-          :fixedMood="true"
+          dw-smiley(
+            :voteScore="4",
+            :fixedMood="true"
+          )
+        .smiley(
+          v-on:click="setMood(5)"
+          :class="{ 'selected': voteScore === 5}"
         )
-    .voting-background-desktop
+          dw-smiley(
+            :voteScore="5",
+            :fixedMood="true"
+          )
+      .voting-background-desktop
 
-    dw-vote-form(
-      v-bind:group="group"
-      v-bind:voting="voting"
-      v-bind:initScore="initScore"
-      :voteScore="voteScore || 3"
-      data-testid="vote-form"
-    )
+      dw-vote-form(
+        v-bind:group="group"
+        v-bind:voting="voting"
+        v-bind:initScore="initScore"
+        :voteScore="voteScore || 3"
+        data-testid="vote-form"
+      )
 
 
