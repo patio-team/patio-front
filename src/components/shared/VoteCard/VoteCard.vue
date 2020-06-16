@@ -22,10 +22,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import Avatar from "@/components/shared/Avatar/Avatar.vue";
+import Smiley from "../Smiley/Smiley.vue";
 
 @Component({
   components: {
     Avatar,
+    "dw-smiley": Smiley,
   },
 })
 export default class VoteCard extends Vue {

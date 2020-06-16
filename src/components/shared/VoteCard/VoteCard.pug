@@ -18,8 +18,14 @@
 .vote-card
   .header
     h1 {{ name }}
-    Avatar(:name="name")
-  .body {{ mood }}
-  .footer
+    .avatar
+      Avatar.avatar(:name="name")
+  .smiley
+    dw-smiley(
+      :voteScore="mood"
+      :fixedMood="true"
+    )
+  .footer(v-if="hue")
+    include ../../../assets/img/quotes.svg
     blockquote {{ hue }}
 

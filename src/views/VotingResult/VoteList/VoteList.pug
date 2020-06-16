@@ -15,12 +15,20 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.vote-list
-  vote-card(v-for="(vote, $index) in moodMemberList"
-    :key="$index"
-    :data-num="$index + 1"
-    :name="vote.createdBy.name"
-    :mood="vote.score"
-    :hue="vote.hueMood")
+.vote-list-container
+  .vote-list(
+    v-masonry
+    horizontal-order="true"
+    item-selector=".vote-card"
+    transition-duration="0.1s"
+  )
+    vote-card.vote-card(
+      v-masonry-tile
+      v-for="(vote, $index) in moodMemberList"
+      :key="$index"
+      :data-num="$index + 1"
+      :name="vote.createdBy.name"
+      :mood="vote.score"
+      :hue="vote.hueMood")
   infinite-loader(@intersect="infiniteHandler")
 

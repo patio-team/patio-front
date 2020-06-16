@@ -19,7 +19,7 @@
 @import "../../assets/css/mixins.css";
 
 .voting-result {
-  background: yellow;
+  padding: 0 .5rem;
   width: 100%;
 
   & .title-container-mobile {
@@ -113,7 +113,7 @@
     left: 0;
     position: fixed;
     width: 100%;
-    z-index: 15;
+    z-index: 35;
 
     @media (--small-viewport) {
       display: none;

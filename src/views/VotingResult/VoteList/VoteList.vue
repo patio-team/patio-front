@@ -21,17 +21,21 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Vote } from "@/domain/votings";
+import { PaginationRequest } from "@/domain";
+import { masonry, masonryTile } from "@/components/directives/MasonryDirectives";
+import store from "@/store/modules/result/MoodMemberListStore";
 import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
 import InfiniteLoader from "@/components/shared/InfiniteLoader/InfiniteLoader.vue";
-import { Vote } from "@/domain/votings";
-
-import store from "@/store/modules/result/MoodMemberListStore";
-import { PaginationRequest } from "@/domain";
 
 @Component({
   components: {
     VoteCard,
     InfiniteLoader,
+  },
+  directives: {
+    masonry,
+    masonryTile,
   },
 })
 export default class VoteList extends Vue {
