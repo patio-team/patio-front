@@ -42,6 +42,7 @@ query GetVoting(
 ) {
   getVoting(id: $id) {
     id
+    didIVote
     average
     createdAtDateTime
     group {
