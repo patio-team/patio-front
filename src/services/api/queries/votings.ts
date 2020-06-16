@@ -21,13 +21,15 @@ mutation CreateVote(
   $votingId: ID!,
   $score: Int!,
   $anonymous: Boolean,
-  $comment: String
+  $comment: String,
+  $hueMood: String
 ) {
   createVote(
     votingId: $votingId,
     score: $score,
     anonymous: $anonymous,
     comment: $comment
+    hueMood: $hueMood
   ) {
     id
   }
