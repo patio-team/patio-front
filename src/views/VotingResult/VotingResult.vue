@@ -17,6 +17,8 @@
 -->
 
 <template src="./VotingResult.pug" lang="pug"></template>
+<style src="./VotingResult.css" scoped></style>
+
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
