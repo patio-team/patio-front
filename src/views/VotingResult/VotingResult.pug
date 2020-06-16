@@ -16,5 +16,26 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .voting-result
-  p
-  vote-list(v-if="groupId" :groupId="groupId")
+  .mobile-vote
+    button.primary Share your mood
+
+  .title-container-mobile
+    h1 Kaleidos
+    h2 Last Poll Result
+    span.time Monday, July 9th, 2020
+  .main-container
+    .graphic-section
+      .title-container-desktop
+        h1 Kaleidos
+      .graphic-container
+    .mood-section
+      .mood-container
+        .average-mood
+          .title-container-desktop
+            h2 Last Poll Result
+        .day-info
+          .title-container-desktop
+            span.time Monday, July 9th, 2020
+      .mood-sorter
+  .list-container
+    vote-list(v-if="groupId" :groupId="groupId")
