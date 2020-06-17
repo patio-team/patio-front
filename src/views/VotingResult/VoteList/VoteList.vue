@@ -48,15 +48,29 @@ export default class VoteList extends Vue {
     return store.moodMemberList;
   }
 
+  public async mounted() {
+    await this.reset(this.groupId);
+  }
+
   public async infiniteHandler() {
-    await this.paginate(this.groupId, this.pagination);
+    if (this.pagination.page !== 0) {
+      await this.paginate(this.groupId, this.pagination);
+    }
   }
 
   @Watch("groupId")
   public async whenGroupIdChanges(val: string, old: string) {
     if (val !== old) {
-      this.pagination = {max: 20, page: 0};
-      await store.resetMoodMemberResult({pagination: this.pagination, groupId: val});
+      await this.reset(val);
+    }
+  }
+
+  public async reset(groupId: string) {
+    this.pagination = {max: 20, page: 0};
+    const result = await store.resetMoodMemberResult({pagination: this.pagination, groupId});
+
+    if (result.data.length) {
+      this.pagination.page++;
     }
   }
 

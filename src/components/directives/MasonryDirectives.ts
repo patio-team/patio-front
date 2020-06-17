@@ -93,7 +93,7 @@ const destroyHandler = (id: any, masonryInstance: Masonry, vue: Vue | undefined)
     if (masonryInstance.destroy) {
       masonryInstance.destroy();
     }
-  }, 3000);
+  }, 500);
 };
 
 export const masonry: DirectiveOptions = {
