@@ -67,11 +67,8 @@ export default class Avatar extends Vue {
   }
 
   public getDimensions() {
-    const element = this.$refs.holder as HTMLElement;
-    const text = this.$refs.text as HTMLElement;
-    const holderWidth = element.clientWidth;
     requestAnimationFrame(() => {
-      this.holderHeight = holderWidth;
+      this.holderHeight = this.$el.clientWidth;
       this.fontWidth = this.holderHeight  / 2.5;
     });
   }
