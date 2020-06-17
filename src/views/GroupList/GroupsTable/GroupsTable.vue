@@ -46,7 +46,7 @@ export default class GroupsTable extends Vue {
   }
 
   private handleClickRow(groupId: string) {
-    this.$router.push({ name: "groups:detail", params: { groupId } });
+    this.$router.push({ name: "voting:result", params: { selectedGroupId: groupId } });
   }
 }
 </script>
