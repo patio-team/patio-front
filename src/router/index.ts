@@ -169,19 +169,6 @@ const router = new Router({
             requiresAuth: true,
           },
         },
-        {
-          path: "votings/:votingId",
-          name: "groups:votings:detail",
-          component: VotingDetail,
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          path: "votings/:votingId/vote",
-          name: "votings:vote",
-          component: Vote,
-        },
       ],
     },
     // NOTE: Don"t delete, useful to know how to create chunks of views

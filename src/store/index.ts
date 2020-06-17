@@ -25,8 +25,6 @@ import auth from "@/store/modules/auth";
 import group from "@/store/modules/group";
 import groups from "@/store/modules/groups";
 import profile from "@/store/modules/profile";
-import voting from "@/store/modules/voting";
-import votings from "@/store/modules/votings";
 
 import { RootState } from "./types";
 
@@ -41,8 +39,6 @@ const storeOptions: StoreOptions<RootState> = {
     group,
     groups,
     profile,
-    voting,
-    votings,
   },
   strict: process.env.VUE_APP_DEBUG === "true",
   plugins: process.env.VUE_APP_DEBUG === "true" && process.env.NODE_ENV === "development"
