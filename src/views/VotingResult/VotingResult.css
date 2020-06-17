@@ -31,14 +31,6 @@
     }
   }
 
-  & .title-container-desktop {
-    display: none;
-
-    @media (--large-viewport) {
-      display: flex;
-    }
-  }
-
   & .main-container {
     display: flex;
     flex-direction: column;
@@ -66,7 +58,6 @@
   }
 
   & .mood-section {
-    background: green;
     display: flex;
     flex-direction: column;
     min-height: 200px;
@@ -76,13 +67,14 @@
     @media (--large-viewport) {
       flex: 0 0 658px;
       order: 2;
+      padding-top: 2rem;
     }
   }
 
   & .mood-container {
-    background: blue;
     display: flex;
     flex-direction: column;
+    padding-bottom: 40px;
 
     @media (--large-viewport) {
       flex-direction: row;
@@ -101,7 +93,7 @@
     flex: 1 1 auto;
   }
 
-  & .day-info {
+  & .participation-container {
     flex: 1 1 auto;
   }
 
@@ -122,6 +114,96 @@
     & .primary {
       height: 60px;
       width: 240px;
+    }
+  }
+
+  & .participation {
+    color: var(--new-grey-700);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 36px;
+  }
+
+  & .button.primary {
+    margin-top: .7rem;
+    min-height: 40px;
+    width: 238px;
+  }
+
+  & .desktop {
+    display: none;
+
+    @media (--small-viewport) {
+      display: flex;
+    }
+  }
+
+  & .title-container-desktop {
+    display: none;
+    margin-bottom: 20px;
+
+    @media (--small-viewport) {
+      display: flex;
+    }
+
+    & span {
+      color: var(--new-grey-500);
+      display: block;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 36px;
+      margin-top: 6px;
+    }
+
+    & h2 {
+      color: var(--new-grey-700);
+      font-size: 24px;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 42px;
+      margin: 0;
+    }
+  }
+
+  & .participation-info {
+    color: var(--new-grey-500);
+
+    & .row {
+      align-content: center;
+      display: flex;
+
+      @media (--small-viewport) {
+        flex-direction: column;
+      }
+    }
+
+    & .title {
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 36px;
+      padding-right: 2rem;
+    }
+
+    & .amount {
+      display: fleX;
+
+      & span {
+        color: var(--new-grey-700);
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 36px;
+      }
+    }
+
+    & .people {
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 36px;
     }
   }
 }

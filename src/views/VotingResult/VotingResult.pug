@@ -17,11 +17,13 @@
 
 .voting-result
   .mobile-vote
-    button.primary Share your mood
+    router-link.button.primary(
+      v-bind:to="{ name: 'voting:result' }"
+    ) {{ $t("RESULT.SHARE_MOOD") }}
 
   .title-container-mobile
     h1 Kaleidos
-    h2 Last Poll Result
+    h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
     span.time Monday, July 9th, 2020
   .main-container
     .graphic-section
@@ -32,10 +34,22 @@
       .mood-container
         .average-mood
           .title-container-desktop
-            h2 Last Poll Result
-        .day-info
-          .title-container-desktop
+            h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
+        .participation-container
+          .title-container-desktop.date
             span.time Monday, July 9th, 2020
+          .participation-info
+            .row
+              .title {{ $t("RESULT.PARTICIPATION") }}
+              .amount
+                span 9
+                span /
+                span 20
+            .people {{ $t("RESULT.USUALLY") }} 12 {{ $t("RESULT.PEOPLE_PARTICIPATE") }}
+            .participation {{ $t("RESULT.NOT_PARTICIPATE") }}
+            router-link.button.primary.desktop(
+              v-bind:to="{ name: 'voting:result' }"
+            ) {{ $t("RESULT.SHARE_MOOD") }}
       .mood-sorter
   .list-container
     vote-list(v-if="groupId" :groupId="groupId")
