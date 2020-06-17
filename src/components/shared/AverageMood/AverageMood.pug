@@ -16,14 +16,24 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .average
-  .title
-    .title-text Última votación
-    .date 07/11/2020
   .average-mood-container(
       :class="getMood()"
   )
-    .average-mood
+    .d-average-mood
       .mood-decoration
-      .mood-average {{ moodAverage }}
+      .mood-average(
+        v-if="moodAverage !== 0"
+      ) {{ moodAverage }}
+      .mood-average(
+        v-if="moodAverage === 0"
+      ) -
 
-    .mood-text {{ averagePercentil }} below average
+    .mood-text {{ averagePercentil }}% below average
+    .arrow(
+      v-on:click="previousDay()"
+    )
+      include ../../../assets/img/chevron.svg
+    .arrow.reverse(
+      v-on:click="nextDay()"
+    )
+      include ../../../assets/img/chevron.svg
