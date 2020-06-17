@@ -233,5 +233,13 @@
     "min": "al menos {length} caracteres",
     "sameAsProperty": "debe tener el mismo valor que {reference}",
     "isPassword": "contraseña no segura"
+  },
+  "RESULT": {
+    "SHARE_MOOD": "Comparte tus emociones",
+    "LAST_POOL_RESULT": "Ultimos resultados",
+    "PARTICIPATION": "Participacion",
+    "USUALLY": "Normalmente",
+    "PEOPLE_PARTICIPATE": "personas participan",
+    "NOT_PARTICIPATE": "Aun no has participado"
   }
 }
