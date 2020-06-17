@@ -19,11 +19,11 @@
 import { ActionTree, GetterTree, Module, MutationTree, Commit } from "vuex";
 import api from "@/services/api";
 
-import { LoginInput, ResetInput, ChangePasswordInput } from "@/services/api/types";
+import { LoginInput, ResetInput, ChangePasswordInput, ChangeSelectedGroupInput } from "@/services/api/types";
 
 import { RootState } from "@/store/types";
 import { AuthState } from "./types";
-import { Login, User } from "@/domain";
+import { Login, User, Group } from "@/domain";
 
 
 const initialState: AuthState = {
@@ -36,6 +36,9 @@ const initialState: AuthState = {
   resetError: false,
   changePasswordIsLoading: false,
   changePasswordError: false,
+  selectedGroup: undefined,
+  changeSelectedGroupIsLoading: false,
+  changeSelectedGroupError: false,
 };
 
 const getters: GetterTree<AuthState, RootState> = {
@@ -48,6 +51,9 @@ const getters: GetterTree<AuthState, RootState> = {
   resetError(state: AuthState): string | boolean { return state.resetError; },
   changePasswordIsLoading(state: AuthState): boolean { return state.changePasswordIsLoading; },
   changePasswordError(state: AuthState): string | boolean { return state.changePasswordError; },
+  selectedGroup(state: AuthState) { return state.selectedGroup; },
+  changeSelectedGroupIsLoading(state: AuthState) { return state.changePasswordIsLoading; },
+  changeSelectedGroupError(state: AuthState) { return state.changeSelectedGroupError; },
 };
 
 const mutations: MutationTree<AuthState> = {
@@ -80,6 +86,7 @@ const mutations: MutationTree<AuthState> = {
     state.myProfileIsLoading = false;
     state.myProfileError = false;
     state.myProfile = myProfile;
+    state.selectedGroup = myProfile.favouriteGroup;
   },
   myProfileError(state: AuthState, error: string) {
     state.myProfileIsLoading = false;
@@ -109,6 +116,20 @@ const mutations: MutationTree<AuthState> = {
     state.changePasswordError = false;
   },
   changePasswordError(state: AuthState, error: string) {
+    state.changePasswordIsLoading = false;
+    state.changePasswordError = error;
+  },
+  // changeSelectedGroup
+  changeSelectedGroupRequest(state: AuthState) {
+    state.changePasswordIsLoading = true;
+    state.changePasswordError = false;
+  },
+  changeSelectedGroupSuccess(state: AuthState, group: Group) {
+    state.changePasswordIsLoading = false;
+    state.changePasswordError = false;
+    state.selectedGroup = group;
+  },
+  changeSelectedGroupError(state: AuthState, error: string) {
     state.changePasswordIsLoading = false;
     state.changePasswordError = error;
   },
@@ -193,6 +214,20 @@ const actions: ActionTree<AuthState, RootState> = {
       return true;
     } catch(error) {
       commit("changePasswordError", error.code);
+      return false;
+    }
+  },
+  async changeSelectedGroup(
+    { commit, state}: { commit: Commit, state: AuthState },
+    input: ChangeSelectedGroupInput,
+  ) {
+    commit("changeSelectedGroupRequest");
+    try {
+      const group = await api.groups.get({id: input.groupId});
+      commit("changeSelectedGroupSuccess", group);
+      return true;
+    } catch(error) {
+      commit("changeSelectedGroupError", error.code);
       return false;
     }
   },

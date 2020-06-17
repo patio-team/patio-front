@@ -16,7 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../../assets/css/mixins.css";
+@import "../../assets/css/mixins.css";
 
 .header-container {
   box-shadow: 0 4px 4px rgba(229, 229, 229, .25);

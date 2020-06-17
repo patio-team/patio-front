@@ -70,7 +70,7 @@ export default class VoteList extends Vue {
     const result = await store.resetMoodMemberResult({pagination: this.pagination, groupId});
 
     if (result.data.length) {
-      this.pagination.page++;
+      this.pagination.page = 1;
     }
   }
 

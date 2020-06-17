@@ -18,7 +18,7 @@
 
 import { AxiosInstance } from "axios";
 
-import { PaginationRequest, PaginationResult, Vote } from "@/domain";
+import { PaginationRequest, PaginationResult, Vote, Group } from "@/domain";
 import { ListMembersMood, GetFavouriteGroup } from "./queries/results";
 
 export default (client: AxiosInstance) => ({
@@ -36,13 +36,13 @@ export default (client: AxiosInstance) => ({
         return data.getLastVotingByGroup.votes;
       });
   },
-  getFavouriteGroupId() {
+  getFavouriteGroup() {
     return client
       .post("", {
         query: GetFavouriteGroup,
       })
-      .then((data: any): string => {
-        return data.getMyFavouriteGroup.id;
+      .then((data: any): Group => {
+        return data.getMyFavouriteGroup;
       });
   },
 });

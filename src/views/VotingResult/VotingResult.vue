@@ -22,10 +22,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import store from "@/store/modules/result/FavouriteGroupStore";
+import { namespace } from "vuex-class";
+import { Group } from "@/domain";
 import VoteList from "./VoteList/VoteList.vue";
 import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
 import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
+
+const AuthStore = namespace("auth");
 
 @Component({
   components: {
@@ -36,17 +39,24 @@ import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
 })
 export default class VotingResult extends Vue {
 
+  @AuthStore.Getter("selectedGroup")
+  private selectedGroup!: Group;
+
+  @AuthStore.Action("changeSelectedGroup")
+  private changeSelectedGroup!: any;
+
   @Prop(String)
   private selectedGroupId!: string;
 
-  public get groupId() {
-    return this.selectedGroupId || store.groupId;
+  public async mounted() {
+    if (this.selectedGroupId) {
+      await this.changeSelectedGroup({groupId: this.selectedGroupId});
+    }
   }
 
-  private async mounted() {
-    if (!this.selectedGroupId) {
-      await store.fetchFavouriteGroupId();
-    }
+  @Watch("selectedGroupId")
+  public async onSelectedGroupId() {
+    await this.changeSelectedGroup({groupId: this.selectedGroupId});
   }
 }
 </script>

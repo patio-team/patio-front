@@ -32,6 +32,10 @@ query Login($email: String!, $password: String!) {
         id
         name
       }
+      favouriteGroup {
+        id
+        name
+      }
     }
   }
 }`;
@@ -43,6 +47,10 @@ query MyProfile {
     email
     hash
     groups {
+      id
+      name
+    }
+    favouriteGroup {
       id
       name
     }

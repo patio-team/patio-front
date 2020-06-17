@@ -28,8 +28,6 @@ import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupMemberProfile from "@/views/GroupMemberProfile/GroupMemberProfile.vue";
 import GroupDetailActions from "@/views/GroupDetail/GroupDetailActions/GroupDetailActions.vue";
 import EditGroup from "@/views/EditGroup/EditGroup.vue";
-import VotingDetail from "@/views/VotingDetail/VotingDetail.vue";
-import Vote from "@/views/Vote/Vote.vue";
 
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
 import Login from "@/views/Login/Login.vue";

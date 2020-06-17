@@ -65,4 +65,4 @@
       .mood-sorter-section
         MoodSorter
   .list-container
-    vote-list(v-if="groupId" :groupId="groupId")
+    vote-list(v-if="selectedGroup" :groupId="selectedGroup.id")

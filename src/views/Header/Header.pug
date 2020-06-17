@@ -19,7 +19,7 @@
 .header-container
   .header
     .logo(data-testid="logo")
-      include ../../../assets/img/logo-patio.svg
+      include ../../assets/img/logo-patio.svg
     .actions(data-testid="actions" v-if="me")
       .user-menu(data-testid="user-menu")
         //- div.user
@@ -34,9 +34,9 @@
           //-   span.alert 3
           button.name-actions(v-on:click="toggleDropdown")
             .group-container
-              span GroupName
+              span(v-if="selectedGroup") {{ selectedGroup.name }}
               .dropdown
-                include ../../../assets/img/chevron.svg
+                include ../../assets/img/chevron.svg
             .avatar-container
               dw-avatar(
                 :name="name"
@@ -49,7 +49,7 @@
     )
       .content
         button.close(v-on:click="toggleDropdown")
-          include ../../../assets/img/cross.svg
+          include ../../assets/img/cross.svg
         .avatar-container
           dw-avatar(
             :name="name"
@@ -60,7 +60,7 @@
         router-link.options-text.profile(v-bind:to="{ name: 'my-profile' }") {{ $t("HEADER.USER_ACTIONS.SEE_PROFILE")}}
         .block
           button.text-and-icon(v-on:click.capture="toggleDropdown")
-            include ../../../assets/img/settings.svg
+            include ../../assets/img/settings.svg
             span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
         hr
         .block.groups
@@ -72,7 +72,7 @@
             li
               button.text-and-icon(
                 v-on:click="createNewGroup")
-                include ../../../assets/img/plus.svg
+                include ../../assets/img/plus.svg
                 span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
           router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
       .actions

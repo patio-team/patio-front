@@ -39,6 +39,8 @@ export const GetFavouriteGroup = `
 query GetFavouriteGroup {
   getMyFavouriteGroup {
     id
+    name
+    isCurrentUserAdmin
   }
 }
 `;

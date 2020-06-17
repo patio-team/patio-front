@@ -23,8 +23,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
-import { User } from "@/domain";
-import Avatar from "../Avatar/Avatar.vue";
+import { User, Group } from "@/domain";
+import Avatar from "@/components/shared/Avatar/Avatar.vue";
 
 const AuthStore = namespace("auth");
 
@@ -41,6 +41,9 @@ export default class Header extends Vue {
 
   @AuthStore.Action("logout")
   private logout!: any;
+
+  @AuthStore.Getter("selectedGroup")
+  private selectedGroup!: Group;
 
   get name() {
     return this.me ? this.me.name : undefined;
