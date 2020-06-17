@@ -16,23 +16,51 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../../assets/css/colors.css";
+@import "../../../assets/css/mixins.css";
 
 .vote-card {
   background-color: var(--white-400);
   border-radius: 1em;
   box-shadow: 10px 10px 30px rgba(52, 49, 76, .2);
-  display: flex;
+  display: inline-block;
   flex-direction: column;
-  margin: .5em;
-  padding: .5em;
-  width: 24vw;
+  margin: 1rem .5rem 0;
+  margin-top: 1rem;
+  object-fit: cover;
+  padding-bottom: 2rem;
+  width: calc(100% - 1rem);
+
+  @media (--small-viewport) {
+    width: calc(50% - 1rem);
+  }
+
+  @media (--medium-viewport) {
+    width: calc(33% - 1rem);
+  }
+
+  @media (--large-viewport) {
+    /* width: calc((100% - 3rem) / 4); */
+    width: calc(25% - 1rem);
+  }
+
+  & blockquote {
+    align-content: middle;
+    color: var(--new-grey-500);
+    display: flex;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    margin: 0;
+    padding: .5rem 3rem 0;
+    position: relative;
+  }
 
   & .header {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    padding: .5em;
+    padding: 1rem;
 
     & .avatar-holder {
       font-size: 24px;
@@ -41,17 +69,32 @@
     }
 
     & h1 {
-      font-size: 1em;
-      margin-left: .5em;
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 42px;
+      margin: 0 0 0 1rem;
     }
   }
 
-  & .body {
+  & .smiley {
     align-self: center;
-    padding: .5em;
+    height: 80px;
+    margin: 0 auto;
+    width: 80px;
   }
 
   & .footer {
-    padding: .5em;
+    padding: 0 .5em;
+    position: relative;
+
+    & svg {
+      height: 12px;
+      left: calc(2rem - 6px);
+      position: absolute;
+      top: .75rem;
+      width: 12px;
+    }
   }
 }

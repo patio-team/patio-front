@@ -16,11 +16,18 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@import "../../../assets/css/mixins.css";
+
 .vote-list {
+  align-content: space-between;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: auto;
-  padding: 0;
-  width: 100%;
+  flex-flow: column wrap;
+}
+
+.vote-gutter {
+  width: 0;
+
+  @media (--small-viewport) {
+    width: 0;
+  }
 }
