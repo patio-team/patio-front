@@ -57,7 +57,6 @@
   flex-direction: column;
   justify-content: flex-start;
   margin: 0 1rem 1rem;
-  max-width: var(--content-max-width);
   padding: 1rem;
   width: 100%;
 }
