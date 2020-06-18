@@ -18,6 +18,45 @@
 
 @import "../../../assets/css/mixins.css";
 
+.full-empty {
+  display: flex;
+  flex-direction: column;
+
+  & .not-participated {
+    display: flex;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    justify-content: center;
+    line-height: 22px;
+
+    @media (--small-viewport) {
+      flex-direction: row;
+      justify-content: end;
+      margin: 0 0 40px 0;
+    }
+  }
+
+  & .mood-sorter {
+    @media (--small-viewport) {
+      flex-direction: row;
+      justify-content: end;
+    }
+  }
+
+  & .mood-bar {
+    display: none;
+  }
+
+  & .mood {
+    width: auto;
+  }
+}
+
+.not-participated {
+  display: none;
+}
+
 .mood-sorter {
   align-content: center;
   display: flex;
@@ -27,6 +66,16 @@
   @media (--small-viewport) {
     flex-direction: column;
     margin: 0;
+  }
+
+  &.full-empty {
+    & .mood-bar {
+      display: none;
+    }
+
+    & .mood {
+      width: auto;
+    }
   }
 }
 
@@ -40,8 +89,15 @@
     width: 100%;
   }
 
-  &.empty .mood-buble {
-    border-style: dashed;
+  &.empty {
+    & .mood-buble {
+      border-style: dashed;
+      font-size: 0;
+    }
+
+    & .bar {
+      display: none;
+    }
   }
 }
 

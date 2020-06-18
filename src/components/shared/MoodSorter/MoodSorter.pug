@@ -16,72 +16,79 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 
-.mood-sorter
-  .mood.mood5
-    .mood-buble-container
-      .mood-buble 189
-    .mood-bar
-      .divider
-        .line
-        .line
-        .line
-        .line
-        .line
-      .bar(
-        :style="{ width: setBarSize(189,206) + '%' }"
-      )
-  .mood.mood4
-    .mood-buble-container
-      .mood-buble 201
-    .mood-bar
-      .divider
-        .line
-        .line
-        .line
-        .line
-        .line
-      .bar(
-        :style="{ width: setBarSize(201,206) + '%' }"
-      )
-  .mood.mood3
-    .mood-buble-container
-      .mood-buble 206
-    .mood-bar
-      .divider
-        .line
-        .line
-        .line
-        .line
-        .line
-      .bar(
-        :style="{ width: setBarSize(206,206) + '%' }"
-      )
-  .mood.mood2
-    .mood-buble-container
-      .mood-buble 111
-    .mood-bar
-      .divider
-        .line
-        .line
-        .line
-        .line
-        .line
-      .bar(
-        :style="{ width: setBarSize(111,206) + '%' }"
-      )
-  .mood.mood1
-    .mood-buble-container
-      .mood-buble 20
-    .mood-bar
-      .divider
-        .line
-        .line
-        .line
-        .line
-        .line
-      .bar(
-        :style="{ width: setBarSize(20,206) + '%' }"
-      )
+.mood-sorter-wrapper
+  //- If there is no data, add class full-empty
+  //- :class="{full-empty: 'isEmpty'}"
+  p.not-participated No one has participated yet
+  .mood-sorter
+    //- If there is 0 votes, add class empty
+    .mood.mood5(
+      :class="'mood' + mood"
+    )
+      .mood-buble-container
+        .mood-buble 189
+      .mood-bar
+        .divider
+          .line
+          .line
+          .line
+          .line
+          .line
+        .bar(
+          :style="{ width: setBarSize(189,206) + '%' }"
+        )
+    .mood.mood4
+      .mood-buble-container
+        .mood-buble 201
+      .mood-bar
+        .divider
+          .line
+          .line
+          .line
+          .line
+          .line
+        .bar(
+          :style="{ width: setBarSize(201,206) + '%' }"
+        )
+    .mood.mood3
+      .mood-buble-container
+        .mood-buble 206
+      .mood-bar
+        .divider
+          .line
+          .line
+          .line
+          .line
+          .line
+        .bar(
+          :style="{ width: setBarSize(206,206) + '%' }"
+        )
+    .mood.mood2
+      .mood-buble-container
+        .mood-buble 111
+      .mood-bar
+        .divider
+          .line
+          .line
+          .line
+          .line
+          .line
+        .bar(
+          :style="{ width: setBarSize(111,206) + '%' }"
+        )
+    .mood.mood1
+      .mood-buble-container
+        .mood-buble 20
+      .mood-bar
+        .divider
+          .line
+          .line
+          .line
+          .line
+          .line
+        .bar(
+          :style="{ width: setBarSize(20,206) + '%' }"
+        )
 
 
 

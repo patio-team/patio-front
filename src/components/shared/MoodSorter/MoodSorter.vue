@@ -23,7 +23,6 @@ import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 
 @Component
 export default class MoodSorter extends Vue {
-
   private setBarSize(amount: number, max: number) {
     const singleItem = 100 / max;
     const result = singleItem * amount;

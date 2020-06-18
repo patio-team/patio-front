@@ -15,7 +15,11 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.average
+//- If there is no data, add class empty
+//- :class="{empty: 'isEmpty'}"
+.average(
+    v-bind:class="{empty: moodAverage === 0}"
+  )
   .average-mood-container(
       :class="getMood()"
   )

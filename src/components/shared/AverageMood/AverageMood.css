@@ -18,6 +18,18 @@
 
 @import "../../../assets/css/mixins.css";
 
+.average.empty {
+  & .average-mood-container {
+    & .mood-decoration {
+      background-color: var(--new-grey-100);
+    }
+  }
+
+  & .mood-text {
+    display: none;
+  }
+}
+
 .mood0 {
   & .mood-decoration {
     background-color: var(--new-grey-100);
