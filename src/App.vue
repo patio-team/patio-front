@@ -23,7 +23,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 import { Notifications } from "@/plugins/notifications";
-import Header from "@/components/shared/Header/Header.vue";
+import Header from "@/views/Header/Header.vue";
 
 @Component({
   components: {

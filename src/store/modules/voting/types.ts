@@ -16,25 +16,10 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Action, getModule, Module, Mutation, VuexModule } from "vuex-module-decorators";
-import store from "@/store";
-import api from "@/services/api";
+import { Voting } from "@/domain";
 
-const moduleName = "results:favourite-group";
-
-@Module({ stateFactory: true, dynamic: true, namespaced: true, name: moduleName, store })
-export class FavouriteGroupStore extends VuexModule {
-  public groupId: string = "";
-
-  @Mutation
-  public setGroupId(id: string) {
-    this.groupId = id;
-  }
-
-  @Action({ commit: "setGroupId"})
-  public async fetchFavouriteGroupId() {
-    return await api.results.getFavouriteGroupId();
-  }
+export interface VotingState {
+  voting?: Voting;
+  getVotingIsLoading: boolean;
+  getVotingError: boolean | string;
 }
-
-export default getModule(FavouriteGroupStore);

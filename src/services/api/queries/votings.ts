@@ -42,6 +42,7 @@ query GetVoting(
 ) {
   getVoting(id: $id) {
     id
+    didIVote
     average
     createdAtDateTime
     group {
@@ -65,3 +66,13 @@ query GetVoting(
   }
 }`;
 
+export const GetLastVotingQuery = `
+query GetLastVoting($groupId: ID!) {
+  getLastVotingByGroup(groupId: $groupId) {
+    id
+    average
+    createdAtDateTime
+    didIVote
+  }
+}
+`;

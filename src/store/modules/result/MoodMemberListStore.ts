@@ -24,7 +24,7 @@ import api from "@/services/api";
 const moduleName = "results:mood-member-list";
 
 export interface MoodMemberListInput {
-  groupId: string;
+  votingId: string;
   pagination: PaginationRequest;
 }
 
@@ -44,12 +44,12 @@ export class MoodMemberListStore extends VuexModule {
 
   @Action({ commit: "clearMoodMemberResult" })
   public async resetMoodMemberResult(input: MoodMemberListInput) {
-    return await api.results.listMembersMood(input.groupId, input.pagination);
+    return await api.results.listMembersMood(input.votingId, input.pagination);
   }
 
   @Action({ commit: "setMoodMemberResult" })
   public async fetchMoodMemberList(input: MoodMemberListInput) {
-    return await api.results.listMembersMood(input.groupId, input.pagination);
+    return await api.results.listMembersMood(input.votingId, input.pagination);
   }
 }
 

@@ -28,8 +28,6 @@ import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupMemberProfile from "@/views/GroupMemberProfile/GroupMemberProfile.vue";
 import GroupDetailActions from "@/views/GroupDetail/GroupDetailActions/GroupDetailActions.vue";
 import EditGroup from "@/views/EditGroup/EditGroup.vue";
-import VotingDetail from "@/views/VotingDetail/VotingDetail.vue";
-import Vote from "@/views/Vote/Vote.vue";
 
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
 import Login from "@/views/Login/Login.vue";
@@ -42,6 +40,7 @@ import ChangePasswordLayout from "@/views/ChangePasswordLayout/ChangePasswordLay
 import ChangePasswordExpired from "@/views/ChangePasswordExpired/ChangePasswordExpired.vue";
 import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
 import VotingResult from "@/views/VotingResult/VotingResult.vue";
+import Vote from "@/views/Vote/Vote.vue";
 
 Vue.use(Router);
 
@@ -126,10 +125,25 @@ const router = new Router({
       },
     },
     {
-      path: "/result/:selectedGroupId?",
+      path: "/result/:votingId?",
       name: "voting:result",
       component: VotingResult,
       props: true,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/result/:votingId/vote",
+      name: "voting:vote",
+      component: Vote,
+      props: (r) => {
+        const vote: string = r.query.vote as string || "3";
+        return {
+          vote: Number.parseInt(vote, 10),
+          votingId: r.params.votingId,
+        };
+      },
       meta: {
         requiresAuth: true,
       },

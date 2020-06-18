@@ -20,7 +20,7 @@
 <style src='./Vote.css' scoped></style>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
 import VoteForm from "./VoteForm/VoteForm.vue";
@@ -30,6 +30,8 @@ import { formatToDate } from "@/utils/datetime";
 import Smiley from "../../components/shared/Smiley/Smiley.vue";
 import Snap from "snapsvg";
 import Loader from "../../components/shared/Loader/Loader.vue";
+
+const AuthStore = namespace("auth");
 const VotingsStore = namespace("voting");
 
 @Component({
@@ -47,8 +49,6 @@ export default class Vote extends Vue {
   public voteSelected = false;
   public animationTrue = false;
 
-  @Prop(Object)
-  private readonly group!: Group;
 
   @VotingsStore.Getter("voting")
   private voting!: Voting;
@@ -62,19 +62,22 @@ export default class Vote extends Vue {
   @VotingsStore.Action("getVoting")
   private getVoting: any;
 
+  @Prop(Number)
+  private readonly vote!: number;
+
+  @Prop(String)
+  private readonly votingId!: string;
+
   public created() {
-    if (this.$route.query.vote) {
-      this.initScore = Number(this.$route.query.vote);
-      this.voteScore = Number(this.$route.query.vote);
+    if (this.vote) {
+      this.initScore = Number(this.vote);
+      this.voteScore = Number(this.vote);
     }
     this.isLandscape();
   }
 
   public async mounted() {
-    const input = {
-      id: this.$route.params.votingId,
-    };
-    const voting = await this.getVoting(input);
+    const voting = await this.getVoting({ id: this.votingId });
     this.$emit("set-subtitle", formatToDate(voting.createdAtDateTime));
     this.isLoaded = true;
     this.animateScore(this.voteScore, true);

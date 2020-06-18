@@ -34,3 +34,7 @@ export interface ChangePasswordInput {
   password: string;
   repeatPassword: string;
 }
+
+export interface ChangeSelectedGroupInput {
+  groupId: string;
+}

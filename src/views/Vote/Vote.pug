@@ -55,7 +55,6 @@
         dw-loader.loading
     .form
       dw-vote-form(
-        v-bind:group="group"
         v-bind:voting="voting"
         v-bind:initScore="initScore"
         :voteScore="voteScore"
@@ -113,7 +112,6 @@
       .voting-background-desktop
 
       dw-vote-form(
-        v-bind:group="group"
         v-bind:voting="voting"
         v-bind:initScore="initScore"
         :voteScore="voteScore || 3"

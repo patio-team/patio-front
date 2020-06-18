@@ -23,8 +23,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
-import { User } from "@/domain";
-import Avatar from "../Avatar/Avatar.vue";
+import { User, Group } from "@/domain";
+import Avatar from "@/components/shared/Avatar/Avatar.vue";
 
 const AuthStore = namespace("auth");
 
@@ -42,6 +42,12 @@ export default class Header extends Vue {
   @AuthStore.Action("logout")
   private logout!: any;
 
+  @AuthStore.Action("changeSelectedGroup")
+  private changeSelectedGroup!: any;
+
+  @AuthStore.Getter("selectedGroup")
+  private selectedGroup!: Group;
+
   get name() {
     return this.me ? this.me.name : undefined;
   }
@@ -52,6 +58,12 @@ export default class Header extends Vue {
 
   get groups() {
     return this.me ? this.me.groups : undefined;
+  }
+
+  private async handleChangeSelectedGroup(groupId: string) {
+    await this.changeSelectedGroup({groupId});
+
+    this.$router.push({ name: "voting:result", params: {groupId} });
   }
 
   private async handleClickLogout() {

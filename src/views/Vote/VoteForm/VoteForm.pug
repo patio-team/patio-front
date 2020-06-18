@@ -39,11 +39,11 @@ form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" auto
         a.description(href='https://spec.commonmark.org/0.29/' target='_blank') &#128712; {{ $t("VOTE_FORM.INPUT_COMMENT.DESCRIPTION") }}
 
 
-  .anonymous(data-testid="anonymouscontainer" v-if="group && group.anonymousVote")
-    label.crc
-      input.crc_input(data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
-      span.crc_show.crc_show--checkbox
-      span.crc_text(data-testid="anonymouslabel" for="anonymous") {{ $t("VOTE_FORM.INPUT_ANONYMOUS.LABEL") }}
+  //- .anonymous(data-testid="anonymouscontainer" v-if="group.isAnonymous")
+  //-   label.crc
+  //-     input.crc_input(data-testid="anonymous" id="anonymous" name="anonymous" type="checkbox" v-model="input.anonymous")
+  //-     span.crc_show.crc_show--checkbox
+  //-     span.crc_text(data-testid="anonymouslabel" for="anonymous") {{ $t("VOTE_FORM.INPUT_ANONYMOUS.LABEL") }}
 
   button.primary.submit(
     @:click="handleSubmit()"

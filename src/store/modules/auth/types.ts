@@ -16,7 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { User } from "@/domain";
+import { User, Group } from "@/domain";
 
 export interface AuthState {
   // login
@@ -32,5 +32,9 @@ export interface AuthState {
   // change password
   changePasswordIsLoading: boolean;
   changePasswordError: boolean | string;
+  // selected session Group
+  selectedGroup?: Group;
+  changeSelectedGroupIsLoading: boolean;
+  changeSelectedGroupError: boolean | string;
 }
 

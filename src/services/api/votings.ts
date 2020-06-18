@@ -21,10 +21,12 @@ import { Voting } from "@/domain";
 import {
   CreateVoteInput,
   GetVotingInput,
+  GetLastVotingInput,
 } from "./types";
 import {
   CreateVoteMutation,
   GetVotingQuery,
+  GetLastVotingQuery,
 } from "./queries/votings";
 
 export default (client: AxiosInstance) => ({
@@ -37,6 +39,13 @@ export default (client: AxiosInstance) => ({
       .post("", { query: GetVotingQuery, variables: input })
       .then((data: any): Voting => {
         return data.getVoting;
+      });
+  },
+  getLastVoting(input: GetLastVotingInput) {
+    return client
+      .post("", { query: GetLastVotingQuery, variables: input })
+      .then((data: any): Voting => {
+        return data.getLastVotingByGroup;
       });
   },
 });

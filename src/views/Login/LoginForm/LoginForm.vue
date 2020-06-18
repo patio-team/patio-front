@@ -49,7 +49,7 @@ export default class LoginForm extends Vue {
 
     if (isLogin) {
       const next = this.$route.query.next as string
-        || { name: "groups:list" };
+        || { name: "voting:result" };
       this.$router.push(next);
     }
   }

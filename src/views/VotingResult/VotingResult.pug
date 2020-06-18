@@ -28,14 +28,14 @@
     ) {{ $t("RESULT.SHARE_MOOD") }}
 
   .title-container.title-container-mobile
-    h1 Kaleidos
+    h1 {{ selectedGroup.name }}
     .row
       h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
-      span.time Monday, July 9th, 2020
+      span.time(v-if="voting") {{ $d(voting.createdAtDateTime) }}
   .main-container
     .graphic-section
       .title-container.title-container-full
-        h1 Kaleidos
+        h1 {{ selectedGroup.name }}
       .graphic-container
         p.delete-when-graphic Aqui va una grafica
     .mood-section
@@ -44,12 +44,13 @@
           .title-container.title-container-large
             h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
           AverageMood(
-            moodAverage="4.2"
+            v-if="voting"
+            :moodAverage="voting.average"
             averagePercentil="7"
           )
         .participation-container
           .title-container.title-container-participation.date.no-margin
-            span.time Monday, July 9th, 2020
+            span.time(v-if="voting") {{ $d(voting.createdAtDateTime) }}
           .participation-info
             .row
               .title {{ $t("RESULT.PARTICIPATION") }}
@@ -58,11 +59,14 @@
                 span /
                 span 20
             .people {{ $t("RESULT.USUALLY") }} 12 {{ $t("RESULT.PEOPLE_PARTICIPATE") }}
-            .participation {{ $t("RESULT.NOT_PARTICIPATE") }}
+            .participation
+              template(v-if="voting && voting.didIVote") {{ $t("RESULT.ALREADY_VOTED") }}
+              template(v-if="voting && !voting.didIVote") {{ $t("RESULT.NOT_PARTICIPATE") }}
             router-link.button.primary.desktop(
-              v-bind:to="{ name: 'voting:result' }"
+              v-if="voting && !voting.didIVote"
+              v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
             ) {{ $t("RESULT.SHARE_MOOD") }}
       .mood-sorter-section
         MoodSorter
   .list-container
-    vote-list(v-if="groupId" :groupId="groupId")
+    vote-list(v-if="voting" :voting="voting")

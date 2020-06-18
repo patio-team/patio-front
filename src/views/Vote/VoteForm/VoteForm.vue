@@ -26,7 +26,7 @@ import { namespace } from "vuex-class";
 import Markdown from "@/components/shared/Markdown/Markdown.vue";
 
 import { CreateVoteInput } from "@/services/api/types";
-import { Group, Voting } from "@/domain";
+import { Voting } from "@/domain";
 
 const Votings = namespace("votings");
 
@@ -37,9 +37,6 @@ const Votings = namespace("votings");
 })
 export default class VoteForm extends Vue {
   private showPreview = false;
-
-  @Prop(Object)
-  private readonly group!: Group;
 
   @Prop(Number)
   private readonly voteScore!: number;
@@ -64,7 +61,6 @@ export default class VoteForm extends Vue {
     comment: "",
     anonymous: false,
     votingId: "",
-    groupId: "",
     hueMood: "",
   } as CreateVoteInput;
 
@@ -85,14 +81,12 @@ export default class VoteForm extends Vue {
     const isCreated = await this.createVote({
       ...this.input,
       votingId: this.voting.id,
-      groupId: this.group.id,
     });
     if(isCreated) {
       this.$router.push({
-        name: "groups:votings:detail",
+        name: "voting:result",
         params: {
           votingId: this.voting.id,
-          groupId: this.group.id,
         },
       });
     }
