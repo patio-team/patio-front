@@ -24,10 +24,14 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import store from "@/store/modules/result/FavouriteGroupStore";
 import VoteList from "./VoteList/VoteList.vue";
+import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
+import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
 
 @Component({
   components: {
     VoteList,
+    AverageMood,
+    MoodSorter,
   },
 })
 export default class VotingResult extends Vue {

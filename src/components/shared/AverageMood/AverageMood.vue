@@ -49,5 +49,15 @@ export default class AverageMood extends Vue {
     return "mood0";
   }
 
+  private previousDay() {
+    // TODO
+    const previous = 1;
+  }
+
+  private lastDay() {
+    // TODO
+    const last = 1;
+  }
+
 }
 </script>

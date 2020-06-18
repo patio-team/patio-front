@@ -18,22 +18,150 @@
 
 @import "../../assets/css/mixins.css";
 
-.voting-result {
-  padding: 0 .5rem;
-  width: 100%;
+.delete-when-graphic {
+  color: white;
+  font-size: 64px;
+  text-align: center;
+}
 
-  & .title-container-mobile {
-    display: flex;
-    flex-direction: column;
+.which-desktop {
+  align-items: center;
+  background: red;
+  color: white;
+  display: flex;
+  font-size: 64px;
+  justify-content: center;
+  left: 50%;
+  margin-left: -100px;
+  position: fixed;
+  top: 0;
+  width: 200px;
+
+  & .base {
+    display: block;
+
+    @media (--small-viewport) {
+      display: none;
+    }
+  }
+
+  & .small {
+    display: none;
+
+    @media (--small-viewport) {
+      display: block;
+    }
+
+    @media (--medium-viewport) {
+      display: none;
+    }
+  }
+
+  & .medium {
+    display: none;
+
+    @media (--medium-viewport) {
+      display: block;
+    }
 
     @media (--large-viewport) {
       display: none;
     }
   }
 
+  & .large {
+    display: none;
+
+    @media (--large-viewport) {
+      display: block;
+    }
+
+    @media (--xlarge-viewport) {
+      display: none;
+    }
+  }
+
+  & .xlarge {
+    display: none;
+
+    @media (--xlarge-viewport) {
+      display: block;
+    }
+  }
+}
+
+.voting-result {
+  color: var(--new-grey-700);
+  padding: 0 .5rem;
+  width: 100%;
+
+  & .title-container {
+    & h1,
+    & h2 {
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    }
+
+    & span {
+      color: var(--new-grey-500);
+    }
+  }
+
+  & .title-container-mobile {
+    display: flex;
+    flex-direction: column;
+    padding-left: .5rem;
+    padding-top: 25px;
+
+    @media (--large-viewport) {
+      display: none;
+    }
+
+    & h1 {
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      margin: 0;
+    }
+
+    & h2 {
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      margin: 0 0 1rem 0;
+
+      @media (--small-viewport) {
+        margin-right: 6rem;
+      }
+
+      @media (--medium-viewport) {
+        display: none;
+      }
+    }
+
+    & .row {
+      align-items: flex-end;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+
+      @media (--small-viewport) {
+        align-content: flex-end;
+        display: flex;
+      }
+
+      @media (--medium-viewport) {
+        margin-top: 0;
+      }
+    }
+
+    & .time {
+      display: block;
+
+      @media (--medium-viewport) {
+        display: none;
+      }
+    }
+  }
+
   & .main-container {
     display: flex;
     flex-direction: column;
+    padding: 0 .5rem;
     width: 100%;
 
     @media (--large-viewport) {
@@ -42,7 +170,7 @@
   }
 
   & .graphic-section {
-    background: red;
+    background: rgba(255, 0, 0, .2);
     display: none;
     min-height: 200px;
 
@@ -53,6 +181,7 @@
 
     @media (--large-viewport) {
       flex: 1 1 auto;
+      margin-right: 25px;
       order: 1;
     }
   }
@@ -64,37 +193,94 @@
     order: 1;
     width: 100%;
 
+    @media (--small-viewport) {
+      flex-direction: row;
+    }
+
     @media (--large-viewport) {
-      flex: 0 0 658px;
+      flex: 0 0 650px;
+      flex-direction: column;
+      margin-top: 2rem;
       order: 2;
-      padding-top: 2rem;
     }
   }
 
   & .mood-container {
     display: flex;
     flex-direction: column;
-    padding-bottom: 40px;
+    margin-bottom: 25px;
+
+    @media (--small-viewport) {
+      flex: 1 0 225px;
+    }
+
+    @media (--medium-viewport) {
+      flex-basis: 475px;
+      flex-direction: row;
+      margin-right: 25px;
+    }
 
     @media (--large-viewport) {
+      flex-basis: auto;
       flex-direction: row;
+      margin-right: 0;
+    }
+
+    & .average-mood {
+      flex: 1 1 auto;
+
+      @media (--small-viewport) {
+        flex: 1 0 auto;
+        margin-bottom: 25px;
+      }
+
+      @media (--medium-viewport) {
+        flex: 0 0 225px;
+        margin-bottom: 0;
+        margin-right: 25px;
+        padding-right: 0;
+      }
+
+      @media (--large-viewport) {
+        flex: 1 0 250px;
+      }
     }
   }
 
-  & .mood-sorter {
-    background: greenyellow;
+  & .mood-sorter-section {
     display: flex;
+    flex: 1 1 100%;
     flex-direction: column;
-    height: 300px;
-    width: 100%;
-  }
+    padding-bottom: 25px;
 
-  & .average-mood {
-    flex: 1 1 auto;
+    @media (--small-viewport) {
+      margin-left: 25px;
+    }
+
+    @media (--large-viewport) {
+      margin-left: 0;
+    }
   }
 
   & .participation-container {
     flex: 1 1 auto;
+
+    @media (--small-viewport) {
+      flex: 0 1 auto;
+    }
+
+    @media (--medium-viewport) {
+      flex: 0 0 225px;
+
+      & .button.primary {
+        height: 60px;
+      }
+    }
+
+    @media (--large-viewport) {
+      flex: 1 0 350px;
+      margin-right: 0;
+    }
   }
 
   & .mobile-vote {
@@ -138,36 +324,56 @@
     }
   }
 
-  & .title-container-desktop {
-    display: none;
-    margin-bottom: 20px;
+  & .title-container-large {
+    & h2 {
+      display: none;
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      margin: 0;
 
-    @media (--small-viewport) {
-      display: flex;
+      @media (--medium-viewport) {
+        display: flex;
+      }
     }
+  }
 
-    & span {
-      color: var(--new-grey-500);
-      display: block;
-      font-size: 1rem;
-      font-style: normal;
-      font-weight: normal;
-      line-height: 36px;
-      margin-top: 6px;
-    }
+  & .title-container-participation {
+    padding: 0;
 
     & h2 {
-      color: var(--new-grey-700);
-      font-size: 24px;
-      font-style: normal;
-      font-weight: normal;
-      line-height: 42px;
-      margin: 0;
+      display: none;
+      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    }
+
+    & .time {
+      display: none;
+
+      @media (--medium-viewport) {
+        align-items: flex-end;
+        display: flex;
+        height: 20px;
+      }
+    }
+  }
+
+  & .title-container-full {
+    display: none;
+
+    @media (--large-viewport) {
+      display: flex;
     }
   }
 
   & .participation-info {
     color: var(--new-grey-500);
+    display: none;
+
+    @media (--small-viewport) {
+      display: block;
+    }
+
+    @media (--medium-viewport) {
+      padding-top: 25px;
+    }
 
     & .row {
       align-content: center;

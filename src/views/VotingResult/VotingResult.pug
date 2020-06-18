@@ -16,27 +16,39 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .voting-result
+  .which-desktop
+    .base Base
+    .small Small
+    .medium Medium
+    .large Large
+    .xlarge Xlarge
   .mobile-vote
     router-link.button.primary(
       v-bind:to="{ name: 'voting:result' }"
     ) {{ $t("RESULT.SHARE_MOOD") }}
 
-  .title-container-mobile
+  .title-container.title-container-mobile
     h1 Kaleidos
-    h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
-    span.time Monday, July 9th, 2020
+    .row
+      h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
+      span.time Monday, July 9th, 2020
   .main-container
     .graphic-section
-      .title-container-desktop
+      .title-container.title-container-full
         h1 Kaleidos
       .graphic-container
+        p.delete-when-graphic Aqui va una grafica
     .mood-section
       .mood-container
         .average-mood
-          .title-container-desktop
+          .title-container.title-container-large
             h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
+          AverageMood(
+            moodAverage="4.2"
+            averagePercentil="7"
+          )
         .participation-container
-          .title-container-desktop.date
+          .title-container.title-container-participation.date.no-margin
             span.time Monday, July 9th, 2020
           .participation-info
             .row
@@ -50,6 +62,7 @@
             router-link.button.primary.desktop(
               v-bind:to="{ name: 'voting:result' }"
             ) {{ $t("RESULT.SHARE_MOOD") }}
-      .mood-sorter
+      .mood-sorter-section
+        MoodSorter
   .list-container
     vote-list(v-if="groupId" :groupId="groupId")
