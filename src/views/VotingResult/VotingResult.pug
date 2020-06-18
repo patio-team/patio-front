@@ -24,8 +24,14 @@
     .xlarge Xlarge
   .mobile-vote
     router-link.button.primary(
-      v-bind:to="{ name: 'voting:result' }"
+      v-if="voting && !voting.didIVote"
+      v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
     ) {{ $t("RESULT.SHARE_MOOD") }}
+    //- Show this when no votes
+    //- router-link.button.primary(
+    //-   v-if="voting && !voting.didIVote"
+    //-   v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
+    //- ) {{ $t("RESULT.BE_THE_FIRST") }}
 
   .title-container.title-container-mobile
     h1 {{ selectedGroup.name }}
@@ -66,6 +72,11 @@
               v-if="voting && !voting.didIVote"
               v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
             ) {{ $t("RESULT.SHARE_MOOD") }}
+            //- Show this when no votes
+            //- router-link.button.primary.desktop(
+            //-   v-if="voting && !voting.didIVote"
+            //-   v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
+            //- ) {{ $t("RESULT.BE_THE_FIRST") }}
       .mood-sorter-section
         MoodSorter
   .list-container

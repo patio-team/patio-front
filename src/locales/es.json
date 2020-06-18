@@ -133,7 +133,8 @@
       "ACTION_EDIT": "editar",
       "ACTION_PREVIEW": "preview",
       "DESCRIPTION": "Ayuda de syntaxis markdown",
-      "LABEL": "¿Hay algo más que quieras decir?"
+      "LABEL_HUE": "En una palabra (o dos)",
+      "LABEL_TEXT": "¿Hay algo más que quieras decir?"
     },
     "INPUT_ANONYMOUS": {
       "LABEL": "Quiero que mi voto sea anónimo"
@@ -236,11 +237,12 @@
   },
   "RESULT": {
     "SHARE_MOOD": "Comparte tus emociones",
+    "BE_THE_FIRST": "Sé el primero",
     "LAST_POOL_RESULT": "Ultimos resultados",
     "PARTICIPATION": "Participacion",
     "USUALLY": "Normalmente",
     "PEOPLE_PARTICIPATE": "personas participan",
     "NOT_PARTICIPATE": "Aun no has participado",
-    "ALREADY_VOTED": "Ya has votado"
+    "ALREADY_VOTED": "Ya has participado"
   }
 }

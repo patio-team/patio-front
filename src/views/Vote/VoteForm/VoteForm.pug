@@ -21,13 +21,13 @@ form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" auto
 
   .fieldset
     .label-container
-      label(for="hueMood") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
+      label(for="hueMood") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL_HUE") }}
     .input-container
       input(id="hueMood", v-model="input.hueMood", :placeholder="$t('VOTE_FORM.INPUT_COMMENT.PLACEHOLDER_HUE')")
   .comment
     .fieldset
       .label-container
-        label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL") }}
+        label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL_TEXT") }}
         button.action(v-if="showPreview" type="button" v-on:click="handleClickEditButton")
           | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_EDIT") }}
         button.action(v-else type="button" v-on:click="handleClickPreviewButton")

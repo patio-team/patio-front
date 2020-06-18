@@ -118,6 +118,12 @@
     @media (--small-viewport) {
       font-size: 96px;
     }
+
+    &.empty-text {
+      @media (--small-viewport) {
+        left: 90px;
+      }
+    }
   }
 
   & .mood-text {
