@@ -23,12 +23,13 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { Group } from "@/domain";
+import { Group, Voting } from "@/domain";
 import VoteList from "./VoteList/VoteList.vue";
 import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
 import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
 
 const AuthStore = namespace("auth");
+const VotingStore = namespace("voting");
 
 @Component({
   components: {
@@ -42,21 +43,38 @@ export default class VotingResult extends Vue {
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
 
-  @AuthStore.Action("changeSelectedGroup")
-  private changeSelectedGroup!: any;
+  @VotingStore.Getter("voting")
+  private voting!: Voting;
+
+  @VotingStore.Action("getVoting")
+  private getVoting: any;
+
+  @VotingStore.Action("getLastVoting")
+  private getLastVoting: any;
 
   @Prop(String)
-  private selectedGroupId!: string;
+  private votingId!: string;
 
   public async mounted() {
-    if (this.selectedGroupId) {
-      await this.changeSelectedGroup({groupId: this.selectedGroupId});
-    }
+    await this.updateVoting();
   }
 
-  @Watch("selectedGroupId")
-  public async onSelectedGroupId() {
-    await this.changeSelectedGroup({groupId: this.selectedGroupId});
+  @Watch("votingId")
+  public async onVotingId() {
+    await this.updateVoting();
+  }
+
+  @Watch("selectedGroup")
+  public async onSelectedGroup() {
+    await this.updateVoting();
+  }
+
+  private async updateVoting() {
+    if (this.votingId) {
+      await this.getVoting({id: this.votingId});
+    } else {
+      await this.getLastVoting({ groupId: this.selectedGroup.id });
+    }
   }
 }
 </script>

@@ -124,7 +124,7 @@ const router = new Router({
       },
     },
     {
-      path: "/result/:selectedGroupId?",
+      path: "/result/:groupName/:votingId?",
       name: "voting:result",
       component: VotingResult,
       props: true,

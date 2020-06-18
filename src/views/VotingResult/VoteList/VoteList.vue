@@ -21,8 +21,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { Vote } from "@/domain/votings";
-import { PaginationRequest } from "@/domain";
+import { Vote, Voting } from "@/domain/votings";
+import { PaginationRequest, Group } from "@/domain";
 import { masonry, masonryTile } from "@/components/directives/MasonryDirectives";
 import store from "@/store/modules/result/MoodMemberListStore";
 import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
@@ -41,45 +41,47 @@ import InfiniteLoader from "@/components/shared/InfiniteLoader/InfiniteLoader.vu
 export default class VoteList extends Vue {
   private pagination: PaginationRequest = {max: 20, page: 0};
 
-  @Prop(String)
-  private groupId!: string;
+  @Prop()
+  private voting!: Voting;
 
   public get moodMemberList() {
     return store.moodMemberList;
   }
 
   public async mounted() {
-    await this.reset(this.groupId);
+    await this.reset(this.voting);
   }
 
   public async infiniteHandler() {
     if (this.pagination.page !== 0) {
-      await this.paginate(this.groupId, this.pagination);
+      await this.paginate(this.voting, this.pagination);
     }
   }
 
-  @Watch("groupId")
-  public async whenGroupIdChanges(val: string, old: string) {
+  @Watch("voting")
+  public async whenVotingChanges(val: Voting, old: Voting) {
     if (val !== old) {
       await this.reset(val);
     }
   }
 
-  public async reset(groupId: string) {
+  public async reset(voting: Voting) {
     this.pagination = {max: 20, page: 0};
-    const result = await store.resetMoodMemberResult({pagination: this.pagination, groupId});
+    const votingId = voting.id;
+    const result = await store.resetMoodMemberResult({pagination: this.pagination, votingId});
 
     if (result.data.length) {
       this.pagination.page = 1;
     }
   }
 
-  public async paginate(groupId: string, pagination: PaginationRequest) {
-      const result = await store.fetchMoodMemberList({groupId, pagination});
+  public async paginate(voting: Voting, pagination: PaginationRequest) {
+    const votingId = voting.id;
+    const result = await store.fetchMoodMemberList({votingId, pagination});
 
-      if (result.data.length) {
-        this.pagination.page++;
-      }
+    if (result.data.length) {
+      this.pagination.page++;
+    }
   }
 }
 </script>

@@ -16,19 +16,10 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export interface CreateVoteInput {
-  anonymous: boolean;
-  comment: string;
-  groupId: string;
-  score: number;
-  votingId: string;
-  hueMood: string;
-}
+import { Voting } from "@/domain";
 
-export interface GetVotingInput {
-  id: string;
-}
-
-export interface GetLastVotingInput {
-  groupId: string;
+export interface VotingState {
+  voting?: Voting;
+  getVotingIsLoading: boolean;
+  getVotingError: boolean | string;
 }

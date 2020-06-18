@@ -17,8 +17,8 @@
  */
 
 export const ListMembersMood = `
-query ListMembersMood($groupId: ID!, $page: Int, $max: Int) {
-  getLastVotingByGroup(groupId: $groupId) {
+query ListMembersMood($votingId: ID!, $page: Int, $max: Int) {
+  getVoting(id: $votingId) {
     id
     didIVote
     votes(page: $page, max: $max) {

@@ -66,3 +66,12 @@ query GetVoting(
   }
 }`;
 
+export const GetLastVotingQuery = `
+query GetLastVoting($groupId: ID!) {
+  getLastVotingByGroup(groupId: $groupId) {
+    id
+    createdAtDateTime
+    didIVote
+  }
+}
+`;

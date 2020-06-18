@@ -20,6 +20,7 @@
 <style src="./Header.css" scoped></style>
 
 <script lang="ts">
+import { paramCase } from "param-case";
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
@@ -42,6 +43,9 @@ export default class Header extends Vue {
   @AuthStore.Action("logout")
   private logout!: any;
 
+  @AuthStore.Action("changeSelectedGroup")
+  private changeSelectedGroup!: any;
+
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
 
@@ -55,6 +59,13 @@ export default class Header extends Vue {
 
   get groups() {
     return this.me ? this.me.groups : undefined;
+  }
+
+  private async handleChangeSelectedGroup(groupId: string) {
+    await this.changeSelectedGroup({groupId});
+
+    const groupName = paramCase(this.selectedGroup.name);
+    this.$router.push({ name: "voting:result", params: {groupName} });
   }
 
   private async handleClickLogout() {

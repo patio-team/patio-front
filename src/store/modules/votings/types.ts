@@ -16,19 +16,7 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export interface CreateVoteInput {
-  anonymous: boolean;
-  comment: string;
-  groupId: string;
-  score: number;
-  votingId: string;
-  hueMood: string;
-}
-
-export interface GetVotingInput {
-  id: string;
-}
-
-export interface GetLastVotingInput {
-  groupId: string;
+export interface VotingsState {
+  createVoteIsLoading: boolean;
+  createVoteError: boolean | string;
 }

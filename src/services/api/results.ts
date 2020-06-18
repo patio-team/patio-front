@@ -22,18 +22,18 @@ import { PaginationRequest, PaginationResult, Vote, Group } from "@/domain";
 import { ListMembersMood, GetFavouriteGroup } from "./queries/results";
 
 export default (client: AxiosInstance) => ({
-  listMembersMood(groupId: string, pagination: PaginationRequest) {
+  listMembersMood(votingId: string, pagination: PaginationRequest) {
     return client
       .post("", {
         query: ListMembersMood,
         variables: {
           max: pagination.max,
           page: pagination.page,
-          groupId,
+          votingId,
         },
       })
       .then((data: any): PaginationResult<Vote> => {
-        return data.getLastVotingByGroup.votes;
+        return data.getVoting.votes;
       });
   },
   getFavouriteGroup() {
