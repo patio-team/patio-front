@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,48 +16,8 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-@import "../../assets/css/mixins.css";
+import numeral from "numeral";
 
-.group-detail {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.details {
-  @mixin section-content;
-
-  margin-bottom: 2rem;
-
-  @media only screen and (max-width: 767px) {
-    margin-bottom: 1rem;
-  }
-
-  & .description {
-    color: var(--gray-300);
-    font-weight: 700;
-    margin: 0 .3rem;
-    text-transform: uppercase;
-  }
-
-  & .value {
-    color: var(--gray-800);
-
-    &.allowed {
-      color: var(--green-800);
-    }
-
-    &.deny {
-      color: var(--red-400);
-    }
-  }
-}
-
-.stats {
-  margin: 2rem 0;
-
-  @media only screen and (max-width: 767px) {
-    margin: 0;
-  }
-}
+export const fmt = (value: number, format: string) => {
+  return numeral(value).format(format);
+};

@@ -77,7 +77,7 @@ describe("Component: shared/LoginForm", () => {
     expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith("auth/login", { email: "email@email.com", password: "password" });
     expect(router.push).toHaveBeenCalledTimes(1);
-    expect(router.push).toHaveBeenCalledWith({name: "voting:result"});
+    expect(router.push).toHaveBeenCalledWith({name: "team"});
   });
   it("triggers login with redirect", async () => {
     const store = getStore();

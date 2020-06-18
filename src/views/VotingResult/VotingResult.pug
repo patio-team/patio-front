@@ -25,13 +25,13 @@
   .mobile-vote
     router-link.button.primary(
       v-if="voting && !voting.didIVote"
-      v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
+      v-bind:to="{ name: 'voting:vote', params: { groupId, votingId }}"
     ) {{ $t("RESULT.SHARE_MOOD") }}
     //- Show this when no votes
-    //- router-link.button.primary(
-    //-   v-if="voting && !voting.didIVote"
-    //-   v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
-    //- ) {{ $t("RESULT.BE_THE_FIRST") }}
+    router-link.button.primary(
+      v-if="nobodyHasVotedYet"
+      v-bind:to="{ name: 'voting:vote', params: { groupId, votingId }}"
+    ) {{ $t("RESULT.BE_THE_FIRST") }}
 
   .title-container.title-container-mobile
     h1 {{ selectedGroup.name }}
@@ -52,8 +52,8 @@
             h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
           AverageMood(
             v-if="voting"
-            :moodAverage="voting.average"
-            averagePercentil="7"
+            :moodAverage="voting.average | numeral('0.0') "
+            :averagePercentil="stats.voteAveragePercentile"
           )
         .participation-container
           .title-container.title-container-participation.date.no-margin
@@ -64,23 +64,23 @@
               .row
                 .title {{ $t("RESULT.PARTICIPATION") }}
                 .amount
-                  span 9
+                  span {{ stats ? stats.voteCount : '-' }}
                   span /
-                  span 20
-              .people {{ $t("RESULT.USUALLY") }} 12 {{ $t("RESULT.PEOPLE_PARTICIPATE") }}
+                  span {{ stats ? stats.maxVoteCountExpected : '-' }}
+              .people {{ $t("RESULT.USUALLY") }} {{ stats ? stats.voteCountAverage : '-' }} {{ $t("RESULT.PEOPLE_PARTICIPATE") }}
             .participation
               template(v-if="voting && voting.didIVote") {{ $t("RESULT.ALREADY_VOTED") }}
               template(v-if="voting && !voting.didIVote") {{ $t("RESULT.NOT_PARTICIPATE") }}
             router-link.button.primary.desktop(
-              v-if="voting && !voting.didIVote"
-              v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
+              v-if="!nobodyHasVotedYet && !voting.didIVote"
+              v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
             ) {{ $t("RESULT.SHARE_MOOD") }}
             //- Show this when no votes
-            //- router-link.button.primary.desktop(
-            //-   v-if="voting && !voting.didIVote"
-            //-   v-bind:to="{ name: 'voting:vote', params: { groupId: selectedGroup.id, votingId: voting.id }}"
-            //- ) {{ $t("RESULT.BE_THE_FIRST") }}
+            router-link.button.primary.desktop(
+              v-if="nobodyHasVotedYet"
+              v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
+            ) {{ $t("RESULT.BE_THE_FIRST") }}
       .mood-sorter-section
-        MoodSorter
+        MoodSorter(:stats="stats")
   .list-container
     vote-list(v-if="voting" :voting="voting")

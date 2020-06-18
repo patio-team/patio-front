@@ -31,13 +31,17 @@ export interface Vote {
   voting?: Voting;
 }
 
-export interface VotingStats {
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
+export interface MoodCounter {
+  mood: number;
   count: number;
+}
+
+export interface VotingStats {
+  votesByMood: [MoodCounter];
+  voteCount: number;
+  maxVoteCountExpected: number;
+  voteCountAverage: number;
+  voteAveragePercentile: number;
 }
 
 export interface Voting {
@@ -47,6 +51,5 @@ export interface Voting {
   createdBy: User;
   average: number;
   votes?: PaginationResult<Vote>;
+  stats?: VotingStats;
 }
-
-export type VotingStat = Pick<Voting, "id" | "createdAtDateTime" | "average">;

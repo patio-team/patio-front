@@ -68,6 +68,9 @@ export default class Vote extends Vue {
   @Prop(String)
   private readonly votingId!: string;
 
+  @Prop(String)
+  private readonly groupId!: string;
+
   public created() {
     if (this.vote) {
       this.initScore = Number(this.vote);

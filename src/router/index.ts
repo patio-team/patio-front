@@ -24,9 +24,7 @@ import i18n from "@/i18n";
 import GroupList from "@/views/GroupList/GroupList.vue";
 import CreateGroup from "@/views/CreateGroup/CreateGroup.vue";
 import GroupLayout from "@/views/GroupLayout/GroupLayout.vue";
-import GroupDetail from "@/views/GroupDetail/GroupDetail.vue";
 import GroupMemberProfile from "@/views/GroupMemberProfile/GroupMemberProfile.vue";
-import GroupDetailActions from "@/views/GroupDetail/GroupDetailActions/GroupDetailActions.vue";
 import EditGroup from "@/views/EditGroup/EditGroup.vue";
 
 import MyProfile from "@/views/MyProfile/MyProfile.vue";
@@ -41,6 +39,7 @@ import ChangePasswordExpired from "@/views/ChangePasswordExpired/ChangePasswordE
 import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
 import VotingResult from "@/views/VotingResult/VotingResult.vue";
 import Vote from "@/views/Vote/Vote.vue";
+import VotingTeam from "@/views/VotingTeam/VotingTeam.vue";
 
 Vue.use(Router);
 
@@ -51,7 +50,7 @@ const router = new Router({
     {
       path: "/",
       name: "home",
-      redirect: { name: "voting:result" },
+      redirect: { name: "team" },
     },
     {
       path: "/login",
@@ -125,8 +124,17 @@ const router = new Router({
       },
     },
     {
-      path: "/result/:votingId?",
-      name: "voting:result",
+      path: "/team/:groupId?",
+      name: "team",
+      component: VotingTeam,
+      props: true,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/team/:groupId/:votingId",
+      name: "team:result",
       component: VotingResult,
       props: true,
       meta: {
@@ -134,13 +142,14 @@ const router = new Router({
       },
     },
     {
-      path: "/result/:votingId/vote",
-      name: "voting:vote",
+      path: "/team/:groupId/:votingId/vote",
+      name: "team:vote",
       component: Vote,
       props: (r) => {
         const vote: string = r.query.vote as string || "3";
         return {
           vote: Number.parseInt(vote, 10),
+          groupId: r.params.groupId,
           votingId: r.params.votingId,
         };
       },
@@ -156,17 +165,6 @@ const router = new Router({
         requiresAuth: true,
       },
       children: [
-        {
-          path: "",
-          name: "groups:detail",
-          components: {
-            default: GroupDetail,
-            actions: GroupDetailActions,
-          },
-          meta: {
-            requiresAuth: true,
-          },
-        },
         {
           path: "edit",
           name: "groups:edit",

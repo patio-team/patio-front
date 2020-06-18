@@ -27,6 +27,7 @@ import { User, Group } from "@/domain";
 import Avatar from "@/components/shared/Avatar/Avatar.vue";
 
 const AuthStore = namespace("auth");
+const VotingStore = namespace("voting");
 
 @Component({
   components: {
@@ -48,6 +49,9 @@ export default class Header extends Vue {
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
 
+  @VotingStore.Action("getLastVoting")
+  private getLastVoting!: any;
+
   get name() {
     return this.me ? this.me.name : undefined;
   }
@@ -62,8 +66,15 @@ export default class Header extends Vue {
 
   private async handleChangeSelectedGroup(groupId: string) {
     await this.changeSelectedGroup({groupId});
+    const voting = await this.getLastVoting({groupId});
 
-    this.$router.push({ name: "voting:result", params: {groupId} });
+    this.$router.push({
+      name: "team:result",
+      params: {
+        groupId: voting.group.id,
+        votingId: voting.id,
+      },
+    });
   }
 
   private async handleClickLogout() {

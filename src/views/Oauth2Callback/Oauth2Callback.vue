@@ -47,7 +47,7 @@ export default class Oauth2Callback extends Vue {
         // Try to get `next` query param from the oauth state param.
         const state = JSON.parse(this.$route.query.state as string);
 
-        const next = state.next || { name: "voting:result" };
+        const next = state.next || { name: "team" };
         this.$router.push(next);
       }
     }

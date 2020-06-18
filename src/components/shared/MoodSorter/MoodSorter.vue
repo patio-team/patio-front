@@ -20,9 +20,32 @@
 <style src="./MoodSorter.css" scoped></style>
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
+import { VotingStats } from "@/domain";
 
 @Component
 export default class MoodSorter extends Vue {
+
+  @Prop()
+  private stats!: VotingStats;
+
+  public get totalVotes() {
+    return this.getTotalVotes(this.stats);
+  }
+
+  public get isEmpty() {
+    return this.getTotalVotes(this.stats) === 0;
+  }
+
+  public get votesByMood() {
+    return this.totalVotes === 0 ? [] : this.stats.votesByMood;
+  }
+
+  private getTotalVotes(stats: VotingStats): number {
+    return this.stats
+      ? this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b)
+      : 0;
+  }
+
   private setBarSize(amount: number, max: number) {
     const singleItem = 100 / max;
     const result = singleItem * amount;

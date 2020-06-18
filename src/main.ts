@@ -25,6 +25,7 @@ import router from "./router";
 import store from "./store";
 import "./filters";
 import Vue2TouchEvents from "vue2-touch-events";
+import { fmt } from "@/utils/numbers";
 
 Vue.use(Vue2TouchEvents, {
   disableClick: false,
@@ -44,6 +45,7 @@ Vue.use(Notify);
 import App from "./App.vue";
 
 Vue.config.productionTip = false;
+Vue.filter("numeral", fmt);
 
 const vue = new Vue({
   el: "#app",
