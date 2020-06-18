@@ -18,8 +18,12 @@
 
 @import "../../assets/css/mixins.css";
 
+div.hide {
+  display: none;
+}
+
 .delete-when-graphic {
-  color: white;
+  color: black;
   font-size: 64px;
   text-align: center;
 }
@@ -170,12 +174,12 @@
   }
 
   & .graphic-section {
-    background: rgba(255, 0, 0, .2);
     display: none;
     min-height: 200px;
 
     @media (--small-viewport) {
-      display: block;
+      display: flex;
+      flex-direction: column;
       order: 2;
     }
 
@@ -183,6 +187,17 @@
       flex: 1 1 auto;
       margin-right: 25px;
       order: 1;
+    }
+
+    & .graphic-container {
+      align-items: center;
+      background-image: url(../../assets/img/bg.svg);
+      background-position: top center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex: 1 0 auto;
+      justify-content: center;
+      min-height: 400px;
     }
   }
 
