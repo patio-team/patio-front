@@ -20,7 +20,6 @@
 <style src="./Header.css" scoped></style>
 
 <script lang="ts">
-import { paramCase } from "param-case";
 import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
@@ -64,8 +63,7 @@ export default class Header extends Vue {
   private async handleChangeSelectedGroup(groupId: string) {
     await this.changeSelectedGroup({groupId});
 
-    const groupName = paramCase(this.selectedGroup.name);
-    this.$router.push({ name: "voting:result", params: {groupName} });
+    this.$router.push({ name: "voting:result", params: {groupId} });
   }
 
   private async handleClickLogout() {

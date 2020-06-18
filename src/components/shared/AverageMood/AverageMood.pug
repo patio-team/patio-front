@@ -25,7 +25,7 @@
         v-if="moodAverage !== 0"
       ) {{ moodAverage }}
       .mood-average(
-        v-if="moodAverage === 0"
+        v-if="!moodAverage"
       ) -
 
     .mood-text {{ averagePercentil }}% below average

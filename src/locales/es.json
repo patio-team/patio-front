@@ -240,6 +240,7 @@
     "PARTICIPATION": "Participacion",
     "USUALLY": "Normalmente",
     "PEOPLE_PARTICIPATE": "personas participan",
-    "NOT_PARTICIPATE": "Aun no has participado"
+    "NOT_PARTICIPATE": "Aun no has participado",
+    "ALREADY_VOTED": "Ya has votado"
   }
 }

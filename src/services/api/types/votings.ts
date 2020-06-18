@@ -19,7 +19,6 @@
 export interface CreateVoteInput {
   anonymous: boolean;
   comment: string;
-  groupId: string;
   score: number;
   votingId: string;
   hueMood: string;
