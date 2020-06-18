@@ -141,12 +141,13 @@
       "ACTION_EDIT": "edit",
       "ACTION_PREVIEW": "preview",
       "DESCRIPTION": "Markdown syntax help",
-      "LABEL": "Is there anything else you want to say?"
+      "LABEL_HUE": "In a word (or two)",
+      "LABEL_TEXT": "Is there anything else you want to say?"
     },
     "INPUT_ANONYMOUS": {
       "LABEL": "I want this vote to be anonymous"
     },
-    "BUTTON_SUBMIT": "Submit"
+    "BUTTON_SUBMIT": "Send"
   },
   "RESET_PASSWORD_FORM": {
     "TITLE": "Did you forget your password?",
@@ -226,7 +227,7 @@
       "ACTION_CHANGE_PASSWORD": "Change password"
     },
     "VOTE": {
-      "TITLE": "How are you today?",
+      "TITLE": "How do you feel today at",
       "COMMENT_SHARE": "Comment and share",
       "SELECT_MOOD": "Select mood",
       "SHARE": "Share!"
@@ -246,11 +247,12 @@
   },
   "RESULT": {
     "SHARE_MOOD": "Share your mood",
+    "BE_THE_FIRST": "Be the first",
     "LAST_POOL_RESULT": "Last pool result",
     "PARTICIPATION": "Participation",
     "USUALLY": "Usually",
     "PEOPLE_PARTICIPATE": "people participate",
     "NOT_PARTICIPATE": "You haven't participated yet",
-    "ALREADY_VOTED": "You've already voted"
+    "ALREADY_VOTED": "You've already participated"
   }
 }
