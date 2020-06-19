@@ -16,10 +16,8 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./VotingResult.pug" lang="pug"></template>
-<style src="./VotingResult.css" scoped></style>
-
-
+<template lang="pug">
+</template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
@@ -31,14 +29,8 @@ import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
 const AuthStore = namespace("auth");
 const VotingStore = namespace("voting");
 
-@Component({
-  components: {
-    VoteList,
-    AverageMood,
-    MoodSorter,
-  },
-})
-export default class VotingResult extends Vue {
+@Component
+export default class VotingTeam extends Vue {
 
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
@@ -55,27 +47,19 @@ export default class VotingResult extends Vue {
   @Prop(String)
   private votingId!: string;
 
-  @Prop(String)
-  private groupId!: string;
-
-  public get stats() {
-    return this.voting ? this.voting.stats : null;
-  }
-
-  public get nobodyHasVotedYet() {
-    return this.stats
-      ? this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b) === 0
-      : true;
-  }
-
   public async mounted() {
-    await this.updateVoting();
-  }
+    const voting = await this.getLastVoting({ groupId: this.selectedGroup.id });
 
-  private async updateVoting() {
-    if (this.votingId) {
-      await this.getVoting({id: this.votingId});
+    if (voting) {
+      this.$router.push({
+        name: "team:result",
+        params: {
+          votingId: voting.id,
+          groupId: this.selectedGroup.id,
+        },
+      });
     }
   }
+
 }
 </script>

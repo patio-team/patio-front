@@ -49,6 +49,15 @@ query GetVoting(
       id
       name
     }
+    stats {
+      votesByMood {
+        mood
+        count
+      }
+      maxVoteCountExpected
+      voteCount
+      voteCountAverage
+    }
     votes {
       total
       data {
@@ -73,6 +82,19 @@ query GetLastVoting($groupId: ID!) {
     average
     createdAtDateTime
     didIVote
+    group {
+      id
+      name
+    }
+    stats {
+      votesByMood {
+        mood
+        count
+      }
+      maxVoteCountExpected
+      voteCount
+      voteCountAverage
+    }
   }
 }
 `;

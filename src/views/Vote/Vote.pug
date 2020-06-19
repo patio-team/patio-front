@@ -24,7 +24,7 @@
   )
     .voting-title
       router-link.close-x(
-        v-bind:to="{ name: 'voting:result' }"
+        v-bind:to="{ name: 'team' }"
       )
         include ../../assets/img/cross.svg
       .voting-smile
@@ -65,7 +65,7 @@
 
   .voting-interaction-desktop
     router-link.close-x(
-      v-bind:to="{ name: 'voting:result' }"
+      v-bind:to="{ name: 'team' }"
     )
       include ../../assets/img/cross.svg
     .relative-container
@@ -117,6 +117,7 @@
       .voting-background-desktop
 
       dw-vote-form(
+        v-bind:groupId="groupId"
         v-bind:voting="voting"
         v-bind:initScore="initScore"
         :voteScore="voteScore || 3"

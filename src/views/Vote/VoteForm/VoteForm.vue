@@ -41,6 +41,9 @@ export default class VoteForm extends Vue {
   @Prop(Number)
   private readonly voteScore!: number;
 
+  @Prop(String)
+  private readonly groupId!: string;
+
   @Prop(Object)
   private voting!: Voting;
 
@@ -84,8 +87,9 @@ export default class VoteForm extends Vue {
     });
     if(isCreated) {
       this.$router.push({
-        name: "voting:result",
+        name: "team:result",
         params: {
+          groupId: this.groupId,
           votingId: this.voting.id,
         },
       });

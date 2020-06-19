@@ -27,7 +27,7 @@ import {
   LeaveGroupInput,
 } from "@/services/api/types";
 
-import { Group, User, VotingStat } from "@/domain";
+import { Group, User } from "@/domain";
 
 import { RootState } from "@/store/types";
 import { GroupState } from "./types";
@@ -36,7 +36,6 @@ const getInitialState = (): GroupState => ({
   group: undefined,
   getGroupIsLoading: false,
   getGroupError: false,
-  stats: [],
   getGroupStatsIsLoading: false,
   getGroupStatsError: false,
   members: [],
@@ -56,7 +55,6 @@ const getters: GetterTree<GroupState, RootState> = {
   group(state: GroupState) { return state.group; },
   getGroupIsLoading(state: GroupState) { return state.getGroupIsLoading; },
   getGroupError(state: GroupState) { return state.getGroupError; },
-  stats(state: GroupState) { return state.stats; },
   getGroupStatsIsLoading(state: GroupState) { return state.getGroupStatsIsLoading; },
   getGroupStatsError(state: GroupState) { return state.getGroupStatsError; },
   members(state: GroupState) { return state.members; },
@@ -79,28 +77,12 @@ const mutations: MutationTree<GroupState> = {
   getGroupSuccess(state: GroupState, group: Group ) {
     state.getGroupIsLoading = false;
     state.getGroupError = false;
-    state.stats = [];
     state.members = [];
     state.group = group;
   },
   getGroupFail(state: GroupState, error: string) {
     state.getGroupIsLoading = false;
     state.getGroupError = error;
-  },
-  // getGroupStats
-  getGroupStatsRequest(state: GroupState) {
-    state.getGroupStatsIsLoading = true;
-    state.getGroupStatsError = false;
-  },
-  getGroupStatsSuccess(state: GroupState, stats: VotingStat[] ) {
-    state.getGroupStatsIsLoading = false;
-    state.getGroupStatsError = false;
-
-    state.stats = stats;
-  },
-  getGroupStatsFail(state: GroupState, error: string) {
-    state.getGroupStatsIsLoading = false;
-    state.getGroupStatsError = error;
   },
   // getGroupMembers
   getGroupMembersRequest(state: GroupState) {
