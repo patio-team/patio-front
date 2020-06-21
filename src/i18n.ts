@@ -17,7 +17,7 @@
  */
 
 import Vue from "vue";
-import VueI18n, { LocaleMessages } from "vue-i18n";
+import VueI18n, { LocaleMessages, DateTimeFormats } from "vue-i18n";
 import { configure } from "vee-validate";
 
 Vue.use(VueI18n);
@@ -28,8 +28,23 @@ const loadLocaleMessages = (): LocaleMessages => {
     return messages;
   }
 
-  const locales = require.context("./locales", true, /[A-Za-z0-9-_,\s]+\.json$/i);
-  locales.keys().forEach((key) => {
+  const locales = require.context("./locales/general", true, /[A-Za-z0-9-_,\s]+\.json$/i);
+  return processMessages(locales, messages);
+};
+
+const loadDateFormats = (): DateTimeFormats => {
+  const messages: DateTimeFormats = {};
+
+  if (process.env.NODE_ENV === "test") {
+    return messages;
+  }
+
+  const locales = require.context("./locales/dates", true, /[A-Za-z0-9-_,\s]+\.json$/i);
+  return processMessages(locales, messages);
+};
+
+const processMessages = (locales: any, messages: any): any => {
+  locales.keys().forEach((key: string) => {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i);
     if (matched && matched.length > 1) {
       const locale = matched[1];
@@ -43,6 +58,7 @@ const i18n = new VueI18n({
   locale: process.env.VUE_APP_I18N_LOCALE || "en",
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
   messages: loadLocaleMessages(),
+  dateTimeFormats: loadDateFormats(),
   silentTranslationWarn: process.env.NODE_ENV !== "development",
 });
 

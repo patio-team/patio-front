@@ -57,7 +57,7 @@
           )
         .participation-container
           .title-container.title-container-participation.date.no-margin
-            span.time(v-if="voting") {{ $d(voting.createdAtDateTime) }}
+            span.time(v-if="voting") {{ $d(voting.createdAtDateTime, 'long') }}
           .participation-info
             //- Hide template if there is no data
             template

@@ -1,0 +1,13 @@
+{
+  "short": {
+      "year": "numeric",
+      "month": "short",
+      "day": "numeric"
+    },
+    "long": {
+      "day": "2-digit",
+      "year": "numeric",
+      "month": "short",
+      "weekday": "long"
+    }
+}
