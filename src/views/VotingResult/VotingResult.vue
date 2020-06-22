@@ -27,6 +27,7 @@ import { Group, Voting } from "@/domain";
 import VoteList from "./VoteList/VoteList.vue";
 import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
 import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
+import Loader from "@/components/shared/Loader/Loader.vue";
 
 const AuthStore = namespace("auth");
 const VotingStore = namespace("voting");
@@ -36,6 +37,7 @@ const VotingStore = namespace("voting");
     VoteList,
     AverageMood,
     MoodSorter,
+    Loader,
   },
 })
 export default class VotingResult extends Vue {
@@ -51,6 +53,9 @@ export default class VotingResult extends Vue {
 
   @VotingStore.Action("getLastVoting")
   private getLastVoting: any;
+
+  @VotingStore.Getter("getVotingIsLoading")
+  private isLoading!: boolean;
 
   @Prop(String)
   private votingId!: string;

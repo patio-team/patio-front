@@ -82,5 +82,6 @@
             ) {{ $t("RESULT.BE_THE_FIRST") }}
       .mood-sorter-section
         MoodSorter(:stats="stats")
+        Loader(v-if="isLoading")
   .list-container
     vote-list(v-if="voting" :voting="voting")
