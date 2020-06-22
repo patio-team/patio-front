@@ -63,9 +63,11 @@ export default class VotingResult extends Vue {
   }
 
   public get nobodyHasVotedYet() {
-    return this.stats
-      ? this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b) === 0
-      : true;
+    if (this.stats && this.stats.votesByMood && this.stats.votesByMood.length > 0) {
+      return this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b) === 0;
+    } else {
+      return true;
+    }
   }
 
   public async mounted() {

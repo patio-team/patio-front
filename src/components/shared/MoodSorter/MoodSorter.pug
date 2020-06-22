@@ -21,6 +21,7 @@
   .mood-sorter
     //- If there is 0 votes, add class empty
     .mood(
+      v-if="!isEmpty"
       v-for="vote in votesByMood"
       :class="['mood' + vote.mood, isEmpty ? 'empty' : '']")
       .mood-buble-container
@@ -35,3 +36,16 @@
         .bar(
           :style="{ width: setBarSize(vote.count, totalVotes) + '%' }"
         )
+    .mood(
+      v-if="isEmpty"
+      v-for="i in 5"
+      :class="['mood' + i, 'empty']")
+      .mood-buble-container
+        .mood-buble 0
+      .mood-bar
+        .divider
+          .line
+          .line
+          .line
+          .line
+          .line

@@ -41,9 +41,11 @@ export default class MoodSorter extends Vue {
   }
 
   private getTotalVotes(stats: VotingStats): number {
-    return this.stats
-      ? this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b)
-      : 0;
+    if (this.stats && this.stats.votesByMood && this.stats.votesByMood.length > 0) {
+      return this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b);
+    } else {
+      return 0;
+    }
   }
 
   private setBarSize(amount: number, max: number) {
