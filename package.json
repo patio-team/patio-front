@@ -12,6 +12,7 @@
     "test:unit:coverage": "vue-cli-service test:unit --no-cache --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
+    "@toast-ui/vue-editor": "^2.2.0",
     "@types/numeral": "^0.0.28",
     "axios": "^0.19.0",
     "client-oauth2": "^4.2.5",
