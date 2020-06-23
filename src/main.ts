@@ -24,9 +24,12 @@ import i18n from "./i18n";
 import router from "./router";
 import store from "./store";
 import "./filters";
-import Vue2TouchEvents from "vue2-touch-events";
 import { fmt } from "@/utils/numbers";
 
+import VueDebounce from "vue-debounce";
+Vue.use(VueDebounce);
+
+import Vue2TouchEvents from "vue2-touch-events";
 Vue.use(Vue2TouchEvents, {
   disableClick: false,
   touchClass: "",

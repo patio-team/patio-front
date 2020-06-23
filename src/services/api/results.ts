@@ -18,8 +18,9 @@
 
 import { AxiosInstance } from "axios";
 
-import { PaginationRequest, PaginationResult, Vote, Group } from "@/domain";
-import { ListMembersMood, GetFavouriteGroup } from "./queries/results";
+import { PaginationRequest, PaginationResult, Vote, Group, VotingStatsResult } from "@/domain";
+import { ListMembersMood, GetFavouriteGroup, GetVotingChartStatistics } from "./queries/results";
+import { VotingStatsInput } from "./types/results";
 
 export default (client: AxiosInstance) => ({
   listMembersMood(votingId: string, pagination: PaginationRequest) {
@@ -43,6 +44,16 @@ export default (client: AxiosInstance) => ({
       })
       .then((data: any): Group => {
         return data.getMyFavouriteGroup;
+      });
+  },
+  getVotingChartStatistics(input: VotingStatsInput) {
+    return client
+      .post("", {
+        query: GetVotingChartStatistics,
+        variables: input,
+      })
+      .then((data: any): VotingStatsResult => {
+        return data.getStatsByGroup;
       });
   },
 });

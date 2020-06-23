@@ -16,14 +16,14 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-
 export interface PaginationRequest {
   max: number;
   page: number;
 }
 
 export interface PaginationResult<T> {
-  total: number;
+  page: number;
+  lastPage: number;
+  totalCount: number;
   data: T[];
 }

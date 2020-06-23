@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2019 Kaleidos Open Source SL
  *
  * This file is part of Dont Worry Be Happy (DWBH).
@@ -16,9 +16,12 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-declare module "*.vue" {
-  import Vue from "vue";
-  export default Vue;
+.chart {
+  height: 100%;
+  width: 100%;
 }
 
-declare module "vue-echarts";
+.echarts {
+  height: 100%;
+  width: 100%;
+}
