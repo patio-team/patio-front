@@ -22,11 +22,18 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import LoginForm from "./LoginForm/LoginForm.vue";
+import { localStorage, sessionStorage } from "@/services/storage";
 
 @Component({
   components: {
     "dw-login-form": LoginForm,
   },
 })
-export default class Login extends Vue {}
+export default class Login extends Vue {
+
+  public mounted() {
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+}
 </script>
