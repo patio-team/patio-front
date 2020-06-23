@@ -58,6 +58,9 @@ body {
   @mixin fieldset;
 }
 
+/* Common
+   ========================================================================== */
+
 /* Titles
    ========================================================================== */
 
@@ -188,4 +191,88 @@ link {
     color: var(--new-blue-500);
     pointer-events: none;
   }
+}
+
+/* Text editor
+   ========================================================================== */
+
+.te-mode-switch {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
+
+  & .te-switch-button {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+
+    &.wysiwyg {
+      color: white;
+
+      &::before {
+        color: black;
+        content: 'Preview';
+        position: absolute;
+      }
+    }
+  }
+}
+
+.tui-editor-defaultUI-toolbar {
+  padding: 0 .5rem;
+}
+
+.tui-editor-defaultUI * {
+  font-family: 'Lato', 'Times New Roman', Times, serif;
+}
+
+.te-popup-add-image {
+  & .te-file-type {
+    display: none;
+
+    &.te-tab-active {
+      display: none;
+    }
+  }
+
+  & .te-url-type {
+    display: block;
+  }
+
+  &.te-popup-add-image .te-tab {
+    display: none;
+  }
+}
+
+.tui-editor-popup .tui-popup-body label {
+  margin: 0 0 .5rem 0;
+}
+
+/* .tui-editor-defaultUI-toolbar button {
+  &.tui-bold {
+    background: red;
+  }
+  &.tui-italic {
+    background: blue;
+  }
+  &.tui-strike {
+    background: blueviolet;
+  }
+  &.tui-ul {
+    background: yellowgreen;
+  }
+  &.tui-ol {
+    background: wheat;
+  }
+  &.tui-image {
+    background: peru;
+  }
+  &.tui-link {
+    background: aqua;
+  }
+} */
+
+.te-ww-container .tui-editor-contents {
+  padding: .5rem;
 }
