@@ -43,7 +43,6 @@ query GetVoting(
   getVoting(id: $id) {
     id
     didIVote
-    average
     createdAtDateTime
     group {
       id
@@ -54,6 +53,8 @@ query GetVoting(
         mood
         count
       }
+      average
+      movingAverage
       maxVoteCountExpected
       voteCount
       voteCountAverage
@@ -79,7 +80,6 @@ export const GetLastVotingQuery = `
 query GetLastVoting($groupId: ID!) {
   getLastVotingByGroup(groupId: $groupId) {
     id
-    average
     createdAtDateTime
     didIVote
     group {
@@ -91,6 +91,8 @@ query GetLastVoting($groupId: ID!) {
         mood
         count
       }
+      average
+      movingAverage
       maxVoteCountExpected
       voteCount
       voteCountAverage
