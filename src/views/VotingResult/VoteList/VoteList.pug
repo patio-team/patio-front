@@ -27,7 +27,7 @@
       v-for="(vote, $index) in moodMemberList"
       :key="$index"
       :data-num="$index + 1"
-      :name="vote.createdBy.name"
+      :name="vote.createdBy ? vote.createdBy.name : $t('COMMON.USERS.ANONYMOUS_USER')"
       :mood="vote.score"
       :hue="vote.hueMood")
   infinite-loader(@intersect="infiniteHandler")

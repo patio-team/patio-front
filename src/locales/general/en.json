@@ -8,6 +8,9 @@
       "FRIDAY": "friday",
       "SATURDAY": "saturday",
       "SUNDAY": "sunday"
+    },
+    "USERS": {
+      "ANONYMOUS_USER": "Anonymous"
     }
   },
   "API_ERRORS": {
