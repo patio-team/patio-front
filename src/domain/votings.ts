@@ -42,6 +42,8 @@ export interface VotingStats {
   maxVoteCountExpected: number;
   voteCountAverage: number;
   voteAveragePercentile: number;
+  average: number;
+  movingAverage: number;
 }
 
 export interface Voting {
@@ -49,7 +51,6 @@ export interface Voting {
   group: Group;
   createdAtDateTime: DateTime;
   createdBy: User;
-  average: number;
   votes?: PaginationResult<Vote>;
   stats?: VotingStats;
 }

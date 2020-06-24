@@ -51,8 +51,8 @@
           .title-container.title-container-large
             h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
           AverageMood(
-            v-if="voting"
-            :moodAverage="voting.average | numeral('0.0') "
+            v-if="voting.stats"
+            :moodAverage="stats.average | numeral('0.0') "
             :averagePercentil="stats.voteAveragePercentile"
           )
         .participation-container
