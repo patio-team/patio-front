@@ -25,10 +25,10 @@
       :voteScore="mood"
       :fixedMood="true"
     )
-  .footer(v-if="hue")
+  .hue-mood(v-if="hue")
     include ../../../assets/img/quotes.svg
     blockquote {{ hue }}
-  .text-container
+  .text-container(v-if="comment")
     Viewer(
       ref="toastuiViewer"
     )

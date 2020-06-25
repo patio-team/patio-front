@@ -53,13 +53,13 @@ export default class VoteCard extends Vue {
   private viewer!: Viewer;
 
   private mounted() {
-    if (this.viewer) {
+    if (this.viewer && this.comment) {
       this.viewer.invoke("setMarkdown", this.comment);
     }
   }
 
   private updated() {
-    if (this.viewer) {
+    if (this.viewer && this.comment) {
       this.viewer.invoke("setMarkdown", this.comment);
     }
   }
