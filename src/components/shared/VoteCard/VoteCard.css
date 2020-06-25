@@ -27,10 +27,11 @@
   margin: 1rem .5rem 0;
   margin-top: 1rem;
   object-fit: cover;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
   width: calc(100% - 1rem);
 
   @media (--small-viewport) {
+    padding-bottom: 1rem;
     width: calc(50% - 1rem);
   }
 
@@ -47,24 +48,30 @@
     align-content: middle;
     color: var(--new-grey-500);
     display: flex;
-    font-size: 16px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
-    line-height: 36px;
+    line-height: 29px;
     margin: 0;
-    padding: .5rem 3rem 0;
+    padding: 1rem 3rem 0;
     position: relative;
+
+    @media (--medium-viewport) {
+      font-size: 16px;
+      line-height: 36px;
+      padding: .5rem 3rem 0;
+    }
   }
 
   & .text-container {
-    padding: 1rem 1rem 0;
+    margin: 1rem 1rem 0;
   }
 
   & .header {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    padding: 1rem;
+    margin: 1rem;
 
     & .avatar-holder {
       font-size: 24px;
@@ -89,8 +96,8 @@
     width: 80px;
   }
 
-  & .footer {
-    padding: 0 .5em;
+  & .hue-mood {
+    margin: 0 .5em;
     position: relative;
 
     & svg {
