@@ -27,11 +27,13 @@ import { masonry, masonryTile } from "@/components/directives/MasonryDirectives"
 import store from "@/store/modules/result/MoodMemberListStore";
 import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
 import InfiniteLoader from "@/components/shared/InfiniteLoader/InfiniteLoader.vue";
+import Loader from "@/components/shared/Loader/Loader.vue";
 
 @Component({
   components: {
     VoteCard,
     InfiniteLoader,
+    Loader,
   },
   directives: {
     masonry,
@@ -48,7 +50,11 @@ export default class VoteList extends Vue {
     return store.moodMemberList;
   }
 
+
   public async mounted() {
+    setTimeout(() => {
+      this.$emit(`vuemasonry.itemAdded__VueMasonry`);
+    }, 500);
     await this.reset(this.voting);
   }
 
@@ -78,7 +84,6 @@ export default class VoteList extends Vue {
   public async paginate(voting: Voting, pagination: PaginationRequest) {
     const votingId = voting.id;
     const result = await store.fetchMoodMemberList({votingId, pagination});
-
     if (result.data.length) {
       this.pagination.page++;
     }

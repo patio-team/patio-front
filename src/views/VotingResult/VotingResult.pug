@@ -16,12 +16,6 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .voting-result
-  .which-desktop
-    .base Base
-    .small Small
-    .medium Medium
-    .large Large
-    .xlarge Xlarge
   .mobile-vote
     router-link.button.primary(
       v-if="voting && !voting.didIVote"
@@ -82,6 +76,7 @@
             ) {{ $t("RESULT.BE_THE_FIRST") }}
       .mood-sorter-section
         MoodSorter(:stats="stats")
-        Loader(v-if="isLoading")
+        .loading-holder(v-if="isLoading")
+          Loader
   .list-container
     vote-list(v-if="voting" :voting="voting")

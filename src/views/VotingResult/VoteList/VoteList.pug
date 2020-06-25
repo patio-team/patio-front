@@ -20,15 +20,18 @@
     v-masonry
     horizontal-order="true"
     item-selector=".vote-card"
-    transition-duration="0.1s"
+    transition-duration="0"
   )
     vote-card.vote-card(
       v-masonry-tile
       v-for="(vote, $index) in moodMemberList"
+      :vote="vote"
       :key="$index"
       :data-num="$index + 1"
       :name="vote.createdBy ? vote.createdBy.name : $t('COMMON.USERS.ANONYMOUS_USER')"
       :mood="vote.score"
+      :comment="vote.comment"
       :hue="vote.hueMood")
+  .loader-container
+    Loader(:if="isLoading")
   infinite-loader(@intersect="infiniteHandler")
-

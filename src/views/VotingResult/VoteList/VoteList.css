@@ -22,6 +22,11 @@
   align-content: space-between;
   display: flex;
   flex-flow: column wrap;
+  width: 100%;
+
+  &.refresh {
+    width: 99.9%;
+  }
 }
 
 .vote-gutter {
@@ -30,4 +35,10 @@
   @media (--small-viewport) {
     width: 0;
   }
+}
+
+.loader-container {
+  height: 4rem;
+  position: relative;
+  width: 100%;
 }
