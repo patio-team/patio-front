@@ -26,6 +26,7 @@ query ListMembersMood($votingId: ID!, $page: Int, $max: Int) {
       data {
         score
         hueMood
+        comment
         createdBy {
           name
         }

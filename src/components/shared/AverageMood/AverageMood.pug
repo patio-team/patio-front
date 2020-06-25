@@ -26,10 +26,10 @@
     .d-average-mood
       .mood-decoration
       .mood-average(
-        v-if="moodAverage !== 0"
+        v-if="moodAverage >= 0.1"
       ) {{ moodAverage }}
       .mood-average.empty-text(
-        v-if="!moodAverage"
+        v-if="moodAverage < 0.1"
       ) -
 
     .mood-text {{ averagePercentil }}% below average

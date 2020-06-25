@@ -28,72 +28,6 @@ div.hide {
   text-align: center;
 }
 
-.which-desktop {
-  align-items: center;
-  background: red;
-  color: white;
-  display: flex;
-  font-size: 64px;
-  justify-content: center;
-  left: 50%;
-  margin-left: -100px;
-  position: fixed;
-  top: 0;
-  width: 200px;
-
-  & .base {
-    display: block;
-
-    @media (--small-viewport) {
-      display: none;
-    }
-  }
-
-  & .small {
-    display: none;
-
-    @media (--small-viewport) {
-      display: block;
-    }
-
-    @media (--medium-viewport) {
-      display: none;
-    }
-  }
-
-  & .medium {
-    display: none;
-
-    @media (--medium-viewport) {
-      display: block;
-    }
-
-    @media (--large-viewport) {
-      display: none;
-    }
-  }
-
-  & .large {
-    display: none;
-
-    @media (--large-viewport) {
-      display: block;
-    }
-
-    @media (--xlarge-viewport) {
-      display: none;
-    }
-  }
-
-  & .xlarge {
-    display: none;
-
-    @media (--xlarge-viewport) {
-      display: block;
-    }
-  }
-}
-
 .voting-result {
   color: var(--new-grey-700);
   padding: 0 .5rem;
@@ -427,4 +361,14 @@ div.hide {
       line-height: 36px;
     }
   }
+}
+
+.loading-holder {
+  background: rgba(255, 255, 255, .7);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }

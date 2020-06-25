@@ -30,7 +30,7 @@ import { Voting } from "@/domain";
 import "codemirror/lib/codemirror.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
-import { Editor, Viewer } from "@toast-ui/vue-editor";
+import { Editor } from "@toast-ui/vue-editor";
 
 const Votings = namespace("votings");
 
@@ -38,7 +38,6 @@ const Votings = namespace("votings");
   components: {
     "dw-markdown": Markdown,
     Editor,
-    Viewer,
     VoteCard,
   },
 })
@@ -89,11 +88,6 @@ export default class VoteForm extends Vue {
   @Ref("toastuiEditor")
   private editor!: Editor;
 
-  @Ref("toastuiViewer")
-  private viewer!: Viewer;
-
-  private editorText: string = "caca";
-
   private input = {
     score: (this.voteScore) ? this.voteScore : 3,
     comment: "",
@@ -117,19 +111,17 @@ export default class VoteForm extends Vue {
     }
   }
 
-  private onEditorChange(a: any) {
-    this.editorContent = this.editor.invoke("getMarkdown");
-    if (this.viewer) {
-      this.viewer.invoke("setMarkdown", this.editorContent);
-    }
-  }
-
   private async handleSubmit() {
     if (this.voteScore) {
       this.input.score = this.voteScore;
     }
+    let editorContent: any;
+    if (this.editor) {
+      editorContent = this.editor.invoke("getMarkdown");
+    }
     const isCreated = await this.createVote({
       ...this.input,
+      comment: editorContent,
       votingId: this.voting.id,
     });
     if(isCreated) {

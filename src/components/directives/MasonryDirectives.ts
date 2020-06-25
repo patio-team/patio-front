@@ -21,7 +21,7 @@
 import Vue, { DirectiveOptions, VNode } from "vue";
 import Masonry from "masonry-layout";
 
-const attributesMap = new Map<string, string>(Object.entries({
+const attributesMap: Record<string,string> = {
   "column-width": "columnWidth",
   "columnWidth": "columnWidth",
   "transition-duration": "transitionDuration",
@@ -41,7 +41,7 @@ const attributesMap = new Map<string, string>(Object.entries({
   "stagger": "stagger",
   "destroyDelay": "destroyDelay",
   "destroy-delay": "destroyDelay",
-}));
+};
 
 const EVENT_ADD = "vuemasonry.itemAdded";
 const EVENT_REMOVE = "vuemasonry.itemRemoved";
@@ -52,17 +52,16 @@ const stringToBool = (val: string) => (val + ").toLowerCase() === \"true");
 const numberOrSelector = (val: any) => isNaN(val) ? val : parseInt(val, 10);
 
 const collectOptions = (attrs: NamedNodeMap) => {
-  const res = new Map<string | undefined, any>();
+  const res: Record<string,string> = {};
   const attributesArray = Array.prototype.slice.call(attrs);
   attributesArray.forEach((attr: Attr) => {
     if (Object.keys(attributesMap).indexOf(attr.name) > -1) {
       if (attr.name.indexOf("origin") > -1) {
-
-        res.set(attributesMap.get(attr.name), stringToBool(attr.value));
-      } else if (attr.name === "columnWidth" || attr.name === "gutter") {
-        res.set(attributesMap.get(attr.name), numberOrSelector(attr.value));
+        res[attributesMap[attr.name]] = stringToBool(attr.value);
+      } else if (attr.name === "column-width" || attr.name === "gutter") {
+        res[attributesMap[attr.name]] = numberOrSelector(attr.value);
       } else {
-        res.set(attributesMap.get(attr.name), attr.value);
+        res[attributesMap[attr.name]] = attr.value;
       }
     }
   });
@@ -73,12 +72,14 @@ const collectOptions = (attrs: NamedNodeMap) => {
 const defaultId = "VueMasonry";
 
 const redrawHandler = (masonryInstance: Masonry) => (eventData: any) => {
-  if (masonryInstance.reloadItems) {
-    masonryInstance.reloadItems();
-  }
-  if(masonryInstance.layout) {
-    masonryInstance.layout();
-  }
+  setTimeout(() => {
+    if (masonryInstance.reloadItems) {
+      masonryInstance.reloadItems();
+    }
+    if(masonryInstance.layout) {
+      masonryInstance.layout();
+    }
+  }, 200);
 };
 
 const destroyHandler = (id: any, masonryInstance: Masonry, vue: Vue | undefined) => (eventData: any) => {

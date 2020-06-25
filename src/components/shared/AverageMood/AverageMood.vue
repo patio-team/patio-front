@@ -34,7 +34,7 @@ export default class AverageMood extends Vue {
 
   private getMood() {
     if (this.moodAverage) {
-      if (this.moodAverage >= 0 && this.moodAverage <= 1.5) {
+      if (this.moodAverage >= 0.1 && this.moodAverage <= 1.5) {
         return "mood1";
       } else if (this.moodAverage > 1.5 && this.moodAverage <= 2.5) {
         return "mood2";

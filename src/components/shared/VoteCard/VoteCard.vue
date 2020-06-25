@@ -20,17 +20,22 @@
 <style src="./VoteCard.css"></style>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import Avatar from "@/components/shared/Avatar/Avatar.vue";
 import Smiley from "../Smiley/Smiley.vue";
+import { Viewer } from "@toast-ui/vue-editor";
 
 @Component({
   components: {
     Avatar,
     "dw-smiley": Smiley,
+    Viewer,
   },
 })
 export default class VoteCard extends Vue {
+
+  @Prop()
+  private vote!: any;
 
   @Prop(String)
   private name!: string;
@@ -40,6 +45,24 @@ export default class VoteCard extends Vue {
 
   @Prop(String)
   private hue!: string;
+
+  @Prop()
+  private comment!: any;
+
+  @Ref("toastuiViewer")
+  private viewer!: Viewer;
+
+  private mounted() {
+    if (this.viewer) {
+      this.viewer.invoke("setMarkdown", this.comment);
+    }
+  }
+
+  private updated() {
+    if (this.viewer) {
+      this.viewer.invoke("setMarkdown", this.comment);
+    }
+  }
 
 }
 </script>

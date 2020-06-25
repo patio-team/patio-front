@@ -32,12 +32,10 @@ form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" auto
           | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_EDIT") }}
       .input-container
         Editor(
-          @change="onEditorChange"
           :options="defaultOptions"
           mode="wysiwyg"
           ref="toastuiEditor"
         )
-
   button.primary.submit(
     @:click="handleSubmit()"
     v-bind:disabled="isLoading"
