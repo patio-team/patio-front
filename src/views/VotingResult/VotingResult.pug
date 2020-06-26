@@ -18,20 +18,20 @@
 .voting-result
   .mobile-vote
     router-link.button.primary(
-      v-if="voting && !voting.didIVote"
-      v-bind:to="{ name: 'voting:vote', params: { groupId, votingId }}"
+      v-if="!nobodyHasVotedYet && !voting.didIVote"
+      v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
     ) {{ $t("RESULT.SHARE_MOOD") }}
     //- Show this when no votes
     router-link.button.primary(
       v-if="nobodyHasVotedYet"
-      v-bind:to="{ name: 'voting:vote', params: { groupId, votingId }}"
+      v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
     ) {{ $t("RESULT.BE_THE_FIRST") }}
 
   .title-container.title-container-mobile
     h1 {{ selectedGroup.name }}
     .row
       h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
-      span.time(v-if="voting") {{ $d(voting.createdAtDateTime) }}
+      span.time(v-if="voting") {{ $d(voting.createdAtDateTime, 'long') }}
   .main-container
     //- Remove Empty class if is not empty
     .graphic-section.empty

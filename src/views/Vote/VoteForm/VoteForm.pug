@@ -23,7 +23,7 @@ form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" auto
     .label-container
       label(for="hueMood") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL_HUE") }}
     .input-container
-      input(id="hueMood", v-model="input.hueMood", :placeholder="$t('VOTE_FORM.INPUT_COMMENT.PLACEHOLDER_HUE')")
+      input(id="hueMood", v-model="input.hueMood", :placeholder="$t('VOTE_FORM.INPUT_COMMENT.PLACEHOLDER_HUE')" maxlength="13")
   .comment
     .fieldset
       .label-container
