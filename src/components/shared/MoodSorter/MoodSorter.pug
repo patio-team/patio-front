@@ -23,7 +23,7 @@
     .mood(
       v-if="!isEmpty"
       v-for="vote in votesByMood"
-      :class="['mood' + vote.mood, isEmpty ? 'empty' : '']")
+      :class="['mood' + vote.mood, vote.count ? '' : 'empty']")
       .mood-buble-container
         .mood-buble {{ vote.count }}
       .mood-bar
