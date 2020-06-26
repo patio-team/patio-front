@@ -18,7 +18,20 @@
 
 @import "../../../assets/css/mixins.css";
 
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: scale(.9, .9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
 .vote-card {
+  animation: cardAppear 1s 1 alternate ease-in-out;
   background-color: var(--white-400);
   border-radius: 1em;
   box-shadow: 10px 10px 30px rgba(52, 49, 76, .2);
@@ -28,6 +41,7 @@
   object-fit: cover;
   padding-bottom: 2rem;
   width: calc(100% - 16px);
+
 
   @media (--small-viewport) {
     margin: 12px;
