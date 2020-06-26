@@ -24,14 +24,13 @@
   box-shadow: 10px 10px 30px rgba(52, 49, 76, .2);
   display: inline-block;
   flex-direction: column;
-  margin: 1rem 8px 0;
-  margin-top: 1rem;
+  margin: 8px;
   object-fit: cover;
   padding-bottom: 2rem;
   width: calc(100% - 16px);
 
   @media (--small-viewport) {
-    margin: 1rem 12px 0;
+    margin: 12px;
     width: calc(50% - 24px);
   }
 
@@ -71,7 +70,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    margin: 24px;
+    margin: 32px 24px 24px;
 
     & .avatar-holder {
       font-size: 24px;
