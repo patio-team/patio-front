@@ -42,7 +42,7 @@ export default class MoodSorter extends Vue {
 
   private getTotalVotes(stats: VotingStats): number {
     if (this.stats && this.stats.votesByMood && this.stats.votesByMood.length > 0) {
-      return this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b);
+      return Math.max(...this.stats.votesByMood.map((next) => next.count));
     } else {
       return 0;
     }
