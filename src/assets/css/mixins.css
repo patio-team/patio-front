@@ -89,8 +89,9 @@
    =============================== */
 @define-mixin generic-input {
   align-items: center;
+  background: white;
   border: 1px solid var(--gray-300);
-  border-radius: 3px;
+  border-radius: 8px;
   color: var(--new-gray-500);
   display: flex;
   font-family: 'Lato', 'Times New Roman', Times, serif;

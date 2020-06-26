@@ -203,17 +203,39 @@ link {
   width: 100%;
 
   & .te-switch-button {
+    background-color: var(--new-grey-700);
+    border: 0;
+    box-sizing: border-box;
+    color: white;
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 0 50%;
+    font-size: 16px;
+    font-weight: bold;
     justify-content: center;
 
+    &.active {
+      background-color: white;
+      color: var(--new-grey-700);
+      cursor: not-allowed;
+    }
+
     &.wysiwyg {
-      color: white;
+      color: var(--new-grey-700);
 
       &::before {
-        color: black;
+        color: white;
         content: 'Preview';
         position: absolute;
+      }
+
+      &.active {
+        color: white;
+
+        &::before {
+          color: var(--new-grey-700);
+          content: 'Preview';
+          position: absolute;
+        }
       }
     }
   }
@@ -285,5 +307,23 @@ link {
 
   & p {
     margin: 0;
+  }
+}
+
+.tui-editor-defaultUI .te-mode-switch-section {
+  height: 32px;
+}
+
+.tui-editor .te-preview-style-vertical {
+  & .te-editor {
+    width: 100%;
+  }
+
+  & .te-md-splitter {
+    display: none;
+  }
+
+  & ..te-preview {
+    display: none;
   }
 }

@@ -30,7 +30,7 @@ div.hide {
 
 .voting-result {
   color: var(--new-grey-700);
-  padding: 0 .5rem;
+  padding: 0 12px;
   width: 100%;
 
   & .title-container {
@@ -48,7 +48,7 @@ div.hide {
     display: flex;
     flex-direction: column;
     padding-left: .5rem;
-    padding-top: 25px;
+    padding-top: 40px;
 
     @media (--large-viewport) {
       display: none;
@@ -104,6 +104,7 @@ div.hide {
 
     @media (--large-viewport) {
       flex-direction: row;
+      margin-top: 24px;
     }
   }
 

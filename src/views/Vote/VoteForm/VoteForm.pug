@@ -19,12 +19,12 @@ form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" auto
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
 
-  .fieldset
+  .fieldset.hard-margin
     .label-container
       label(for="hueMood") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL_HUE") }}
     .input-container
       input(id="hueMood", v-model="input.hueMood", :placeholder="$t('VOTE_FORM.INPUT_COMMENT.PLACEHOLDER_HUE')" maxlength="13")
-  .comment
+  .comment.hard-margin
     .fieldset
       .label-container
         label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL_TEXT") }}

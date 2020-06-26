@@ -71,7 +71,7 @@
     .relative-container
       .title-holder
         h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }} {{ voting.group.name }} ?
-        span.date {{ $d(voting.createdAtDateTime) }}
+        span.date {{ $d(voting.createdAtDateTime, 'long') }}
       .smiley-wrapper
         .smiley-containers
           .smiley(

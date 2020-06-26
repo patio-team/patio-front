@@ -110,16 +110,16 @@
 
 .mood-buble {
   align-items: center;
-  border: solid 5px var(--new-grey-500);
+  border: solid 4px var(--new-grey-500);
   border-radius: 100%;
   display: flex;
   font-size: 24px;
   font-style: normal;
   font-weight: normal;
-  height: calc(3rem + 5px);
+  height: calc(3rem + 4px);
   justify-content: center;
   line-height: 42px;
-  width: calc(3rem + 5px);
+  width: calc(3rem + 4px);
 
   &:last-child {
     margin-right: 0;

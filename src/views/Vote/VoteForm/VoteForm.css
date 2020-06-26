@@ -33,6 +33,10 @@
   }
 }
 
+.hard-margin {
+  margin-bottom: 45px;
+}
+
 .line-form {
   display: flex;
   flex-direction: column;
@@ -52,7 +56,6 @@
   z-index: 1;
 
   @media (--small-viewport) {
-    max-width: 620px;
     width: 100%;
   }
 

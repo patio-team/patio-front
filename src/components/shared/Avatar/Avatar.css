@@ -132,9 +132,9 @@
   & .text-background {
     background: white;
     border-radius: 100%;
-    height: 85%;
-    margin: 7.5%;
-    width: 85%;
+    height: 80%;
+    margin: 10%;
+    width: 80%;
     z-index: 1;
   }
 
