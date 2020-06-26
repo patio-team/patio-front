@@ -64,9 +64,7 @@ export default class VotingResult extends Vue {
   private groupId!: string;
 
   public get stats() {
-    if ( this.voting ) {
-      return this.voting ? this.voting.stats : null;
-    }
+    return this.voting ? this.voting.stats : null;
   }
 
   public get nobodyHasVotedYet() {

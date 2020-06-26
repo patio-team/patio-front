@@ -33,5 +33,5 @@
       :comment="vote.comment"
       :hue="vote.hueMood")
   .loader-container
-    Loader(:if="isLoading")
+    Loader(v-if="isLoading")
   infinite-loader(@intersect="infiniteHandler")

@@ -28,6 +28,7 @@ import store from "@/store/modules/result/MoodMemberListStore";
 import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
 import InfiniteLoader from "@/components/shared/InfiniteLoader/InfiniteLoader.vue";
 import Loader from "@/components/shared/Loader/Loader.vue";
+import VueLoaderAware from "@/utils/VueLoaderAware";
 
 @Component({
   components: {
@@ -40,7 +41,7 @@ import Loader from "@/components/shared/Loader/Loader.vue";
     masonryTile,
   },
 })
-export default class VoteList extends Vue {
+export default class VoteList extends VueLoaderAware {
   private pagination: PaginationRequest = {max: 20, page: 0};
 
   @Prop()
@@ -49,7 +50,6 @@ export default class VoteList extends Vue {
   public get moodMemberList() {
     return store.moodMemberList;
   }
-
 
   public async mounted() {
     setTimeout(() => {
@@ -72,21 +72,25 @@ export default class VoteList extends Vue {
   }
 
   public async reset(voting: Voting) {
-    this.pagination = {max: 20, page: 0};
-    const votingId = voting.id;
-    const result = await store.resetMoodMemberResult({pagination: this.pagination, votingId});
+    this.execWithLoaderAwareness(async () => {
+      this.pagination = {max: 20, page: 0};
+      const votingId = voting.id;
+      const result = await store.resetMoodMemberResult({pagination: this.pagination, votingId});
 
-    if (result.data.length) {
-      this.pagination.page = 1;
-    }
+      if (result.data.length) {
+        this.pagination.page = 1;
+      }
+    });
   }
 
   public async paginate(voting: Voting, pagination: PaginationRequest) {
-    const votingId = voting.id;
-    const result = await store.fetchMoodMemberList({votingId, pagination});
-    if (result.data.length) {
-      this.pagination.page++;
-    }
+    this.execWithLoaderAwareness(async () => {
+      const votingId = voting.id;
+      const result = await store.fetchMoodMemberList({votingId, pagination});
+      if (result.data.length) {
+        this.pagination.page++;
+      }
+    });
   }
 }
 </script>

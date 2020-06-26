@@ -249,36 +249,12 @@ link {
   margin: 0 0 .5rem 0;
 }
 
-/* .tui-editor-defaultUI-toolbar button {
-  &.tui-bold {
-    background: red;
-  }
-  &.tui-italic {
-    background: blue;
-  }
-  &.tui-strike {
-    background: blueviolet;
-  }
-  &.tui-ul {
-    background: yellowgreen;
-  }
-  &.tui-ol {
-    background: wheat;
-  }
-  &.tui-image {
-    background: peru;
-  }
-  &.tui-link {
-    background: aqua;
-  }
-} */
-
 .te-ww-container .tui-editor-contents {
   padding: .5rem;
 }
 
 .tui-editor-contents {
-  font-family: Lato;
+  font-family: 'Lato', 'Times New Roman', Times, serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
