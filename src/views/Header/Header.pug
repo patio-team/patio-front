@@ -32,49 +32,59 @@
           //- .alert-container
           //-   include ../../../assets/img/notification.svg
           //-   span.alert 3
-          button.name-actions(v-on:click="toggleDropdown")
+          button.name-actions.padding(v-on:click="toggleGroupDropdown")
             .group-container
               span(v-if="selectedGroup") {{ selectedGroup.name }}
               .dropdown
                 include ../../assets/img/chevron.svg
+          button.name-actions(v-on:click="toggleUserDropdown")
             .avatar-container
               dw-avatar(
                 :name="name"
                 mood="0"
               )
 
-
     .options-menu(
-        v-bind:class="{visible: isDropdownVisible}"
+        v-bind:class="{visible: isGroupsVisible}"
+    )
+      button.close(v-on:click="toggleUserDropdown")
+        include ../../assets/img/cross.svg
+      ul
+        li(
+          v-for="group in groups"
+        )
+          a.action(
+            @click="handleChangeSelectedGroup(group.id)"
+            :class="{ active : group.name === selectedGroup.name}"
+          )
+            .dot-container
+              .dot
+            span {{ group.name }}
+      .actions
+        button.text-and-icon(
+          v-on:click="createNewGroup"
+        )
+          include ../../assets/img/add.svg
+          span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
+
+
+
+    .options-menu.user(
+        v-bind:class="{visible: isUserVisible}"
     )
       .content
-        button.close(v-on:click="toggleDropdown")
+        button.close(v-on:click="toggleUserDropdown")
           include ../../assets/img/cross.svg
         .avatar-container
-          dw-avatar(
-            :name="name"
-            mood="0"
-          )
+          .avatar-decoration
+          .name {{ nameInitials(name) }}
         .options-text.name {{ name }}
         .options-text.email {{ email }}
-        router-link.options-text.profile(v-bind:to="{ name: 'my-profile' }") {{ $t("HEADER.USER_ACTIONS.SEE_PROFILE")}}
         .block
-          button.text-and-icon(v-on:click.capture="toggleDropdown")
+          button.text-and-icon(v-on:click.capture="toggleUserDropdown")
             include ../../assets/img/settings.svg
             span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
-        hr
-        .block.groups
-          h1 {{ $t("HEADER.USER_ACTIONS.GROUPS") }}
-          ul
-            li(v-for="group in groups")
-              a.action(@click="handleChangeSelectedGroup(group.id)") {{ group.name }}
-            li
-              button.text-and-icon(
-                v-on:click="createNewGroup")
-                include ../../assets/img/plus.svg
-                span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
-          router-link.action(v-bind:to="{ name: 'groups:list' }") {{ $t("HEADER.ACTIONS.MY_GROUPS")}}
       .actions
         a.logout(
           data-testid="action-logout"
-          v-on:click="toggleDropdown(); handleClickLogout();") {{ $t("HEADER.USER_ACTIONS.LOGOUT") }}
+        ) {{ $t("HEADER.USER_ACTIONS.LOGOUT")}}
