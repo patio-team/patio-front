@@ -18,6 +18,18 @@
 
 @import "../../assets/css/mixins.css";
 
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(.9, .9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
 .header-container {
   box-shadow: 0 4px 4px rgba(229, 229, 229, .25);
   width: 100%;
@@ -80,6 +92,7 @@
   height: 16px;
   justify-content: center;
   margin-left: .5rem;
+  margin-top: 1px;
   width: 16px;
 
   & svg {
@@ -98,11 +111,14 @@
   display: flex;
   font-weight: 500;
   text-transform: none;
+
+  &.padding {
+    padding: 0 24px;
+  }
 }
 
 .group-container {
   display: flex;
-  margin-right: 1.5rem;
 }
 
 .avatar-container {
@@ -112,27 +128,22 @@
 }
 
 .options-menu {
+  animation: appear .3s 1 alternate ease-in-out;
   background: white;
-  display: flex;
+  border-radius: 20px;
+  box-shadow: 10px 10px 30px rgba(52, 49, 76, .2);
   flex-direction: column;
-  min-height: 100vh;
-  padding-top: 1.75rem;
+  height: auto;
+  min-height: auto;
+  opacity: 0;
+  padding-top: 0;
+  pointer-events: none;
   position: absolute;
-  right: -150vw;
-  top: 0;
-  transition: right .3s ease;
-  width: 100vw;
+  right: 1rem;
+  top: 100%;
+  transition: opacity .3s ease;
+  width: 230px;
   z-index: 300;
-
-  @media (--small-viewport) {
-    border-radius: 20px;
-    box-shadow: 10px 10px 30px rgba(52, 49, 76, .2);
-    height: auto;
-    min-height: 565px;
-    position: absolute;
-    top: 100%;
-    width: 300px;
-  }
 
   & .close {
     @mixin button-noborder;
@@ -141,6 +152,7 @@
     position: absolute;
     right: 1rem;
     top: 1rem;
+    z-index: 5;
 
     & svg {
       height: 1.5rem;
@@ -148,49 +160,71 @@
     }
   }
 
+  &.user {
+    padding: 24px 0 0;
+    width: 300px;
+  }
+
   & .content {
     flex: 1 1 100%;
   }
 
   & .actions {
-    border-top: solid 1px var(--new-grey-100);
+    border-top: solid 1px var(--new-grey-50);
     flex: 0 1 auto;
-    padding: 1.3rem;
+    padding: 24px;
   }
 
   &.visible {
-    right: 0;
-
-    @media (--small-viewport) {
-      right: 1rem;
-    }
+    display: flex;
+    opacity: 1;
+    pointer-events: all;
+    z-index: 300;
   }
 
   & .avatar-container {
-    height: 104px;
-    margin: 0 auto 1.1rem;
-    width: 104px;
+    align-items: center;
+    display: flex;
+    height: 82px;
+    justify-content: center;
+    margin: 0 auto .5rem;
+    position: relative;
+    width: 100%;
+
+    & .avatar-decoration {
+      background: var(--new-grey-50);
+      border-radius: 100%;
+      height: 80px;
+      position: absolute;
+      width: 80px;
+    }
+
+    & .name {
+      font-family: 'Lato', 'Times New Roman', Times, serif;
+      font-size: 64px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 42px;
+      position: absolute;
+      z-index: 2;
+    }
   }
 
   & .name {
     font-family: 'Merriweather', 'Times New Roman', Times, serif;
     font-style: normal;
     font-weight: 300;
+    margin-bottom: 1rem;
   }
 
   & .options-text {
     color: var(--new-grey-700);
-    font-size: 24px;
+    font-size: 16px;
     font-style: normal;
     font-weight: normal;
-    line-height: 38px;
+    line-height: 28px;
     text-align: center;
     word-break: break-all;
-
-    @media (--small-viewport) {
-      font-size: 16px;
-      line-height: 28px;
-    }
   }
 
   & .profile {
@@ -212,14 +246,9 @@
     display: flex;
     font-weight: 700;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0 8px 0;
     min-height: 60px;
-    width: 240px;
-
-    @media (--small-viewport) {
-      min-height: 40px;
-      width: 112px;
-    }
+    width: calc(100% - 16px);
   }
 }
 
@@ -229,10 +258,14 @@
 
 .text-and-icon {
   @mixin text-and-icon;
+
+  & span {
+    font-size: 1rem;
+  }
 }
 
 .block {
-  padding: 0 1.5rem;
+  padding: 1.5rem;
 
   &.groups {
     padding-bottom: .5rem;
@@ -247,29 +280,37 @@ hr {
   margin: 1rem 0;
 }
 
-h1 {
-  font-size: 1.5rem;
-  margin: .5rem;
-
-  @media (--small-viewport) {
-    font-size: 1rem;
-  }
-}
-
 ul {
   margin: 0;
-  padding-left: 3rem;
+  padding: 22px 0;
 
   & li {
     align-items: center;
     display: flex;
-    font-size: 1.5rem;
+    font-size: 1rem;
     list-style: none;
-    min-height: 40px;
+    position: relative;
+  }
 
-    @media (--small-viewport) {
-      font-size: 1rem;
-      min-height: 36px;
+  & .action {
+    align-items: center;
+    display: flex;
+    min-height: 36px;
+    width: 100%;
+
+    &.active .dot {
+      background: var(--new-grey-700);
+    }
+  }
+
+  & .dot-container {
+    padding: 0 8px;
+
+    & .dot {
+      background: var(--white);
+      border-radius: 100%;
+      height: 7px;
+      width: 7px;
     }
   }
 }

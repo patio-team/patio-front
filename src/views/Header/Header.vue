@@ -35,7 +35,23 @@ const VotingStore = namespace("voting");
   },
 })
 export default class Header extends Vue {
-  public isDropdownVisible: boolean = false;
+
+  get name() {
+    return this.me ? this.me.name : undefined;
+  }
+
+  get email() {
+    return this.me ? this.me.email : undefined;
+  }
+
+  get groups() {
+    return this.me ? this.me.groups : undefined;
+  }
+  public isGroupsVisible: boolean = false;
+  public isUserVisible: boolean = false;
+
+  @AuthStore.Getter("selectedGroup")
+  private selectedGroup!: Group;
 
   @AuthStore.Getter("myProfile")
   private me!: User;
@@ -52,16 +68,13 @@ export default class Header extends Vue {
   @VotingStore.Action("getLastVoting")
   private getLastVoting!: any;
 
-  get name() {
-    return this.me ? this.me.name : undefined;
-  }
-
-  get email() {
-    return this.me ? this.me.email : undefined;
-  }
-
-  get groups() {
-    return this.me ? this.me.groups : undefined;
+  public nameInitials(fullName: string) {
+    const splitedName = fullName.split(" ");
+    if ( splitedName.length > 1) {
+      return splitedName[0][0] + splitedName[1][0];
+    } else {
+      return splitedName[0][0];
+    }
   }
 
   private async handleChangeSelectedGroup(groupId: string) {
@@ -87,8 +100,14 @@ export default class Header extends Vue {
     this.$router.push({ name: "groups:create" });
   }
 
-  private toggleDropdown() {
-    this.isDropdownVisible = !this.isDropdownVisible;
+  private toggleGroupDropdown() {
+    this.isGroupsVisible = !this.isGroupsVisible;
+    this.isUserVisible = false;
+  }
+
+  private toggleUserDropdown() {
+    this.isUserVisible = !this.isUserVisible;
+    this.isGroupsVisible = false;
   }
 }
 </script>

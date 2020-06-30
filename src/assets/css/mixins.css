@@ -345,6 +345,7 @@
   align-items: center;
   background: none;
   border: 0;
+  cursor: pointer;
   display: flex;
   font-weight: 400;
   letter-spacing: 0;
