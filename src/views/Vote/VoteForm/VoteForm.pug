@@ -30,7 +30,9 @@ form.vote-form(data-testid="form" v-on:submit.prevent.once="handleSubmit()" auto
         label(data-testid="commentlabel" for="comment") {{ $t("VOTE_FORM.INPUT_COMMENT.LABEL_TEXT") }}
         button.action(v-if="showPreview" type="button" v-on:click="handleClickEditButton")
           | {{ $t("VOTE_FORM.INPUT_COMMENT.ACTION_EDIT") }}
-      .input-container
+      .input-container(
+        ref="editorContainer"
+      )
         Editor(
           :options="defaultOptions"
           mode="wysiwyg"

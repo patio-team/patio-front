@@ -88,6 +88,9 @@ export default class VoteForm extends Vue {
   @Ref("toastuiEditor")
   private editor!: Editor;
 
+  @Ref("editorContainer")
+  private editorContainer!: any;
+
   private input = {
     score: (this.voteScore) ? this.voteScore : 3,
     comment: "",
@@ -105,6 +108,9 @@ export default class VoteForm extends Vue {
   public mounted() {
     if (this.editor) {
       this.editor.invoke("changeMode", "wysiwyg");
+      this.editor.invoke("addHook", "pasteBefore", (event)=> {
+        return null;
+      });
     }
     if (this.initScore) {
       this.input.score = this.initScore;
