@@ -42,7 +42,6 @@
   padding-bottom: 2rem;
   width: calc(100% - 16px);
 
-
   @media (--small-viewport) {
     margin: 12px;
     width: calc(50% - 24px);

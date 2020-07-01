@@ -59,13 +59,18 @@ export default class Header extends Vue {
   @AuthStore.Action("changeSelectedGroup")
   private changeSelectedGroup!: any;
 
-  @AuthStore.Getter("selectedGroup")
-  private selectedGroup!: Group;
-
   @VotingStore.Action("getLastVoting")
   private getLastVoting!: any;
 
+  @AuthStore.Getter("selectedGroup")
+  private selectedGroup!: Group;
+
+
   public nameInitials(fullName: string) {
+    if (!fullName) {
+      return "";
+    }
+
     const splitedName = fullName.split(" ");
     if ( splitedName.length > 1) {
       return splitedName[0][0] + splitedName[1][0];
