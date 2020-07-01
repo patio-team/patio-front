@@ -49,6 +49,7 @@ export default class Header extends Vue {
   }
   public isGroupsVisible: boolean = false;
   public isUserVisible: boolean = false;
+  public dropdownCheck: boolean = false;
 
   @AuthStore.Getter("myProfile")
   private me!: User;
@@ -64,7 +65,6 @@ export default class Header extends Vue {
 
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
-
 
   public nameInitials(fullName: string) {
     if (!fullName) {
@@ -92,6 +92,20 @@ export default class Header extends Vue {
     });
   }
 
+  private mounted() {
+    document.addEventListener("click", (evt) => {
+      const optionContainer = document.getElementById("optionContainer");
+      const targetElement = evt.target as any;
+      if (
+        optionContainer &&
+        !optionContainer.contains(targetElement) &&
+        !this.dropdownCheck
+      ) {
+        this.closeDropdowns();
+      }
+    });
+  }
+
   private async handleClickLogout() {
     await this.logout();
     this.toggleUserDropdown();
@@ -103,13 +117,41 @@ export default class Header extends Vue {
   }
 
   private toggleGroupDropdown() {
+    this.dropdownCheck = true;
     this.isGroupsVisible = !this.isGroupsVisible;
     this.isUserVisible = false;
+    setTimeout(() => {
+      this.dropdownCheck = false;
+    }, 200);
   }
 
   private toggleUserDropdown() {
+    this.dropdownCheck = true;
     this.isUserVisible = !this.isUserVisible;
     this.isGroupsVisible = false;
+    setTimeout(() => {
+      this.dropdownCheck = false;
+    }, 200);
+
   }
+
+  private checkIfUserIsVisible() {
+    return this.isGroupsVisible;
+  }
+
+  private checkIfGroupIsVisible() {
+    return this.isUserVisible;
+  }
+
+  private closeDropdowns(target?: string) {
+    this.dropdownCheck = true;
+    this.isUserVisible = false;
+    this.isGroupsVisible = false;
+    setTimeout(() => {
+      this.dropdownCheck = false;
+    }, 200);
+
+  }
+
 }
 </script>

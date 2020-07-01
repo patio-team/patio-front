@@ -35,6 +35,12 @@
   width: 100%;
 }
 
+.options-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .header {
   align-items: center;
   display: flex;
@@ -162,7 +168,14 @@
 
   &.user {
     padding: 24px 0 0;
+    right: 25px;
+    top: 72px;
     width: 300px;
+  }
+
+  &.group {
+    right: 82px;
+    top: 72px;
   }
 
   & .content {

@@ -42,49 +42,51 @@
                 :name="name"
                 mood="0"
               )
-
-    .options-menu(
-        v-bind:class="{visible: isGroupsVisible}"
-    )
-      button.close(v-on:click="toggleUserDropdown")
-        include ../../assets/img/cross.svg
-      ul
-        li(
-          v-for="group in groups"
-        )
-          a.action(
-            @click="handleChangeSelectedGroup(group.id)"
-            :class="{ active : group.name === selectedGroup.name}"
-          )
-            .dot-container
-              .dot
-            span {{ group.name }}
-      .actions
-        button.text-and-icon(
-          v-on:click="createNewGroup"
-        )
-          include ../../assets/img/add.svg
-          span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
-
-
-
-    .options-menu.user(
-        v-bind:class="{visible: isUserVisible}"
-    )
-      .content
+    .options-container#optionContainer
+      .options-menu.group(
+          v-if="isGroupsVisible"
+          v-bind:class="{visible: isGroupsVisible}"
+      )
         button.close(v-on:click="toggleUserDropdown")
           include ../../assets/img/cross.svg
-        .avatar-container
-          .avatar-decoration
-          .name {{ nameInitials(name) }}
-        .options-text.name {{ name }}
-        .options-text.email {{ email }}
-        .block
-          button.text-and-icon(v-on:click.capture="toggleUserDropdown")
-            include ../../assets/img/settings.svg
-            span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
-      .actions
-        a.logout(
-          data-testid="action-logout"
-          @click="handleClickLogout"
-        ) {{ $t("HEADER.USER_ACTIONS.LOGOUT")}}
+        ul
+          li(
+            v-for="group in groups"
+          )
+            a.action(
+              @click="handleChangeSelectedGroup(group.id)"
+              :class="{ active : group.name === selectedGroup.name}"
+            )
+              .dot-container
+                .dot
+              span {{ group.name }}
+        .actions
+          button.text-and-icon(
+            v-on:click="createNewGroup"
+          )
+            include ../../assets/img/add.svg
+            span {{ $t("HEADER.USER_ACTIONS.CREATE_GROUP")}}
+
+
+
+      .options-menu.user(
+          v-if="isUserVisible"
+          v-bind:class="{visible: isUserVisible}"
+      )
+        .content
+          button.close(v-on:click="toggleUserDropdown")
+            include ../../assets/img/cross.svg
+          .avatar-container
+            .avatar-decoration
+            .name {{ nameInitials(name) }}
+          .options-text.name {{ name }}
+          .options-text.email {{ email }}
+          .block
+            button.text-and-icon(v-on:click.capture="toggleUserDropdown")
+              include ../../assets/img/settings.svg
+              span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
+        .actions
+          a.logout(
+            data-testid="action-logout"
+            @click="handleClickLogout"
+          ) {{ $t("HEADER.USER_ACTIONS.LOGOUT")}}
