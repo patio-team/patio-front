@@ -94,7 +94,7 @@ export default class Header extends Vue {
 
   private async handleClickLogout() {
     await this.logout();
-
+    this.toggleUserDropdown();
     this.$router.push({ name: "login" });
   }
 

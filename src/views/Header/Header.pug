@@ -86,4 +86,5 @@
       .actions
         a.logout(
           data-testid="action-logout"
+          @click="handleClickLogout"
         ) {{ $t("HEADER.USER_ACTIONS.LOGOUT")}}
