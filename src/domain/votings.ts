@@ -17,7 +17,7 @@
  */
 
 import { Group, User, PaginationResult } from "@/domain";
-import { DateTime } from "@/utils/datetime";
+import { DateTime } from "luxon";
 
 type score = 1 | 2 | 3 | 4 | 5;
 
@@ -43,8 +43,18 @@ export interface VotingStats {
   voteCountAverage: number;
   voteAveragePercentile: number;
   average: number;
+  voting: Voting;
   movingAverage: number;
+  createdAtDateTime: DateTime;
 }
+
+export interface VotingStatsResult {
+  totalCount: number;
+  lastPage: number;
+  page: number;
+  data: VotingStats[];
+}
+
 
 export interface Voting {
   id: string;

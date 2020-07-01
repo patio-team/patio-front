@@ -60,7 +60,9 @@ query GetVoting(
       voteCountAverage
     }
     votes {
-      total
+      page
+      lastPage
+      totalCount
       data {
         id
         score

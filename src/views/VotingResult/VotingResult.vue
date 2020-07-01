@@ -25,9 +25,11 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 import { Group, Voting } from "@/domain";
 import VoteList from "./VoteList/VoteList.vue";
+import VoteChart from "./VoteChart/VoteChart.vue";
 import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
 import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
 import Loader from "@/components/shared/Loader/Loader.vue";
+import { DateTime } from "luxon";
 
 const AuthStore = namespace("auth");
 const VotingStore = namespace("voting");
@@ -35,6 +37,7 @@ const VotingStore = namespace("voting");
 @Component({
   components: {
     VoteList,
+    VoteChart,
     AverageMood,
     MoodSorter,
     Loader,
@@ -67,11 +70,22 @@ export default class VotingResult extends Vue {
     return this.voting ? this.voting.stats : null;
   }
 
+  public get votingDateTime() {
+    return this.voting ? this.voting.createdAtDateTime : DateTime.local();
+  }
+
   public get nobodyHasVotedYet() {
     if (this.stats && this.stats.votesByMood && this.stats.votesByMood.length > 0) {
       return this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b) === 0;
     } else {
       return true;
+    }
+  }
+
+  @Watch("votingId")
+  public async onVotingIdChanged(val: string, old: string) {
+    if (val !== old) {
+      this.updateVoting();
     }
   }
 

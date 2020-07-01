@@ -43,7 +43,7 @@ const getters: GetterTree<VotingState, RootState> = {
       3: state.voting!.votes!.data!.filter((v) => v.score === 3).length || 0,
       4: state.voting!.votes!.data!.filter((v) => v.score === 4).length || 0,
       5: state.voting!.votes!.data!.filter((v) => v.score === 5).length || 0,
-      count: state.voting!.votes!.total || 0,
+      count: state.voting!.votes!.totalCount || 0,
     };
   },
   getVotingIsLoading(state: VotingState) { return state.getVotingIsLoading; },

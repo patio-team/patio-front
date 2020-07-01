@@ -22,7 +22,9 @@ query ListMembersMood($votingId: ID!, $page: Int, $max: Int) {
     id
     didIVote
     votes(page: $page, max: $max) {
-      total
+      totalCount
+      page
+      lastPage
       data {
         score
         hueMood
@@ -42,6 +44,28 @@ query GetFavouriteGroup {
     id
     name
     isCurrentUserAdmin
+  }
+}
+`;
+
+export const GetVotingChartStatistics = `
+query GetVotingStats($groupId: ID!, $startDateTime: DateTime!, $endDateTime: DateTime!) {
+  getStatsByGroup(
+    groupId: $groupId,
+    startDateTime: $startDateTime,
+    endDateTime: $endDateTime
+  ) {
+    page
+    lastPage
+    totalCount
+    data {
+      average
+      movingAverage
+      voting {
+        id
+      }
+      createdAtDateTime
+    }
   }
 }
 `;

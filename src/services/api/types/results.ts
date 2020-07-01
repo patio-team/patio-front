@@ -18,8 +18,15 @@
 
 
 import { Vote } from "@/domain/votings";
+import { DateTime } from "luxon";
 
 export interface PaginatedVote {
   total: number;
   data: Vote[];
+}
+
+export interface VotingStatsInput {
+  groupId: string;
+  startDateTime: DateTime;
+  endDateTime: DateTime;
 }

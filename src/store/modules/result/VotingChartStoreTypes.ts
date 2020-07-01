@@ -16,9 +16,20 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-declare module "*.vue" {
-  import Vue from "vue";
-  export default Vue;
+import { VotingStatsResult } from "@/domain";
+import { DateTime } from "luxon";
+
+export interface TimeWindow {
+  startDateTime: DateTime;
+  endDateTime: DateTime;
 }
 
-declare module "vue-echarts";
+export interface ChartState {
+  statistics: VotingStatsResult;
+  prevWindow: TimeWindow;
+  nextWindow: TimeWindow;
+  hasPrev: boolean;
+  hasNext: boolean;
+}
+
+

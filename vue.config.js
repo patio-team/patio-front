@@ -15,6 +15,11 @@ module.exports = {
     lintStyleOnBuild: true,
     stylelint: {},
   },
+   // This packages only expose untranspiled version
+   transpileDependencies: [
+    'resize-detector',
+    'vue-echarts',
+  ],
   runtimeCompiler: true,
   chainWebpack: config => {
     config.module
