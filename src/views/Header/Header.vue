@@ -50,9 +50,6 @@ export default class Header extends Vue {
   public isGroupsVisible: boolean = false;
   public isUserVisible: boolean = false;
 
-  @AuthStore.Getter("selectedGroup")
-  private selectedGroup!: Group;
-
   @AuthStore.Getter("myProfile")
   private me!: User;
 
