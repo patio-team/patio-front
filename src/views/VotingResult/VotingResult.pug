@@ -15,7 +15,9 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.voting-result
+.voting-result(
+  v-touch:swipe="swipeHandler"
+)
   .mobile-vote
     router-link.button.primary(
       v-if="!nobodyHasVotedYet && !voting.didIVote"
@@ -52,6 +54,15 @@
             :moodAverage="stats.average | numeral('0.0') "
             :averagePercentil="stats.voteAveragePercentile"
           )
+          .arrow(
+            v-on:click="previousVoteButton()"
+          )
+            include ../../assets/img/chevron.svg
+          .arrow.reverse(
+            v-on:click="nextVoteButton()"
+          )
+            include ../../assets/img/chevron.svg
+
         .participation-container
           .title-container.title-container-participation.date.no-margin
             span.time(v-if="voting") {{ $d(voting.createdAtDateTime, 'long') }}

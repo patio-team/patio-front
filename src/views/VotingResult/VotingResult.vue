@@ -98,5 +98,23 @@ export default class VotingResult extends Vue {
       await this.getVoting({id: this.votingId});
     }
   }
+
+  private swipeHandler(direction: any) {
+    const WindowWidth = window.innerWidth;
+    if ( direction === "left" && WindowWidth <= 750) {
+      this.previousVoteButton();
+    }
+    if ( direction === "right" && WindowWidth <= 750) {
+      this.nextVoteButton();
+    }
+  }
+
+  private previousVoteButton() {
+    return null;
+  }
+
+  private nextVoteButton() {
+    return null;
+  }
 }
 </script>
