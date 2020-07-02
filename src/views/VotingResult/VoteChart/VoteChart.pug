@@ -17,8 +17,9 @@
 
 .chart(ref="chartWrapper")
   button(
+    class="left"
     @click="handleGoBackwards"
-    :disabled="!canGoBackwards") {{ $t("VOTE_CHART.ACTIONS.GO_BACKWARDS") }}
+    :disabled="!canGoBackwards") <
   Echarts(
     ref="chart"
     :autoresize="true"
@@ -26,5 +27,6 @@
     @click="handleClick"
   )
   button(
+    class="right"
     @click="handleGoForwards"
-    :disabled="!canGoForwards")  {{ $t("VOTE_CHART.ACTIONS.GO_FORWARDS") }}
+    :disabled="!canGoForwards")  >

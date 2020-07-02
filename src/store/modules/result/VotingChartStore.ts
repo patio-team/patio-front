@@ -20,74 +20,68 @@ import { Action, getModule, Module, Mutation, VuexModule } from "vuex-module-dec
 import store from "@/store";
 import api from "@/services/api";
 
-import { VotingStatsResult, VotingStats } from "@/domain";
+import { VotingStats, PaginationResult } from "@/domain";
 import { ChartState, TimeWindow } from "@/store/modules/result/VotingChartStoreTypes";
 import { VotingStatsInput } from "@/services/api/types/results";
-import { DateTime } from "luxon";
 
 const moduleName = "results:chart-statistics";
 
 @Module({ stateFactory: true, dynamic: true, namespaced: true, name: moduleName, store })
 export class VotingChartStore extends VuexModule {
   public chartState: ChartState = {
-    statistics:  {
-      totalCount: 0,
-      lastPage: 0,
-      page: 0,
-      data: [] as VotingStats[],
-    },
-    prevWindow: {
-      startDateTime: DateTime.local(),
-      endDateTime: DateTime.local(),
-    },
-    nextWindow: {
-      startDateTime: DateTime.local(),
-      endDateTime: DateTime.local(),
-    },
+    data: [] as VotingStats[],
+    nextPage: 0,
+    prevPage: 0,
     hasPrev: false,
     hasNext: false,
   };
 
   @Mutation
   public updateChartState(state: ChartState) {
-    if (state.statistics.data && state.statistics.data.length > 0) {
+    if (state.data && state.data.length > 0) {
       this.chartState = state;
     }
   }
 
   @Action({ commit: "updateChartState" })
   public async fetchVotingStats(input: VotingStatsInput) {
-    const widerInput: VotingStatsInput = {
-      ...input,
-      startDateTime: input.startDateTime.minus({days: 7}).startOf("day"),
-      endDateTime: input.endDateTime.plus({days: 7}).endOf("day"),
-    };
+    // getting data from backend
+    const statistics: PaginationResult<VotingStats> = await api.results.getVotingChartStatistics(input);
 
-    const statistics: VotingStatsResult = await api.results.getVotingChartStatistics(widerInput);
-    const data: VotingStats[] = statistics.data;
+    // resolving pagination info
+    const hasPrev = statistics.page < statistics.lastPage;
+    const hasNext = statistics.page > 0;
+    const prevPage = statistics.page + 1;
+    const nextPage = statistics.page - 1;
 
-    // although we've requested a wider window frame we only are asked to paint
-    // just the entries within the input request
-    const chartData: VotingStats[] = data
-      .filter((stat: VotingStats) =>
-        stat.createdAtDateTime.startOf("day") >= input.startDateTime.startOf("day") &&
-        stat.createdAtDateTime.endOf("day") <= input.endDateTime.endOf("day"));
-    statistics.data = chartData;
+    // adding one empty element at the end if there're no more elements forwards
+    if (!hasNext) {
+      const lastRecord = statistics.data[statistics.data.length - 1];
 
-    const hasPrev = data.filter((stat: VotingStats) => stat.createdAtDateTime < input.startDateTime).length > 0;
-    const hasNext = data.filter((stat: VotingStats) => stat.createdAtDateTime > input.endDateTime).length > 0;
+      statistics.data = [
+        ...statistics.data,
+        { createdAtDateTime: lastRecord.createdAtDateTime.plus({days: 1}) },
+      ];
+    }
 
-    const prevWindow: TimeWindow = {
-      startDateTime: input.startDateTime.minus({days: 7}).startOf("day"),
-      endDateTime: input.endDateTime.minus({days: 7}).endOf("day"),
-    };
+    // adding one empty element at the beggining if there're no more elements backwards
+    if (!hasPrev) {
+      const firstRecord = statistics.data[0];
 
-    const nextWindow: TimeWindow = {
-      startDateTime: input.startDateTime.plus({days: 7}).startOf("day"),
-      endDateTime: input.endDateTime.plus({days: 7}).endOf("day"),
-    };
+      statistics.data = [
+        { createdAtDateTime: firstRecord.createdAtDateTime.minus({days: 1}) },
+        ...statistics.data,
+      ];
+    }
 
-    return { statistics, prevWindow, nextWindow, hasPrev, hasNext };
+    // #TODO back should control this
+    statistics.data = statistics.data.sort((a: VotingStats, b: VotingStats) => {
+      return a.createdAtDateTime === b.createdAtDateTime
+        ? 0
+        : a.createdAtDateTime > b.createdAtDateTime ? 1 : -1;
+    });
+
+    return { data: statistics.data, nextPage, prevPage, hasPrev, hasNext };
   }
 }
 

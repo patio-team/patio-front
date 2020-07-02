@@ -26,6 +26,7 @@ import "echarts/lib/chart/line";
 import "echarts/lib/component/visualMap";
 import "echarts/lib/component/axisPointer";
 import "echarts/lib/component/axis";
+import "echarts/lib/component/dataZoom";
 import "echarts/lib/component/tooltip";
 import votingChartStore from "@/store/modules/result/VotingChartStore";
 import { DateTime } from "luxon";
@@ -59,33 +60,21 @@ export default class VoteChart extends Vue {
   public get chartDataset() {
     return votingChartStore
       .chartState
-      .statistics
       .data
       .map((next: VotingStats) => ({
-        votingId: next.voting.id,
+        votingId: next.voting ? next.voting.id : undefined,
         movingAverage: next.movingAverage,
         average: next.average,
         createdAtDateTime: this.$d(next.createdAtDateTime.toJSDate()),
       }));
   }
 
-  /**
-   * First time voting is loaded we request the window from the current
-   * voting to 7 days backwards
-   */
-  public get initialTimeWindow() {
-    return {
-      startDateTime: this.votingDateTime.minus({days: 7}).startOf("day"),
-      endDateTime: this.votingDateTime.endOf("day"),
-    };
+  public get nextPage() {
+    return votingChartStore.chartState.nextPage;
   }
 
-  public get nextTimeCursor() {
-    return votingChartStore.chartState.nextWindow;
-  }
-
-  public get prevTimeCursor() {
-    return votingChartStore.chartState.prevWindow;
+  public get previousPage() {
+    return votingChartStore.chartState.prevPage;
   }
 
   public get canGoBackwards() {
@@ -97,7 +86,7 @@ export default class VoteChart extends Vue {
   }
 
   public mounted() {
-    this.loadData(this.initialTimeWindow);
+    this.loadData();
   }
 
   /**
@@ -107,7 +96,7 @@ export default class VoteChart extends Vue {
   @Watch("groupId")
   public onGroupIdChanged(val: string, old: string) {
     if (val !== old) {
-      this.loadData(this.initialTimeWindow);
+      this.loadData();
     }
   }
 
@@ -122,11 +111,11 @@ export default class VoteChart extends Vue {
   }
 
   public handleGoBackwards() {
-    this.loadData(this.prevTimeCursor);
+    this.loadData(this.previousPage);
   }
 
   public handleGoForwards() {
-    this.loadData(this.nextTimeCursor);
+    this.loadData(this.nextPage);
   }
 
   /**
@@ -134,11 +123,10 @@ export default class VoteChart extends Vue {
    *
    * @param w the time window to add data from
    */
-  public loadData(w: TimeWindow) {
+  public loadData(page: number = 0) {
       votingChartStore.fetchVotingStats({
         groupId: this.groupId,
-        startDateTime: w.startDateTime,
-        endDateTime: w.endDateTime,
+        page,
       });
   }
 }

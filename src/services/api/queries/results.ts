@@ -49,11 +49,11 @@ query GetFavouriteGroup {
 `;
 
 export const GetVotingChartStatistics = `
-query GetVotingStats($groupId: ID!, $startDateTime: DateTime!, $endDateTime: DateTime!) {
+query GetVotingStats($groupId: ID!, $page: Int, $max: Int) {
   getStatsByGroup(
     groupId: $groupId,
-    startDateTime: $startDateTime,
-    endDateTime: $endDateTime
+    max: $max,
+    page: $page
   ) {
     page
     lastPage

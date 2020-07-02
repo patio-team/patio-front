@@ -37,24 +37,16 @@ export interface MoodCounter {
 }
 
 export interface VotingStats {
-  votesByMood: [MoodCounter];
-  voteCount: number;
-  maxVoteCountExpected: number;
-  voteCountAverage: number;
-  voteAveragePercentile: number;
-  average: number;
-  voting: Voting;
-  movingAverage: number;
+  votesByMood?: [MoodCounter];
+  voteCount?: number;
+  maxVoteCountExpected?: number;
+  voteCountAverage?: number;
+  voteAveragePercentile?: number;
+  average?: number;
+  voting?: Voting;
+  movingAverage?: number;
   createdAtDateTime: DateTime;
 }
-
-export interface VotingStatsResult {
-  totalCount: number;
-  lastPage: number;
-  page: number;
-  data: VotingStats[];
-}
-
 
 export interface Voting {
   id: string;

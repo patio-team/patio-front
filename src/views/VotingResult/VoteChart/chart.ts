@@ -34,12 +34,6 @@ const commonYAxisStyle = {
 
 export const options = {
   autoresize: true,
-  grid: {
-    backgroundColor: "white",
-    height: "82%",
-    width: "95%",
-    left: "3%",
-  },
   visualMap: [{
       type: "continuous",
       show: false,
@@ -58,13 +52,23 @@ export const options = {
         ],
       },
   }],
+  grid: {
+    backgroundColor: "white",
+    height: "90%",
+    width: "105%",
+    left: "-3%",
+    top: "2%",
+    bottom: "0%",
+  },
   xAxis: [{
     axisPointer: {
       show: true,
+      lineStyle: {
+        width: 2,
+      },
     },
     axisTick: {
       show: false,
-      interval: 1,
     },
     axisLine: {
       lineStyle: {
@@ -73,8 +77,13 @@ export const options = {
     },
     axisLabel: {
       color: "#34314C",
+      showMinLabel: false,
+      showMaxLabel: false,
     },
-    splitLine: {show: true},
+    splitLine: {
+      show: true,
+    },
+    boundaryGap: false,
     type: "category",
   }, {
       axisPointer: {
@@ -84,14 +93,18 @@ export const options = {
     show: false,
   }],
   yAxis: [{
-    splitLine: {show: true},
+    splitLine: {
+      show: true,
+    },
+    axisTick: {
+      show: false,
+    },
     axisLine: {
       lineStyle: {
         color: "#c3c1d7",
       },
     },
     min: 1,
-    data: [0, 1, 2, 3, 4, 5],
     axisLabel: {
       formatter: (value: number) => {
         return value < 1 ? "" : "{" + value + "|" + value + "}";
@@ -120,13 +133,10 @@ export const options = {
         },
       },
     },
-    axisTick: {
-      show: false,
-    },
   }],
   series: [{
       type: "line",
-      smooth: true,
+      smooth: 0.3,
       lineStyle: {
         width: 4,
       },
@@ -142,7 +152,7 @@ export const options = {
       },
     }, {
       type: "line",
-      smooth: true,
+      smooth: 0.3,
       showSymbol: false,
       symbol: "none",
       lineStyle: {

@@ -27,6 +27,5 @@ export interface PaginatedVote {
 
 export interface VotingStatsInput {
   groupId: string;
-  startDateTime: DateTime;
-  endDateTime: DateTime;
+  page: number;
 }
