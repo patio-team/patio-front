@@ -41,9 +41,11 @@
         h1 {{ selectedGroup.name }}
       .graphic-container
         VoteChart(
+          :if="voting"
           :groupId="selectedGroup.id"
           :votingDateTime="votingDateTime"
         )
+        .chart-placeholder(:if="!voting")
     .mood-section
       .mood-container
         .average-mood

@@ -15,9 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import { VotingStatsResult } from "@/domain";
 import { DateTime } from "luxon";
+import { VotingStats } from "@/domain";
 
 export interface TimeWindow {
   startDateTime: DateTime;
@@ -25,9 +24,9 @@ export interface TimeWindow {
 }
 
 export interface ChartState {
-  statistics: VotingStatsResult;
-  prevWindow: TimeWindow;
-  nextWindow: TimeWindow;
+  data: VotingStats[];
+  nextPage: number;
+  prevPage: number;
   hasPrev: boolean;
   hasNext: boolean;
 }
