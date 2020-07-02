@@ -16,17 +16,49 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .chart(ref="chartWrapper")
-  button(
-    class="left"
-    @click="handleGoBackwards"
-    :disabled="!canGoBackwards") <
-  Echarts(
-    ref="chart"
-    :autoresize="true"
-    :options="chartOptions"
-    @click="handleClick"
-  )
-  button(
-    class="right"
-    @click="handleGoForwards"
-    :disabled="!canGoForwards")  >
+  .legend
+    .legend-item
+      .sample
+        .sample-item
+      span Results
+    .legend-item
+      .sample
+        .sample-item.average
+      span Avg.
+  .moods-references
+    .mood.mood5
+      .deco
+      span 5
+    .mood.mood4
+      .deco
+      span 4
+    .mood.mood3
+      .deco
+      span 3
+    .mood.mood2
+      .deco
+      span 2
+    .mood.mood1
+      .deco
+      span 1
+
+  .button-holder
+    button(
+      class="left"
+      @click="handleGoBackwards"
+      :disabled="!canGoBackwards")
+      .arrow
+        include ../../../assets/img/chevron.svg
+  .chart-container
+    Echarts(
+      ref="chart"
+      :options="chartOptions"
+      @click="handleClick"
+    )
+  .button-holder
+    button.reverse(
+      class="right"
+      @click="handleGoForwards"
+      :disabled="!canGoForwards")
+      .arrow.reverse
+        include ../../../assets/img/chevron.svg

@@ -17,8 +17,152 @@
  */
 
 .chart {
+  display: flex;
   height: 100%;
+  max-height: 400px;
+  padding-top: 22px;
+  position: relative;
   width: 100%;
+}
+
+.legend {
+  display: flex;
+  margin-right: 32px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.legend-item {
+  display: flex;
+  margin-right: 1rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  & span {
+    color: var(--new-grey-500);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}
+
+.sample {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 1rem;
+  width: 41px;
+}
+
+.sample-item {
+  border-top: solid 4px var(--new-grey-500);
+  width: 41px;
+
+  &.average {
+    border-top: dotted 4px var(--new-grey-500);
+  }
+}
+
+.button-holder {
+  display: flex;
+  margin-top: -2px;
+  padding: 21px 0 0;
+
+  & button {
+    background: white;
+    border: 0;
+    border-left: solid 1px var(--new-grey-50);
+    box-shadow: 1px 0 4px rgba(0, 0, 0, .05);
+    padding: 0;
+
+    &.reverse {
+      border-left: 0;
+      border-right: solid 1px var(--new-grey-50);
+    }
+  }
+}
+
+.arrow {
+  height: 24px;
+  width: 24px;
+
+  & svg {
+    height: 1rem;
+    transform: rotate(90deg);
+    width: 1rem;
+  }
+
+  &.reverse svg {
+    transform: rotate(-90deg);
+  }
+}
+
+.moods-references {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 10px;
+  padding: 10px 0;
+
+  & .mood {
+    position: relative;
+    width: 1rem;
+  }
+
+  & .mood1 .deco {
+    background-color: var(--new-vote-1);
+  }
+
+  & .mood2 .deco {
+    background-color: var(--new-vote-2);
+  }
+
+  & .mood3 .deco {
+    background-color: var(--new-vote-3);
+  }
+
+  & .mood4 .deco {
+    background-color: var(--new-vote-4);
+  }
+
+  & .mood5 .deco {
+    background-color: var(--new-vote-5);
+  }
+
+  & .deco {
+    background: var(--new-grey-100);
+    border-radius: 100%;
+    height: 1rem;
+    left: 0;
+    opacity: .5;
+    position: absolute;
+    top: 0;
+    width: 1rem;
+    z-index: 2;
+  }
+
+  & span {
+    align-items: center;
+    display: flex;
+    font-size: 26px;
+    font-weight: 100;
+    justify-content: center;
+    left: 0;
+    margin-top: -7px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+  }
+}
+
+.chart-container {
+  flex: 1 1 auto;
+  margin-top: 10px;
 }
 
 .echarts {

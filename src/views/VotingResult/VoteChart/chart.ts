@@ -33,7 +33,6 @@ const commonYAxisStyle = {
 };
 
 export const options = {
-  autoresize: true,
   visualMap: [{
       type: "continuous",
       show: false,

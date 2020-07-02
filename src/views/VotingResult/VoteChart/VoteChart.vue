@@ -31,7 +31,7 @@ import "echarts/lib/component/tooltip";
 import votingChartStore from "@/store/modules/result/VotingChartStore";
 import { DateTime } from "luxon";
 import { VotingStats } from "@/domain";
-import { TimeWindow } from "@/store/modules/result/VotingChartStoreTypes";
+import { TimeWindow, ChartState } from "@/store/modules/result/VotingChartStoreTypes";
 import { EchartsData, VotingPoint } from "@/views/VotingResult/VoteChart/types";
 import { options } from "@/views/VotingResult/VoteChart/chart";
 
@@ -47,6 +47,9 @@ export default class VoteChart extends Vue {
 
   @Prop(DateTime)
   public votingDateTime!: DateTime;
+
+  @Ref("chart")
+  private chart!: any;
 
   public get chartOptions() {
     return {
@@ -87,12 +90,16 @@ export default class VoteChart extends Vue {
 
   public mounted() {
     this.loadData();
+    window.addEventListener("resize", () => {
+      this.handleResize();
+    });
   }
 
   /**
    * Every time group changes we need to recalculate initial
    * window frame
    */
+
   @Watch("groupId")
   public onGroupIdChanged(val: string, old: string) {
     if (val !== old) {
@@ -108,6 +115,10 @@ export default class VoteChart extends Vue {
         votingId: value.data.votingId,
       },
     });
+  }
+
+  public handleResize() {
+    this.chart.resize();
   }
 
   public handleGoBackwards() {

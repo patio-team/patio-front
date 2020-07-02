@@ -39,6 +39,10 @@ div.hide {
       font-family: 'Merriweather', 'Times New Roman', Times, serif;
     }
 
+    & h1 {
+      margin-bottom: 0;
+    }
+
     & span {
       color: var(--new-grey-500);
     }
@@ -125,14 +129,18 @@ div.hide {
     }
 
     & .graphic-container {
-      align-items: center;
       background-image: url(../../assets/img/bg-graphic.svg);
       background-position: center center;
       background-repeat: no-repeat;
+      background-size: 100%;
       display: flex;
       flex: 1 0 auto;
       justify-content: center;
-      min-height: 400px;
+      min-height: 430px;
+
+      @media (--large-viewport) {
+        min-height: 400px;
+      }
     }
   }
 
@@ -148,7 +156,7 @@ div.hide {
     }
 
     @media (--large-viewport) {
-      flex: 0 0 650px;
+      flex: 1 0 650px;
       flex-direction: column;
       margin-top: 2rem;
       order: 2;
@@ -311,6 +319,7 @@ div.hide {
 
     @media (--large-viewport) {
       display: flex;
+      flex-direction: column;
     }
   }
 
