@@ -126,8 +126,8 @@ div.hide {
 
     & .graphic-container {
       align-items: center;
-      background-image: url(../../assets/img/bg.svg);
-      background-position: top center;
+      background-image: url(../../assets/img/bg-graphic.svg);
+      background-position: center center;
       background-repeat: no-repeat;
       display: flex;
       flex: 1 0 auto;
