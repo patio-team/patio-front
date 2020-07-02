@@ -129,7 +129,6 @@ div.hide {
     }
 
     & .graphic-container {
-      background-image: url(../../assets/img/bg-graphic.svg);
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 100%;
@@ -137,6 +136,10 @@ div.hide {
       flex: 1 0 auto;
       justify-content: center;
       min-height: 430px;
+
+      &.empty {
+        background-image: url(../../assets/img/bg-graphic.svg);
+      }
 
       @media (--large-viewport) {
         min-height: 400px;

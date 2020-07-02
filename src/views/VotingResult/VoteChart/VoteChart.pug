@@ -43,6 +43,7 @@
       span 1
 
   .button-holder
+    //- Hide button if there is no more content backward
     button(
       class="left"
       @click="handleGoBackwards"
@@ -56,6 +57,7 @@
       @click="handleClick"
     )
   .button-holder
+    //- Hide button if there is no more content forward
     button.reverse(
       class="right"
       @click="handleGoForwards"
