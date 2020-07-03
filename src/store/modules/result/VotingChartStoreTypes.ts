@@ -25,8 +25,8 @@ export interface TimeWindow {
 
 export interface ChartState {
   data: VotingStats[];
-  nextPage: number;
-  prevPage: number;
+  next: number;
+  previous: number;
   hasPrev: boolean;
   hasNext: boolean;
 }

@@ -18,7 +18,7 @@
 
 import { AxiosInstance } from "axios";
 
-import { PaginationRequest, PaginationResult, Vote, Group, VotingStats } from "@/domain";
+import { PaginationRequest, PaginationResult, Vote, Group, VotingStats, OffsetPaginationResult } from "@/domain";
 import { ListMembersMood, GetFavouriteGroup, GetVotingChartStatistics } from "./queries/results";
 import { VotingStatsInput } from "./types/results";
 
@@ -55,7 +55,7 @@ export default (client: AxiosInstance) => ({
           max: 10,
         },
       })
-      .then((data: any): PaginationResult<VotingStats> => {
+      .then((data: any): OffsetPaginationResult<VotingStats> => {
         return data.getStatsByGroup;
       });
   },

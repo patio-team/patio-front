@@ -20,7 +20,7 @@ import { Action, getModule, Module, Mutation, VuexModule } from "vuex-module-dec
 import store from "@/store";
 import api from "@/services/api";
 
-import { VotingStats, PaginationResult } from "@/domain";
+import { VotingStats, PaginationResult, OffsetPaginationResult } from "@/domain";
 import { ChartState, TimeWindow } from "@/store/modules/result/VotingChartStoreTypes";
 import { VotingStatsInput } from "@/services/api/types/results";
 
@@ -30,8 +30,8 @@ const moduleName = "results:chart-statistics";
 export class VotingChartStore extends VuexModule {
   public chartState: ChartState = {
     data: [] as VotingStats[],
-    nextPage: 0,
-    prevPage: 0,
+    next: 1,
+    previous: 1,
     hasPrev: false,
     hasNext: false,
   };
@@ -45,23 +45,24 @@ export class VotingChartStore extends VuexModule {
 
   @Action({ commit: "updateChartState" })
   public async fetchVotingStats(input: VotingStatsInput) {
-    // getting data from backend
-    const statistics: PaginationResult<VotingStats> = await api.results.getVotingChartStatistics(input);
+    const MAX = 10;
+    const OVERLAP = 3;
 
-    // resolving pagination info
-    const hasPrev = statistics.page < statistics.lastPage;
-    const hasNext = statistics.page > 0;
-    const prevPage = statistics.page + 1;
-    const nextPage = statistics.page - 1;
+    const statistics: OffsetPaginationResult<VotingStats> = await api.results.getVotingChartStatistics(input);
 
-    // #TODO back should control this
+    const previous = statistics.offset + (MAX - OVERLAP);
+    const next = statistics.offset - (MAX - OVERLAP);
+    const hasPrev = statistics.totalCount     >= (statistics.offset + MAX);
+    const hasNext = (statistics.offset - (MAX - OVERLAP)) >= 1;
+
+    // console.log({previous, hasPrev, next, hasNext, offset: statistics.offset, totalCount: statistics.totalCount})
+
     statistics.data = statistics.data.sort((a: VotingStats, b: VotingStats) => {
       return a.createdAtDateTime === b.createdAtDateTime
         ? 0
         : a.createdAtDateTime > b.createdAtDateTime ? 1 : -1;
     });
 
-    // adding one empty element at the end if there're no more elements forwards
     if (!hasNext) {
       const lastRecord = statistics.data[statistics.data.length - 1];
 
@@ -80,7 +81,7 @@ export class VotingChartStore extends VuexModule {
       ];
     }
 
-    return { data: statistics.data, nextPage, prevPage, hasPrev, hasNext };
+    return { data: statistics.data, next, previous, hasPrev, hasNext };
   }
 }
 

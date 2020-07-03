@@ -49,14 +49,13 @@ query GetFavouriteGroup {
 `;
 
 export const GetVotingChartStatistics = `
-query GetVotingStats($groupId: ID!, $page: Int, $max: Int) {
+query GetVotingStats($groupId: ID!, $offset: Int, $max: Int) {
   getStatsByGroup(
     groupId: $groupId,
     max: $max,
-    page: $page
+    offset: $offset
   ) {
-    page
-    lastPage
+    offset
     totalCount
     data {
       average
