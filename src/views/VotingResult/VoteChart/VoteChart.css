@@ -61,7 +61,7 @@
 .button-holder {
   display: flex;
   margin-top: -2px;
-  padding: 12px 0 36px;
+  padding: 12px 0 26px;
 
   & button {
     background: white;
@@ -114,7 +114,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-right: 10px;
-  padding: 0 0 45px;
+  padding: 0 0 35px;
 
   & .mood {
     position: relative;
@@ -182,6 +182,6 @@
 }
 
 .echarts {
-  height: 480px;
+  height: 490px;
   width: 100%;
 }
