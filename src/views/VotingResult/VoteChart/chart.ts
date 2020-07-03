@@ -70,7 +70,7 @@ export const options = {
         backgroundColor: "#948FB7",
         color: "#FFFFFF",
         fontFamily: "Lato",
-        fontSize: 12,
+        fontSize: 16,
       },
     },
     axisTick: {
@@ -84,6 +84,7 @@ export const options = {
     axisLabel: {
       color: "#34314C",
       fontFamily: "Lato",
+      fontSize: 16,
       showMinLabel: false,
       showMaxLabel: false,
     },

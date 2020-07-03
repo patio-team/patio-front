@@ -69,10 +69,27 @@
     border-left: solid 1px var(--new-grey-50);
     box-shadow: 1px 0 4px rgba(0, 0, 0, .05);
     padding: 0;
+    pointer: cursor;
 
     &.reverse {
       border-left: 0;
       border-right: solid 1px var(--new-grey-50);
+    }
+
+    &:hover {
+      box-shadow: 4px 0 4px rgba(63, 227, 210, .2);
+
+      & svg {
+        fill: var(--new-vote-5);
+      }
+    }
+
+    &:focus {
+      box-shadow: 0;
+
+      & svg {
+        fill: var(--new-vote-5);
+      }
     }
   }
 }
