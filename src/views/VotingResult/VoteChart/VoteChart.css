@@ -16,15 +16,6 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.chart {
-  display: flex;
-  height: 100%;
-  max-height: 400px;
-  padding-top: 22px;
-  position: relative;
-  width: 100%;
-}
-
 .legend {
   display: flex;
   margin-right: 32px;
@@ -70,7 +61,7 @@
 .button-holder {
   display: flex;
   margin-top: -2px;
-  padding: 21px 0 0;
+  padding: 12px 0 36px;
 
   & button {
     background: white;
@@ -106,7 +97,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-right: 10px;
-  padding: 10px 0;
+  padding: 0 0 45px;
 
   & .mood {
     position: relative;
@@ -162,10 +153,18 @@
 
 .chart-container {
   flex: 1 1 auto;
-  margin-top: 10px;
+}
+
+.chart {
+  display: flex;
+  height: 100%;
+  max-height: 500px;
+  padding-top: 22px;
+  position: relative;
+  width: 100%;
 }
 
 .echarts {
-  height: 400px;
+  height: 480px;
   width: 100%;
 }
