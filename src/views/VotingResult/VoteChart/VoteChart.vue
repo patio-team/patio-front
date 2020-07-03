@@ -90,9 +90,11 @@ export default class VoteChart extends Vue {
 
   public mounted() {
     this.loadData();
-    window.addEventListener("resize", () => {
-      this.handleResize();
-    });
+    window.addEventListener("resize", () => this.handleResize());
+  }
+
+  public destroy() {
+    window.removeEventListener("resize", () => this.handleResize());
   }
 
   /**

@@ -54,6 +54,13 @@ export class VotingChartStore extends VuexModule {
     const prevPage = statistics.page + 1;
     const nextPage = statistics.page - 1;
 
+    // #TODO back should control this
+    statistics.data = statistics.data.sort((a: VotingStats, b: VotingStats) => {
+      return a.createdAtDateTime === b.createdAtDateTime
+        ? 0
+        : a.createdAtDateTime > b.createdAtDateTime ? 1 : -1;
+    });
+
     // adding one empty element at the end if there're no more elements forwards
     if (!hasNext) {
       const lastRecord = statistics.data[statistics.data.length - 1];
@@ -64,7 +71,6 @@ export class VotingChartStore extends VuexModule {
       ];
     }
 
-    // adding one empty element at the beggining if there're no more elements backwards
     if (!hasPrev) {
       const firstRecord = statistics.data[0];
 
@@ -73,13 +79,6 @@ export class VotingChartStore extends VuexModule {
         ...statistics.data,
       ];
     }
-
-    // #TODO back should control this
-    statistics.data = statistics.data.sort((a: VotingStats, b: VotingStats) => {
-      return a.createdAtDateTime === b.createdAtDateTime
-        ? 0
-        : a.createdAtDateTime > b.createdAtDateTime ? 1 : -1;
-    });
 
     return { data: statistics.data, nextPage, prevPage, hasPrev, hasNext };
   }
