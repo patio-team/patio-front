@@ -64,6 +64,13 @@ export const options = {
       show: true,
       lineStyle: {
         width: 2,
+        color: "#948FB7",
+      },
+      label: {
+        backgroundColor: "#948FB7",
+        color: "#FFFFFF",
+        fontFamily: "Lato",
+        fontSize: 12,
       },
     },
     axisTick: {
@@ -76,6 +83,7 @@ export const options = {
     },
     axisLabel: {
       color: "#34314C",
+      fontFamily: "Lato",
       showMinLabel: false,
       showMaxLabel: false,
     },
@@ -105,6 +113,7 @@ export const options = {
     },
     min: 1,
     axisLabel: {
+      fontFamily: "Lato",
       formatter: (value: number) => {
         return value < 1 ? "" : "{" + value + "|" + value + "}";
       },
@@ -141,7 +150,7 @@ export const options = {
       },
       emphasis: {
         itemStyle: {
-          borderWidth: 4,
+          borderWidth: 6,
         },
       },
       symbolSize: 8,
