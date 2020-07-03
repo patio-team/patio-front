@@ -43,11 +43,11 @@ export const options = {
       symbolSize: [30, 100],
       inRange: {
         color: [
-          "rgba(254, 52, 110, 0.5)",
-          "rgba(255, 116, 115, 0.5)",
-          "rgba(255, 201, 82, 0.5)",
-          "rgba(152, 221, 171, 0.5)",
-          "rgba(63, 227, 210, 0.5)",
+          "#fe346e",
+          "#ff7473",
+          "#ffc952",
+          "#98ddab",
+          "#3fe3d2",
         ],
       },
   }],
@@ -64,6 +64,13 @@ export const options = {
       show: true,
       lineStyle: {
         width: 2,
+        color: "#948FB7",
+      },
+      label: {
+        backgroundColor: "#948FB7",
+        color: "#FFFFFF",
+        fontFamily: "Lato",
+        fontSize: 12,
       },
     },
     axisTick: {
@@ -76,6 +83,7 @@ export const options = {
     },
     axisLabel: {
       color: "#34314C",
+      fontFamily: "Lato",
       showMinLabel: false,
       showMaxLabel: false,
     },
@@ -105,6 +113,7 @@ export const options = {
     },
     min: 1,
     axisLabel: {
+      fontFamily: "Lato",
       formatter: (value: number) => {
         return value < 1 ? "" : "{" + value + "|" + value + "}";
       },
@@ -141,7 +150,7 @@ export const options = {
       },
       emphasis: {
         itemStyle: {
-          borderWidth: 4,
+          borderWidth: 6,
         },
       },
       symbolSize: 8,

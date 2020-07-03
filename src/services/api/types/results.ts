@@ -27,5 +27,5 @@ export interface PaginatedVote {
 
 export interface VotingStatsInput {
   groupId: string;
-  page: number;
+  offset: number;
 }

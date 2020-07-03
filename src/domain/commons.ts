@@ -21,9 +21,20 @@ export interface PaginationRequest {
   page: number;
 }
 
+export interface OffsetPaginationRequest {
+  max: number;
+  offset: number;
+}
+
 export interface PaginationResult<T> {
   page: number;
   lastPage: number;
+  totalCount: number;
+  data: T[];
+}
+
+export interface OffsetPaginationResult<T> {
+  offset: number;
   totalCount: number;
   data: T[];
 }

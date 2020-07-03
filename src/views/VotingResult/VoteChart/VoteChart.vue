@@ -72,12 +72,12 @@ export default class VoteChart extends Vue {
       }));
   }
 
-  public get nextPage() {
-    return votingChartStore.chartState.nextPage;
+  public get next() {
+    return votingChartStore.chartState.next;
   }
 
-  public get previousPage() {
-    return votingChartStore.chartState.prevPage;
+  public get previous() {
+    return votingChartStore.chartState.previous;
   }
 
   public get canGoBackwards() {
@@ -90,15 +90,12 @@ export default class VoteChart extends Vue {
 
   public mounted() {
     this.loadData();
-    window.addEventListener("resize", () => {
-      this.handleResize();
-    });
+    window.addEventListener("resize", () => this.handleResize());
   }
 
-  /**
-   * Every time group changes we need to recalculate initial
-   * window frame
-   */
+  public destroy() {
+    window.removeEventListener("resize", () => this.handleResize());
+  }
 
   @Watch("groupId")
   public onGroupIdChanged(val: string, old: string) {
@@ -122,23 +119,16 @@ export default class VoteChart extends Vue {
   }
 
   public handleGoBackwards() {
-    this.loadData(this.previousPage);
+    this.loadData(this.previous);
   }
 
   public handleGoForwards() {
-    this.loadData(this.nextPage);
+    this.loadData(this.next);
   }
 
-  /**
-   * Request the next/previous chart dataset for a given time window
-   *
-   * @param w the time window to add data from
-   */
-  public loadData(page: number = 0) {
-      votingChartStore.fetchVotingStats({
-        groupId: this.groupId,
-        page,
-      });
+  public loadData(offset: number = 1) {
+      votingChartStore.fetchVotingStats({ groupId: this.groupId, offset });
   }
+
 }
 </script>
