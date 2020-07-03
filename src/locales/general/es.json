@@ -241,7 +241,8 @@
   "RESULT": {
     "SHARE_MOOD": "Comparte tus emociones",
     "BE_THE_FIRST": "Sé el primero",
-    "LAST_POOL_RESULT": "Ultimos resultados",
+    "LAST_POLL_RESULT": "Ultimos resultados",
+    "POLL_RESULT": "Resultados",
     "PARTICIPATION": "Participacion",
     "USUALLY": "Normalmente",
     "PEOPLE_PARTICIPATE": "personas participan",

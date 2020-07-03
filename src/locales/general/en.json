@@ -251,7 +251,8 @@
   "RESULT": {
     "SHARE_MOOD": "Share your mood",
     "BE_THE_FIRST": "Be the first",
-    "LAST_POOL_RESULT": "Last pool result",
+    "LAST_POLL_RESULT": "Last poll result",
+    "POLL_RESULT": "Poll result",
     "PARTICIPATION": "Participation",
     "USUALLY": "Usually",
     "PEOPLE_PARTICIPATE": "people participate",

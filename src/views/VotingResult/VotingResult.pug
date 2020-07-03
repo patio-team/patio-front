@@ -32,7 +32,12 @@
   .title-container.title-container-mobile
     h1 {{ selectedGroup.name }}
     .row
-      h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
+      h2(
+        v-if="!nextVotingId"
+      ) {{ $t("RESULT.LAST_POLL_RESULT") }}
+      h2(
+        v-if="nextVotingId"
+      ) {{ $t("RESULT.POLL_RESULT") }}
       span.time(v-if="voting") {{ $d(voting.createdAtDateTime, 'long') }}
   .main-container
     .graphic-section.empty
@@ -51,7 +56,12 @@
       .mood-container
         .average-mood
           .title-container.title-container-large
-            h2 {{ $t("RESULT.LAST_POOL_RESULT") }}
+            h2(
+              v-if="!nextVotingId"
+            ) {{ $t("RESULT.LAST_POLL_RESULT") }}
+            h2(
+              v-if="nextVotingId"
+            ) {{ $t("RESULT.POLL_RESULT") }}
           AverageMood(
             v-if="stats"
             :moodAverage="stats.average | numeral('0.0') "
