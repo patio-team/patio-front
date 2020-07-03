@@ -68,8 +68,8 @@
     border: 0;
     border-left: solid 1px var(--new-grey-50);
     box-shadow: 1px 0 4px rgba(0, 0, 0, .05);
+    cursor: pointer;
     padding: 0;
-    pointer: cursor;
 
     &.reverse {
       border-left: 0;

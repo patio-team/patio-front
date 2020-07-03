@@ -28,6 +28,16 @@ div.hide {
   text-align: center;
 }
 
+.list-container {
+  @media (--small-viewport) {
+    margin-top: 60px;
+  }
+
+  @media (--large-viewport) {
+    margin-top: 48px;
+  }
+}
+
 .voting-result {
   color: var(--new-grey-700);
   padding: 0 12px;
@@ -110,17 +120,20 @@ div.hide {
 
   & .graphic-section {
     display: none;
+    margin-top: 0;
     min-height: 200px;
 
     @media (--small-viewport) {
       display: flex;
       flex-direction: column;
+      margin-top: 56px;
       order: 2;
     }
 
     @media (--large-viewport) {
       flex: 1 1 auto;
       margin-right: 40px;
+      margin-top: 0;
       order: 1;
     }
 
@@ -209,7 +222,6 @@ div.hide {
     display: flex;
     flex: 1 1 100%;
     flex-direction: column;
-    padding-bottom: 25px;
 
     @media (--small-viewport) {
       margin-left: 25px;
