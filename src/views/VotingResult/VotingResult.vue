@@ -82,6 +82,14 @@ export default class VotingResult extends Vue {
     }
   }
 
+  public get nextVotingId() {
+    return this.voting.nextVoting ? this.voting.nextVoting.id : null;
+  }
+
+  public get previousVotingId() {
+    return this.voting.previousVoting ? this.voting.previousVoting.id : null;
+  }
+
   @Watch("votingId")
   public async onVotingIdChanged(val: string, old: string) {
     if (val !== old) {
@@ -101,20 +109,26 @@ export default class VotingResult extends Vue {
 
   private swipeHandler(direction: any) {
     const WindowWidth = window.innerWidth;
-    if ( direction === "left" && WindowWidth <= 750) {
-      this.previousVoteButton();
+    if (direction === "left" && WindowWidth <= 750) {
+      this.handlePreviousVotingClick();
     }
-    if ( direction === "right" && WindowWidth <= 750) {
-      this.nextVoteButton();
+    if (direction === "right" && WindowWidth <= 750) {
+      this.handleNextVotingClick();
     }
   }
 
-  private previousVoteButton() {
-    return null;
+  private handlePreviousVotingClick() {
+    this.navigateToAnotherVoting(this.nextVotingId);
   }
 
-  private nextVoteButton() {
-    return null;
+  private handleNextVotingClick() {
+    this.navigateToAnotherVoting(this.previousVotingId);
+  }
+
+  private async navigateToAnotherVoting(votingId: string | null) {
+    if (votingId) {
+      await this.getVoting({id: votingId});
+    }
   }
 }
 </script>

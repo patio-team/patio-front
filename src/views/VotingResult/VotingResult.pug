@@ -59,12 +59,12 @@
             :averagePercentil="stats.voteAveragePercentile"
           )
           .arrow(
-            v-on:click="previousVoteButton()"
-          )
+            v-if="previousVotingId"
+            @click="handlePreviousVotingClick")
             include ../../assets/img/chevron.svg
           .arrow.reverse(
-            v-on:click="nextVoteButton()"
-          )
+            v-if="nextVotingId"
+            @click="handleNextVotingClick")
             include ../../assets/img/chevron.svg
 
         .participation-container

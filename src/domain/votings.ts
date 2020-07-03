@@ -55,4 +55,6 @@ export interface Voting {
   createdBy: User;
   votes?: PaginationResult<Vote>;
   stats?: VotingStats;
+  previousVoting?: Voting;
+  nextVoting?: Voting;
 }

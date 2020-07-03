@@ -44,6 +44,14 @@ query GetVoting(
     id
     didIVote
     createdAtDateTime
+    nextVoting {
+      id
+      createdAtDateTime
+    }
+    previousVoting {
+      id
+      createdAtDateTime
+    }
     group {
       id
       name
@@ -84,6 +92,14 @@ query GetLastVoting($groupId: ID!) {
     id
     createdAtDateTime
     didIVote
+    nextVoting {
+      id
+      createdAtDateTime
+    }
+    previousVoting {
+      id
+      createdAtDateTime
+    }
     group {
       id
       name
