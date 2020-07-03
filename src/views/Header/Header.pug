@@ -47,8 +47,6 @@
           v-if="isGroupsVisible"
           v-bind:class="{visible: isGroupsVisible}"
       )
-        button.close(v-on:click="toggleUserDropdown")
-          include ../../assets/img/cross.svg
         ul
           li(
             v-for="group in groups"
@@ -74,8 +72,6 @@
           v-bind:class="{visible: isUserVisible}"
       )
         .content
-          button.close(v-on:click="toggleUserDropdown")
-            include ../../assets/img/cross.svg
           .avatar-container
             .avatar-decoration
             .name {{ nameInitials(name) }}
