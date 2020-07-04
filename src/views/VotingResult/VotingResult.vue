@@ -118,11 +118,11 @@ export default class VotingResult extends Vue {
   }
 
   private handlePreviousVotingClick() {
-    this.navigateToAnotherVoting(this.nextVotingId);
+      this.navigateToAnotherVoting(this.previousVotingId);
   }
 
   private handleNextVotingClick() {
-    this.navigateToAnotherVoting(this.previousVotingId);
+    this.navigateToAnotherVoting(this.nextVotingId);
   }
 
   private async navigateToAnotherVoting(votingId: string | null) {

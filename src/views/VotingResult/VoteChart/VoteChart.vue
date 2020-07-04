@@ -28,9 +28,10 @@ import "echarts/lib/component/axisPointer";
 import "echarts/lib/component/axis";
 import "echarts/lib/component/dataZoom";
 import "echarts/lib/component/tooltip";
+import "echarts/lib/component/markPoint";
 import votingChartStore from "@/store/modules/result/VotingChartStore";
 import { DateTime } from "luxon";
-import { VotingStats } from "@/domain";
+import { VotingStats, Voting } from "@/domain";
 import { TimeWindow, ChartState } from "@/store/modules/result/VotingChartStoreTypes";
 import { EchartsData, VotingPoint } from "@/views/VotingResult/VoteChart/types";
 import { options } from "@/views/VotingResult/VoteChart/chart";
@@ -45,8 +46,8 @@ export default class VoteChart extends Vue {
   @Prop(String)
   public groupId!: string;
 
-  @Prop(DateTime)
-  public votingDateTime!: DateTime;
+  @Prop(Object)
+  public voting!: Voting;
 
   @Ref("chart")
   private chart!: any;
@@ -56,8 +57,61 @@ export default class VoteChart extends Vue {
       dataset: {
         source: this.chartDataset,
       },
+      series: [{
+          type: "line",
+          smooth: 0.3,
+          lineStyle: {
+            width: 4,
+          },
+          connectNulls: false,
+          markPoint: {
+              symbol: "circle",
+              symbolSize: 25,
+              symbolOffset: [0, -5],
+              data: [{...this.selectedPoint}],
+              itemStyle: {
+                  color: "green",
+              },
+          },
+          emphasis: {
+            itemStyle: {
+              borderWidth: 6,
+            },
+          },
+          symbolSize: 8,
+          encode: {
+            x: "createdAtDateTime",
+            y: "average",
+          },
+        }, {
+          type: "line",
+          smooth: 0.3,
+          showSymbol: false,
+          symbol: "none",
+          connectNulls: false,
+          lineStyle: {
+            type: "dotted",
+            color: "#98ddab",
+            width: 4,
+          },
+          encode: {
+            x: "createdAtDateTime",
+            y: "movingAverage",
+          },
+      }],
       ...options,
     };
+  }
+
+  public get selectedPoint() {
+    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+      return {
+        xAxis: this.$d(this.voting.stats.createdAtDateTime.toJSDate()),
+        yAxis: this.voting.stats.average,
+      };
+    } else {
+      return {};
+    }
   }
 
   public get chartDataset() {

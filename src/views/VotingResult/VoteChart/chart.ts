@@ -60,6 +60,9 @@ export const options = {
     bottom: "0%",
   },
   xAxis: [{
+    splitLine: {
+      show: true,
+    },
     axisPointer: {
       show: true,
       lineStyle: {
@@ -88,9 +91,6 @@ export const options = {
       showMinLabel: false,
       showMaxLabel: false,
     },
-    splitLine: {
-      show: true,
-    },
     boundaryGap: false,
     type: "category",
   }, {
@@ -101,18 +101,13 @@ export const options = {
     show: false,
   }],
   yAxis: [{
-    splitLine: {
-      show: true,
-    },
+    minInterval: 1,
+    maxInterval: 1,
     axisTick: {
       show: false,
     },
-    axisLine: {
-      lineStyle: {
-        color: "#c3c1d7",
-      },
-    },
     min: 1,
+    max: 5,
     axisLabel: {
       fontFamily: "Lato",
       formatter: (value: number) => {
@@ -142,36 +137,5 @@ export const options = {
         },
       },
     },
-  }],
-  series: [{
-      type: "line",
-      smooth: 0.3,
-      lineStyle: {
-        width: 4,
-      },
-      emphasis: {
-        itemStyle: {
-          borderWidth: 6,
-        },
-      },
-      symbolSize: 8,
-      encode: {
-        x: "createdAtDateTime",
-        y: "average",
-      },
-    }, {
-      type: "line",
-      smooth: 0.3,
-      showSymbol: false,
-      symbol: "none",
-      lineStyle: {
-        type: "dotted",
-        color: "#98ddab",
-        width: 4,
-      },
-      encode: {
-        x: "createdAtDateTime",
-        y: "movingAverage",
-      },
-  }],
+  }, {}],
 };

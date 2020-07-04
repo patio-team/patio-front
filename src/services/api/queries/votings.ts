@@ -66,6 +66,7 @@ query GetVoting(
       maxVoteCountExpected
       voteCount
       voteCountAverage
+      createdAtDateTime
     }
     votes {
       page
@@ -114,6 +115,7 @@ query GetLastVoting($groupId: ID!) {
       maxVoteCountExpected
       voteCount
       voteCountAverage
+      createdAtDateTime
     }
   }
 }
