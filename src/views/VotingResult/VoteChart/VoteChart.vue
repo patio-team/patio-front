@@ -29,6 +29,7 @@ import "echarts/lib/component/axis";
 import "echarts/lib/component/dataZoom";
 import "echarts/lib/component/tooltip";
 import "echarts/lib/component/markPoint";
+import "echarts/lib/component/markLine";
 import votingChartStore from "@/store/modules/result/VotingChartStore";
 import { DateTime } from "luxon";
 import { VotingStats, Voting } from "@/domain";
@@ -65,13 +66,33 @@ export default class VoteChart extends Vue {
           },
           connectNulls: false,
           markPoint: {
-              symbol: "circle",
-              symbolSize: 25,
-              symbolOffset: [0, -5],
-              data: [{...this.selectedPoint}],
-              itemStyle: {
-                  color: "green",
-              },
+            animation: false,
+            symbol: "circle",
+            symbolSize: 18,
+            symbolOffset: [0, 0],
+            data: this.selectedPoint,
+            itemStyle: {
+                color: this.selectedLineItemColor,
+                borderColor: "#FFFFFF",
+                borderWidth: "7",
+                shadowColor: "#EBEBEB",
+                shadowOffsetX: 1,
+                shadowOffsetY: 2,
+                shadowBlur: 2,
+                opacity: 0.9,
+            },
+          },
+          markLine: {
+            symbol: "none",
+            lineStyle: {
+              type: "solid",
+              color: " #34314C",
+              width: 2,
+            },
+            label: {
+              show: false,
+            },
+            data: this.selectedLine,
           },
           emphasis: {
             itemStyle: {
@@ -105,12 +126,47 @@ export default class VoteChart extends Vue {
 
   public get selectedPoint() {
     if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
-      return {
+      return [{
         xAxis: this.$d(this.voting.createdAtDateTime.toJSDate()),
         yAxis: this.voting.stats.average,
-      };
+      }];
     } else {
-      return {};
+      return [{}];
+    }
+  }
+
+  public get selectedLine() {
+    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+      const xAxis = this.$d(this.voting.createdAtDateTime.toJSDate());
+
+      return [
+        [{ xAxis, yAxis: 1 }, { xAxis, yAxis: 5 }],
+      ];
+    } else {
+      return [];
+    }
+  }
+
+  public get selectedLineItemColor() {
+    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+      const avg = this.voting.stats.average || 0;
+
+      if (avg > 0 && avg <= 1) {
+          return "#fe346e";
+      } else if (avg > 1 && avg <= 2) {
+          return "#ff7473";
+      } else if (avg > 2 && avg <= 3) {
+          return "#ffc952";
+      } else if (avg > 3 && avg <= 4) {
+          return "#98ddab";
+      } else if (avg > 4 && avg <= 5) {
+          return "#3fe3d2";
+      } else {
+        return "";
+      }
+      return "";
+    } else {
+      return "";
     }
   }
 
