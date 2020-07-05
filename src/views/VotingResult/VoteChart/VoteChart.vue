@@ -106,7 +106,7 @@ export default class VoteChart extends Vue {
   public get selectedPoint() {
     if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
       return {
-        xAxis: this.$d(this.voting.stats.createdAtDateTime.toJSDate()),
+        xAxis: this.$d(this.voting.createdAtDateTime.toJSDate()),
         yAxis: this.voting.stats.average,
       };
     } else {
@@ -122,7 +122,7 @@ export default class VoteChart extends Vue {
         votingId: next.voting ? next.voting.id : undefined,
         movingAverage: next.movingAverage,
         average: next.average,
-        createdAtDateTime: this.$d(next.createdAtDateTime.toJSDate()),
+        createdAtDateTime: next.voting ? this.$d(next.voting.createdAtDateTime.toJSDate()) : null,
       }));
   }
 

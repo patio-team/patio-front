@@ -62,6 +62,7 @@ query GetVotingStats($groupId: ID!, $offset: Int, $max: Int) {
       movingAverage
       voting {
         id
+        createdAtDateTime
       }
       createdAtDateTime
     }
