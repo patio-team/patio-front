@@ -47,7 +47,7 @@
     button(
       class="left"
       @click="handleGoBackwards"
-      :disabled="!canGoBackwards")
+      v-if="canGoBackwards")
       .arrow
         include ../../../assets/img/chevron.svg
   .chart-container
@@ -61,6 +61,6 @@
     button.reverse(
       class="right"
       @click="handleGoForwards"
-      :disabled="!canGoForwards")
+      v-if="canGoForwards")
       .arrow.reverse
         include ../../../assets/img/chevron.svg

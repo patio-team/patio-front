@@ -28,9 +28,11 @@ import "echarts/lib/component/axisPointer";
 import "echarts/lib/component/axis";
 import "echarts/lib/component/dataZoom";
 import "echarts/lib/component/tooltip";
+import "echarts/lib/component/markPoint";
+import "echarts/lib/component/markLine";
 import votingChartStore from "@/store/modules/result/VotingChartStore";
 import { DateTime } from "luxon";
-import { VotingStats } from "@/domain";
+import { VotingStats, Voting } from "@/domain";
 import { TimeWindow, ChartState } from "@/store/modules/result/VotingChartStoreTypes";
 import { EchartsData, VotingPoint } from "@/views/VotingResult/VoteChart/types";
 import { options } from "@/views/VotingResult/VoteChart/chart";
@@ -45,8 +47,8 @@ export default class VoteChart extends Vue {
   @Prop(String)
   public groupId!: string;
 
-  @Prop(DateTime)
-  public votingDateTime!: DateTime;
+  @Prop(Object)
+  public voting!: Voting;
 
   @Ref("chart")
   private chart!: any;
@@ -56,8 +58,116 @@ export default class VoteChart extends Vue {
       dataset: {
         source: this.chartDataset,
       },
+      series: [{
+          type: "line",
+          smooth: 0.3,
+          lineStyle: {
+            width: 4,
+          },
+          connectNulls: false,
+          markPoint: {
+            animation: false,
+            symbol: "circle",
+            symbolSize: 18,
+            symbolOffset: [0, 0],
+            data: this.selectedPoint,
+            itemStyle: {
+                color: this.selectedLineItemColor,
+                borderColor: "#FFFFFF",
+                borderWidth: "7",
+                shadowColor: "#EBEBEB",
+                shadowOffsetX: 1,
+                shadowOffsetY: 2,
+                shadowBlur: 2,
+                opacity: 0.9,
+            },
+          },
+          markLine: {
+            symbol: "none",
+            lineStyle: {
+              type: "solid",
+              color: " #34314C",
+              width: 2,
+            },
+            label: {
+              show: false,
+            },
+            data: this.selectedLine,
+          },
+          emphasis: {
+            itemStyle: {
+              borderWidth: 6,
+            },
+          },
+          symbolSize: 8,
+          encode: {
+            x: "createdAtDateTime",
+            y: "average",
+          },
+        }, {
+          type: "line",
+          smooth: 0.3,
+          showSymbol: false,
+          symbol: "none",
+          connectNulls: true,
+          lineStyle: {
+            type: "dotted",
+            color: "#98ddab",
+            width: 4,
+          },
+          encode: {
+            x: "createdAtDateTime",
+            y: "movingAverage",
+          },
+      }],
       ...options,
     };
+  }
+
+  public get selectedPoint() {
+    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+      return [{
+        xAxis: this.$d(this.voting.createdAtDateTime.toJSDate()),
+        yAxis: this.voting.stats.average,
+      }];
+    } else {
+      return [{}];
+    }
+  }
+
+  public get selectedLine() {
+    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+      const xAxis = this.$d(this.voting.createdAtDateTime.toJSDate());
+
+      return [
+        [{ xAxis, yAxis: 1 }, { xAxis, yAxis: 5 }],
+      ];
+    } else {
+      return [];
+    }
+  }
+
+  public get selectedLineItemColor() {
+    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+      const avg = this.voting.stats.average || 0;
+
+      if (avg > 0 && avg <= 1) {
+          return "#fe346e";
+      } else if (avg > 1 && avg <= 2) {
+          return "#ff7473";
+      } else if (avg > 2 && avg <= 3) {
+          return "#ffc952";
+      } else if (avg > 3 && avg <= 4) {
+          return "#98ddab";
+      } else if (avg > 4 && avg <= 5) {
+          return "#3fe3d2";
+      } else {
+        return "";
+      }
+      return "";
+    } else {
+      return "";
+    }
   }
 
   public get chartDataset() {
@@ -68,7 +178,7 @@ export default class VoteChart extends Vue {
         votingId: next.voting ? next.voting.id : undefined,
         movingAverage: next.movingAverage,
         average: next.average,
-        createdAtDateTime: this.$d(next.createdAtDateTime.toJSDate()),
+        createdAtDateTime: next.voting ? this.$d(next.voting.createdAtDateTime.toJSDate()) : null,
       }));
   }
 
@@ -126,7 +236,7 @@ export default class VoteChart extends Vue {
     this.loadData(this.next);
   }
 
-  public loadData(offset: number = 1) {
+  public loadData(offset: number = 0) {
       votingChartStore.fetchVotingStats({ groupId: this.groupId, offset });
   }
 
