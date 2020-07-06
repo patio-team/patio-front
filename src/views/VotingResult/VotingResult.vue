@@ -83,11 +83,11 @@ export default class VotingResult extends Vue {
   }
 
   public get nextVotingId() {
-    return this.voting.nextVoting ? this.voting.nextVoting.id : null;
+    return this.voting && this.voting.nextVoting ? this.voting.nextVoting.id : null;
   }
 
   public get previousVotingId() {
-    return this.voting.previousVoting ? this.voting.previousVoting.id : null;
+    return this.voting && this.voting.previousVoting ? this.voting.previousVoting.id : null;
   }
 
   @Watch("votingId")
