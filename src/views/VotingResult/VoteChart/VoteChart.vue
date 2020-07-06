@@ -109,7 +109,7 @@ export default class VoteChart extends Vue {
           smooth: 0.3,
           showSymbol: false,
           symbol: "none",
-          connectNulls: false,
+          connectNulls: true,
           lineStyle: {
             type: "dotted",
             color: "#98ddab",
@@ -236,7 +236,7 @@ export default class VoteChart extends Vue {
     this.loadData(this.next);
   }
 
-  public loadData(offset: number = 1) {
+  public loadData(offset: number = 0) {
       votingChartStore.fetchVotingStats({ groupId: this.groupId, offset });
   }
 
