@@ -115,7 +115,7 @@
     "USER_ACTIONS": {
       "GROUPS": "Groups",
       "SETTINGS": "Settings",
-      "CREATE_GROUP": "Create group",
+      "CREATE_GROUP": "Create team",
       "SEE_PROFILE": "See profile",
       "MY_PROFILE": "My profile",
       "LOGOUT": "Logout"
