@@ -19,7 +19,8 @@
 .header-container
   .header
     .logo(data-testid="logo")
-      include ../../assets/img/logo-patio.svg
+      router-link(:to="{name: 'team'}")
+        include ../../assets/img/logo-patio.svg
     .actions(data-testid="actions" v-if="me")
       .user-menu(data-testid="user-menu")
         //- div.user
