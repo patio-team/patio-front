@@ -28,7 +28,8 @@
       :vote="vote"
       :key="$index"
       :data-num="$index + 1"
-      :name="vote.createdBy ? vote.createdBy.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+      :user="vote.createdBy"
+      :group="voting.group"
       :mood="vote.score"
       :comment="vote.comment"
       :hue="vote.hueMood")

@@ -22,7 +22,6 @@ import { Day } from "@/domain";
 
 export interface CreateGroupInput {
   name: string;
-  visibleMemberList: boolean;
   anonymousVote: boolean;
   votingDays: Day[];
   votingTime: DateTime;

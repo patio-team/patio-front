@@ -158,7 +158,7 @@ const router = new Router({
       },
     },
     {
-      path: "/groups/:groupId/",
+      path: "/team/:groupId/",
       component: GroupLayout,
       props: true,
       meta: {
@@ -167,7 +167,7 @@ const router = new Router({
       children: [
         {
           path: "edit",
-          name: "groups:edit",
+          name: "team:edit",
           component: EditGroup,
           meta: {
             requiresAuth: true,
@@ -175,7 +175,7 @@ const router = new Router({
         },
         {
           path: "members/:userId",
-          name: "groups:members:profile",
+          name: "team:members:profile",
           component: GroupMemberProfile,
           meta: {
             requiresAuth: true,

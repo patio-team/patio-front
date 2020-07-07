@@ -23,10 +23,6 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
     label(for="name") {{ $t("GROUP_FORM.INPUT_NAME.LABEL") }}
     input(data-testid="name" id="name" name="name" type="text" v-bind:placeholder="$t('GROUP_FORM.INPUT_NAME.PLACEHOLDER')" required v-model="input.name")
 
-  .visible-member-list
-    input(data-testid="visible-member-list" id="visible-member-list" name="visible-member-list" type="checkbox" v-model="input.visibleMemberList")
-    label(for="visible-member-list") {{ $t("GROUP_FORM.INPUT_VISIBLE_MEMBER_LIST.LABEL") }}
-
   .anonymous-vote
     input(data-testid="anonymous-vote" id="anonymous-vote" name="anonymous-vote" type="checkbox" v-model="input.anonymousVote")
     label(for="anonymous-vote") {{ $t("GROUP_FORM.INPUT_ANONYMOUS_VOTE.LABEL") }}

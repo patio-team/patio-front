@@ -1,3 +1,4 @@
+
 //-
   Copyright (C) 2019 Kaleidos Open Source SL
 
@@ -16,10 +17,20 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .vote-card
-  .header
-    h1 {{ name }}
+  .header(v-if="group")
+    h1
+      router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }") {{ user.name }}
     .avatar
-      Avatar.avatar(:name="name")
+      router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }")
+        Avatar.avatar(
+          :name="user ? user.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+        )
+  .header(v-if="!group")
+    h1 {{ user.name }}
+    .avatar
+      Avatar.avatar(
+        :name="user ? user.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+      )
   .smiley
     dw-smiley(
       :voteScore="mood"

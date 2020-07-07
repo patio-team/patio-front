@@ -32,7 +32,6 @@ query GetGroup(
   getGroup(id: $id) {
     id
     name
-    visibleMemberList
     anonymousVote
     votingDays
     votingTime
@@ -73,21 +72,18 @@ query GetGroup(
 export const CreateGroupMutation = `
 mutation CreateGroup(
   $name: String!,
-  $visibleMemberList: Boolean!,
   $anonymousVote: Boolean!,
   $votingTime: Time!,
   $votingDays: [DayOfWeek]!
 ) {
   createGroup(
     name: $name,
-    visibleMemberList: $visibleMemberList,
     anonymousVote: $anonymousVote,
     votingTime: $votingTime,
     votingDays: $votingDays
   ) {
     id
     name
-    visibleMemberList
     anonymousVote
     votingTime
     votingDays
@@ -99,7 +95,6 @@ export const EditGroupMutation = `
 mutation UpdateGroup(
   $id: ID!,
   $name: String!,
-  $visibleMemberList: Boolean!,
   $anonymousVote: Boolean!,
   $votingTime: Time!,
   $votingDays: [DayOfWeek]!
@@ -107,14 +102,12 @@ mutation UpdateGroup(
   updateGroup(
     groupId: $id
     name: $name,
-    visibleMemberList: $visibleMemberList,
     anonymousVote: $anonymousVote,
     votingTime: $votingTime,
     votingDays: $votingDays
   ) {
     id
     name
-    visibleMemberList
     anonymousVote
     votingTime
     votingDays

@@ -21,6 +21,9 @@ query ListMembersMood($votingId: ID!, $page: Int, $max: Int) {
   getVoting(id: $votingId) {
     id
     didIVote
+    group {
+      id
+    }
     votes(page: $page, max: $max) {
       totalCount
       page
@@ -30,6 +33,7 @@ query ListMembersMood($votingId: ID!, $page: Int, $max: Int) {
         hueMood
         comment
         createdBy {
+          id
           name
         }
       }

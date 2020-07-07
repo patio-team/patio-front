@@ -24,6 +24,7 @@ import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import Avatar from "@/components/shared/Avatar/Avatar.vue";
 import Smiley from "../Smiley/Smiley.vue";
 import { Viewer } from "@toast-ui/vue-editor";
+import { User, Group } from "@/domain";
 
 @Component({
   components: {
@@ -37,8 +38,11 @@ export default class VoteCard extends Vue {
   @Prop()
   private vote!: any;
 
-  @Prop(String)
-  private name!: string;
+  @Prop()
+  private user!: User;
+
+  @Prop()
+  private group!: Group;
 
   @Prop(Number)
   private mood!: number;
