@@ -146,7 +146,6 @@ describe("Groups Store Module", () => {
         const input = {
           name: group.name,
           anonymousVote: group.anonymousVote,
-          visibleMemberList: group.visibleMemberList,
           votingDays: group.votingDays,
           votingTime: group.votingTime,
         };
@@ -166,7 +165,6 @@ describe("Groups Store Module", () => {
         const input = {
           name: group.name,
           anonymousVote: group.anonymousVote,
-          visibleMemberList: group.visibleMemberList,
           votingDays: group.votingDays,
           votingTime: group.votingTime,
         };

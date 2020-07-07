@@ -33,7 +33,6 @@ export type Day =
 export interface Group {
   id: string;
   name: string;
-  visibleMemberList: boolean;
   anonymousVote: boolean;
   votingDays: Day[];
   votingTime: DateTime;

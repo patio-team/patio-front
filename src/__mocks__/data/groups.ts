@@ -30,7 +30,6 @@ export function generateGroup(params: any = {}): Group {
     {
       id: faker.random.uuid(),
       name: faker.company.companyName(),
-      visibleMemberList: true,
       anonymousVote: true,
       votingDays: ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"],
       votingTime: toDateTime("12:00"),

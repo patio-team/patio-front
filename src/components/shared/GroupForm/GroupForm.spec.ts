@@ -41,7 +41,6 @@ describe("Component: shared/GroupForm", () => {
     expect(wrapper.contains("[data-testid='form']")).toBe(true);
     expect(wrapper.contains("[data-testid='error']")).toBe(false);
     expect(vm.input.name).toEqual("");
-    expect(vm.input.visibleMemberList).toEqual(false);
     expect(vm.input.anonymousVote).toEqual(false);
     expect(vm.input.votingDays).toEqual(["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]);
     expect(vm.input.votingTime).toEqual(toDateTime("12:00"));
@@ -63,7 +62,6 @@ describe("Component: shared/GroupForm", () => {
     expect(wrapper.contains("[data-testid='error']")).toBe(false);
     expect(vm.input.id).toEqual(group.id);
     expect(vm.input.name).toEqual(group.name);
-    expect(vm.input.visibleMemberList).toEqual(group.visibleMemberList);
     expect(vm.input.anonymousVote).toEqual(group.anonymousVote);
     expect(vm.input.votingDays).toEqual(group.votingDays);
     expect(vm.input.votingTime).toEqual(group.votingTime);
@@ -91,7 +89,6 @@ describe("Component: shared/GroupForm", () => {
     const wrapper = getWrapper({ propsData: props });
 
     wrapper.find("[data-testid='name']").setValue("TEST NAME");
-    wrapper.find("[data-testid='visible-member-list']").setChecked(true);
     wrapper.find("[data-testid='anonymous-vote']").setChecked(false);
     wrapper.find("[data-testid='voting-day-mon']").setChecked(true);
     wrapper.find("[data-testid='voting-day-tue']").setChecked(false);
@@ -107,7 +104,6 @@ describe("Component: shared/GroupForm", () => {
     expect(wrapper.emitted().submit).toBeTruthy();
     expect(wrapper.emitted().submit[0][0]).toEqual({
       name: "TEST NAME",
-      visibleMemberList: true,
       anonymousVote: false,
       votingDays: ["MONDAY", "WEDNESDAY", "FRIDAY", "SUNDAY"],
       votingTime: toDateTime("14:35"),
