@@ -123,7 +123,7 @@ input {
   cursor: pointer;
   display: inline-flex;
 
-  & .crc_show--checkbox {
+  & .crc_show-checkbox {
     background-image: url(./assets/img/empty.svg);
   }
 
@@ -148,7 +148,7 @@ input {
     line-height: 22px;
   }
 
-  & .crc_input:checked + .crc_show--checkbox {
+  & .crc_input:checked + .crc_show-checkbox {
     background-image: url(./assets/img/check.svg);
   }
 }

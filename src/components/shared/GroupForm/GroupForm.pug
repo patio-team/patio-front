@@ -15,46 +15,60 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
+
 form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
 
-  .name
-    label(for="name") {{ $t("GROUP_FORM.INPUT_NAME.LABEL") }}
-    input(data-testid="name" id="name" name="name" type="text" v-bind:placeholder="$t('GROUP_FORM.INPUT_NAME.PLACEHOLDER')" required v-model="input.name")
+  .name.fieldset
+    .label-container
+      label(for="name") {{ $t("GROUP_FORM.INPUT_NAME.LABEL") }}
+    .input-container
+      input(data-testid="name" id="name" name="name" type="text" v-bind:placeholder="$t('GROUP_FORM.INPUT_NAME.PLACEHOLDER')" required v-model="input.name")
 
-  .anonymous-vote
-    input(data-testid="anonymous-vote" id="anonymous-vote" name="anonymous-vote" type="checkbox" v-model="input.anonymousVote")
-    label(for="anonymous-vote") {{ $t("GROUP_FORM.INPUT_ANONYMOUS_VOTE.LABEL") }}
-
-  .voting-days
-    legend {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LEGEND") }}
-
+  .fieldset
+    .label-container
+      label {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LEGEND") }}
     .week-days-selector
-      .day
-        input(data-testid="voting-day-mon" id="mon" name="mon" type="checkbox" value="MONDAY" v-model="input.votingDays")
-        label(for="mon") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_MON") }}
-      .day
-        input(data-testid="voting-day-tue" id="tue" name="tue" type="checkbox" value="TUESDAY" v-model="input.votingDays")
-        label(for="tue") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_TUE") }}
-      .day
-        input(data-testid="voting-day-wed" id="wed" name="wed" type="checkbox" value="WEDNESDAY" v-model="input.votingDays")
-        label(for="wed") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_WED") }}
-      .day
-        input(data-testid="voting-day-thu" id="thu" name="thu" type="checkbox" value="THURSDAY" v-model="input.votingDays")
-        label(for="thu") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_THU") }}
-      .day
-        input(data-testid="voting-day-fri" id="fri" name="fri" type="checkbox" value="FRIDAY" v-model="input.votingDays")
-        label(for="fri") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_FRI") }}
-      .day
-        input(data-testid="voting-day-sat" id="sat" name="sat" type="checkbox" value="SATURDAY" v-model="input.votingDays")
-        label(for="sat") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SAT") }}
-      .day
-        input(data-testid="voting-day-sun" id="sun" name="sun" type="checkbox" value="SUNDAY" v-model="input.votingDays")
-        label(for="sun") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SUN") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-mon" id="mon" name="mon" type="checkbox" value="MONDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="mon")
+        label.week-day-label(for="mon") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_MON") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-tue" id="tue" name="tue" type="checkbox" value="TUESDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="tue")
+        label.week-day-label(for="tue") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_TUE") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-wed" id="wed" name="wed" type="checkbox" value="WEDNESDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="wed")
+        label.week-day-label(for="wed") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_WED") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-thu" id="thu" name="thu" type="checkbox" value="THURSDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="thu")
+        label.week-day-label(for="thu") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_THU") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-fri" id="fri" name="fri" type="checkbox" value="FRIDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="fri")
+        label.week-day-label(for="fri") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_FRI") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-sat" id="sat" name="sat" type="checkbox" value="SATURDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="sat")
+        label.week-day-label(for="sat") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SAT") }}
+      .day.crc
+        input.crc_input(data-testid="voting-day-sun" id="sun" name="sun" type="checkbox" value="SUNDAY" v-model="input.votingDays")
+        label.crc_show-checkbox.crc_show(for="sun")
+        label.week-day-label(for="sun") {{ $t("GROUP_FORM.INPUT_VOTTING_DAYS.LABEL_SUN") }}
 
-  .voting-time
-    label(for="voting-time") {{ $t("GROUP_FORM.INPUT_VOTING_TIME.LABEL") }}
-    input(data-testid="voting-time" id="voting-time" name="voting-time" type="time" required v-model="votingTime")
+  .voting-time.fieldset
+    .label-container
+      label(for="voting-time") {{ $t("GROUP_FORM.INPUT_VOTING_TIME.LABEL") }}
+    .input-container
+      input(data-testid="voting-time" id="voting-time" name="voting-time" type="time" required v-model="votingTime")
 
-  button.submit(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("GROUP_FORM.BUTTON_SUBMIT") }}
+  .action-buttons
+    router-link.button.secondary(
+      v-bind:to="{ name: 'team' }"
+      data-testid="cancel"
+      ) {{ $t("GROUP_FORM.BUTTON_CANCEL") }}
+
+    button.submit.primary(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("GROUP_FORM.BUTTON_SUBMIT") }}

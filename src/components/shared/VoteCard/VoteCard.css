@@ -85,6 +85,10 @@
     justify-content: flex-end;
     margin: 32px 24px 24px;
 
+    & a {
+      color: var(--new-grey-700);
+    }
+
     & .avatar-holder {
       font-size: 24px;
       height: 48px;

@@ -59,7 +59,7 @@
   },
   "GROUP_FORM": {
     "INPUT_NAME": {
-      "LABEL": "Select a name",
+      "LABEL": "Team name",
       "PLACEHOLDER": "e. g. The Avengers"
     },
     "INPUT_VISIBLE_MEMBER_LIST": {
@@ -69,19 +69,20 @@
       "LABEL": "Members can sent anonymous votes"
     },
     "INPUT_VOTTING_DAYS": {
-      "LEGEND": "What days do you want to vote?",
-      "LABEL_MON": "Mon",
-      "LABEL_TUE": "Tue",
-      "LABEL_WED": "Wed",
-      "LABEL_THU": "Thu",
-      "LABEL_FRI": "Fri",
-      "LABEL_SUN": "Sun",
-      "LABEL_SAT": "Sat"
+      "LEGEND": "On what day do you want polls?",
+      "LABEL_MON": "Monday",
+      "LABEL_TUE": "Tuesday",
+      "LABEL_WED": "Wednesday",
+      "LABEL_THU": "Thuesday",
+      "LABEL_FRI": "Friday",
+      "LABEL_SUN": "Sunday",
+      "LABEL_SAT": "Saturday"
     },
     "INPUT_VOTING_TIME": {
-      "LABEL": "What time voting begins? (and reminder email will be sent)"
+      "LABEL": "What time polls begins? (and reminder email will be sent)"
     },
-    "BUTTON_SUBMIT": "Save"
+    "BUTTON_SUBMIT": "Create Team",
+    "BUTTON_CANCEL": "Cancel"
   },
   "GROUP_MEMBER_LIST": {
     "ACTION_ADD_MEMBER": "+ Invite",
@@ -188,7 +189,7 @@
   },
   "VIEWS": {
     "CREATE_GROUP": {
-      "TITLE": "Create a new group"
+      "TITLE": "New team"
     },
     "EDIT_GROUP": {
       "SUBTITLE": "Edit",

@@ -37,9 +37,49 @@
 @import "../../assets/css/mixins.css";
 
 .create-group {
-  @mixin view;
+  background-attachment: fixed;
+  background-color: var(--white-500);
+  background-image: url(../../assets/img/bg.svg);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh);
+  left: 0;
+  padding: 1.5rem;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: 15;
+
+  @media (--small-viewport) {
+    padding: 2.8rem;
+  }
+}
+
+.close-x {
+  border-radius: 100%;
+  cursor: pointer;
+  fill: var(--new-grey-700);
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  width: 32px;
+  z-index: 16;
+
+  @media (--small-viewport) {
+    height: 48px;
+    width: 48px;
+  }
+
+  &:hover,
+  &:focus {
+    animation: .5s tapAnimation 1;
+  }
 }
 
 .title {
-  padding-bottom: 1rem;
+  color: var(--new-grey-700);
 }

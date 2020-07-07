@@ -60,7 +60,7 @@
   },
   "GROUP_FORM": {
     "INPUT_NAME": {
-      "LABEL": "Escoge un nombre",
+      "LABEL": "Nombre del equipo",
       "PLACEHOLDER": "ej. The Avengers"
     },
     "INPUT_VISIBLE_MEMBER_LIST": {
@@ -70,19 +70,21 @@
       "LABEL": "Los miembros pueden enviar votos anónimamente"
     },
     "INPUT_VOTTING_DAYS": {
-      "LEGEND": "¿Qué días quieres votar?",
-      "LABEL_MON": "Lun",
-      "LABEL_TUE": "Mar",
-      "LABEL_WED": "Mie",
-      "LABEL_THU": "Jue",
-      "LABEL_FRI": "Vie",
-      "LABEL_SUN": "Sab",
-      "LABEL_SAT": "Dom"
+      "LEGEND": "¿Qué días quieres la votación?",
+      "LABEL_MON": "Lunes",
+      "LABEL_TUE": "Martes",
+      "LABEL_WED": "Miercoles",
+      "LABEL_THU": "Jueves",
+      "LABEL_FRI": "Viernes",
+      "LABEL_SUN": "Sabado",
+      "LABEL_SAT": "Domingo"
     },
     "INPUT_VOTING_TIME": {
       "LABEL": "¿Cuando debe comenzar la votación? (y el email recordatorio se enviará)"
     },
-    "BUTTON_SUBMIT": "Guardar"
+    "BUTTON_SUBMIT": "Crear equipo",
+    "BUTTON_CANCEL": "Cancelar"
+
   },
   "GROUP_MEMBER_LIST": {
     "ACTION_ADD_MEMBER": "+ Invitar",
@@ -178,7 +180,7 @@
   },
   "VIEWS": {
     "CREATE_GROUP": {
-      "TITLE": "Creaar un nuevo grupo"
+      "TITLE": "Nuevo equipo"
     },
     "EDIT_GROUP": {
       "SUBTITLE": "Editar",

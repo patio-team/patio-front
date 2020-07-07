@@ -28,17 +28,26 @@
 
 .name,
 .visible-member-list,
-.anonymous-vote,
 .voting-days,
 .voting-time {
   @mixin fieldset;
 }
 
-.visible-member-list,
-.anonymous-vote {
+.vote-fieldset {
+  align-items: center;
+  display: flex;
+  margin-bottom: 12px;
+
+  & .crc {
+    margin-right: .5rem;
+  }
+}
+
+.visible-member-list {
   align-items: center;
   flex-direction: row;
   justify-content: flex-start;
+  padding-top: 12px;
 
   & input,
   & label {
@@ -46,53 +55,56 @@
   }
 }
 
-.visible-member-list {
-  padding-top: 1rem;
-}
-
-.anonymous-vote {
-  padding-bottom: 1rem;
-}
-
 .week-days-selector {
   align-content: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   width: 100%;
 
   & .day {
+    margin-bottom: 1rem;
     position: relative;
-  }
+    width: 50%;
 
-  & input {
-    opacity: 0;
-    position: absolute;
-  }
+    @media (--small-viewport) {
+      margin-right: 3rem;
+      width: 170px;
+    }
 
-  & label {
-    background: var(--whithe-500);
-    border: var(--orange-400) solid 1px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: block;
-    height: 40px;
-    min-width: 3rem;
-    text-align: center;
-    transition: background-color .2s, color .2s;
-  }
-
-  & input[type=checkbox]:focus + label {
-    @mixin outline;
-  }
-
-  & input[type=checkbox]:checked + label {
-    background: var(--orange-400);
-    color: var(--white-400);
+    & label {
+      margin-bottom: 0;
+    }
   }
 }
 
-.submit {
-  margin-top: 1.5rem;
+.action-buttons {
+  display: flex;
+
+  @media (--small-viewport) {
+    margin-top: 60px;
+  }
+
+  & button,
+  & .button {
+    margin-right: 12px;
+    min-width: calc(50% - 6px);
+
+    @media (--small-viewport) {
+      min-width: 240px;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.fieldset {
+  margin-bottom: 1rem;
+
+  & input {
+    max-width: 410px;
+  }
 }

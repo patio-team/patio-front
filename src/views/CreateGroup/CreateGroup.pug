@@ -17,6 +17,10 @@
 
 .create-group
   h1.title(data-testid="title") {{ $t("VIEWS.CREATE_GROUP.TITLE") }}
+  router-link.close-x(
+    v-bind:to="{ name: 'team' }"
+  )
+    include ../../assets/img/cross.svg
 
   dw-group-form(
     data-testid="group-form"
