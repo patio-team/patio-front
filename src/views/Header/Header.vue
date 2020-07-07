@@ -115,6 +115,11 @@ export default class Header extends Vue {
     this.$router.push({ name: "login" });
   }
 
+  private handleSettings() {
+    this.toggleUserDropdown();
+    this.$router.push({ name: "my-profile" });
+  }
+
   private createNewGroup() {
     this.$router.push({ name: "team:create" });
     this.toggleGroupDropdown();

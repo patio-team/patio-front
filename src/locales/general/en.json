@@ -225,7 +225,7 @@
       }
     },
     "MY_PROFILE": {
-      "TITLE": "My Profile",
+      "TITLE": "Account Settings",
       "ACTION_EDIT": "Edit",
       "ACTION_CHANGE_PASSWORD": "Change password"
     },

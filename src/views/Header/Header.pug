@@ -78,7 +78,7 @@
           .options-text.name {{ name }}
           .options-text.email {{ email }}
           .block
-            button.text-and-icon(v-on:click.capture="toggleUserDropdown")
+            button.text-and-icon(v-on:click.capture="handleSettings")
               include ../../assets/img/settings.svg
               span {{ $t("HEADER.USER_ACTIONS.SETTINGS")}}
         .actions
