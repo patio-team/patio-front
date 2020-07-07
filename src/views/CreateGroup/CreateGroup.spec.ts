@@ -45,7 +45,10 @@ const getWrapper = (...params: any) => {
 describe("View: CreateGroup", () => {
   it("show the form", () => {
     const store = getStore();
-    const wrapper = getWrapper({ mocks: { $store: store } });
+    const wrapper = getWrapper({
+      mocks: { $store: store },
+      stubs: ["router-link"],
+    });
 
     expect(wrapper.contains("[data-testid='group-form']")).toBe(true);
   });
@@ -58,7 +61,7 @@ describe("View: CreateGroup", () => {
 
     const store = getStore();
     const router = { push: jest.fn() };
-    const wrapper = getWrapper({ mocks: { $store: store, $router: router } });
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router }, stubs: ["router-link"] });
     const vm = wrapper.vm as any;
 
     store.dispatch.mockResolvedValue(group);
@@ -76,7 +79,7 @@ describe("View: CreateGroup", () => {
 
     const store = getStore();
     const router = { push: jest.fn() };
-    const wrapper = getWrapper({ mocks: { $store: store, $router: router } });
+    const wrapper = getWrapper({ mocks: { $store: store, $router: router }, stubs: ["router-link"] });
     const vm = wrapper.vm as any;
 
     await vm.handleCreateGroupSubmit(createGroupInput);

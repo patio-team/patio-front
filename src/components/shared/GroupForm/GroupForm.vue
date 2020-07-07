@@ -30,7 +30,6 @@ import { toDateTime, formatToTime24Simple } from "@/utils/datetime";
 export default class GroupForm extends Vue {
   public input = {
     name: "",
-    anonymousVote: false,
     votingDays: ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"],
     votingTime: toDateTime("12:00"),
   };
