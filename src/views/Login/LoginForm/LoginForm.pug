@@ -29,7 +29,7 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
     input(data-testid="password" id="password" name="password" type="password" v-bind:placeholder="$t('LOGIN_FORM.INPUT_PASSWORD.PLACEHOLDER')" required
           v-model="input.password")
 
-  button.submit(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("LOGIN_FORM.BUTTON_SUBMIT") }}
+  button.submit.primary(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("LOGIN_FORM.BUTTON_SUBMIT") }}
 
   dw-with-google-button.oauth
 
