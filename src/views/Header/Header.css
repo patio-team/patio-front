@@ -32,7 +32,16 @@
 
 .header-container {
   box-shadow: 0 4px 4px rgba(229, 229, 229, .25);
+  padding: 1rem;
   width: 100%;
+
+  @media (--small-viewport) {
+    padding: 1rem 1.5rem;
+  }
+
+  @media (--medium-viewport) {
+    padding: 1rem 4rem;
+  }
 }
 
 .options-container {
@@ -47,7 +56,6 @@
   justify-content: space-between;
   margin: 0 auto;
   min-height: 80px;
-  padding: 1rem;
   position: relative;
   width: 100%;
 
@@ -168,13 +176,13 @@
 
   &.user {
     padding: 24px 0 0;
-    right: 28px;
+    right: .6rem;
     top: 72px;
     width: 300px;
   }
 
   &.group {
-    right: 82px;
+    right: 4.125rem;
     top: 72px;
   }
 
