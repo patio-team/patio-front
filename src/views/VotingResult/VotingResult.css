@@ -40,8 +40,16 @@ div.hide {
 
 .voting-result {
   color: var(--new-grey-700);
-  padding: 0 12px;
+  padding: 0 .5rem;
   width: 100%;
+
+  @media (--small-viewport) {
+    padding: 0 1rem;
+  }
+
+  @media (--medium-viewport) {
+    padding: 0 3.5rem;
+  }
 
   & .title-container {
     & h1,
