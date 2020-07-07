@@ -171,7 +171,7 @@ export default class VoteChart extends Vue {
   }
 
   public get chartDataset() {
-    return votingChartStore
+    return this.voting ? votingChartStore
       .chartState
       .data
       .map((next: VotingStats) => ({
@@ -179,7 +179,7 @@ export default class VoteChart extends Vue {
         movingAverage: next.movingAverage,
         average: next.average,
         createdAtDateTime: next.voting ? this.$d(next.voting.createdAtDateTime.toJSDate()) : null,
-      }));
+      })) : [];
   }
 
   public get next() {
@@ -225,7 +225,9 @@ export default class VoteChart extends Vue {
   }
 
   public handleResize() {
-    this.chart.resize();
+    if (this.chart) {
+      this.chart.resize();
+    }
   }
 
   public handleGoBackwards() {

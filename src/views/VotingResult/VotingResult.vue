@@ -49,7 +49,7 @@ export default class VotingResult extends Vue {
   private selectedGroup!: Group;
 
   @VotingStore.Getter("voting")
-  private voting!: Voting;
+  private voting!: Voting | undefined;
 
   @VotingStore.Action("getVoting")
   private getVoting: any;

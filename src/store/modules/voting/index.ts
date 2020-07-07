@@ -63,9 +63,10 @@ const mutations: MutationTree<VotingState> = {
 
     state.voting = voting;
   },
-  getVotingFail(state: VotingState, error: string) {
+  getVotingError(state: VotingState, error: string) {
     state.getVotingIsLoading = false;
     state.getVotingError = error;
+    state.voting = undefined;
   },
   // reset
   resetState(state: VotingState) {

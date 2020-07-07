@@ -27,6 +27,7 @@ const getStore = () => {
   return new Store({
     state: {
       groups: {},
+      auth: {},
     },
     getters: {
       "groups/createGroupIsLoading": false,
@@ -64,10 +65,8 @@ describe("View: CreateGroup", () => {
 
     await vm.handleCreateGroupSubmit(createGroupInput);
 
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith("groups/createGroup", createGroupInput);
-    expect(router.push).toHaveBeenCalledTimes(1);
-    expect(router.push).toHaveBeenCalledWith({name: "groups:detail", params: {groupId: group.id}});
+    expect(router.push).toHaveBeenCalledWith({name: "team", params: {groupId: group.id}});
   });
   it("submit the form with errors", async () => {
     const group = generateGroup();
@@ -82,7 +81,6 @@ describe("View: CreateGroup", () => {
 
     await vm.handleCreateGroupSubmit(createGroupInput);
 
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith("groups/createGroup", createGroupInput);
     expect(router.push).toHaveBeenCalledTimes(0);
   });

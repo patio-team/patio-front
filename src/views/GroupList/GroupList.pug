@@ -19,7 +19,7 @@
   .head
     h1.title {{ $t("VIEWS.GROUP_LIST.TITLE") }}
     .actions
-      router-link.create-group(v-bind:to="{ name: 'groups:create' }" data-testid="action-create")
+      router-link.create-group(v-bind:to="{ name: 'team:create' }" data-testid="action-create")
         | {{ $t("VIEWS.GROUP_LIST.ACTION_NEW_GROUP") }}
 
   dw-groups-table(data-testid="groups-table")

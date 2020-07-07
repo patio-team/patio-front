@@ -82,14 +82,17 @@ export default class Header extends Vue {
   private async handleChangeSelectedGroup(groupId: string) {
     await this.changeSelectedGroup({groupId});
     const voting = await this.getLastVoting({groupId});
+    this.toggleGroupDropdown();
 
-    this.$router.push({
-      name: "team:result",
-      params: {
-        groupId: voting.group.id,
-        votingId: voting.id,
-      },
-    });
+    if (voting) {
+      this.$router.push({
+        name: "team:result",
+        params: {
+          groupId: voting.group.id,
+          votingId: voting.id,
+        },
+      });
+    }
   }
 
   private mounted() {
@@ -113,7 +116,8 @@ export default class Header extends Vue {
   }
 
   private createNewGroup() {
-    this.$router.push({ name: "groups:create" });
+    this.$router.push({ name: "team:create" });
+    this.toggleGroupDropdown();
   }
 
   private toggleGroupDropdown() {

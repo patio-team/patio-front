@@ -28,6 +28,7 @@ import { CreateGroupInput } from "@/services/api/types";
 import GroupForm from "@/components/shared/GroupForm/GroupForm.vue";
 
 const GroupsStore = namespace("groups");
+const AuthStore = namespace("auth");
 
 @Component({
   components: {
@@ -44,11 +45,15 @@ export default class CreateGroup extends Vue {
   @GroupsStore.Action("createGroup")
   private createGroup: any;
 
+  @AuthStore.Action("getMyProfile")
+  private refreshProfile: any;
+
   private async handleCreateGroupSubmit(input: CreateGroupInput) {
     const group = await this.createGroup(input);
+    await this.refreshProfile({force: true});
 
     if (group) {
-      this.$router.push({ name: "groups:detail", params: { groupId: group.id } });
+      this.$router.push({ name: "team", params: { groupId: group.id } });
     }
   }
 }

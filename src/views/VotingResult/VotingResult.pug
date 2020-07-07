@@ -47,7 +47,6 @@
 
       .graphic-container
         VoteChart(
-          :if="voting"
           :groupId="selectedGroup.id"
           :voting="voting"
         )
@@ -93,12 +92,12 @@
               template(v-if="voting && voting.didIVote") {{ $t("RESULT.ALREADY_VOTED") }}
               template(v-if="voting && !voting.didIVote") {{ $t("RESULT.NOT_PARTICIPATE") }}
             router-link.button.primary.desktop(
-              v-if="!nobodyHasVotedYet && !voting.didIVote"
+              v-if="voting && !nobodyHasVotedYet && !voting.didIVote"
               v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
             ) {{ $t("RESULT.SHARE_MOOD") }}
             //- Show this when no votes
             router-link.button.primary.desktop(
-              v-if="nobodyHasVotedYet"
+              v-if="voting && nobodyHasVotedYet"
               v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
             ) {{ $t("RESULT.BE_THE_FIRST") }}
       .mood-sorter-section

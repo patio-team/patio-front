@@ -108,16 +108,16 @@ const router = new Router({
       ],
     },
     {
-      path: "/groups",
-      name: "groups:list",
+      path: "/team/list",
+      name: "team:list",
       component: GroupList,
       meta: {
         requiresAuth: true,
       },
     },
     {
-      path: "/groups/create",
-      name: "groups:create",
+      path: "/team/create",
+      name: "team:create",
       component: CreateGroup,
       meta: {
         requiresAuth: true,
@@ -133,7 +133,7 @@ const router = new Router({
       },
     },
     {
-      path: "/team/:groupId/:votingId",
+      path: "/team/result/:groupId/:votingId?",
       name: "team:result",
       component: VotingResult,
       props: true,

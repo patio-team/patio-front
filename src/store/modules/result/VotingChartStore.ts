@@ -48,7 +48,23 @@ export class VotingChartStore extends VuexModule {
     const MAX = 10;
     const OVERLAP = 3;
 
-    const statistics: OffsetPaginationResult<VotingStats> = await api.results.getVotingChartStatistics(input);
+    let statistics: OffsetPaginationResult<VotingStats> = {offset: 0, totalCount: 0, data: []};
+
+    try {
+      statistics = await api.results.getVotingChartStatistics(input);
+    } catch (error) {
+      // nothing to do here
+    }
+
+    if (statistics.totalCount === 0) {
+      return {
+        data: [],
+        next: 1,
+        previous: 1,
+        hasPrev: false,
+        hasNext: false,
+      };
+    }
 
     const previous = statistics.offset + (MAX - OVERLAP);
     const next = statistics.offset - (MAX - OVERLAP);

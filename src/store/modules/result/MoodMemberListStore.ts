@@ -44,11 +44,19 @@ export class MoodMemberListStore extends VuexModule {
 
   @Action({ commit: "clearMoodMemberResult" })
   public async resetMoodMemberResult(input: MoodMemberListInput) {
+    if (!input.votingId) {
+      return {data: [], pagination: input.pagination};
+    }
+
     return await api.results.listMembersMood(input.votingId, input.pagination);
   }
 
   @Action({ commit: "setMoodMemberResult" })
   public async fetchMoodMemberList(input: MoodMemberListInput) {
+    if (!input.votingId) {
+      return {data: [], pagination: input.pagination};
+    }
+
     return await api.results.listMembersMood(input.votingId, input.pagination);
   }
 }
