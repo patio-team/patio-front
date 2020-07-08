@@ -72,13 +72,11 @@ query GetGroup(
 export const CreateGroupMutation = `
 mutation CreateGroup(
   $name: String!,
-  $anonymousVote: Boolean!,
   $votingTime: Time!,
   $votingDays: [DayOfWeek]!
 ) {
   createGroup(
     name: $name,
-    anonymousVote: $anonymousVote,
     votingTime: $votingTime,
     votingDays: $votingDays
   ) {
@@ -95,14 +93,12 @@ export const EditGroupMutation = `
 mutation UpdateGroup(
   $id: ID!,
   $name: String!,
-  $anonymousVote: Boolean!,
   $votingTime: Time!,
   $votingDays: [DayOfWeek]!
 ) {
   updateGroup(
     groupId: $id
     name: $name,
-    anonymousVote: $anonymousVote,
     votingTime: $votingTime,
     votingDays: $votingDays
   ) {
