@@ -18,25 +18,8 @@
 
 @import "../../../assets/css/mixins.css";
 
-.overflow {
-  max-height: 43vh;
-  overflow: auto;
-}
-
 .list-member {
-  padding: 1rem 2rem 0;
-
-  & .title {
-    align-self: center;
-    color: #34314c;
-    font-family: 'Merriweather', serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 30px;
-    margin-bottom: 1.5rem;
-    margin-top: 0;
-  }
+  @mixin overflow-dialog;
 
   & ul {
     display: flex;
