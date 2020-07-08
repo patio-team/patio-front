@@ -38,46 +38,22 @@ div.hide {
   }
 }
 
-.title-wrapper {
+.links {
   display: flex;
-  flex-direction: column;
-  margin: 0;
+  flex: 1 0 auto;
+  margin: .5rem 0;
 
   @media (--small-viewport) {
-    flex-direction: row;
-    margin: 1.2rem 0;
+    display: none;
+    margin: 0 0 .5rem;
   }
 
-  & h1 {
-    margin: 0;
+  @media (--medium-viewport) {
+    margin: 0 0 .5rem;
   }
 
-  & .text {
-    align-items: flex-end;
+  @media (--large-viewport) {
     display: flex;
-    flex: 0 1 auto;
-    margin-right: 2rem;
-  }
-
-  & .links {
-    align-items: flex-end;
-    display: flex;
-    flex: 1 0 auto;
-    margin: .5rem 0;
-
-    @media (--small-viewport) {
-      margin: 0;
-    }
-  }
-
-  & .actions {
-    align-items: flex-end;
-    display: flex;
-    flex: 0 0 auto;
-
-    @media (--small-viewport) {
-      padding-left: 1rem;
-    }
   }
 
   & .link-button {
@@ -85,6 +61,57 @@ div.hide {
 
     &:last-child {
       margin-right: 0;
+    }
+  }
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  position: relative;
+
+  @media (--small-viewport) {
+    flex-direction: row;
+    margin: 1.2rem 0 0;
+  }
+
+  @media (--medium-viewport) {
+    margin: 1.2rem 0 0;
+  }
+
+  @media (--large-viewport) {
+    margin: 2rem 0 0;
+  }
+
+  & h1 {
+    margin: 0 0 1rem;
+  }
+
+  & .text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin-right: 2rem;
+  }
+
+  & .links {
+    @media (--small-viewport) {
+      display: flex;
+      margin: 0;
+    }
+  }
+
+  & .actions {
+    align-items: flex-start;
+    display: flex;
+    flex: 0 0 auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @media (--small-viewport) {
+      padding-left: 1rem;
     }
   }
 }
@@ -117,7 +144,24 @@ div.hide {
 
       & span {
         color: var(--new-grey-700);
+        display: none;
         font-size: 1rem;
+
+        @media (--small-viewport) {
+          display: flex;
+        }
+      }
+
+      & svg {
+        height: 2rem;
+        margin-right: 0;
+        width: 2rem;
+
+        @media (--small-viewport) {
+          height: 1.5rem;
+          margin-right: 1rem;
+          width: 1.5rem;
+        }
       }
     }
   }
@@ -126,6 +170,7 @@ div.hide {
     display: flex;
     flex-direction: column;
     padding-left: .5rem;
+    padding-right: .5rem;
     padding-top: 40px;
 
     @media (--large-viewport) {
@@ -135,6 +180,10 @@ div.hide {
     & h1 {
       font-family: 'Merriweather', 'Times New Roman', Times, serif;
       margin: 0;
+
+      @media (--small-viewport) {
+        margin-bottom: 1rem;
+      }
     }
 
     & h2 {
@@ -268,13 +317,8 @@ div.hide {
       flex: 1 1 auto;
       position: relative;
 
-      @media (--small-viewport) {
-        flex: 1 0 auto;
-        margin-bottom: 25px;
-      }
-
       @media (--medium-viewport) {
-        flex: 0 0 225px;
+        flex: 1 0 225px;
         margin-bottom: 0;
         margin-right: 25px;
         padding-right: 0;
