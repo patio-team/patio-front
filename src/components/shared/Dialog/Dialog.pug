@@ -20,7 +20,8 @@ modal(
   v-on="$listeners"
   v-bind:name="name"
 )
-  div.modal-backdrop(slot="backdrop")
+  .modal-backdrop(slot="backdrop")
   div
-    button.modal-close-button(type="button" @click="close") X
+    button.modal-close-button(type="button" @click="close")
+      include ../../../assets/img/cross.svg
     slot

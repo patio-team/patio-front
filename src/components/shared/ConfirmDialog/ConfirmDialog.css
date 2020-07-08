@@ -19,16 +19,23 @@
 @import "../../../assets/css/mixins.css";
 
 .confirm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
   & .title {
     align-self: center;
+    color: #34314c;
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 30px;
   }
 
   & .message {
-    color: var(--gray-800);
+    color: #34314c;
+    font-family: 'Lato', serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
   }
 
   & .actions {
@@ -39,7 +46,11 @@
     margin-top: 3rem;
 
     & > * {
-      margin-right: .5rem;
+      margin-right: 1rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
 
     & .reject {

@@ -94,7 +94,7 @@
   border-radius: 8px;
   color: var(--new-gray-500);
   display: flex;
-  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-family: 'Lato', serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -110,7 +110,7 @@
 
 @define-mixin generic-label {
   color: var(--new-grey-700);
-  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-family: 'Lato', serif;
   font-size: 16px;
   font-style: normal;
   font-weight: normal;
@@ -178,7 +178,7 @@
   color: white;
   cursor: pointer;
   display: flex;
-  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-family: 'Lato', serif;
   font-size: 1rem;
   font-weight: bolder;
   font-weight: 700;
@@ -212,7 +212,7 @@
   color: var(--new-grey-700);
   cursor: pointer;
   display: flex;
-  font-family: 'Lato', 'Times New Roman', Times, serif;
+  font-family: 'Lato', serif;
   font-size: 1rem;
   font-weight: bolder;
   font-weight: 700;

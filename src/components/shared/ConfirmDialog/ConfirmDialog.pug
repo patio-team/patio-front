@@ -20,12 +20,12 @@ dw-dialog(v-bind:name="name" v-on:close="handleClose")
     h2.title(data-testid="title" if="title") {{ title}}
     .message(data-testid="message" if="message") {{ message }}
     .actions
-      button.reject(
+      button.reject.secondary(
         data-testid="reject-button"
         v-on:click="$emit('reject')"
         v-bind:disabled="isLoading"
       ) {{ rejectButtonText }}
-      button.confirm(
+      button.confirm.primary(
         data-testid="acept-button"
         v-on:click="$emit('acept')"
         v-bind:disabled="isLoading"

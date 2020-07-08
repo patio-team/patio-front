@@ -222,7 +222,7 @@
     }
 
     & .text-upper {
-      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      font-family: 'Merriweather', serif;
       font-size: 24px;
       line-height: 42px;
       position: absolute;
@@ -359,7 +359,7 @@
     margin-right: 0;
 
     & h2 {
-      font-family: 'Merriweather', 'Times New Roman', Times, serif;
+      font-family: 'Merriweather', serif;
       font-size: 32px;
       font-style: normal;
       font-weight: normal;

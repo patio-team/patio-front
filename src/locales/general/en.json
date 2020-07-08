@@ -42,7 +42,7 @@
       "TITLE": "Are you sure you want to leave the group?",
       "MESSAGE": "If you leave the group you will not be able to access it or participate in any of its votes.",
       "ACEPT_BUTTON_TEXT": "Yes, I want to leave",
-      "REJECT_BUTTON_TEXT": "Nope, I want to remain a member"
+      "REJECT_BUTTON_TEXT": "I want to remain a member."
     },
     "NOTIFICATIONS": {
       "LEAVE_GROUP": {

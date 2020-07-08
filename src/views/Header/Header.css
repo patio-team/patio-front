@@ -221,7 +221,7 @@
     }
 
     & .name {
-      font-family: 'Lato', 'Times New Roman', Times, serif;
+      font-family: 'Lato', serif;
       font-size: 64px;
       font-style: normal;
       font-weight: 300;
@@ -232,7 +232,7 @@
   }
 
   & .name {
-    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    font-family: 'Merriweather', serif;
     font-style: normal;
     font-weight: 300;
     margin-bottom: 1rem;
