@@ -18,6 +18,7 @@
 .voting-result(
   v-touch:swipe="swipeHandler"
 )
+  leave-team-dialog(:group="selectedGroup")
   .mobile-vote
     router-link.button.primary(
       v-if="!nobodyHasVotedYet && !voting.didIVote"
@@ -35,7 +36,7 @@
         h1 {{ selectedGroup.name }}
       .links
         button.link-button See members
-        button.link-button Leave Team
+        button.link-button(@click="handleLeaveTeam") Leave Team
       .actions
         button.text-and-icon
             include ../../assets/img/settings.svg
@@ -57,7 +58,7 @@
             h1 {{ selectedGroup.name }}
           .links
             button.link-button See members
-            button.link-button Leave Team
+            button.link-button(@click="handleLeaveTeam") Leave Team
           .actions
             button.text-and-icon
                 include ../../assets/img/settings.svg

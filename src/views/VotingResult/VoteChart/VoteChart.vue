@@ -125,10 +125,10 @@ export default class VoteChart extends Vue {
   }
 
   public get selectedPoint() {
-    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+    if (this.stats && this.stats.average && this.stats.createdAtDateTime) {
       return [{
         xAxis: this.$d(this.voting.createdAtDateTime.toJSDate()),
-        yAxis: this.voting.stats.average,
+        yAxis: this.stats.average,
       }];
     } else {
       return [{}];
@@ -136,7 +136,7 @@ export default class VoteChart extends Vue {
   }
 
   public get selectedLine() {
-    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
+    if (this.stats && this.stats.average && this.stats.createdAtDateTime) {
       const xAxis = this.$d(this.voting.createdAtDateTime.toJSDate());
 
       return [
@@ -148,8 +148,8 @@ export default class VoteChart extends Vue {
   }
 
   public get selectedLineItemColor() {
-    if (this.voting && this.voting.stats && this.voting.stats.createdAtDateTime) {
-      const avg = this.voting.stats.average || 0;
+    if (this.stats && this.stats.createdAtDateTime) {
+      const avg = this.stats.average || 0;
 
       if (avg > 0 && avg <= 1) {
           return "#fe346e";
@@ -171,7 +171,7 @@ export default class VoteChart extends Vue {
   }
 
   public get chartDataset() {
-    return this.voting ? votingChartStore
+    return this.stats ? votingChartStore
       .chartState
       .data
       .map((next: VotingStats) => ({
@@ -199,7 +199,15 @@ export default class VoteChart extends Vue {
   }
 
   public get emptyChart() {
-    return this.chartDataset.length === 0;
+    if (this.stats && this.stats.voteCount) {
+        return this.stats.voteCount === 0 && this.chartDataset.length === 0;
+    }
+
+    return true;
+  }
+
+  public get stats() {
+    return this.voting ? this.voting.stats : null;
   }
 
   public mounted() {
