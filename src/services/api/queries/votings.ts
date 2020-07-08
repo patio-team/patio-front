@@ -43,6 +43,7 @@ query GetVoting(
   getVoting(id: $id) {
     id
     didIVote
+    expired
     createdAtDateTime
     nextVoting {
       id
@@ -93,6 +94,7 @@ query GetLastVoting($groupId: ID!) {
     id
     createdAtDateTime
     didIVote
+    expired
     nextVoting {
       id
       createdAtDateTime

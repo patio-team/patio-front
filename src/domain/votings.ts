@@ -57,4 +57,6 @@ export interface Voting {
   stats?: VotingStats;
   previousVoting?: Voting;
   nextVoting?: Voting;
+  didIVote: boolean;
+  expired: boolean;
 }

@@ -22,12 +22,12 @@
   dialog-team-members(:group="selectedGroup")
   .mobile-vote
     router-link.button.primary(
-      v-if="!nobodyHasVotedYet && !voting.didIVote"
+      v-if="canShareMood"
       v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
     ) {{ $t("RESULT.SHARE_MOOD") }}
     //- Show this when no votes
     router-link.button.primary(
-      v-if="voting && nobodyHasVotedYet"
+      v-if="imFirst"
       v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
     ) {{ $t("RESULT.BE_THE_FIRST") }}
 
@@ -113,15 +113,16 @@
                   span {{ stats ? stats.maxVoteCountExpected : '-' }}
               .people {{ $t("RESULT.USUALLY") }} {{ stats ? stats.voteCountAverage : '-' }} {{ $t("RESULT.PEOPLE_PARTICIPATE") }}
             .participation
-              template(v-if="voting && voting.didIVote") {{ $t("RESULT.ALREADY_VOTED") }}
-              template(v-if="voting && !voting.didIVote") {{ $t("RESULT.NOT_PARTICIPATE") }}
+              template(v-if="!isExpired && didIVote") {{ $t("RESULT.ALREADY_VOTED") }}
+              template(v-if="!isExpired && !voting.didIVote") {{ $t("RESULT.NOT_PARTICIPATE") }}
+              template(v-if="isExpired") {{ $t("RESULT.PARTICIPATION_ENDED") }}
             router-link.button.primary.desktop(
-              v-if="voting && !nobodyHasVotedYet && !voting.didIVote"
+              v-if="canShareMood"
               v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
             ) {{ $t("RESULT.SHARE_MOOD") }}
             //- Show this when no votes
             router-link.button.primary.desktop(
-              v-if="voting && nobodyHasVotedYet"
+              v-if="imFirst"
               v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
             ) {{ $t("RESULT.BE_THE_FIRST") }}
       .mood-sorter-section(v-if="voting")

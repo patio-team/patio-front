@@ -18,8 +18,6 @@
 
 <template src="./VotingResult.pug" lang="pug"></template>
 <style src="./VotingResult.css" scoped></style>
-
-
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
@@ -74,16 +72,28 @@ export default class VotingResult extends Vue {
     return this.voting ? this.voting.stats : null;
   }
 
-  public get votingDateTime() {
-    return this.voting ? this.voting.createdAtDateTime : DateTime.local();
+  public get votes() {
+    return this.voting ? this.voting.votes : null;
   }
 
-  public get nobodyHasVotedYet() {
-    if (this.stats && this.stats.votesByMood && this.stats.votesByMood.length > 0) {
-      return this.stats.votesByMood.map((next) => next.count).reduce((a, b) => a + b) === 0;
-    } else {
-      return true;
-    }
+  public get isExpired() {
+    return this.voting && this.voting.expired;
+  }
+
+  public get didIVote() {
+    return this.voting && this.voting.didIVote;
+  }
+
+  public get imFirst() {
+    return this.voting && this.votes ? !this.isExpired && this.votes.totalCount === 0 : false;
+  }
+
+  public get canShareMood() {
+    return !this.isExpired && !this.didIVote && !this.imFirst;
+  }
+
+  public get votingDateTime() {
+    return this.voting ? this.voting.createdAtDateTime : DateTime.local();
   }
 
   public get nextVotingId() {
@@ -94,6 +104,10 @@ export default class VotingResult extends Vue {
     return this.voting && this.voting.previousVoting ? this.voting.previousVoting.id : null;
   }
 
+  public async mounted() {
+    await this.updateVoting();
+  }
+
   @Watch("votingId")
   public async onVotingIdChanged(val: string, old: string) {
     if (val !== old) {
@@ -101,13 +115,15 @@ export default class VotingResult extends Vue {
     }
   }
 
-  public async mounted() {
-    await this.updateVoting();
-  }
-
   private async updateVoting() {
     if (this.votingId) {
       await this.getVoting({id: this.votingId});
+    }
+  }
+
+  private async navigateToAnotherVoting(votingId: string | null) {
+    if (votingId) {
+      await this.getVoting({id: votingId});
     }
   }
 
@@ -135,12 +151,6 @@ export default class VotingResult extends Vue {
 
   private handleTeamMembers() {
     this.$modal.push("dialog-team-members");
-  }
-
-  private async navigateToAnotherVoting(votingId: string | null) {
-    if (votingId) {
-      await this.getVoting({id: votingId});
-    }
   }
 }
 </script>
