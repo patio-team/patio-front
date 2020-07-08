@@ -25,7 +25,7 @@
     ) {{ $t("RESULT.SHARE_MOOD") }}
     //- Show this when no votes
     router-link.button.primary(
-      v-if="nobodyHasVotedYet"
+      v-if="voting && nobodyHasVotedYet"
       v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
     ) {{ $t("RESULT.BE_THE_FIRST") }}
 
@@ -56,11 +56,14 @@
         .average-mood
           .title-container.title-container-large
             h2(
-              v-if="!nextVotingId"
+              v-if="voting && !nextVotingId"
             ) {{ $t("RESULT.LAST_POLL_RESULT") }}
             h2(
-              v-if="nextVotingId"
+              v-if="voting && nextVotingId"
             ) {{ $t("RESULT.POLL_RESULT") }}
+            h2(
+              v-if="!voting"
+            ) {{ $t("RESULT.NO_POLLS_YET") }}
           AverageMood(
             v-if="stats"
             :moodAverage="stats.average | numeral('0.0') "
@@ -78,7 +81,7 @@
         .participation-container
           .title-container.title-container-participation.date.no-margin
             span.time(v-if="voting") {{ $d(voting.createdAtDateTime, 'long') }}
-          .participation-info
+          .participation-info(v-if="voting")
             //- Hide template if there is no data
             template
               .row
@@ -100,7 +103,7 @@
               v-if="voting && nobodyHasVotedYet"
               v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
             ) {{ $t("RESULT.BE_THE_FIRST") }}
-      .mood-sorter-section
+      .mood-sorter-section(v-if="voting")
         MoodSorter(:stats="stats")
         .loading-holder(v-if="isLoading")
           Loader

@@ -198,6 +198,10 @@ export default class VoteChart extends Vue {
     return votingChartStore.chartState.hasNext;
   }
 
+  public get emptyChart() {
+    return this.chartDataset.length === 0;
+  }
+
   public mounted() {
     this.loadData();
     window.addEventListener("resize", () => this.handleResize());
