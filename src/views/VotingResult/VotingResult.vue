@@ -26,6 +26,7 @@ import { namespace } from "vuex-class";
 import { Group, Voting } from "@/domain";
 import VoteList from "./VoteList/VoteList.vue";
 import VoteChart from "./VoteChart/VoteChart.vue";
+import LeaveTeamDialog from "./LeaveTeamDialog/LeaveTeamDialog.vue";
 import AverageMood from "@/components/shared/AverageMood/AverageMood.vue";
 import MoodSorter from "@/components/shared/MoodSorter/MoodSorter.vue";
 import Loader from "@/components/shared/Loader/Loader.vue";
@@ -41,6 +42,7 @@ const VotingStore = namespace("voting");
     AverageMood,
     MoodSorter,
     Loader,
+    LeaveTeamDialog,
   },
 })
 export default class VotingResult extends Vue {
@@ -123,6 +125,10 @@ export default class VotingResult extends Vue {
 
   private handleNextVotingClick() {
     this.navigateToAnotherVoting(this.nextVotingId);
+  }
+
+  private handleLeaveTeam() {
+    this.$modal.push("confirm-leave-group");
   }
 
   private async navigateToAnotherVoting(votingId: string | null) {

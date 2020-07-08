@@ -69,10 +69,8 @@ export class VotingChartStore extends VuexModule {
     const previous = statistics.offset + (MAX - OVERLAP);
     const next = statistics.offset - (MAX - OVERLAP);
     const hasRecords = statistics.totalCount > 0;
-    const hasPrev = hasRecords && statistics.totalCount >= (statistics.offset + MAX);
-    const hasNext = hasRecords && (statistics.offset - (MAX - OVERLAP)) >= 0;
-
-    // console.log({previous, hasPrev, next, hasNext, offset: statistics.offset, totalCount: statistics.totalCount})
+    const hasPrev = hasRecords && statistics.totalCount >= (statistics.offset + MAX) || false;
+    const hasNext = hasRecords && (statistics.offset - (MAX - OVERLAP)) >= 0 || false;
 
     statistics.data = statistics.data.sort((a: VotingStats, b: VotingStats) => {
       return a.createdAtDateTime === b.createdAtDateTime
@@ -80,7 +78,7 @@ export class VotingChartStore extends VuexModule {
         : a.createdAtDateTime > b.createdAtDateTime ? 1 : -1;
     });
 
-    if (!hasNext) {
+    if (!hasNext && statistics.totalCount > 1) {
       const lastRecord = statistics.data[statistics.data.length - 1];
 
       statistics.data = [
@@ -89,7 +87,7 @@ export class VotingChartStore extends VuexModule {
       ];
     }
 
-    if (!hasPrev) {
+    if (!hasPrev && statistics.totalCount > 1) {
       const firstRecord = statistics.data[0];
 
       statistics.data = [
