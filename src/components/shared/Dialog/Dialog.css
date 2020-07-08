@@ -44,6 +44,23 @@
 
 /*  Content
 ---------------------------------------- */
+
+.modal-overflow {
+  height: auto;
+  left: 0;
+  margin: .75rem 0;
+  max-height: calc(80vh - .5rem);
+  max-width: 1000px;
+  opacity: 1;
+  overflow: auto;
+  padding: 0 1.8rem;
+  width: 100%;
+
+  @media (--small-viewport) {
+    max-height: calc(60vh - 1.5rem);
+  }
+}
+
 .modal-content {
   background-color: var(--white-400);
   border-radius: 20px;
@@ -54,8 +71,7 @@
   max-height: 80vh;
   max-width: 1000px;
   opacity: 1;
-  overflow: auto;
-  padding: 2rem;
+  padding: .2rem;
   position: absolute;
   right: 0;
   top: 0;

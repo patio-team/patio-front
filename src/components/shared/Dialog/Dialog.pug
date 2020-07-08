@@ -22,6 +22,7 @@ modal(
 )
   .modal-backdrop(slot="backdrop")
   div
-    button.modal-close-button(type="button" @click="close")
-      include ../../../assets/img/cross.svg
-    slot
+    .modal-overflow
+      button.modal-close-button(type="button" @click="close")
+        include ../../../assets/img/cross.svg
+      slot

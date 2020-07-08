@@ -369,6 +369,7 @@ link {
 }
 
 ::-webkit-scrollbar {
+  padding: 1rem;
   width: 4px;
 }
 
