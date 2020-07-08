@@ -18,10 +18,11 @@
 dw-dialog(name="dialog-team-members")
   .list-member
     h2.title Members of {{ group.name }}
-    ul
-      li.member(v-for="member in memberList" @click="handleMemberSelection(member.id)")
-        h1 {{ member.name }}
-        .avatar-holder
-          Avatar.avatar(
-            :name="member ? member.name : $t('COMMON.USERS.ANONYMOUS_USER')"
-          )
+    .overflow
+      ul
+        li.member(v-for="member in memberList" @click="handleMemberSelection(member.id)")
+          h1 {{ member.name }}
+          .avatar-holder
+            Avatar.avatar(
+              :name="member ? member.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+            )
