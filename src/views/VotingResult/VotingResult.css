@@ -81,11 +81,11 @@ div.hide {
   }
 
   @media (--large-viewport) {
-    margin: 2rem 0 0;
+    margin: 2rem 0 1rem;
   }
 
   & h1 {
-    margin: 0 0 1rem;
+    margin: 0;
   }
 
   & .text {
@@ -93,12 +93,21 @@ div.hide {
     flex: 1 1 auto;
     flex-direction: column;
     margin-right: 2rem;
+
+    @media (--large-viewport) {
+      align-content: flex-end;
+      flex: 0 1 auto;
+    }
   }
 
   & .links {
     @media (--small-viewport) {
       display: flex;
       margin: 0;
+    }
+
+    @media (--large-viewport) {
+      align-items: flex-end;
     }
   }
 
@@ -468,11 +477,14 @@ div.hide {
     }
 
     & .title {
+      align-self: flex-start;
+      color: var(--new-grey-500);
       font-family: 'Merriweather', serif;
       font-size: 1rem;
       font-style: normal;
       font-weight: normal;
       line-height: 36px;
+      margin: 0;
       padding-right: 2rem;
     }
 

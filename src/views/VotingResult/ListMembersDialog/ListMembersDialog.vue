@@ -16,11 +16,11 @@
  along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<template src="./ListMembersDialog.pug" lang="pug">
-
-</template>
+<template src="./ListMembersDialog.pug" lang="pug"></template>
+<style src="./ListMembersDialog.css"></style>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import Avatar from "@/components/shared/Avatar/Avatar.vue";
 import ConfirmDialog from "@/components/shared/ConfirmDialog/ConfirmDialog.vue";
 import { namespace } from "vuex-class";
 import { Group, User } from "@/domain";
@@ -30,6 +30,7 @@ const GroupStore = namespace("group");
 
 @Component({
   components: {
+    Avatar,
     "dw-dialog": Dialog,
   },
 })

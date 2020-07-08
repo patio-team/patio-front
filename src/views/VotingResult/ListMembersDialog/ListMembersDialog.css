@@ -1,0 +1,74 @@
+/*
+ * Copyright (C) 2019 Kaleidos Open Source SL
+ *
+ * This file is part of Dont Worry Be Happy (DWBH).
+ * DWBH is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DWBH is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../../assets/css/mixins.css";
+
+.list-member {
+  padding: 1rem 2rem;
+
+  & .title {
+    align-self: center;
+    color: #34314c;
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 30px;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+
+  & li {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    @media (--small-viewport) {
+      width: calc(50%);
+    }
+
+    & a {
+      color: var(--new-grey-700);
+    }
+
+    & .avatar-holder {
+      font-size: 24px;
+      height: 48px;
+      width: 48px;
+    }
+
+    & h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 42px;
+      margin: 0 0 0 1rem;
+    }
+  }
+}

@@ -16,7 +16,12 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 dw-dialog(name="dialog-team-members")
-  h1 Members of of {{ group.name }}
-  ul
-    li(v-for="member in memberList")
-      button(@click="handleMemberSelection(member.id)") {{ member.name }}
+  .list-member
+    h2.title Members of {{ group.name }}
+    ul
+      li.member(v-for="member in memberList" @click="handleMemberSelection(member.id)")
+        h1 {{ member.name }}
+        .avatar-holder
+          Avatar.avatar(
+            :name="member ? member.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+          )

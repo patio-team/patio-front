@@ -46,15 +46,16 @@
 ---------------------------------------- */
 .modal-content {
   background-color: var(--white-400);
+  border-radius: 20px;
   box-shadow: 10px 10px 10px 0 var(--black-400-10);
   height: auto;
   left: 0;
   margin: 10vh auto;
   max-height: 80vh;
-  max-width: 80vw;
+  max-width: 1000px;
   opacity: 1;
   overflow: auto;
-  padding: 5rem 2rem 0;
+  padding: 2rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -65,7 +66,6 @@
   @media (--small-viewport) {
     margin: 20vh auto;
     max-height: 60vh;
-    padding: 5rem 2rem;
   }
 }
 
