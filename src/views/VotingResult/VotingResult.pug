@@ -30,7 +30,16 @@
     ) {{ $t("RESULT.BE_THE_FIRST") }}
 
   .title-container.title-container-mobile
-    h1 {{ selectedGroup.name }}
+    .title-wrapper
+      .text
+        h1 {{ selectedGroup.name }}
+      .links
+        button.link-button See members
+        button.link-button Leave Team
+      .actions
+        button.text-and-icon
+            include ../../assets/img/settings.svg
+            span Team setting
     .row
       h2(
         v-if="!nextVotingId"
@@ -43,7 +52,17 @@
     .graphic-section.empty
       //- Remove Empty class if is not empty
       .title-container.title-container-full
-        h1 {{ selectedGroup.name }}
+        .title-wrapper
+          .text
+            h1 {{ selectedGroup.name }}
+          .links
+            button.link-button See members
+            button.link-button Leave Team
+          .actions
+            button.text-and-icon
+                include ../../assets/img/settings.svg
+                span Team setting
+
 
       .graphic-container
         VoteChart(
