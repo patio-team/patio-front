@@ -250,6 +250,9 @@
     "USUALLY": "Normalmente",
     "PEOPLE_PARTICIPATE": "personas participan",
     "NOT_PARTICIPATE": "Aun no has participado",
-    "ALREADY_VOTED": "Ya has participado"
+    "ALREADY_VOTED": "Ya has participado",
+    "LEAVE_TEAM": "Abandonar equipo",
+    "TEAM_SETTING": "Configurar equipo",
+    "SEE_MEMBERS": "Ver miembros"
   }
 }

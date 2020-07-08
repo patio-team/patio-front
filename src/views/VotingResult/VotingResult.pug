@@ -36,12 +36,12 @@
       .text
         h1 {{ selectedGroup.name }}
         .links
-          button.link-button See members
-          button.link-button(@click="handleLeaveTeam") Leave Team
+          button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
+          button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
       .actions
         button.text-and-icon
             include ../../assets/img/settings.svg
-            span Team setting
+            span {{ $t("RESULT.TEAM_SETTING") }}
     .row
       h2(
         v-if="!nextVotingId"
@@ -58,12 +58,12 @@
           .text
             h1 {{ selectedGroup.name }}
           .links
-            button.link-button(@click="handleTeamMembers") See members
-            button.link-button(@click="handleLeaveTeam") Leave Team
+            button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
+            button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
           .actions
             button.text-and-icon
                 include ../../assets/img/settings.svg
-                span Team setting
+                span {{ $t("RESULT.TEAM_SETTING") }}
 
 
       .graphic-container

@@ -259,6 +259,9 @@
     "USUALLY": "Usually",
     "PEOPLE_PARTICIPATE": "people participate",
     "NOT_PARTICIPATE": "You haven't participated yet",
-    "ALREADY_VOTED": "You've already participated"
+    "ALREADY_VOTED": "You've already participated",
+    "LEAVE_TEAM": "Leave Team",
+    "TEAM_SETTING": "Team setting",
+    "SEE_MEMBERS": "See members"
   }
 }
