@@ -179,6 +179,13 @@
   padding-top: 22px;
   position: relative;
   width: 100%;
+
+  &.empty {
+    background-color: var(--white-500);
+    background-image: url(../../../assets/img/bg-graphic.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .echarts {

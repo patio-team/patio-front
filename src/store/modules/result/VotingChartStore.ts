@@ -68,8 +68,9 @@ export class VotingChartStore extends VuexModule {
 
     const previous = statistics.offset + (MAX - OVERLAP);
     const next = statistics.offset - (MAX - OVERLAP);
-    const hasPrev = statistics.totalCount     >= (statistics.offset + MAX);
-    const hasNext = (statistics.offset - (MAX - OVERLAP)) >= 0;
+    const hasRecords = statistics.totalCount > 0;
+    const hasPrev = hasRecords && statistics.totalCount >= (statistics.offset + MAX);
+    const hasNext = hasRecords && (statistics.offset - (MAX - OVERLAP)) >= 0;
 
     // console.log({previous, hasPrev, next, hasNext, offset: statistics.offset, totalCount: statistics.totalCount})
 
