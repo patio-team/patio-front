@@ -58,6 +58,9 @@ export default class MemberVotesList extends Vue {
   private showMoreButton = false;
 
   public mounted() {
+    setTimeout(() => {
+      this.$emit(`vuemasonry.itemAdded__VueMasonry`);
+    }, 500);
     this.loadMoreVotes();
   }
 

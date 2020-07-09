@@ -31,6 +31,10 @@
   }
 }
 
+.votes.member-votes-list {
+  margin-top: calc(2rem - 12px);
+}
+
 .v1 { @mixin vote-1; }
 .v2 { @mixin vote-2; }
 .v3 { @mixin vote-3; }

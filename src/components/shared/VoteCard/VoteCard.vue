@@ -50,6 +50,9 @@ export default class VoteCard extends Vue {
   @Prop(String)
   private hue!: string;
 
+  @Prop(String)
+  private date!: string;
+
   @Prop()
   private comment!: any;
 

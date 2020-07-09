@@ -22,7 +22,7 @@
   @mixin new-view;
 
   margin-bottom: 0;
-  padding: 0 1rem;
+  padding: 40px 3.5rem;
 
   & .head {
     align-items: center;

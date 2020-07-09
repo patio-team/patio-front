@@ -17,9 +17,13 @@
 
 .group-member-profile(v-if="profile")
   .profile
-    img.avatar(data-testid="user-avatar" v-bind:src="profile.hash|gravatarImage({size: 100})" alt)
-    .info
-      .name(data-testid="user-name") {{ profile.name }}
+      .avatar-holder
+        Avatar.avatar(
+          :hash="profile.hash"
+          :name="profile.name"
+        )
+      .info
+        .name(data-testid="user-name") {{ profile.name }}
   dw-member-votes-list.votes(
     v-bind:group="group"
     v-bind:profile="profile"

@@ -18,13 +18,15 @@
 
 .vote-card
   .header(v-if="group")
-    h1
-      router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }") {{ user.name }}
-    .avatar
-      router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }")
-        Avatar.avatar(
-          :name="user ? user.name : $t('COMMON.USERS.ANONYMOUS_USER')"
-        )
+    .date {{ $d(date, 'long') }}
+    .user-container(v-if="!date")
+      h1
+        router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }") {{ user.name }}
+      .avatar
+        router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }")
+          Avatar.avatar(
+            :name="user ? user.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+          )
   .header(v-if="!group")
     h1 {{ user.name }}
     .avatar

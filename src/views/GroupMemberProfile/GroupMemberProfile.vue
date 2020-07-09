@@ -23,6 +23,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 import { Group, User } from "@/domain";
+import Avatar from "@/components/shared/Avatar/Avatar.vue";
 
 import MemberVotesList from "./MemberVotesList/MemberVotesList.vue";
 
@@ -31,6 +32,7 @@ const ProfileStore = namespace("profile");
 @Component({
   components: {
     "dw-member-votes-list": MemberVotesList,
+    Avatar,
   },
 })
 export default class GroupMemberProfile extends Vue {

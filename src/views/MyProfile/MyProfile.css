@@ -19,7 +19,12 @@
 @import "../../assets/css/mixins.css";
 
 .my-profile {
-  @mixin view;
+  @mixin new-view;
+
+  & .avatar-holder {
+    height: 6rem;
+    width: 6rem;
+  }
 
   & .profile {
     align-items: center;
@@ -28,28 +33,15 @@
     justify-content: flex-start;
     width: 100%;
 
-    & .avatar {
-      border: 6px solid var(--orange-400);
-      border-radius: 50%;
-      width: 100px;
-
-      @media only screen and (max-width: 767px) {
-        border-width: 3px;
-        width: 70px;
-      }
-    }
-
     & .info {
+      color: var(--new-grey-700);
       flex: 1 0;
       padding: 0 1rem;
 
       & .name {
-        font-size: 1.5rem;
+        font-size: 2rem;
         line-height: 2rem;
-
-        @media only screen and (max-width: 767px) {
-          font-size: 1.2rem;
-        }
+        margin-bottom: .5rem;
       }
     }
 

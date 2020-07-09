@@ -22,13 +22,18 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, namespace } from "vuex-class";
+import Avatar from "@/components/shared/Avatar/Avatar.vue";
 
 import { User } from "@/domain";
 
 import md5 from "md5";
 
 const AuthStore = namespace("auth");
-@Component
+@Component({
+  components: {
+    Avatar,
+  },
+})
 export default class MyProfile extends Vue {
   @AuthStore.Getter("myProfile")
   private me!: User;

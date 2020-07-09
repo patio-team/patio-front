@@ -23,10 +23,6 @@
 @custom-media --large-viewport (min-width:  1440px);
 @custom-media --xlarge-viewport (min-width:  1920px);
 
-@define-mixin new-view {
-  display: flex;
-}
-
 /* Down from here are things that should be deprecated */
 
 /* generic outline
@@ -59,6 +55,23 @@
   margin: 0 1rem 1rem;
   padding: 1rem;
   width: 100%;
+
+  & .title-view {
+    color: var(--new-grey-700);
+    font-family: 'Merriweather', serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 42px;
+  }
+
+  @media (--small-viewport) {
+    padding: 40px 2rem;
+  }
+
+  @media (--medium-viewport) {
+    padding: 40px 4.5rem;
+  }
 }
 
 /* generic section mixins

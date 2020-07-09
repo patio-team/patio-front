@@ -29,22 +29,33 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin: 0 12px;
   width: 100%;
 
-  & .avatar {
-    border: 6px solid var(--orange-400);
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
+  & .avatar-holder {
+    height: 6rem;
+    width: 6rem;
   }
 
   & .info {
+    color: var(--new-grey-700);
     flex: 1 0;
-    padding-left: 3rem;
+    padding: 0 1rem;
 
     & .name {
-      font-size: 1.5rem;
+      font-size: 2rem;
       line-height: 2rem;
+      margin-bottom: .5rem;
+    }
+  }
+
+  & .actions {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+
+    & .action {
+      line-height: 1.5rem;
     }
   }
 }

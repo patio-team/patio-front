@@ -16,9 +16,13 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .my-profile(v-if="me")
-  h1.title {{ $t("VIEWS.MY_PROFILE.TITLE") }}
+  h1.title-view {{ $t("VIEWS.MY_PROFILE.TITLE") }}
   .profile
-    img.avatar(data-testid="user-avatar" v-bind:src="me.hash|gravatarImage({size: 100})" alt)
+    .avatar-holder
+      Avatar.avatar(
+        :hash="me.hash"
+        :name="me.name"
+      )
     .info
       .name(data-testid="user-name") {{ me.name }}
       .email(data-testid="user-email") {{ me.email }}

@@ -26,10 +26,6 @@
   @mixin error-form;
 }
 
-.title {
-  color: var(--new-grey-700);
-}
-
 .name,
 .visible-member-list,
 .voting-days,
