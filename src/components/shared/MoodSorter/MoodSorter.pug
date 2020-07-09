@@ -26,6 +26,8 @@
       :class="['mood' + vote.mood, vote.count ? '' : 'empty']")
       .mood-buble-container
         .mood-buble {{ vote.count }}
+        .mood-smiley
+          .mood-emotion
       .mood-bar
         .divider
           .line
@@ -36,6 +38,13 @@
         .bar(
           :style="{ width: setBarSize(vote.count, totalVotes) + '%' }"
         )
+          .bar-text
+            span(v-if="vote.mood === 1") {{ $t("RESULT.VOTE_1") }}
+            span(v-if="vote.mood === 2") {{ $t("RESULT.VOTE_2") }}
+            span(v-if="vote.mood === 3") {{ $t("RESULT.VOTE_3") }}
+            span(v-if="vote.mood === 4") {{ $t("RESULT.VOTE_4") }}
+            span(v-if="vote.mood === 5") {{ $t("RESULT.VOTE_5") }}
+          .bar-count {{ vote.count }}
     .mood(
       v-if="isEmpty"
       v-for="i in 5"

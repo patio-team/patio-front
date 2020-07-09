@@ -254,6 +254,11 @@
     "ALREADY_VOTED": "Ya has participado",
     "LEAVE_TEAM": "Abandonar equipo",
     "TEAM_SETTING": "Configurar equipo",
-    "SEE_MEMBERS": "Ver miembros"
+    "SEE_MEMBERS": "Ver miembros",
+    "VOTE_5": "Muy bien",
+    "VOTE_4": "Bien",
+    "VOTE_3": "Neutro",
+    "VOTE_2": "Mal",
+    "VOTE_1": "Muy mal"
   }
 }

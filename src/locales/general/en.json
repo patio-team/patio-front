@@ -263,6 +263,11 @@
     "ALREADY_VOTED": "You've already participated",
     "LEAVE_TEAM": "Leave Team",
     "TEAM_SETTING": "Team setting",
-    "SEE_MEMBERS": "See members"
+    "SEE_MEMBERS": "See members",
+    "VOTE_5": "Very good",
+    "VOTE_4": "Good",
+    "VOTE_3": "Neutral",
+    "VOTE_2": "Bad",
+    "VOTE_1": "Very bad"
   }
 }

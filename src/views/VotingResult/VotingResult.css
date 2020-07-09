@@ -345,7 +345,7 @@ div.hide {
     flex-direction: column;
 
     @media (--small-viewport) {
-      margin-left: 25px;
+      margin-left: 12px;
     }
 
     @media (--large-viewport) {
