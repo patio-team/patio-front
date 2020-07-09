@@ -22,10 +22,10 @@ import { gravatarImage } from "./gravatar";
 describe("filters: gravatar/gravatarImage", () => {
   it("return a gravatar url with default size", () => {
     expect(gravatarImage("4f64c9f81bb0d4ee969aaf7b4a5a6f40")).toEqual(
-      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=50&d=robohash");
+      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=50&d=404");
   });
   it("return a gravatar url with 150px size", () => {
     expect(gravatarImage("4f64c9f81bb0d4ee969aaf7b4a5a6f40", {size: 150})).toEqual(
-      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=150&d=robohash");
+      "https://www.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=150&d=404");
   });
 });
