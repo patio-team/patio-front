@@ -23,16 +23,21 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
-import Markdown from "@/components/shared/Markdown/Markdown.vue";
+import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
 
 import { Group, User, Vote } from "@/domain";
 import { DateTime, now, minusTo } from "@/utils/datetime";
+import { masonry, masonryTile } from "@/components/directives/MasonryDirectives";
 
 const ProfileStore = namespace("profile");
 
 @Component({
   components: {
-    "dw-markdown": Markdown,
+    VoteCard,
+  },
+  directives: {
+    masonry,
+    masonryTile,
   },
 })
 export default class MemberVotesList extends Vue {
@@ -58,13 +63,6 @@ export default class MemberVotesList extends Vue {
 
   public async handleClickMoreVotes() {
     this.loadMoreVotes();
-  }
-
-  public getVoteClasses(vote: Vote) {
-    return [
-      // v1 v2 v3 v4 v5
-      `v${ vote.score }`,
-    ];
   }
 
   private async loadMoreVotes() {

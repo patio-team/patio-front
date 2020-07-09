@@ -19,7 +19,7 @@
 .group-layout(v-if="group")
   .head
     h1
-      router-link.title(data-testid="title" v-bind:to="{ name: 'groups:detail', params: group }")
+      router-link.title(data-testid="title" v-bind:to="{ name: 'team', params: group.id }")
         | {{ group.name }}
       transition(name="fade")
         span.subtitle(data-testid="subtitle" v-if="subtitle") {{ subtitle }}

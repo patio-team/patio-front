@@ -18,15 +18,24 @@
 .member-votes-list.empty(data-testid="votes-list" v-if="votes.length === 0")
   | {{ $t('MEMBER_VOTES_LIST.NO_VOTES_YET') }}
 .member-votes-list(data-testid="votes-list" v-else)
-  .votes-list
-    .vote-detail(v-for="vote in votes")
-      .date {{ vote.createdAtDateTime | toDateTimeWithWeekDay }}
-      .info
-        .score(
-          v-bind:class="getVoteClasses(vote)"
-        ) {{ vote.score }}
-        .comment(v-if="vote.comment")
-          dw-markdown(:text="vote.comment")
+  .vote-list(
+    v-masonry
+    horizontal-order="true"
+    item-selector=".vote-card"
+    transition-duration="0"
+  )
+    vote-card.vote-card(
+      v-masonry-tile
+      v-for="(vote, $index) in votes"
+      :vote="vote"
+      :key="$index"
+      :data-num="$index + 1"
+      :user="vote.createdBy"
+
+      :group="group"
+      :mood="vote.score"
+      :comment="vote.comment"
+      :hue="vote.hueMood")
   button.more-votes(
     v-if="showMoreButton"
     v-on:click="handleClickMoreVotes"
