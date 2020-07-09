@@ -21,6 +21,9 @@
 .group-layout {
   @mixin new-view;
 
+  margin-bottom: 0;
+  padding: 0 1rem;
+
   & .head {
     align-items: center;
     display: flex;
@@ -30,11 +33,11 @@
     width: 100%;
 
     & .title {
-      color: var(--black-400);
+      color: var(--new-grey-700);
     }
 
     & .subtitle {
-      color: var(--gray-500);
+      color: var(--new-grey-500);
       font-weight: lighter;
       margin-left: 1rem;
     }

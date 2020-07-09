@@ -17,14 +17,20 @@
 -->
 
 <template src="./GroupMembers.pug" lang="pug"></template>
+<style src="./GroupMembers.css" scoped></style>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Group, User } from "@/domain";
 import { namespace } from "vuex-class";
+import Avatar from "@/components/shared/Avatar/Avatar.vue";
 
 const GroupStore = namespace("group");
 
-@Component
+@Component({
+  components: {
+    Avatar,
+  },
+})
 export default class GroupMembers extends Vue {
   public input = {email: ""};
 

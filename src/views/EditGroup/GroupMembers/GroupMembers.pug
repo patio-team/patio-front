@@ -16,18 +16,28 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .group-members
-  h1 Group Members
+  h1.title Group Members
   .member-add-form
     form.form(data-testid="form" v-on:submit.prevent="handleAddUserToGroup" autocomplete="off")
-      label(for="member") Type the email of the new member
-      input(
-        id="member"
-        name="member"
-        type="email"
-        placeholder="eg. username@email.com"
-        v-model="input.email"
-      )
-      button(type="submit" :disabled="disableAddButton") Add
-  .member-list
+      .fieldset
+        .label-container
+          label(for="member") Type the email of the new member
+        .input-container
+          input(
+            id="member"
+            name="member"
+            type="email"
+            placeholder="eg. username@email.com"
+            v-model="input.email"
+          )
+      .action-buttons
+        button.primary(type="submit" :disabled="disableAddButton") Add
+  .list-member
     ul
-      li(v-for="member in memberList") {{ member.name }}
+      li.member(v-for="member in memberList")
+        h1 {{ member.name }}
+        .avatar-holder
+          Avatar.avatar(
+            :name="member ? member.name : $t('COMMON.USERS.ANONYMOUS_USER')"
+          )
+

@@ -196,8 +196,8 @@
   }
 
   &:disabled {
-    background-color: var(--gray-200);
-    border-color: var(--gray-200);
+    background-color: var(--new-grey-200);
+    border-color: var(--new-grey-200);
     color: var(--white);
     cursor: not-allowed;
   }

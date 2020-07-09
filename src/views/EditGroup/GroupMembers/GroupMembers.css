@@ -22,14 +22,12 @@
   width: 100%;
 }
 
-.edit-group {
-  & .action-buttons {
-    margin-top: 0;
-  }
-}
-
 .error {
   @mixin error-form;
+}
+
+.title {
+  color: var(--new-grey-700);
 }
 
 .name,
@@ -88,10 +86,6 @@
 .action-buttons {
   display: flex;
 
-  @media (--small-viewport) {
-    margin-top: 60px;
-  }
-
   & button,
   & .button {
     margin-right: 12px;
@@ -112,5 +106,57 @@
 
   & input {
     max-width: 410px;
+  }
+}
+
+.list-member {
+  padding: 2rem 0 0;
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+
+  & li {
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    @media (--small-viewport) {
+      width: calc(50%);
+    }
+
+    @media (--medium-viewport) {
+      width: calc(30%);
+    }
+
+    @media (--large-viewport) {
+      width: calc(22%);
+    }
+
+    & a {
+      color: var(--new-grey-700);
+    }
+
+    & .avatar-holder {
+      font-size: 24px;
+      height: 48px;
+      width: 48px;
+    }
+
+    & h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 42px;
+      margin: 0 0 0 1rem;
+    }
   }
 }
