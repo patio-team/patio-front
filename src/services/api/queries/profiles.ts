@@ -40,5 +40,9 @@ query ListUserVotesInGroup(
     score
     comment
     createdAtDateTime
+    createdBy {
+      name
+      hash
+    }
   }
 }`;
