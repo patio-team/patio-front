@@ -40,6 +40,7 @@
           button.name-actions(v-on:click="toggleUserDropdown")
             .avatar-container
               dw-avatar(
+                :hash="hash"
                 :name="name"
                 mood="0"
               )
@@ -73,9 +74,15 @@
           v-bind:class="{visible: isUserVisible}"
       )
         .content
-          .avatar-container
+          .avatar-container(v-if="!hash")
             .avatar-decoration
             .name {{ nameInitials(name) }}
+          .avatar-container.image(v-if="hash")
+            dw-avatar(
+              :hash="hash"
+              :name="name"
+              mood="0"
+            )
           .options-text.name {{ name }}
           .options-text.email {{ email }}
           .block

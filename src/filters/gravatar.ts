@@ -24,6 +24,6 @@ export const gravatarImage = (
   hash: string,
   { size }: { size: number} = { size: 50 },
 ): string => {
-  return `https://www.gravatar.com/avatar/${hash}?s=${size}&d=robohash`;
+  return `https://www.gravatar.com/avatar/${hash}?s=${size}&d=404`;
 };
 Vue.filter("gravatarImage", gravatarImage);

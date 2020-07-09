@@ -38,6 +38,7 @@
         h1 {{ member.name }}
         .avatar-holder
           Avatar.avatar(
+            :hash="member.hash"
             :name="member ? member.name : $t('COMMON.USERS.ANONYMOUS_USER')"
           )
 

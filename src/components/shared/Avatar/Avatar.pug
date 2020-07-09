@@ -19,15 +19,23 @@
   ref="holder"
   :class="getMood(mood)"
 )
-  .avatar-image(
-    v-if="avatar"
+  .avatar-image.avatar-name(
+    v-if="hash"
   )
     img(
-      v-bind:src="avatar"
+      v-bind:src="hash|gravatarImage({size: 250})"
+      onerror="this.style.display='none'"
     )
     .mood-decoration
+    .text-background
+      .text-deco
+    span(
+      ref="text"
+      v-bind:style="{ fontSize: fontWidth + 'px' }"
+    ) {{ nameInitials(name) }}
+
   .avatar-name(
-    v-if="!avatar"
+    v-if="!hash"
   )
     .mood-decoration
     .text-background

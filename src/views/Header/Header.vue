@@ -40,6 +40,10 @@ export default class Header extends Vue {
     return this.me ? this.me.name : undefined;
   }
 
+  get hash() {
+    return this.me ? this.me.hash : undefined;
+  }
+
   get email() {
     return this.me ? this.me.email : undefined;
   }
@@ -106,6 +110,11 @@ export default class Header extends Vue {
       ) {
         this.closeDropdowns();
       }
+    });
+    document.addEventListener("DOMContentLoaded", (event) => {
+      document.querySelectorAll("img").forEach((img) => {
+        img.onerror = function() {this.style.display="none";};
+      });
     });
   }
 

@@ -24,5 +24,6 @@ dw-dialog(name="dialog-team-members")
           h1 {{ member.name }}
           .avatar-holder
             Avatar.avatar(
+              :hash="member ? member.hash : null"
               :name="member ? member.name : $t('COMMON.USERS.ANONYMOUS_USER')"
             )

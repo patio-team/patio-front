@@ -38,6 +38,9 @@ export default class Avatar extends Vue {
   @Prop(String)
   private avatar!: string;
 
+  @Prop(String)
+  private hash!: string;
+
   @Ref("holder")
   private readonly holder!: HTMLDivElement;
 

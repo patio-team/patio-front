@@ -212,6 +212,11 @@
     position: relative;
     width: 100%;
 
+    &.image {
+      height: 82px;
+      width: 82px;
+    }
+
     & .avatar-decoration {
       background: var(--new-grey-50);
       border-radius: 100%;
