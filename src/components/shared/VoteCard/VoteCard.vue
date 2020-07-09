@@ -25,6 +25,7 @@ import Avatar from "@/components/shared/Avatar/Avatar.vue";
 import Smiley from "../Smiley/Smiley.vue";
 import { Viewer } from "@toast-ui/vue-editor";
 import { User, Group } from "@/domain";
+import { DateTime } from "@/utils/datetime";
 
 @Component({
   components: {
@@ -50,8 +51,8 @@ export default class VoteCard extends Vue {
   @Prop(String)
   private hue!: string;
 
-  @Prop(String)
-  private date!: string;
+  @Prop(DateTime)
+  private date!: DateTime;
 
   @Prop()
   private comment!: any;
