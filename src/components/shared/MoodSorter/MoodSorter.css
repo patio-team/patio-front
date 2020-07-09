@@ -54,6 +54,10 @@
 
   & .mood {
     width: auto;
+
+    &.empty {
+      padding-right: 0;
+    }
   }
 }
 
@@ -97,7 +101,6 @@
 
   &.empty {
     margin-right: .5rem;
-    padding-right: 0;
 
     & .mood-buble {
       border-style: dashed;
@@ -185,7 +188,7 @@
   }
 
   & .bar-text {
-    font-family: Lato;
+    font-family: 'Lato', serif;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
