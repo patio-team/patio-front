@@ -39,8 +39,8 @@
     "ACTION_DELETE_GROUP": "Delete",
     "ACTION_LEAVE_GROUP": "Leave",
     "CONFIRM_DIALOG_LEAVE": {
-      "TITLE": "Are you sure you want to leave the group?",
-      "MESSAGE": "If you leave the group you will not be able to access it or participate in any of its votes.",
+      "TITLE": "Are you sure you want to leave the team?",
+      "MESSAGE": "If you leave you will not be able to access it or participate in any of its polls.",
       "ACEPT_BUTTON_TEXT": "Yes, I want to leave",
       "REJECT_BUTTON_TEXT": "I want to remain a member."
     },
