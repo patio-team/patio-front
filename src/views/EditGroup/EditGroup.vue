@@ -17,6 +17,7 @@
 -->
 
 <template src="./EditGroup.pug" lang="pug"></template>
+<style src="./EditGroup.css" scoped></style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";

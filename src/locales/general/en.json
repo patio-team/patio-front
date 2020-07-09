@@ -81,7 +81,7 @@
     "INPUT_VOTING_TIME": {
       "LABEL": "What time polls begins? (and reminder email will be sent)"
     },
-    "BUTTON_SUBMIT": "Create Team",
+    "BUTTON_SUBMIT": "Save team",
     "BUTTON_CANCEL": "Cancel"
   },
   "GROUP_MEMBER_LIST": {
@@ -102,7 +102,12 @@
           "MESSAGE": "User \"{email}\" does not exist or is just a memnber."
         }
       }
-    }
+    },
+    "ADD_NEW_MEMBER": "Add new member",
+    "NEW_MEMBER_EMAIL": "Type the email of the new member",
+    "NEW_MEMBER_EMAIL_PLACEHOLDER": "e.g. username@mail.com, userpetname@mail.com",
+    "ADD": "Add",
+    "TEAM_SETTING": "Team setting"
   },
   "GROUPS_TABLE": {
     "LOADING": "Loading...",

@@ -19,6 +19,7 @@
 form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
+  h1.title-view {{ $t("GROUP_MEMBER_LIST.TEAM_SETTING") }}
 
   .name.fieldset
     .label-container

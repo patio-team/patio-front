@@ -17,6 +17,10 @@
 
 
 .group-layout(v-if="group")
+  router-link.close-x(
+    v-bind:to="{ name: 'team' }"
+  )
+    include ../../assets/img/cross.svg
   .head
     h1.title-view
       router-link.title(data-testid="title" v-bind:to="{ name: 'team', params: group.id }")

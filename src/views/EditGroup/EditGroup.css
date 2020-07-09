@@ -18,52 +18,8 @@
 
 @import "../../assets/css/mixins.css";
 
-.group-layout {
-  @mixin new-view;
-
-  margin-bottom: 0;
-  padding: 40px 3.5rem;
-  position: relative;
-
-  & .head {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 0;
-    width: 100%;
-
-    & .title {
-      color: var(--new-grey-700);
-    }
-
-    & .subtitle {
-      color: var(--new-grey-500);
-      font-weight: lighter;
-      margin-left: 1rem;
-    }
-  }
-}
-
-.close-x {
-  border-radius: 100%;
-  cursor: pointer;
-  fill: var(--new-grey-700);
-  height: 32px;
-  padding: 6px;
-  position: absolute;
-  right: .5rem;
-  top: .5rem;
-  width: 32px;
-  z-index: 16;
-
-  @media (--small-viewport) {
-    height: 48px;
-    width: 48px;
-  }
-
-  &:hover,
-  &:focus {
-    animation: .5s tapAnimation 1;
-  }
+hr {
+  border: 0;
+  border-top: solid 1px var(--new-grey-100);
+  margin: 3rem 0;
 }

@@ -16,22 +16,22 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .group-members
-  h1.title-view Group Members
+  h2.title-view {{ $t("GROUP_MEMBER_LIST.ADD_NEW_MEMBER") }}
   .member-add-form
     form.form(data-testid="form" v-on:submit.prevent="handleAddUserToGroup" autocomplete="off")
       .fieldset
         .label-container
-          label(for="member") Type the email of the new member
+          label(for="member") {{ $t("GROUP_MEMBER_LIST.NEW_MEMBER_EMAIL") }}
         .input-container
           input(
             id="member"
             name="member"
             type="email"
-            placeholder="eg. username@email.com"
+            v-bind:placeholder="$t('GROUP_MEMBER_LIST.NEW_MEMBER_EMAIL_PLACEHOLDER')"
             v-model="input.email"
           )
       .action-buttons
-        button.primary(type="submit" :disabled="disableAddButton") Add
+        button.primary(type="submit" :disabled="disableAddButton") {{ $t("GROUP_MEMBER_LIST.ADD") }}
   .list-member
     ul
       li.member(v-for="member in memberList")

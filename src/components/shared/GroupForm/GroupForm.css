@@ -22,6 +22,15 @@
   width: 100%;
 }
 
+.title-view {
+  color: var(--new-grey-700);
+  font-family: 'Merriweather', serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 42px;
+}
+
 .edit-group {
   & .action-buttons {
     margin-top: 0;
