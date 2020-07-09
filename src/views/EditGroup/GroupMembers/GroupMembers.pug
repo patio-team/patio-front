@@ -15,16 +15,19 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-.edit-group
-  dw-group-form.edit-group(
-    v-if="group"
-    data-testid="group-form"
-    :group="group"
-    :is-loading="isLoading"
-    :error="error"
-    @submit="handleSubmit"
-  )
-  dw-group-members(
-    v-if="group"
-    :group="group"
-  )
+.group-members
+  h1 Group Members
+  .member-add-form
+    form.form(data-testid="form" v-on:submit.prevent="handleAddUserToGroup" autocomplete="off")
+      label(for="member") Type the email of the new member
+      input(
+        id="member"
+        name="member"
+        type="email"
+        placeholder="eg. username@email.com"
+        v-model="input.email"
+      )
+      button(type="submit" :disabled="disableAddButton") Add
+  .member-list
+    ul
+      li(v-for="member in memberList") {{ member.name }}

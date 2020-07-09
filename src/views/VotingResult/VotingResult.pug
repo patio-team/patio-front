@@ -39,7 +39,7 @@
           button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
           button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
       .actions
-        button.text-and-icon
+        router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
             include ../../assets/img/settings.svg
             span {{ $t("RESULT.TEAM_SETTING") }}
     .row
@@ -61,7 +61,7 @@
             button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
             button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
           .actions
-            button.text-and-icon
+            router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
                 include ../../assets/img/settings.svg
                 span {{ $t("RESULT.TEAM_SETTING") }}
 

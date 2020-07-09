@@ -26,12 +26,14 @@ import { Group } from "@/domain";
 import { EditGroupInput } from "@/services/api/types";
 
 import GroupForm from "@/components/shared/GroupForm/GroupForm.vue";
+import GroupMembers from "./GroupMembers/GroupMembers.vue";
 
 const GroupStore = namespace("group");
 
 @Component({
   components: {
     "dw-group-form": GroupForm,
+    "dw-group-members": GroupMembers,
   },
 })
 export default class EditGroup extends Vue {
