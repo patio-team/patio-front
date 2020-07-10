@@ -24,11 +24,6 @@
   order: 0;
 }
 
-.email,
-.password {
-  @mixin fieldset;
-}
-
 .email {
   order: 1;
 }
@@ -44,7 +39,6 @@
 
 .oauth {
   margin: .5rem 0 1rem 0;
-  order: 4;
 }
 
 .forgot-password {

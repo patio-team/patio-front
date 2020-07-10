@@ -21,6 +21,8 @@
 .with-google {
   @mixin as-social-button;
 
+  margin-bottom: 1.5rem;
+
   & span {
     display: flex;
     flex-grow: 2;

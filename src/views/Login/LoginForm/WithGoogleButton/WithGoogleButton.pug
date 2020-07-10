@@ -15,6 +15,8 @@
   You should have received a copy of the GNU General Public License
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
-a.with-google(v-if="isGoogleAuthEnabled" v-bind:href="url")
-  include ../../../../assets/img/google.svg
-  span {{ $t("LOGIN_FORM.BUTTON_GOOGLE") }}
+.google-login(v-if="isGoogleAuthEnabled" v-bind:href="url")
+  a.with-google
+    include ../../../../assets/img/google.svg
+    span {{ $t("LOGIN_FORM.BUTTON_GOOGLE") }}
+  span {{ $t("LOGIN_FORM.OR") }}

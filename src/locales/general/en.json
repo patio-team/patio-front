@@ -128,16 +128,17 @@
   },
   "LOGIN_FORM": {
     "INPUT_EMAIL": {
-      "LABEL": "email",
+      "LABEL": "Email",
       "PLACEHOLDER": "e.g. tstark@email.com"
     },
     "INPUT_PASSWORD": {
-      "LABEL": "password",
+      "LABEL": "Password",
       "PLACEHOLDER": "e.g. avengers",
       "LINK_FORGOT_PASSWORD": "Forgot password?"
     },
     "BUTTON_SUBMIT": "Sign in",
-    "BUTTON_GOOGLE": "Sign in with Google"
+    "BUTTON_GOOGLE": "Sign in with Google",
+    "OR": "Or"
   },
   "MEMBER_VOTES_LIST": {
     "NO_VOTES_YET": "No voting yet",

@@ -16,22 +16,27 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="off")
+
+  dw-with-google-button.oauth
+
   .error(data-testid="error" v-if="error" role="alert")
     | {{ $t(error) }}
 
-  .email
-    label(for="email") {{ $t("LOGIN_FORM.INPUT_EMAIL.LABEL") }}
-    input(data-testid="email" id="email" name="email" type="email" v-bind:placeholder="$t('LOGIN_FORM.INPUT_EMAIL.PLACEHOLDER')" required
-          v-model="input.email")
+  .fieldset
+    .label-container
+      label(for="email") {{ $t("LOGIN_FORM.INPUT_EMAIL.LABEL") }}
+    .input-container
+      input(data-testid="email" id="email" name="email" type="email" v-bind:placeholder="$t('LOGIN_FORM.INPUT_EMAIL.PLACEHOLDER')" required
+            v-model="input.email")
 
-  .password
-    label(for="password") {{ $t("LOGIN_FORM.INPUT_PASSWORD.LABEL") }}
-    input(data-testid="password" id="password" name="password" type="password" v-bind:placeholder="$t('LOGIN_FORM.INPUT_PASSWORD.PLACEHOLDER')" required
-          v-model="input.password")
+  .password.fieldset
+    .label-container
+      label(for="password") {{ $t("LOGIN_FORM.INPUT_PASSWORD.LABEL") }}
+    .input-container
+      input(data-testid="password" id="password" name="password" type="password" v-bind:placeholder="$t('LOGIN_FORM.INPUT_PASSWORD.PLACEHOLDER')" required
+            v-model="input.password")
 
   button.submit.primary(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("LOGIN_FORM.BUTTON_SUBMIT") }}
-
-  dw-with-google-button.oauth
 
   a.forgot-password(
     v-on:click="forgotPassword()"
