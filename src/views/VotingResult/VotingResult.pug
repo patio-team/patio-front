@@ -64,6 +64,9 @@
             router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
                 include ../../assets/img/settings.svg
                 span {{ $t("RESULT.TEAM_SETTING") }}
+          .info
+            p(v-if="selectedGroup.votingDays") {{ $t("RESULT.RUNS_ON_DAYS") }} {{ selectedGroup.votingDays | translateDays }} from {{ $d(selectedGroup.votingTime, "hour") }}
+            p(v-if="!selectedGroup.votingDays") {{ $t("RESULT.NO_VOTING_DAYS")}}
 
 
       .graphic-container

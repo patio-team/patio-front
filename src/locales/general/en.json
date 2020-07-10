@@ -273,6 +273,8 @@
     "VOTE_4": "Good",
     "VOTE_3": "Neutral",
     "VOTE_2": "Bad",
-    "VOTE_1": "Very bad"
+    "VOTE_1": "Very bad",
+    "RUNS_ON_DAYS": "Polls on ",
+    "NO_VOTING_DAYS": "Suspended"
   }
 }

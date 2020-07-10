@@ -259,6 +259,8 @@
     "VOTE_4": "Bien",
     "VOTE_3": "Neutro",
     "VOTE_2": "Mal",
-    "VOTE_1": "Muy mal"
+    "VOTE_1": "Muy mal",
+    "RUNS_ON_DAYS": "La votacion tiene lugar los ",
+    "NO_VOTING_DAYS": "Suspendido"
   }
 }

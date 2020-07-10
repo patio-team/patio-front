@@ -45,6 +45,7 @@ query GetGroup(
 ) {
   getGroup(id: $id) {
     id
+    votingDays
     members {
       id
       name
@@ -61,6 +62,7 @@ query GetGroup(
 ) {
   getGroup(id: $id) {
     id
+    votingDays
     votings(startDateTime: $startDateTime, endDateTime: $endDateTime) {
       id
       createdAtDateTime
