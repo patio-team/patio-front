@@ -1,6 +1,7 @@
 {
   "hour": {
-    "hour": "numeric"
+    "hour": "numeric",
+    "minute": "numeric"
   },
   "short": {
       "year": "numeric",
