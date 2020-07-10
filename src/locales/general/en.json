@@ -181,6 +181,7 @@
   },
   "RESET_CHECK_EMAIL": {
     "BACK_HOME": "Back to login",
+    "CHECK_EMAIL_TITLE": "Check your email",
     "CHECK_EMAIL": "Check your email, you should have received an email with instructions"
   },
   "CHANGEPASS_FORM": {
