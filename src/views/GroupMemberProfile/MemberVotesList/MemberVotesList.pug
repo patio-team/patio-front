@@ -36,7 +36,7 @@
       :mood="vote.score"
       :comment="vote.comment"
       :hue="vote.hueMood")
-  button.more-votes(
+  button.primary.more-votes(
     v-if="showMoreButton"
     v-on:click="handleClickMoreVotes"
   )
