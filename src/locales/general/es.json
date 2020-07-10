@@ -190,7 +190,8 @@
     "BUTTON_SUBMIT": "Cambiar contraseña"
   },
   "CHANGEPASS_SUCCESS": {
-    "MESSAGE": "Contraseña cambiada con exito. Ahora puedes volver a entrar a Patio",
+    "MESSAGE": "Contraseña cambiada con exito.",
+    "MESSAGE_2": "Ahora puedes volver a entrar a Patio",
     "BACK_HOME": "Volver al login"
   },
   "CHANGEPASS_EXPIRED": {
