@@ -54,17 +54,22 @@ export default class VotingTeam extends Vue {
   private groupId!: string;
 
   public async mounted() {
-    const groupId = this.groupId || this.selectedGroup.id;
-    await this.changeSelectedGroup({groupId});
-    const voting = await this.getLastVoting({ groupId });
+    if (this.groupId || this.selectedGroup) {
+      const groupId = this.groupId || this.selectedGroup.id;
 
-    this.$router.push({
-      name: "team:result",
-      params: {
-        votingId: voting ? voting.id : null,
-        groupId,
-      },
-    });
+      await this.changeSelectedGroup({groupId});
+      const voting = await this.getLastVoting({ groupId });
+
+      this.$router.push({
+        name: "team:result",
+        params: {
+          votingId: voting ? voting.id : null,
+          groupId,
+        },
+      });
+    } else {
+      this.$router.push({ name: "team:create" });
+    }
   }
 }
 </script>
