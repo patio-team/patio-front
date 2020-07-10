@@ -23,9 +23,13 @@
 
   background: var(--white);
   margin: 0;
-  padding: 40px 3.5rem;
+  padding: 3.5rem 1rem;
   position: absolute;
   z-index: 100;
+
+  @media (--small-viewport) {
+    padding: 3.5rem;
+  }
 
   & .head {
     align-items: center;

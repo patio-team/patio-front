@@ -22,11 +22,6 @@
   )
     include ../../assets/img/cross.svg
   .head
-    h1.title-view
-      router-link.title(data-testid="title" v-bind:to="{ name: 'team', params: group.id }")
-        | {{ group.name }}
-      transition(name="fade")
-        span.subtitle(data-testid="subtitle" v-if="subtitle") {{ subtitle }}
     transition(name="fade" mode="out-in")
       router-view(name="actions" v-bind:group="group")
   transition(name="fade" mode="out-in")
