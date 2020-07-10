@@ -58,7 +58,7 @@ export default class LeaveTeamDialog extends Vue {
       this.$notify.success(
         this.$t("GROUP_DETAIL_ACTIONS.NOTIFICATIONS.LEAVE_GROUP.SUCCESS", {name: this.group.name}) as string,
       );
-      this.$router.push({ name: "groups:list" });
+      this.$router.push({ name: "team" });
     } else {
       this.$notify.error({
         title: this.$t("GROUP_DETAIL_ACTIONS.NOTIFICATIONS.LEAVE_GROUP.ERROR.TITLE") as string,
