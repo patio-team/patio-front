@@ -88,6 +88,10 @@
           :groupId="selectedGroup.id"
           :voting="voting"
         )
+        button.link-button.go-to-last
+          span Go to last
+          .image
+            include ../../assets/img/left.svg
         .chart-placeholder(:if="!voting")
     .mood-section
       .mood-container
