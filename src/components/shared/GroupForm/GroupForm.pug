@@ -68,9 +68,20 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
 
   .action-buttons
     router-link.button.secondary(
-      v-if="!noCancel"
+      v-if="!editForm"
       v-bind:to="{ name: 'team' }"
       data-testid="cancel"
       ) {{ $t("GROUP_FORM.BUTTON_CANCEL") }}
 
-    button.submit.primary(data-testid="submit" type="submit" v-bind:disabled="isLoading") {{ $t("GROUP_FORM.BUTTON_SUBMIT") }}
+    button.submit.primary(
+      v-if="editForm"
+      data-testid="submit"
+      type="submit"
+      v-bind:disabled="isLoading"
+    ) {{ $t("GROUP_FORM.BUTTON_SAVE") }}
+    button.submit.primary(
+      v-if="!editForm"
+      data-testid="submit"
+      type="submit"
+      v-bind:disabled="isLoading"
+    ) {{ $t("GROUP_FORM.BUTTON_CREATE") }}

@@ -81,7 +81,8 @@
     "INPUT_VOTING_TIME": {
       "LABEL": "What time polls begins? (and reminder email will be sent)"
     },
-    "BUTTON_SUBMIT": "Save change",
+    "BUTTON_CREATE": "Create team",
+    "BUTTON_SAVE": "Save change",
     "BUTTON_CANCEL": "Cancel"
   },
   "GROUP_MEMBER_LIST": {

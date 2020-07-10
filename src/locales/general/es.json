@@ -83,7 +83,8 @@
     "INPUT_VOTING_TIME": {
       "LABEL": "¿Cuando debe comenzar la votación? (y el email recordatorio se enviará)"
     },
-    "BUTTON_SUBMIT": "Salvar cambios",
+    "BUTTON_CREATE": "Crear equipo",
+    "BUTTON_SAVE": "Salvar cambios",
     "BUTTON_CANCEL": "Cancelar"
 
   },
