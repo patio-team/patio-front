@@ -5,6 +5,12 @@ module.exports = {
     disableHostCheck: true,
     port: 9000
   },
+  pwa: {
+    iconPaths: {
+      favicon32: './favicon.png',
+      favicon16: './favicon.png',
+    },
+  },
   pluginOptions: {
     i18n: {
       locale: 'en',
@@ -16,7 +22,7 @@ module.exports = {
     stylelint: {},
   },
    // This packages only expose untranspiled version
-   transpileDependencies: [
+  transpileDependencies: [
     'resize-detector',
     'vue-echarts',
   ],

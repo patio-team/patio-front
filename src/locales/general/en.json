@@ -91,7 +91,7 @@
       "LABEL": "What time polls begins? (and reminder email will be sent)"
     },
     "BUTTON_CREATE": "Create team",
-    "BUTTON_SAVE": "Save change",
+    "BUTTON_SAVE": "Save changes",
     "BUTTON_CANCEL": "Cancel"
   },
   "GROUP_MEMBER_LIST": {

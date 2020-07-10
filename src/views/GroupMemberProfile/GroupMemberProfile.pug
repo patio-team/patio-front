@@ -16,12 +16,6 @@
   along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
 
 .group-member-profile(v-if="profile")
-  router-link.back-to(
-    v-bind:to="{ name: 'team' }"
-  )
-    .image
-      include ../../assets/img/left.svg
-    span Back to {{ group.name }}
   .profile
       .avatar-holder
         Avatar.avatar(
