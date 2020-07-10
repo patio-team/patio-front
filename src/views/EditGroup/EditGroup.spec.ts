@@ -86,7 +86,7 @@ describe("View: EditGroup", () => {
       expect(vm.$notify.success).toBeCalledWith("VIEWS.EDIT_GROUP.NOTIFICATIONS.EDIT.SUCCESS.TITLE");
       expect(vm.$notify.error).toBeCalledTimes(0);
       expect(vm.$router.push).toBeCalledTimes(1);
-      expect(vm.$router.push).toBeCalledWith({name: "groups:detail", params: {id: group.id}});
+      expect(vm.$router.push).toBeCalledWith({name: "team", params: {groupId: group.id}});
     });
     it("can't edit the group", async () => {
       const group = generateGroup();

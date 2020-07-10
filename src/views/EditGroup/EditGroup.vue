@@ -59,7 +59,7 @@ export default class EditGroup extends Vue {
 
     if (edittedGroup) {
       this.$notify.success(this.$t("VIEWS.EDIT_GROUP.NOTIFICATIONS.EDIT.SUCCESS.TITLE"));
-      this.$router.push({ name: "groups:detail", params: { id: edittedGroup.id } });
+      this.$router.push({ name: "team", params: { groupId: edittedGroup.id } });
     } else {
       this.$notify.error(this.$t("VIEWS.EDIT_GROUP.NOTIFICATIONS.EDIT.ERROR.TITLE"));
     }
