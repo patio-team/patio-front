@@ -88,6 +88,10 @@ export default class VotingResult extends Vue {
     return this.voting && this.votes ? !this.isExpired && this.votes.totalCount === 0 : false;
   }
 
+  public get imAdmin() {
+    return this.selectedGroup && this.selectedGroup.isCurrentUserAdmin;
+  }
+
   public get canShareMood() {
     return !this.isExpired && !this.didIVote && !this.imFirst;
   }
