@@ -21,9 +21,11 @@
 .group-layout {
   @mixin new-view;
 
-  margin-bottom: 0;
+  background: var(--white);
+  margin: 0;
   padding: 40px 3.5rem;
-  position: relative;
+  position: absolute;
+  z-index: 100;
 
   & .head {
     align-items: center;
@@ -52,8 +54,8 @@
   height: 32px;
   padding: 6px;
   position: absolute;
-  right: .5rem;
-  top: .5rem;
+  right: 1rem;
+  top: 1rem;
   width: 32px;
   z-index: 16;
 

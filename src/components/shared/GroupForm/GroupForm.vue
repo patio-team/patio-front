@@ -38,6 +38,9 @@ export default class GroupForm extends Vue {
   private readonly group!: Group;
 
   @Prop(Boolean)
+  private readonly noCancel!: boolean;
+
+  @Prop(Boolean)
   private readonly isLoading!: boolean;
 
   @Prop([String, Boolean])

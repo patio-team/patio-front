@@ -68,6 +68,7 @@ form.form(data-testid="form" v-on:submit.prevent="handleSubmit()" autocomplete="
 
   .action-buttons
     router-link.button.secondary(
+      v-if="!noCancel"
       v-bind:to="{ name: 'team' }"
       data-testid="cancel"
       ) {{ $t("GROUP_FORM.BUTTON_CANCEL") }}
