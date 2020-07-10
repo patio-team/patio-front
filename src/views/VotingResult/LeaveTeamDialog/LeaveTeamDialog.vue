@@ -23,10 +23,11 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import ConfirmDialog from "@/components/shared/ConfirmDialog/ConfirmDialog.vue";
 import { namespace } from "vuex-class";
-import { Group } from "@/domain";
+import { Group, User } from "@/domain";
 import { AddUserToGroupInput } from "@/services/api/types";
 
 const GroupStore = namespace("group");
+const AuthStore = namespace("auth");
 
 @Component({
   components: {
@@ -47,6 +48,9 @@ export default class LeaveTeamDialog extends Vue {
   @GroupStore.Getter("leaveError")
   private leaveError!: boolean | string;
 
+  @AuthStore.Action("getMyProfile")
+  private getMyProfile: any;
+
   public handleLeaveReject() {
     this.$modal.pop();
   }
@@ -55,11 +59,20 @@ export default class LeaveTeamDialog extends Vue {
     const hasLeft = await this.leaveTeam({ groupId: this.group.id });
 
     if (hasLeft) {
+      this.$modal.pop();
       this.$notify.success(
         this.$t("GROUP_DETAIL_ACTIONS.NOTIFICATIONS.LEAVE_GROUP.SUCCESS", {name: this.group.name}) as string,
       );
-      this.$router.push({ name: "team" });
+
+      const profile: User = await this.getMyProfile({force: true});
+
+      if (profile && profile.favouriteGroup) {
+        this.$router.push({ name: "team", params: { groupId: profile.favouriteGroup.id }});
+      } else {
+        this.$router.push({ name: "team" });
+      }
     } else {
+      this.$modal.pop();
       this.$notify.error({
         title: this.$t("GROUP_DETAIL_ACTIONS.NOTIFICATIONS.LEAVE_GROUP.ERROR.TITLE") as string,
         message: this.leaveError === "API_ERRORS.UNIQUE_ADMIN"
