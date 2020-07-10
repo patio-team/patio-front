@@ -55,7 +55,7 @@ export default class VotingTeam extends Vue {
         name: "team:result",
         params: {
           groupId,
-          votingId: voting.id,
+          votingId: voting ? voting.id : null,
         },
       });
     } else {
