@@ -301,7 +301,7 @@ div.hide {
     @media (--large-viewport) {
       flex: 0 1 650px;
       flex-direction: column;
-      margin-top: 2rem;
+      margin-top: .5rem;
       order: 2;
     }
   }

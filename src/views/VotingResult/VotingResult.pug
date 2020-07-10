@@ -90,9 +90,7 @@
         )
         .chart-placeholder(:if="!voting")
     .mood-section
-      .mood-container(
-        v-if="!voting"
-      )
+      .mood-container
         .average-mood
           .title-container.title-container-large
             h2(
@@ -134,7 +132,6 @@
             .participation
               template(v-if="!isExpired && didIVote") {{ $t("RESULT.ALREADY_VOTED") }}
               template(v-if="!isExpired && !voting.didIVote") {{ $t("RESULT.NOT_PARTICIPATE") }}
-              template(v-if="isExpired") {{ $t("RESULT.PARTICIPATION_ENDED") }}
             router-link.button.primary.desktop(
               v-if="canShareMood"
               v-bind:to="{ name: 'team:vote', params: { groupId, votingId }}"
