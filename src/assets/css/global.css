@@ -203,7 +203,7 @@ link {
 
   & .image {
     flex: 0 1 auto;
-    margin-right: 1rem;
+    margin-right: .5rem;
   }
 
   & span {
@@ -211,6 +211,7 @@ link {
   }
 
   & svg {
+    fill: var(--new-blue-400);
     height: 1rem;
     width: 1rem;
   }
