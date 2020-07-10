@@ -9,6 +9,15 @@
       "SATURDAY": "sabado",
       "SUNDAY": "domingo"
     },
+    "DAYS_PLURAL": {
+      "MONDAY": "lunes",
+      "TUESDAY": "martes",
+      "WEDNESDAY": "miercoles",
+      "THURSDAY": "jueves",
+      "FRIDAY": "viernes",
+      "SATURDAY": "sabado",
+      "SUNDAY": "domingo"
+    },
     "USERS": {
       "ANONYMOUS_USER": "Anonimo"
     }

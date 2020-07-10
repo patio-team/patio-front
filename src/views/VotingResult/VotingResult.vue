@@ -21,7 +21,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
-import { Group, Voting } from "@/domain";
+import { Group, Voting, Day } from "@/domain";
+import { translateDays } from "@/filters/days";
 import VoteList from "./VoteList/VoteList.vue";
 import VoteChart from "./VoteChart/VoteChart.vue";
 import LeaveTeamDialog from "./LeaveTeamDialog/LeaveTeamDialog.vue";
@@ -162,6 +163,10 @@ export default class VotingResult extends Vue {
 
   private handleTeamMembers() {
     this.$modal.push("dialog-team-members");
+  }
+
+  private translateDays(days: Day[]) {
+    return translateDays(days);
   }
 }
 </script>

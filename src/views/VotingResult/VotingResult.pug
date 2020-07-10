@@ -47,7 +47,7 @@
       .row.last
         .voting-info
           .actions-wrapper(v-if="hasVotingDays")
-            span {{ $t("RESULT.POLLS_ON") }} {{ selectedGroup.votingDays | translateDays }} from {{ $d(selectedGroup.votingTime, "hour") }}
+            span {{ $t("RESULT.POLLS_ON", {"days": translateDays(selectedGroup.votingDays), "hour": $d(selectedGroup.votingTime, "hour")}) }}
           .actions-wrapper(v-if="!hasVotingDays")
             span {{ $t("RESULT.NO_VOTING_DAYS")}}
     .row
@@ -80,7 +80,7 @@
           .row
             .voting-info
               .actions-wrapper(v-if="hasVotingDays")
-                span {{ $t("RESULT.POLLS_ON") }} {{ selectedGroup.votingDays | translateDays }} from {{ $d(selectedGroup.votingTime, "hour") }}
+                span {{ $t("RESULT.POLLS_ON", {"days": translateDays(selectedGroup.votingDays), "hour": $d(selectedGroup.votingTime, "hour")}) }}
               .actions-wrapper(v-if="!hasVotingDays")
                 span {{ $t("RESULT.NO_VOTING_DAYS")}}
       .graphic-container

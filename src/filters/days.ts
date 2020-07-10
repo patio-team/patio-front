@@ -22,7 +22,7 @@ import i18n from "@/i18n";
 
 
 export const translateDays = (days: Day[]): string => {
-  const i18nDays = days.map((day: Day) => i18n.t("COMMON.DAYS." + day));
+  const i18nDays = days.map((day: Day) => i18n.t("COMMON.DAYS_PLURAL." + day));
 
   if (i18nDays.length > 1) {
     const head = i18nDays.slice(0, -1).join(", ");

@@ -9,6 +9,15 @@
       "SATURDAY": "saturday",
       "SUNDAY": "sunday"
     },
+    "DAYS_PLURAL": {
+      "MONDAY": "Mondays",
+      "TUESDAY": "Tuesdays",
+      "WEDNESDAY": "Wednesdays",
+      "THURSDAY": "Thursdays",
+      "FRIDAY": "Fridays",
+      "SATURDAY": "Saturdays",
+      "SUNDAY": "Sundays"
+    },
     "USERS": {
       "ANONYMOUS_USER": "Anonymous"
     }
@@ -280,7 +289,7 @@
     "RUNS_ON_DAYS": "Polls on ",
     "NO_VOTING_DAYS": "Suspended",
     "POLL_AT": "Poll at",
-    "POLLS_ON": "Polls on"
+    "POLLS_ON": "Polls on {days} at {hour}"
   },
   "NO_TEAM": {
     "NO_TEAM_YET": "You are not in a team yet",
