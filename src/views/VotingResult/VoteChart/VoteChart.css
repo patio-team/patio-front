@@ -16,6 +16,8 @@
  * along with DWBH.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+@import "../../../assets/css/mixins.css";
+
 .legend {
   display: flex;
   margin-right: 32px;
@@ -191,4 +193,33 @@
 .echarts {
   height: 490px;
   width: 100%;
+
+  @media (--large-viewport) {
+    padding-bottom: 2rem;
+  }
+}
+
+.go-to-last {
+  bottom: -2rem;
+  display: none;
+  justify-content: flex-end;
+  margin-right: 1rem;
+  margin-top: .5rem;
+  position: absolute;
+  right: 0;
+
+  @media (--large-viewport) {
+    display: flex;
+  }
+
+  & .image {
+    margin-left: .5rem;
+  }
+
+  & svg {
+    fill: var(--new-blue-400);
+    height: 16px;
+    transform: rotate(180deg);
+    width: 16px;
+  }
 }

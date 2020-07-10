@@ -569,25 +569,3 @@ div.hide {
     }
   }
 }
-
-.go-to-last {
-  display: none;
-  justify-content: flex-end;
-  margin-right: 1rem;
-  margin-top: .5rem;
-
-  @media (--large-viewport) {
-    display: flex;
-  }
-
-  & .image {
-    margin-left: .5rem;
-  }
-
-  & svg {
-    fill: var(--new-blue-400);
-    height: 16px;
-    transform: rotate(180deg);
-    width: 16px;
-  }
-}
