@@ -292,7 +292,8 @@
     "RUNS_ON_DAYS": "La votacion tiene lugar los ",
     "NO_VOTING_DAYS": "Suspendido",
     "POLL_AT": "Dias de la votación",
-    "POLLS_ON": "Hora de la votación"
+    "POLLS_ON": "Hora de la votación",
+    "GOTO_LAST": "Ir a la ultima votación"
   },
   "NO_TEAM": {
     "NO_TEAM_YET": "No estas en ningun equipo todavía",

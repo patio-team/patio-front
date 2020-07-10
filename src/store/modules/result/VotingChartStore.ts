@@ -20,7 +20,7 @@ import { Action, getModule, Module, Mutation, VuexModule } from "vuex-module-dec
 import store from "@/store";
 import api from "@/services/api";
 
-import { VotingStats, PaginationResult, OffsetPaginationResult } from "@/domain";
+import { VotingStats, PaginationResult, OffsetPaginationResult, Voting } from "@/domain";
 import { ChartState, TimeWindow } from "@/store/modules/result/VotingChartStoreTypes";
 import { VotingStatsInput } from "@/services/api/types/results";
 
@@ -36,11 +36,23 @@ export class VotingChartStore extends VuexModule {
     hasNext: false,
   };
 
+  public lastVoting!: Voting;
+
   @Mutation
   public updateChartState(state: ChartState) {
     if (state.data && state.data.length > 0) {
       this.chartState = state;
     }
+  }
+
+  @Mutation
+  public updateLastVoting(voting: Voting) {
+    this.lastVoting = voting;
+  }
+
+  @Action({ commit: "updateLastVoting" })
+  public async getLastVoting(groupId: string) {
+    return await api.votings.getLastVoting({groupId});
   }
 
   @Action({ commit: "updateChartState" })

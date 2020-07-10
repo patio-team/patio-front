@@ -289,7 +289,8 @@
     "RUNS_ON_DAYS": "Polls on ",
     "NO_VOTING_DAYS": "Suspended",
     "POLL_AT": "Poll at",
-    "POLLS_ON": "Polls on {days} at {hour}"
+    "POLLS_ON": "Polls on {days} at {hour}",
+    "GOTO_LAST": "Go to last poll"
   },
   "NO_TEAM": {
     "NO_TEAM_YET": "You are not in a team yet",

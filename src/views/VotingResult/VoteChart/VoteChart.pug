@@ -64,7 +64,10 @@
       v-if="canGoForwards")
       .arrow.reverse
         include ../../../assets/img/chevron.svg
-  button.link-button.go-to-last
-    span Go to last
+  button.link-button.go-to-last(
+    :disabled="!canGoForwards"
+    @click="handleGotoLast"
+  )
+    span {{ $t("RESULT.GOTO_LAST") }}
     .image
       include ../../../assets/img/left.svg

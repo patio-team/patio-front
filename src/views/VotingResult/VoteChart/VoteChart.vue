@@ -250,9 +250,20 @@ export default class VoteChart extends Vue {
     this.loadData(this.next);
   }
 
+  public async handleGotoLast() {
+    await this.loadData();
+    const lastVoting = await votingChartStore.getLastVoting(this.groupId);
+    this.$router.push({
+      name: "team:result",
+      params: {
+        groupId: this.groupId,
+        votingId: lastVoting.id,
+      },
+    });
+  }
+
   public loadData(offset: number = 0) {
       votingChartStore.fetchVotingStats({ groupId: this.groupId, offset });
   }
-
 }
 </script>
