@@ -33,6 +33,7 @@ query ListMembersMood($votingId: ID!, $page: Int, $max: Int) {
         hueMood
         comment
         createdBy {
+          hash
           id
           name
         }

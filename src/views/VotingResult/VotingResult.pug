@@ -33,42 +33,56 @@
 
   .title-container.title-container-mobile
     .title-wrapper
-      .text
-        h1 {{ selectedGroup.name }}
+      .row
+        .text
+          h1 {{ selectedGroup.name }}
+      .row
         .links
           button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
           button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
-      .actions
-        router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
-            include ../../assets/img/settings.svg
-            span {{ $t("RESULT.TEAM_SETTING") }}
+        .actions
+          router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
+              include ../../assets/img/settings.svg
+              span {{ $t("RESULT.TEAM_SETTING") }}
+      .row.last
+        .voting-info
+          .actions-wrapper(v-if="hasVotingDays")
+            span {{ $t("RESULT.POLLS_ON") }} {{ selectedGroup.votingDays | translateDays }} from {{ $d(selectedGroup.votingTime, "hour") }}
+          .actions-wrapper(v-if="!hasVotingDays")
+            span {{ $t("RESULT.NO_VOTING_DAYS")}}
     .row
       h2(
-        v-if="!nextVotingId"
+        v-if="voting && !nextVotingId"
       ) {{ $t("RESULT.LAST_POLL_RESULT") }}
       h2(
-        v-if="nextVotingId"
+        v-if="voting && nextVotingId"
       ) {{ $t("RESULT.POLL_RESULT") }}
+      h2(
+        v-if="!voting"
+      ) {{ $t("RESULT.NO_POLLS_YET") }}
       span.time(v-if="voting") {{ $d(voting.createdAtDateTime, 'long') }}
   .main-container
     .graphic-section.empty
       //- Remove Empty class if is not empty
       .title-container.title-container-full
         .title-wrapper
-          .text
-            h1 {{ selectedGroup.name }}
-          .links
-            button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
-            button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
-          .actions
-            router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
-                include ../../assets/img/settings.svg
-                span {{ $t("RESULT.TEAM_SETTING") }}
-          .info
-            p(v-if="selectedGroup.votingDays") {{ $t("RESULT.RUNS_ON_DAYS") }} {{ selectedGroup.votingDays | translateDays }} from {{ $d(selectedGroup.votingTime, "hour") }}
-            p(v-if="!selectedGroup.votingDays") {{ $t("RESULT.NO_VOTING_DAYS")}}
-
-
+          .row
+            .text
+              h1 {{ selectedGroup.name }}
+          .row
+            .links
+              button.link-button(@click="handleTeamMembers") {{ $t("RESULT.SEE_MEMBERS") }}
+              button.link-button(@click="handleLeaveTeam") {{ $t("RESULT.LEAVE_TEAM") }}
+            .actions
+              router-link(:to="{ name: 'team:edit', groupId: groupId}").text-and-icon
+                  include ../../assets/img/settings.svg
+                  span {{ $t("RESULT.TEAM_SETTING") }}
+          .row
+            .voting-info
+              .actions-wrapper(v-if="hasVotingDays")
+                span {{ $t("RESULT.POLLS_ON") }} {{ selectedGroup.votingDays | translateDays }} from {{ $d(selectedGroup.votingTime, "hour") }}
+              .actions-wrapper(v-if="!hasVotingDays")
+                span {{ $t("RESULT.NO_VOTING_DAYS")}}
       .graphic-container
         VoteChart(
           :groupId="selectedGroup.id"
@@ -76,7 +90,9 @@
         )
         .chart-placeholder(:if="!voting")
     .mood-section
-      .mood-container
+      .mood-container(
+        v-if="!voting"
+      )
         .average-mood
           .title-container.title-container-large
             h2(

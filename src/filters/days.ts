@@ -25,7 +25,7 @@ export const translateDays = (days: Day[]): string => {
   const i18nDays = days.map((day: Day) => i18n.t("COMMON.DAYS." + day));
 
   if (i18nDays.length > 1) {
-    const head = i18nDays.slice(0, -1).join(",");
+    const head = i18nDays.slice(0, -1).join(", ");
     const tail = i18nDays[i18nDays.length - 1];
     return  `${head} ` + i18n.t("and") + ` ${tail}`;
   }

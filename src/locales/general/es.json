@@ -88,11 +88,28 @@
   },
   "GROUP_MEMBER_LIST": {
     "ACTION_ADD_MEMBER": "+ Invitar",
-    "EMPTY": "No hay participantes todavía.",
+    "EMPTY": "No hay miembros aun.",
     "ROW": {
       "ACTION_DELETE_MEMBER": "Borrar"
     },
-    "TITLE": "Participantes"
+    "TITLE": "Miembros",
+    "NOTIFICATIONS": {
+      "ADD_MEMBER" : {
+        "SUCCESS": {
+          "TITLE": "Miembro añadido",
+          "MESSAGE": "El usuario \"{email}\" es un miembro ahora."
+        },
+        "ERROR": {
+          "TITLE": "Miembro no añadido",
+          "MESSAGE": "El usaurio \"{email}\" no existe or es un miembro."
+        }
+      }
+    },
+    "ADD_NEW_MEMBER": "Añadir miembro",
+    "NEW_MEMBER_EMAIL": "Escribe el email del nuevo miembror",
+    "NEW_MEMBER_EMAIL_PLACEHOLDER": "e.g. usuario@mail.com",
+    "ADD": "Añadir",
+    "TEAM_SETTING": "Configuracion de equipo"
   },
   "GROUPS_TABLE": {
     "LOADING": "Cargando...",
@@ -261,6 +278,8 @@
     "VOTE_2": "Mal",
     "VOTE_1": "Muy mal",
     "RUNS_ON_DAYS": "La votacion tiene lugar los ",
-    "NO_VOTING_DAYS": "Suspendido"
+    "NO_VOTING_DAYS": "Suspendido",
+    "POLL_AT": "Dias de la votación",
+    "POLLS_ON": "Hora de la votación"
   }
 }

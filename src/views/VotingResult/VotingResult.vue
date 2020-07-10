@@ -96,6 +96,13 @@ export default class VotingResult extends Vue {
     return this.voting ? this.voting.createdAtDateTime : DateTime.local();
   }
 
+  public get hasVotingDays() {
+    if (this.selectedGroup && this.selectedGroup.votingDays) {
+      return this.selectedGroup.votingDays.length > 0;
+    }
+    return false;
+  }
+
   public get nextVotingId() {
     return this.voting && this.voting.nextVoting ? this.voting.nextVoting.id : null;
   }

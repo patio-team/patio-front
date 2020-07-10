@@ -45,11 +45,6 @@ div.hide {
 
   @media (--small-viewport) {
     display: none;
-    margin: 0 0 .5rem;
-  }
-
-  @media (--medium-viewport) {
-    margin: 0 0 .5rem;
   }
 
   @media (--large-viewport) {
@@ -65,23 +60,44 @@ div.hide {
   }
 }
 
+.voting-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+
+  & .at {
+    display: inline-block;
+    margin-right: .5rem;
+  }
+
+  & .actions-wrapper {
+    margin: 0 0 .5rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .title-wrapper {
   display: flex;
   flex-direction: column;
   margin: 0;
   position: relative;
 
-  @media (--small-viewport) {
-    flex-direction: row;
-    margin: 1.2rem 0 0;
-  }
+  &.margin {
+    @media (--small-viewport) {
+      margin: 1.2rem 0 0;
+    }
 
-  @media (--medium-viewport) {
-    margin: 1.2rem 0 0;
-  }
+    @media (--medium-viewport) {
+      margin: 1.2rem 0 0;
+    }
 
-  @media (--large-viewport) {
-    margin: 2rem 0 1rem;
+    @media (--large-viewport) {
+      margin: 2rem 0 1rem;
+    }
   }
 
   & h1 {
@@ -103,7 +119,6 @@ div.hide {
   & .links {
     @media (--small-viewport) {
       display: flex;
-      margin: 0;
     }
 
     @media (--large-viewport) {
@@ -188,11 +203,6 @@ div.hide {
 
     & h1 {
       font-family: 'Merriweather', serif;
-      margin: 0;
-
-      @media (--small-viewport) {
-        margin-bottom: 1rem;
-      }
     }
 
     & h2 {
@@ -210,8 +220,6 @@ div.hide {
 
     & .row {
       align-items: baseline;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
 
       @media (--small-viewport) {
         align-content: flex-end;
@@ -220,6 +228,10 @@ div.hide {
 
       @media (--medium-viewport) {
         margin-top: 0;
+      }
+
+      &.last {
+        margin-bottom: 24px;
       }
     }
 
@@ -240,14 +252,13 @@ div.hide {
 
     @media (--large-viewport) {
       flex-direction: row;
-      margin-top: 24px;
+      margin-top: calc(24px + 2rem);
     }
   }
 
   & .graphic-section {
     display: none;
     margin-top: 0;
-    min-height: 200px;
 
     @media (--small-viewport) {
       display: flex;
@@ -270,14 +281,9 @@ div.hide {
       display: flex;
       flex: 1 0 auto;
       justify-content: center;
-      min-height: 430px;
 
       &.empty {
         background-image: url(../../assets/img/bg-graphic.svg);
-      }
-
-      @media (--large-viewport) {
-        min-height: 400px;
       }
     }
   }
@@ -285,7 +291,6 @@ div.hide {
   & .mood-section {
     display: flex;
     flex-direction: column;
-    min-height: 200px;
     order: 1;
     width: 100%;
 
