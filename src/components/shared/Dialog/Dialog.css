@@ -46,7 +46,7 @@
 ---------------------------------------- */
 .modal-content {
   background-color: var(--white-400);
-  border-radius: 20px;
+  border-radius: .25rem;
   box-shadow: 10px 10px 10px 0 var(--black-400-10);
   height: auto;
   left: 0;

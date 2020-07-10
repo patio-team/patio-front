@@ -221,7 +221,7 @@
   background-color: var(--white);
   border: 2px solid var(--new-grey-700);
   border-radius: 20px 0;
-  box-shadow: 4px 4px 10px rgba(73, 73, 73, .25);
+  box-shadow: 4px 4px 10px rgba(195, 193, 215, .1);
   color: var(--new-grey-700);
   cursor: pointer;
   display: flex;
