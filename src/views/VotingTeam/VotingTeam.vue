@@ -68,7 +68,7 @@ export default class VotingTeam extends Vue {
         },
       });
     } else {
-      this.$router.push({ name: "team:create" });
+      this.$router.push({ name: "noteam" });
     }
   }
 }

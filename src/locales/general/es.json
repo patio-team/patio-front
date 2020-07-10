@@ -284,5 +284,9 @@
     "NO_VOTING_DAYS": "Suspendido",
     "POLL_AT": "Dias de la votación",
     "POLLS_ON": "Hora de la votación"
+  },
+  "NO_TEAM": {
+    "NO_TEAM_YET": "No estas en ningun equipo todavía",
+    "CREATE_TEAM": "Crea tu primer equipo"
   }
 }

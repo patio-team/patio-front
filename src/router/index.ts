@@ -40,6 +40,7 @@ import Oauth2Callback from "@/views/Oauth2Callback/Oauth2Callback.vue";
 import VotingResult from "@/views/VotingResult/VotingResult.vue";
 import Vote from "@/views/Vote/Vote.vue";
 import VotingTeam from "@/views/VotingTeam/VotingTeam.vue";
+import NoTeam from "@/views/NoTeam/NoTeam.vue";
 
 Vue.use(Router);
 
@@ -106,6 +107,14 @@ const router = new Router({
           component: ChangePasswordExpired,
         },
       ],
+    },
+    {
+      path: "/noteam",
+      name: "noteam",
+      component: NoTeam,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/team/list",
