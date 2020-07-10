@@ -35,20 +35,11 @@ export default class VotingTeam extends Vue {
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
 
-  @VotingStore.Getter("voting")
-  private voting!: Voting;
-
-  @VotingStore.Action("getVoting")
-  private getVoting: any;
-
   @VotingStore.Action("getLastVoting")
   private getLastVoting: any;
 
   @AuthStore.Action("changeSelectedGroup")
   private changeSelectedGroup!: any;
-
-  @Prop(String)
-  private votingId!: string;
 
   @Prop(String)
   private groupId!: string;
@@ -63,8 +54,8 @@ export default class VotingTeam extends Vue {
       this.$router.push({
         name: "team:result",
         params: {
-          votingId: voting ? voting.id : null,
           groupId,
+          votingId: voting.id,
         },
       });
     } else {

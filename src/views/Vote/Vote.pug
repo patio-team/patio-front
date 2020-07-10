@@ -24,7 +24,7 @@
   )
     .voting-title
       router-link.close-x(
-        v-bind:to="{ name: 'team' }"
+        v-bind:to="{ name: 'team:result', params: { groupId: groupId, votingId: votingId } }"
       )
         include ../../assets/img/cross.svg
       .voting-smile
@@ -65,10 +65,10 @@
 
   .voting-interaction-desktop
     router-link.close-x(
-      v-bind:to="{ name: 'team' }"
+      v-bind:to="{ name: 'team:result', params: { groupId: groupId, votingId: votingId } }"
     )
       include ../../assets/img/cross.svg
-    .relative-container
+    .relative-container(v-if="voting")
       .title-holder
         h2.title(data-testid="title") {{ $t("VIEWS.VOTE.TITLE") }} {{ voting.group.name }} ?
         span.date {{ $d(voting.createdAtDateTime, 'long') }}
@@ -118,7 +118,7 @@
 
       dw-vote-form(
         v-bind:groupId="groupId"
-        v-bind:voting="voting"
+        v-bind:votingId="voting.id"
         v-bind:initScore="initScore"
         :voteScore="voteScore || 3"
         data-testid="vote-form"

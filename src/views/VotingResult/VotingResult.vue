@@ -51,6 +51,9 @@ export default class VotingResult extends Vue {
   @AuthStore.Getter("selectedGroup")
   private selectedGroup!: Group;
 
+  @AuthStore.Action("changeSelectedGroup")
+  private changeSelectedGroup: any;
+
   @VotingStore.Getter("voting")
   private voting!: Voting | undefined;
 
@@ -117,20 +120,25 @@ export default class VotingResult extends Vue {
   }
 
   public async mounted() {
-    await this.updateVoting();
+    await this.updateVoting(this.votingId);
   }
 
   @Watch("votingId")
   public async onVotingIdChanged(val: string, old: string) {
     if (val !== old) {
-      this.updateVoting();
+      this.updateVoting(val);
     }
   }
 
-  private async updateVoting() {
-    if (this.votingId) {
-      await this.getVoting({id: this.votingId});
+  @Watch("voting")
+  public async onVotingChanged(val: Voting, old: Voting) {
+    if (val.group.id !== this.selectedGroup.id) {
+      this.changeSelectedGroup({groupId: val.group.id});
     }
+  }
+
+  private async updateVoting(votingId: string) {
+      await this.getVoting({id: votingId});
   }
 
   private async navigateToAnotherVoting(votingId: string | null) {

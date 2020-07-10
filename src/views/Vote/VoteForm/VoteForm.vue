@@ -70,8 +70,8 @@ export default class VoteForm extends Vue {
   @Prop(String)
   private readonly groupId!: string;
 
-  @Prop(Object)
-  private voting!: Voting;
+  @Prop(String)
+  private votingId!: string;
 
   @Prop(Number)
   private initScore!: number;
@@ -119,17 +119,15 @@ export default class VoteForm extends Vue {
     if (this.editor) {
       editorContent = this.editor.invoke("getMarkdown");
     }
-    const isCreated = await this.createVote({
-      ...this.input,
-      comment: editorContent,
-      votingId: this.voting.id,
-    });
+    const input = {...this.input, comment: editorContent, votingId: this.votingId };
+    const isCreated = await this.createVote(input);
+
     if(isCreated) {
       this.$router.push({
         name: "team:result",
         params: {
           groupId: this.groupId,
-          votingId: this.voting.id,
+          votingId: this.votingId,
         },
       });
     }
