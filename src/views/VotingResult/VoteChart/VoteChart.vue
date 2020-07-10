@@ -191,11 +191,11 @@ export default class VoteChart extends Vue {
   }
 
   public get canGoBackwards() {
-    return votingChartStore.chartState.hasPrev;
+    return !this.emptyChart && votingChartStore.chartState.hasPrev;
   }
 
   public get canGoForwards() {
-    return votingChartStore.chartState.hasNext;
+    return !this.emptyChart && votingChartStore.chartState.hasNext;
   }
 
   public get emptyChart() {

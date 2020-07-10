@@ -65,7 +65,7 @@
       .arrow.reverse
         include ../../../assets/img/chevron.svg
   button.link-button.go-to-last(
-    :disabled="!canGoForwards"
+    :disabled="emptyChart"
     @click="handleGotoLast"
   )
     span {{ $t("RESULT.GOTO_LAST") }}
