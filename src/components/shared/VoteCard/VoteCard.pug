@@ -19,8 +19,7 @@
 .vote-card
   .header(v-if="group")
     //- .date {{ $d(date, 'long') }}
-    .date(v-if="date")
-      h1 {{ $d(date, 'long') }}
+    .date(v-if="date") {{ $d(date, 'long') }}
     .user-container(v-if="!date")
       h1
         router-link.title(:to="{ name: 'team:members:profile', params: { groupId: group.id, userId: user.id } }") {{ user.name }}
