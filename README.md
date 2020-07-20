@@ -1,4 +1,4 @@
-# dwbh
+# PATIO 
 [![Build Status](https://travis-ci.com/dont-worry-be-happy/dwbh-front.svg?branch=master)](https://travis-ci.com/dont-worry-be-happy/dwbh-front)
 [![Coverage Status](https://coveralls.io/repos/github/dont-worry-be-happy/dwbh-front/badge.svg?branch=master)](https://coveralls.io/github/dont-worry-be-happy/dwbh-front?branch=master)
 
