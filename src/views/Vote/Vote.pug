@@ -57,9 +57,10 @@
         dw-loader.loading
     .form
       dw-vote-form(
-        v-bind:voting="voting"
+        v-bind:groupId="groupId"
+        v-bind:votingId="voting.id"
         v-bind:initScore="initScore"
-        :voteScore="voteScore"
+        :voteScore="voteScore || 3"
         data-testid="vote-form"
       )
 
