@@ -17,13 +17,10 @@
 
 .vote-list-container
   .vote-list(
-    v-masonry
-    horizontal-order="true"
     item-selector=".vote-card"
     transition-duration="0"
   )
     vote-card.vote-card(
-      v-masonry-tile
       v-for="(vote, $index) in moodMemberList"
       :vote="vote"
       :key="$index"

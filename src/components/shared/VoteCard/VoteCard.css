@@ -35,27 +35,12 @@
   background-color: var(--white-400);
   border-radius: 1em;
   box-shadow: 10px 10px 30px rgba(52, 49, 76, .2);
-  display: inline-block;
+  display: block;
   flex-direction: column;
-  margin: 8px;
+  margin-bottom: 1rem;
   object-fit: cover;
   overflow: hidden;
   padding-bottom: 2rem;
-  width: calc(100% - 16px);
-
-  @media (--small-viewport) {
-    margin: 12px;
-    width: calc(50% - 24px);
-  }
-
-  @media (--medium-viewport) {
-    width: calc(33% - 24px);
-  }
-
-  @media (--large-viewport) {
-    /* width: calc((100% - 3rem) / 4); */
-    width: calc(25% - 24px);
-  }
 
   & blockquote {
     align-content: middle;

@@ -19,8 +19,6 @@
 @import "../../../assets/css/mixins.css";
 
 .member-votes-list {
-  display: flex;
-  flex-direction: column;
   margin: 1rem 0;
 
   &.empty {
@@ -43,13 +41,6 @@
 .ve { @mixin vote-empty; }
 
 .votes-list {
-  display: flex;
-  flex-direction: column;
-
-  & > *:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
-
   & .vote-detail {
     display: flex;
     flex-direction: column;

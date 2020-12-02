@@ -23,7 +23,6 @@
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { Vote, Voting } from "@/domain/votings";
 import { PaginationRequest, Group } from "@/domain";
-import { masonry, masonryTile } from "@/components/directives/MasonryDirectives";
 import store from "@/store/modules/result/MoodMemberListStore";
 import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
 import InfiniteLoader from "@/components/shared/InfiniteLoader/InfiniteLoader.vue";
@@ -35,10 +34,6 @@ import VueLoaderAware from "@/utils/VueLoaderAware";
     VoteCard,
     InfiniteLoader,
     Loader,
-  },
-  directives: {
-    masonry,
-    masonryTile,
   },
 })
 export default class VoteList extends VueLoaderAware {
@@ -52,9 +47,6 @@ export default class VoteList extends VueLoaderAware {
   }
 
   public async mounted() {
-    setTimeout(() => {
-      this.$emit(`vuemasonry.itemAdded__VueMasonry`);
-    }, 500);
     await this.reset(this.voting);
   }
 

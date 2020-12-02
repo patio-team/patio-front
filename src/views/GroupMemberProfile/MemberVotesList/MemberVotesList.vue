@@ -27,17 +27,12 @@ import VoteCard from "@/components/shared/VoteCard/VoteCard.vue";
 
 import { Group, User, Vote } from "@/domain";
 import { DateTime, now, minusTo } from "@/utils/datetime";
-import { masonry, masonryTile } from "@/components/directives/MasonryDirectives";
 
 const ProfileStore = namespace("profile");
 
 @Component({
   components: {
     VoteCard,
-  },
-  directives: {
-    masonry,
-    masonryTile,
   },
 })
 export default class MemberVotesList extends Vue {
@@ -58,9 +53,6 @@ export default class MemberVotesList extends Vue {
   private showMoreButton = false;
 
   public mounted() {
-    setTimeout(() => {
-      this.$emit(`vuemasonry.itemAdded__VueMasonry`);
-    }, 500);
     this.loadMoreVotes();
   }
 
