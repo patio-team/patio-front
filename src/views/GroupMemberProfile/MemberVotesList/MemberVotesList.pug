@@ -19,13 +19,10 @@
   | {{ $t('MEMBER_VOTES_LIST.NO_VOTES_YET') }}
 .member-votes-list(data-testid="votes-list" v-else)
   .vote-list(
-    v-masonry
-    horizontal-order="true"
     item-selector=".vote-card"
     transition-duration="0"
   )
     vote-card.vote-card(
-      v-masonry-tile
       v-for="(vote, $index) in votes"
       :vote="vote"
       :key="$index"
